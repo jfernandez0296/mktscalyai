@@ -107,3 +107,8 @@
       .cap { position: absolute; left: 40px; width: 1000px; top: 1500px; text-align: center; }
       .cap span { display: inline-block; background: #0F0F10; color: #fff; font-size: 52px; font-weight: 700; padding: 14px 32px; border-radius: 24px; line-height: 1.18; box-shadow: 0 12px 34px rgba(15,15,16,.25); border: 3px solid rgba(217,152,115,.35); }
       .cap b { color: #D99873; font-weight: 700; }
+      .brandrow { display: flex; align-items: center; gap: 30px; padding: 0 30px; }
+      .brandrow span { font-family: "DM Serif Display", serif; font-size: 56px; }
+      .brandrow .ich { width: 80px; height: 80px; background: #F2E6CE; }
+      .stat.sm b { font-size: 70px; }
+      .stat.sm span { font-size: 26px; }

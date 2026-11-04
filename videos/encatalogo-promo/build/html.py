@@ -27,7 +27,7 @@ MARK = lambda h: f'<img src="assets/img/encatalogo-logo.svg" alt="EnCatalogo.pe"
 
 # ---------------------------------------------------------------- captions (same engine as earlier projects)
 HL = {"encatalogo", "stock", "tienda", "traslado", "reponer", "celular", "agotando", "facturas", "comprobante", "whatsapp",
-      "yape", "plin", "catálogo", "claude", "ciento", "cincuenta", "gratis", "orden", "control", "vendido", "sola"}
+      "yape", "plin", "catálogo", "claude", "muñeca", "paris", "bullking", "gratis", "orden", "control", "vendido", "sola"}
 def phrases(text):
     out, cur = [], []
     for w in text.split():
@@ -203,17 +203,11 @@ G = f'''      <div class="sc" id="sG" style="background:{INK}">
 
 # H · pricing
 H = f'''      <div class="sc" id="sH" style="background:{LIGHT}">
-        {head("H", "PRECIOS", "Un solo plan. Pagas por tienda.")}
-        <div class="abs card" id="Hcard" style="left:70px;top:560px;width:940px;height:560px">
-          <div class="abs eyebrow" style="left:50px;top:50px">ENCATALOGO</div>
-          <div class="abs price" style="left:50px;top:110px"><small>S/</small><span id="Hp">150</span><i>/mes con 1 tienda</i></div>
-          {"".join(f'<div class="abs hl" id="Hl{i}" style="left:50px;top:{325 + i * 72}px">{icon("circle-check", 38, TERRAD)}<span>{t}</span></div>' for i, t in enumerate(["S/ 90 cada tienda extra", "Almacenes gratis", "Vendedor IA en WhatsApp incluido"]))}
+        {head("H", "YA VENDEN CON ENCATALOGO", "Marcas peruanas que ya lo usan")}
+        {"".join(f'<div class="abs card brandrow" id="Hb{i}" style="left:70px;top:{560 + i * 150}px;width:940px;height:128px"><div class="ich">{icon("store", 46, TERRAD)}</div><span>{t}</span></div>' for i, t in enumerate(["Muñeca de Trapo", "Grupo Paris Import", "Bullking"]))}
+        <div class="abs card" id="Hst" style="left:70px;top:1050px;width:940px;height:250px">
+          {"".join(f'<div class="abs stat sm" style="left:{44 + i * 300}px;top:46px"><b>+<span id="Hn{i}">{v}</span>{u}</b><span>{t}</span></div>' for i, (v, u, t) in enumerate([("20", " mil", "clientes gestionados"), ("117", " mil", "mensajes de WhatsApp"), ("2.700", "", "chats atendidos por IA")]))}
         </div>
-        <div class="abs proof" id="Hpr" style="left:70px;top:1160px;width:940px">
-          <div class="eyebrow" style="color:{MUTED}">MARCAS QUE VENDEN CON ENCATALOGO</div>
-          <div class="brands">Muñeca de Trapo <i>·</i> Grupo Paris Import <i>·</i> Bullking</div>
-        </div>
-        <div class="abs fine" style="left:70px;top:1340px">Precios en soles · IGV incluido</div>
       </div>'''
 
 # I · close
@@ -301,10 +295,9 @@ js(f'tl.to("#Ghd", {{ autoAlpha: 0, duration: 0.3 }}, {tw1 + 0.2:.3f});')
 popin("#Gq", W("e7", "claude", -0.1), 0.35); show("#Ga", W("e7", "reponer", 0.1), 0.45, 30); ev("pop", W("e7", "reponer", 0.1))
 # H
 wipe("#sH", "#sG", S[7]); heading("H", S[7])
-show("#Hcard", W("e8", "desde", -0.3), 0.5, 60)
-count("#Hp", W("e8", "ciento", -0.1), 0, 150, 0.9)
-for i, w_ in enumerate(["tienda", "almacenes", "son"]): slide(f"#Hl{i}", W("e8", w_, 0.05 if i else 0.15), -60)
-show("#Hpr", W("e8", "gratis", -0.1), 0.45, 30)
+for i, w_ in enumerate(["muñeca", "grupo", "bullking"]): slide(f"#Hb{i}", W("e8", w_, -0.15), 80)
+show("#Hst", W("e8", "bullking", 0.5), 0.45, 40)
+count("#Hn0", W("e8", "bullking", 0.6), 0, 20, 0.8); count("#Hn1", W("e8", "bullking", 0.6), 0, 117, 0.8)
 # I
 wipe("#sI", "#sH", S[8])
 popin("#Ilg", S[8] + 0.35, 0.6); show("#Iwm", W("e9", "encatalogo", 0.2), 0.45, 20)
