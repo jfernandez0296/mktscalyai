@@ -77,8 +77,8 @@ html = f'''<!doctype html>
     {"".join(f'<div class="card it"><div class="ic">{icon(ic, 46, TD)}</div><div><b>{t}</b><span>{d}</span></div></div>' for ic, t, d in caps)}
   </div>
   <div class="foot">
-    <div class="price">Un solo plan<b>S/ 150</b>al mes con 1 tienda · IGV incluido</div>
-    <div class="cta"><div class="btn">Probar 7 días gratis</div><small>Sin tarjeta · encatalogo.pe</small></div>
+    <div class="price">Empieza hoy<b>7 días gratis</b>sin tarjeta · sin permanencia</div>
+    <div class="cta"><div class="btn">Crea tu cuenta</div><small>encatalogo.pe</small></div>
   </div>
 </section>
 </body></html>

@@ -14,8 +14,6 @@ Con *EnCatalogo.pe* tu mercadería está en orden y tu negocio, bajo control:
 🧾 *Facturación y caja*: cada venta actualiza tu caja, tu stock y tu comprobante SUNAT.
 🤖 *Vendedor IA en WhatsApp*: responde con stock real, envía fotos y precios, y valida pagos por Yape o Plin.
 
-💳 Un solo plan: *S/ 150 al mes por tienda*. Almacenes gratis, IGV incluido, sin permanencia.
-
 ✅ *Pruébalo 7 días gratis, sin tarjeta* 👉 encatalogo.pe
 
 ¿Te ayudo a activarlo? Respóndeme este mensaje 🙌
