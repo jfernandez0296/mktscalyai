@@ -1,0 +1,158 @@
+[
+ {
+  "id": "e1",
+  "text": "Son las once y cuarenta de la noche. Un cliente te escribe por WhatsApp. Y nadie responde.",
+  "start": 0.6,
+  "dur": 5.257,
+  "speech": [
+   [
+    0.0,
+    1.759
+   ],
+   [
+    2.145,
+    3.65
+   ],
+   [
+    4.131,
+    5.257
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "e2",
+  "text": "De día, tu equipo copia pedidos a Excel, los pasa al CRM y persigue pagos a mano.",
+  "start": 6.907,
+  "dur": 5.812,
+  "speech": [
+   [
+    0.0,
+    2.465
+   ],
+   [
+    2.827,
+    4.174
+   ],
+   [
+    4.421,
+    5.812
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "e3",
+  "text": "Esto es Scaly AI. Construimos software e IA a la medida de tu negocio.",
+  "start": 14.769,
+  "dur": 5.395,
+  "speech": [
+   [
+    0.266,
+    1.829
+   ],
+   [
+    2.246,
+    5.395
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "e4",
+  "text": "Un asistente con IA responde en WhatsApp en segundos, y registra cada pedido en tu CRM.",
+  "start": 21.214,
+  "dur": 6.222,
+  "speech": [
+   [
+    0.237,
+    3.358
+   ],
+   [
+    3.631,
+    6.222
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "e5",
+  "text": "Conectamos tu CRM, WhatsApp, tus hojas de cálculo y tu ERP. Automatizamos lo repetitivo.",
+  "start": 28.286,
+  "dur": 6.966,
+  "speech": [
+   [
+    0.0,
+    2.352
+   ],
+   [
+    2.587,
+    4.752
+   ],
+   [
+    5.223,
+    6.966
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "e6",
+  "text": "Y ponemos tus datos a trabajar: ves lo que pasa en tu operación, cada día.",
+  "start": 36.202,
+  "dur": 4.763,
+  "speech": [
+   [
+    0.0,
+    1.899
+   ],
+   [
+    2.213,
+    4.763
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "e7",
+  "text": "Empezamos con un piloto. Elegimos un proceso, lo ponemos a funcionar en dos semanas, y medimos el retorno en seis.",
+  "start": 41.815,
+  "dur": 7.029,
+  "speech": [
+   [
+    0.0,
+    1.33
+   ],
+   [
+    1.806,
+    2.896
+   ],
+   [
+    3.226,
+    5.064
+   ],
+   [
+    5.347,
+    7.029
+   ]
+  ],
+  "scene": 6
+ },
+ {
+  "id": "e8",
+  "text": "Conversemos de tu próximo piloto. Treinta minutos, sin tarjeta, sin compromiso.",
+  "start": 51.095,
+  "dur": 4.875,
+  "speech": [
+   [
+    0.0,
+    1.734
+   ],
+   [
+    2.13,
+    4.875
+   ]
+  ],
+  "scene": 7
+ }
+]
