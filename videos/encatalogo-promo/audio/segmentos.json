@@ -3,15 +3,15 @@
   "id": "e1",
   "text": "¿Sabes cuántas unidades te quedan de tu producto más vendido? ¿Y en qué tienda están?",
   "start": 0.5,
-  "dur": 4.868,
+  "dur": 4.409,
   "speech": [
    [
     0.0,
-    3.28
+    2.98
    ],
    [
-    3.752,
-    4.868
+    3.49,
+    4.409
    ]
   ],
   "scene": 0
@@ -19,20 +19,16 @@
  {
   "id": "e2",
   "text": "Con EnCatalogo, ves el stock de cada tienda, almacén, talla y color, en una sola vista.",
-  "start": 5.618,
-  "dur": 6.006,
+  "start": 5.159,
+  "dur": 5.644,
   "speech": [
    [
     0.0,
-    2.696
+    0.906
    ],
    [
-    2.969,
-    3.581
-   ],
-   [
-    3.846,
-    6.006
+    1.242,
+    5.644
    ]
   ],
   "scene": 1
@@ -40,20 +36,16 @@
  {
   "id": "e3",
   "text": "Mueves mercadería entre sedes y sigues cada traslado hasta que llega. Y te avisa qué reponer, antes de perder ventas.",
-  "start": 11.874,
-  "dur": 7.715,
+  "start": 11.053,
+  "dur": 7.202,
   "speech": [
    [
     0.0,
-    4.364
+    4.078
    ],
    [
-    4.894,
-    6.181
-   ],
-   [
-    6.492,
-    7.715
+    4.622,
+    7.202
    ]
   ],
   "scene": 2
@@ -61,20 +53,12 @@
  {
   "id": "e4",
   "text": "Desde el celular, ves tus ventas del día y los productos que se están agotando.",
-  "start": 19.839,
-  "dur": 4.423,
+  "start": 18.505,
+  "dur": 4.141,
   "speech": [
    [
     0.0,
-    0.965
-   ],
-   [
-    1.199,
-    2.44
-   ],
-   [
-    2.664,
-    4.423
+    4.141
    ]
   ],
   "scene": 3
@@ -82,16 +66,20 @@
  {
   "id": "e5",
   "text": "Vendes, cobras y facturas en el mismo flujo: cada venta actualiza tu caja, tu stock y tu comprobante.",
-  "start": 24.512,
-  "dur": 7.216,
+  "start": 22.896,
+  "dur": 6.336,
   "speech": [
    [
     0.0,
-    3.144
+    2.525
    ],
    [
-    3.689,
-    7.216
+    3.082,
+    5.353
+   ],
+   [
+    5.579,
+    6.336
    ]
   ],
   "scene": 4
@@ -99,28 +87,12 @@
  {
   "id": "e6",
   "text": "Y en WhatsApp, tu vendedor con IA responde con stock real, envía fotos, tallas y precios, y valida el pago por Yape o Plin.",
-  "start": 31.977,
-  "dur": 8.649,
+  "start": 29.482,
+  "dur": 9.181,
   "speech": [
    [
     0.0,
-    0.784
-   ],
-   [
-    1.061,
-    3.632
-   ],
-   [
-    3.897,
-    4.827
-   ],
-   [
-    5.077,
-    6.208
-   ],
-   [
-    6.475,
-    8.649
+    9.181
    ]
   ],
   "scene": 5
@@ -128,20 +100,16 @@
  {
   "id": "e7",
   "text": "Con AI Studio, la foto del celular se vuelve foto de catálogo. Y a Claude le preguntas qué reponer.",
-  "start": 40.876,
-  "dur": 6.838,
+  "start": 38.914,
+  "dur": 5.198,
   "speech": [
    [
     0.0,
-    1.278
+    3.118
    ],
    [
-    1.503,
-    4.154
-   ],
-   [
-    4.665,
-    6.838
+    3.476,
+    5.198
    ]
   ],
   "scene": 6
@@ -149,20 +117,12 @@
  {
   "id": "e8",
   "text": "Ya venden con EnCatalogo marcas como Muñeca de Trapo, Grupo Paris Import y Bullking.",
-  "start": 47.964,
-  "dur": 5.928,
+  "start": 44.362,
+  "dur": 4.728,
   "speech": [
    [
     0.0,
-    0.841
-   ],
-   [
-    1.199,
-    3.864
-   ],
-   [
-    4.381,
-    5.928
+    4.728
    ]
   ],
   "scene": 7
@@ -170,24 +130,28 @@
  {
   "id": "e9",
   "text": "EnCatalogo. Tu mercadería en orden. Tu negocio bajo control. Prueba siete días gratis, sin tarjeta.",
-  "start": 54.143,
-  "dur": 7.792,
+  "start": 49.34,
+  "dur": 7.596,
   "speech": [
    [
     0.0,
-    0.788
+    0.684
    ],
    [
-    1.203,
-    2.673
+    1.39,
+    2.489
    ],
    [
-    3.133,
-    4.741
+    3.344,
+    4.467
    ],
    [
-    5.334,
-    7.792
+    5.073,
+    6.452
+   ],
+   [
+    6.815,
+    7.596
    ]
   ],
   "scene": 8
