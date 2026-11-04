@@ -83,7 +83,7 @@ TASKS = [("file-spreadsheet", "Copiar el pedido #1042 a Excel"), ("users", "Pasa
 def tasklist(sid, auto=False):
     rows = []
     for i, (ic, t) in enumerate(TASKS):
-        st = (f'<span class="tag soft" id="{sid}p{i}">Pendiente</span>'
+        st = (f'<span class="tag soft" id="{sid}pend{i}">Pendiente</span>'
               f'<span class="tag teal" id="{sid}a{i}">{icon("check", 22, "#00646B", 3)}Automático</span>')
         rows.append(f'<div class="task" id="{sid}r{i}"><div class="ti">{icon(ic, 30, TEAL)}</div><div class="tx">{t}</div><div class="st">{st}</div></div>')
     return "".join(rows)
