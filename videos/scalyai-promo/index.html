@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Scaly AI — promo</title>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Manrope"; font-weight: 300; src: url("assets/fonts/Manrope-300-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 400; src: url("assets/fonts/Manrope-400-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); }
+      :root {
+        --navy-900: #041b3d; --navy-700: #0d2f5c; --teal-600: #007b83; --cyan-400: #47d4d4; --slate-700: #2f4560;
+        --cream-100: #f0f1e8; --cream-200: #e3e5d9; --cream-300: #d6d9cb; --white: #ffffff;
+        --gradient-brand: linear-gradient(90deg, #0d2f5c, #47d4d4);
+        --shadow-card: 0 12px 30px rgba(4,27,61,.15); --shadow-button: 0 12px 28px rgba(4,27,61,.22);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream-100); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--cream-100); font-family: "Manrope", system-ui, sans-serif; color: var(--navy-900); }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--cream-100); }
+      .sc.dark { background: var(--navy-900); color: var(--cream-100); }
+      .cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 50% 45%; }
+      #sB, #sC, #sD, #sE, #sF, #sG, #sH, .cap { visibility: hidden; opacity: 0; }
+
+      /* fondos: rejilla sutil + resplandor cian */
+      .grid { position: absolute; left: -64px; top: -64px; width: 2048px; height: 1208px;
+        background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px);
+        background-size: 64px 64px; opacity: .45; }
+      .dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity: 1; }
+      .glow { position: absolute; width: 1100px; height: 1100px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(71,212,212,.38), rgba(71,212,212,0)); }
+      .dark .glow { background: radial-gradient(closest-side, rgba(71,212,212,.16), rgba(71,212,212,0)); }
+
+      /* tipografía */
+      .eyebrow { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); white-space: nowrap; }
+      .dark .eyebrow { color: var(--cyan-400); }
+      .h1 { font-size: 92px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; white-space: nowrap; }
+      .h1 em { font-style: normal; color: var(--teal-600); }
+      .dark .h1 em { color: var(--cyan-400); }
+      .lead { font-size: 36px; font-weight: 300; line-height: 1.4; color: var(--slate-700); }
+      .dark .lead { color: var(--cream-200); }
+      .note { font-size: 18px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .dark .note { color: #b9c3cf; }
+      .tag { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 22px; border-radius: 999px; font-size: 18px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+      .tag.soft { background: var(--cream-200); color: var(--slate-700); }
+      .tag.teal { background: #d6eeee; color: #00646b; }
+      .tag.cyan { background: var(--cyan-400); color: var(--navy-900); }
+      .tag.navy { background: var(--navy-900); color: var(--cream-100); }
+
+      /* tarjetas */
+      .card { background: var(--white); border: 1px solid var(--cream-300); border-radius: 20px; box-shadow: var(--shadow-card); }
+      .dark .card { background: var(--navy-700); border-color: rgba(240,241,232,.12); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+
+      /* A · noche */
+      .clock { font-size: 230px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cream-100); white-space: nowrap; }
+      .clock small { font-size: 80px; font-weight: 500; letter-spacing: -0.02em; color: var(--cyan-400); margin-left: 18px; }
+      .line { font-size: 64px; font-weight: 800; letter-spacing: -0.035em; white-space: nowrap; }
+      .line.dim { color: #8fa0b5; font-weight: 700; }
+      .notif { width: 700px; padding: 30px 34px; display: flex; gap: 26px; align-items: flex-start; background: var(--cream-100); color: var(--navy-900); border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .notif .wa { flex: none; width: 76px; height: 76px; border-radius: 20px; background: #128c4a; display: flex; align-items: center; justify-content: center; }
+      .notif .who { font-size: 22px; font-weight: 700; color: var(--slate-700); display: flex; justify-content: space-between; width: 530px; }
+      .notif .msg { font-size: 34px; font-weight: 500; margin-top: 8px; white-space: nowrap; }
+      .wait { display: flex; align-items: center; gap: 18px; height: 84px; padding: 0 34px; border-radius: 999px; border: 1px solid rgba(240,241,232,.22); background: rgba(240,241,232,.06); font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .wait b { color: var(--cyan-400); font-weight: 800; min-width: 92px; text-align: right; }
+
+      /* filas de tareas */
+      .task { display: flex; align-items: center; gap: 24px; height: 104px; padding: 0 32px; border-bottom: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; white-space: nowrap; }
+      .task:last-child { border-bottom: 0; }
+      .task .ti { flex: none; width: 56px; height: 56px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .task .tx { flex: 1; }
+      .task .st { position: relative; width: 220px; height: 46px; }
+      .task .st .tag { position: absolute; right: 0; top: 0; }
+      .bigstat b { display: block; font-size: 150px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--teal-600); }
+      .bigstat span { display: block; font-size: 30px; font-weight: 700; margin-top: 14px; line-height: 1.3; }
+      .bigstat i { display: block; font-style: normal; font-size: 24px; font-weight: 300; color: var(--slate-700); margin-top: 8px; line-height: 1.4; }
+
+      /* C · marca */
+      .wm { display: flex; align-items: center; gap: 48px; white-space: nowrap; }
+      .wm .nm { font-size: 190px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+      .wm .nm span { font-weight: 500; color: var(--teal-600); letter-spacing: -0.03em; }
+      .dark .wm .nm span { color: var(--cyan-400); }
+      .bars { position: relative; }
+      .bars i { position: absolute; display: block; border-radius: 999px; }
+      .hero .h1 { font-size: 120px; line-height: 1.04; }
+      .hero .h1 .s { color: var(--slate-700); font-weight: 500; }
+      .vbar { width: 10px; border-radius: 5px; background: var(--teal-600); }
+      .navlogo { display: flex; align-items: center; gap: 16px; font-size: 40px; font-weight: 800; letter-spacing: -0.04em; white-space: nowrap; }
+      .navlogo span { font-weight: 500; color: var(--teal-600); }
+
+      /* D · chat */
+      .phone { width: 540px; height: 860px; border-radius: 60px; background: var(--navy-900); padding: 16px; box-shadow: 0 30px 70px rgba(4,27,61,.28); }
+      .screen { position: relative; width: 508px; height: 828px; border-radius: 46px; background: var(--cream-100); overflow: hidden; }
+      .chd { position: absolute; left: 0; top: 0; width: 508px; height: 128px; padding: 40px 28px 0; display: flex; gap: 18px; align-items: center; background: var(--white); border-bottom: 1px solid var(--cream-300); }
+      .chd .av { width: 64px; height: 64px; border-radius: 18px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; }
+      .chd b { display: block; font-size: 24px; font-weight: 700; }
+      .chd i { display: block; font-style: normal; font-size: 18px; font-weight: 500; color: var(--teal-600); }
+      .bub { position: absolute; max-width: 400px; padding: 18px 22px; border-radius: 22px; font-size: 25px; font-weight: 500; line-height: 1.3; }
+      .bub small { display: block; font-size: 16px; font-weight: 500; margin-top: 6px; opacity: .75; text-align: right; }
+      .bub.in { left: 24px; background: var(--white); border: 1px solid var(--cream-300); border-bottom-left-radius: 6px; }
+      .bub.out { right: 24px; background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius: 6px; }
+      .typing { position: absolute; right: 24px; display: flex; gap: 8px; padding: 22px 24px; border-radius: 22px; background: var(--navy-900); }
+      .typing i { width: 12px; height: 12px; border-radius: 6px; background: var(--cyan-400); display: block; }
+      .rcpt { position: absolute; left: 24px; width: 460px; display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 18px; background: #d6eeee; color: #00545a; font-size: 23px; font-weight: 700; }
+      .crm { width: 640px; padding: 26px 30px; }
+      .crm .hd { display: flex; justify-content: space-between; align-items: center; }
+      .crm .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm .row b { font-weight: 700; }
+
+      /* E · conexiones */
+      .hub { width: 170px; height: 170px; border-radius: 40px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(4,27,61,.3); }
+      .node { display: flex; align-items: center; gap: 16px; height: 92px; padding: 0 30px 0 18px; border-radius: 999px; background: var(--white); border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .node .ni { width: 60px; height: 60px; border-radius: 30px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .pulse { width: 18px; height: 18px; border-radius: 9px; background: var(--cyan-400); box-shadow: 0 0 0 6px rgba(71,212,212,.25); }
+
+      /* F · datos */
+      .kpi { width: 520px; height: 200px; padding: 30px 34px; }
+      .kpi b em { font-style: normal; }
+      .kpi b { display: block; font-size: 84px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--cyan-400); white-space: nowrap; }
+      .kpi span { display: block; font-size: 26px; font-weight: 500; color: var(--cream-200); margin-top: 16px; white-space: nowrap; }
+      .chart { width: 1600px; height: 300px; }
+      .cbar { position: absolute; bottom: 64px; width: 54px; border-radius: 10px 10px 4px 4px; }
+      .cbar.m { background: #5d708a; }
+      .cbar.a { background: var(--cyan-400); }
+      .lg { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 500; color: var(--cream-200); white-space: nowrap; }
+      .lg i { width: 22px; height: 22px; border-radius: 6px; display: block; }
+      .wk { position: absolute; bottom: 22px; width: 140px; text-align: center; font-size: 18px; font-weight: 500; color: #b9c3cf; }
+
+      /* G · piloto */
+      .track { height: 12px; border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .track div { width: 100%; height: 100%; background: var(--gradient-brand); transform-origin: 0% 50%; }
+      .dot { width: 64px; height: 64px; border-radius: 32px; background: var(--white); border: 2px solid var(--cream-300); display: flex; align-items: center; justify-content: center; }
+      .dot.on { background: var(--teal-600); border-color: var(--teal-600); }
+      .step { width: 480px; height: 290px; padding: 32px 36px; }
+      .step .num { font-size: 22px; font-weight: 800; letter-spacing: .14em; color: var(--teal-600); }
+      .step h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; margin-top: 14px; white-space: nowrap; }
+      .step b { display: block; font-size: 64px; font-weight: 800; letter-spacing: -0.04em; color: var(--teal-600); margin-top: 26px; white-space: nowrap; }
+      .step i { font-style: normal; font-size: 26px; font-weight: 300; color: var(--slate-700); white-space: nowrap; }
+
+      /* H · cierre */
+      .btn { display: flex; align-items: center; justify-content: center; gap: 18px; height: 104px; padding: 0 56px; border-radius: 999px; background: var(--gradient-brand); color: var(--white); font-size: 40px; font-weight: 700; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+      .micro { font-size: 30px; font-weight: 500; color: var(--cream-200); white-space: nowrap; text-align: center; }
+      .url { font-size: 30px; font-weight: 800; letter-spacing: .14em; color: var(--cyan-400); text-align: center; }
+
+      /* transición con las tres barras del logo */
+      .tbar { position: absolute; left: 0; width: 2320px; height: 360px; border-radius: 180px; visibility: hidden; }
+      #prog { position: absolute; left: 0; bottom: 0; width: 1920px; height: 6px; background: var(--gradient-brand); transform-origin: 0% 50%; }
+
+      /* subtítulos */
+      .cap { position: absolute; left: 0; top: 958px; width: 1920px; display: flex; justify-content: center; pointer-events: none; }
+      .cap span { padding: 12px 30px; border-radius: 999px; background: rgba(4,27,61,.92); color: var(--cream-100); font-size: 34px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(4,27,61,.25); }
+      .cap b { font-weight: 800; color: var(--cyan-400); }
+      #Ecard .task { font-size: 27px; height: 100px; } #Ecard .task .st { width: 210px; }
+
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="60.0" data-fps="30" data-width="1920" data-height="1080">
+      <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:900px;top:-300px;width:1200px;height:1200px"></div>
+        <div class="abs eyebrow" id="Aey" style="left:160px;top:140px" data-layout-allow-overlap="true">Martes por la noche</div>
+        <div class="abs clock" id="Aclk" style="left:150px;top:205px">11:40<small>p. m.</small></div>
+        <div class="abs line" id="Al1" style="left:160px;top:560px">Un cliente te escribe.</div>
+        <div class="abs line dim" id="Al2" style="left:160px;top:660px">Y nadie responde.</div>
+        <div class="abs notif" id="Anot" style="left:1060px;top:300px">
+          <div class="wa"><svg width="46" height="46" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div>
+          <div><div class="who"><span>Cliente nuevo</span><span>11:40 p. m.</span></div>
+          <div class="msg">Hola, ¿tienen stock de la talla M?</div></div>
+        </div>
+        <div class="abs wait" id="Await" style="left:1060px;top:520px"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg>Sin respuesta<b id="Ah">0 min</b></div>
+        <div class="abs note" style="left:1060px;top:860px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:1100px;top:200px;width:900px;height:900px"></div>
+        <div class="abs eyebrow" id="Bey" style="left:160px;top:130px">Tu operación hoy</div>
+        <div class="abs h1" id="Bt" style="left:156px;top:176px">De día, todo <em>a mano.</em></div>
+        <div class="abs card" id="Bcard" style="left:160px;top:380px;width:1060px"><div class="task" id="Br0"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="tx">Copiar el pedido #1042 a Excel</div><div class="st"><span class="tag soft" id="Bp0">Pendiente</span><span class="tag teal" id="Ba0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div><div class="task" id="Br1"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><div class="tx">Pasar el pedido #1042 al CRM</div><div class="st"><span class="tag soft" id="Bp1">Pendiente</span><span class="tag teal" id="Ba1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div><div class="task" id="Br2"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg></div><div class="tx">Perseguir el pago por WhatsApp</div><div class="st"><span class="tag soft" id="Bp2">Pendiente</span><span class="tag teal" id="Ba2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div><div class="task" id="Br3"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div class="tx">Armar el reporte de la semana</div><div class="st"><span class="tag soft" id="Bp3">Pendiente</span><span class="tag teal" id="Ba3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div></div>
+        <div class="abs card bigstat" id="Bst" style="left:1300px;top:380px;width:460px;height:418px;padding:44px 44px">
+          <b id="Bh">0 h</b><span>a la semana copiando datos entre sistemas</span><i>Dato ilustrativo</i></div>
+      </div></div>
+      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:980px;top:0px;width:1200px;height:1200px"></div>
+        <div class="abs wm" id="Cwm" style="left:372px;top:420px"><div class="bars" style="width:225.0px;height:210.0px"><i id="Cb0" style="left:60.0px;top:0.0px;width:165.0px;height:52.5px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:78.8px;width:225.0px;height:52.5px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:157.5px;width:165.0px;height:52.5px;background:#041B3D"></i></div><div class="nm" id="Cnm">Scaly <span>AI</span></div></div>
+        <div class="abs navlogo" id="Cnav" style="left:160px;top:110px"><div class="bars" style="width:52.5px;height:49.0px"><i id="Cs0" style="left:14.0px;top:0.0px;width:38.5px;height:12.2px;background:#47D4D4"></i><i id="Cs1" style="left:0.0px;top:18.4px;width:52.5px;height:12.2px;background:#007B83"></i><i id="Cs2" style="left:0.0px;top:36.8px;width:38.5px;height:12.2px;background:#041B3D"></i></div><div>Scaly <span>AI</span></div></div>
+        <div class="abs hero" id="Chero" style="left:160px;top:240px">
+          <div class="abs vbar" id="Cvb" style="left:0;top:8px;height:600px"></div>
+          <div class="abs h1" id="Ch0" style="left:56px;top:0">Construimos</div>
+          <div class="abs h1" id="Ch1" style="left:56px;top:140px"><em>software e IA</em> <span class="s">a la</span></div>
+          <div class="abs h1" id="Ch2" style="left:56px;top:280px"><span class="s">medida de tu negocio.</span></div>
+          <div class="abs lead" id="Csub" style="left:60px;top:455px;white-space:nowrap">Ponemos tus datos a trabajar y automatizamos lo repetitivo.</div>
+        </div>
+      </div></div>
+      <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:250px;width:1000px;height:1000px"></div>
+        <div class="abs eyebrow" id="Dey" style="left:160px;top:150px">IA · WhatsApp</div>
+        <div class="abs h1" id="Dt" style="left:156px;top:196px">Responde en <em>segundos.</em></div>
+        <div class="abs lead" id="Dsub" style="left:160px;top:330px;white-space:nowrap">Y registra cada pedido en tu CRM.</div>
+        <div class="abs card crm" id="Dcrm" style="left:160px;top:470px">
+          <div class="hd"><span class="tag navy">CRM</span><span class="tag teal" id="Dnew">Nuevo</span></div>
+          <div class="row" style="margin-top:22px"><span>Pedido</span><b>#1042</b></div>
+          <div class="row"><span>Producto</span><b>Polo básico · talla M</b></div>
+          <div class="row"><span>Canal</span><b>WhatsApp · 11:40 p. m.</b></div>
+        </div>
+        <div class="abs tag cyan" id="Dfast" style="left:160px;top:830px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg>Respondió en 2 segundos</div>
+        <div class="abs phone" id="Dph" style="left:1200px;top:60px"><div class="screen">
+          <div class="chd"><div class="av"><div class="bars" style="width:37.5px;height:35.0px"><i id="Dav0" style="left:10.0px;top:0.0px;width:27.5px;height:8.8px;background:#47D4D4"></i><i id="Dav1" style="left:0.0px;top:13.1px;width:37.5px;height:8.8px;background:#007B83"></i><i id="Dav2" style="left:0.0px;top:26.2px;width:27.5px;height:8.8px;background:#F0F1E8"></i></div></div><div><b>Asistente Scaly AI</b><i>en línea</i></div></div>
+          <div class="bub in" id="Dm0" style="top:160px">Hola, ¿tienen stock de la talla M?<small>11:40 p. m.</small></div>
+          <div class="typing" id="Dty" style="top:300px"><i></i><i></i><i></i></div>
+          <div class="bub out" id="Dm1" style="top:300px">Sí, nos quedan 8. ¿Te la reservo?<small>11:40 p. m.</small></div>
+          <div class="bub in" id="Dm2" style="top:450px">Sí, por favor.<small>11:41 p. m.</small></div>
+          <div class="rcpt" id="Drc" style="top:566px"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg>Pedido #1042 registrado en tu CRM</div>
+        </div></div>
+        <div class="abs note" style="left:160px;top:900px">Conversación ilustrativa</div>
+      </div></div>
+      <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:120px;width:1100px;height:1100px"></div>
+        <div class="abs eyebrow" id="Eey" style="left:160px;top:130px">Integraciones</div>
+        <div class="abs h1" id="Et" style="left:156px;top:176px">Automatizamos <em>lo repetitivo.</em></div>
+        <svg class="abs" style="left:0;top:0" width="1920" height="1080" viewBox="0 0 1920 1080"><path id="Eln0" d="M260 466 L560 640" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Eln1" d="M765 466 L560 640" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Eln2" d="M310 846 L560 640" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Eln3" d="M765 846 L560 640" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        <div class="abs pulse" id="Ep0" style="left:251px;top:457px"></div><div class="abs pulse" id="Ep1" style="left:756px;top:457px"></div><div class="abs pulse" id="Ep2" style="left:301px;top:837px"></div><div class="abs pulse" id="Ep3" style="left:756px;top:837px"></div>
+        <div class="abs hub" id="Ehub" style="left:475px;top:555px"><div class="bars" style="width:90.0px;height:84.0px"><i id="Eb0" style="left:24.0px;top:0.0px;width:66.0px;height:21.0px;background:#47D4D4"></i><i id="Eb1" style="left:0.0px;top:31.5px;width:90.0px;height:21.0px;background:#007B83"></i><i id="Eb2" style="left:0.0px;top:63.0px;width:66.0px;height:21.0px;background:#F0F1E8"></i></div></div>
+        <div class="abs node" id="En0" style="left:170px;top:420px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div>CRM</div><div class="abs node" id="En1" style="left:620px;top:420px"><div class="ni"><svg width="34" height="34" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#128C4A"/></svg></div>WhatsApp</div><div class="abs node" id="En2" style="left:120px;top:800px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div>Hojas de cálculo</div><div class="abs node" id="En3" style="left:680px;top:800px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div>ERP</div>
+        <div class="abs card" id="Ecard" style="left:940px;top:400px;width:820px"><div class="task" id="Er0"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="tx">Copiar el pedido #1042 a Excel</div><div class="st"><span class="tag soft" id="Ep0">Pendiente</span><span class="tag teal" id="Ea0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div><div class="task" id="Er1"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><div class="tx">Pasar el pedido #1042 al CRM</div><div class="st"><span class="tag soft" id="Ep1">Pendiente</span><span class="tag teal" id="Ea1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div><div class="task" id="Er2"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg></div><div class="tx">Perseguir el pago por WhatsApp</div><div class="st"><span class="tag soft" id="Ep2">Pendiente</span><span class="tag teal" id="Ea2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div><div class="task" id="Er3"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div class="tx">Armar el reporte de la semana</div><div class="st"><span class="tag soft" id="Ep3">Pendiente</span><span class="tag teal" id="Ea3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div></div>
+      </div></div>
+      <div class="sc dark" id="sF"><div class="cam"><div class="grid"></div><div class="glow" style="left:1000px;top:-300px;width:1200px;height:1200px"></div>
+        <div class="abs eyebrow" id="Fey" style="left:160px;top:110px">Datos</div>
+        <div class="abs h1" id="Ft" style="left:156px;top:156px">Ponemos tus datos <em>a trabajar.</em></div>
+        <div class="abs card kpi" id="Fk0" style="left:160px;top:320px"><b><em id="Fn0">0</em></b><span>pedidos registrados solos</span></div><div class="abs card kpi" id="Fk1" style="left:700px;top:320px"><b><em id="Fn1">0</em> h</b><span>ahorradas por semana</span></div><div class="abs card kpi" id="Fk2" style="left:1240px;top:320px"><b><em id="Fn2">24/7</em></b><span>atención a tus clientes</span></div>
+        <div class="abs card chart" id="Fch" style="left:160px;top:560px">
+          <div class="abs lg" style="left:36px;top:30px"><i style="background:#5D708A"></i>Horas de trabajo manual</div>
+          <div class="abs lg" style="left:360px;top:30px"><i style="background:#47D4D4"></i>Tareas automatizadas</div>
+          <div class="abs note" style="right:36px;top:32px">Datos ilustrativos</div>
+          <div class="abs cbar m" id="Fm0" style="left:70px;height:156px"></div><div class="abs cbar a" id="Fa0" style="left:130px;height:14px"></div><div class="wk" style="left:52px">Semana 1</div><div class="abs cbar m" id="Fm1" style="left:260px;height:143px"></div><div class="abs cbar a" id="Fa1" style="left:320px;height:37px"></div><div class="wk" style="left:242px">Semana 2</div><div class="abs cbar m" id="Fm2" style="left:450px;height:119px"></div><div class="abs cbar a" id="Fa2" style="left:510px;height:68px"></div><div class="wk" style="left:432px">Semana 3</div><div class="abs cbar m" id="Fm3" style="left:640px;height:99px"></div><div class="abs cbar a" id="Fa3" style="left:700px;height:99px"></div><div class="wk" style="left:622px">Semana 4</div><div class="abs cbar m" id="Fm4" style="left:830px;height:78px"></div><div class="abs cbar a" id="Fa4" style="left:890px;height:122px"></div><div class="wk" style="left:812px">Semana 5</div><div class="abs cbar m" id="Fm5" style="left:1020px;height:58px"></div><div class="abs cbar a" id="Fa5" style="left:1080px;height:143px"></div><div class="wk" style="left:1002px">Semana 6</div><div class="abs cbar m" id="Fm6" style="left:1210px;height:44px"></div><div class="abs cbar a" id="Fa6" style="left:1270px;height:156px"></div><div class="wk" style="left:1192px">Semana 7</div><div class="abs cbar m" id="Fm7" style="left:1400px;height:34px"></div><div class="abs cbar a" id="Fa7" style="left:1460px;height:170px"></div><div class="wk" style="left:1382px">Semana 8</div>
+        </div>
+      </div></div>
+      <div class="sc" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:1100px;top:300px;width:1000px;height:1000px"></div>
+        <div class="abs eyebrow" id="Gey" style="left:160px;top:130px">Cómo trabajamos</div>
+        <div class="abs h1" id="Gt" style="left:156px;top:176px">Empezamos con <em>un piloto.</em></div>
+        <div class="abs track" style="left:192px;top:432px;width:1500px"><div id="Gfill"></div></div>
+        <div class="abs dot" id="Gd0" style="left:160px;top:406px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D6D9CB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="abs dot on" id="Gdo0" style="left:160px;top:406px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="abs dot" id="Gd1" style="left:910px;top:406px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D6D9CB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="abs dot on" id="Gdo1" style="left:910px;top:406px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="abs dot" id="Gd2" style="left:1660px;top:406px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D6D9CB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="abs dot on" id="Gdo2" style="left:1660px;top:406px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div>
+        <div class="abs card step" id="Gs0" style="left:160px;top:540px"><div class="num">01</div><h3>Elegimos un proceso</h3><b></b><i>que más te cuesta</i></div><div class="abs card step" id="Gs1" style="left:700px;top:540px"><div class="num">02</div><h3>Lo ponemos a funcionar</h3><b>2 semanas</b><i>en marcha</i></div><div class="abs card step" id="Gs2" style="left:1240px;top:540px"><div class="num">03</div><h3>Medimos el retorno</h3><b>6 semanas</b><i>ROI medible</i></div>
+      </div></div>
+      <div class="sc dark" id="sH"><div class="cam"><div class="grid"></div><div class="glow" style="left:410px;top:-160px;width:1100px;height:1100px"></div>
+        <div class="abs wm" id="Hwm" style="left:532px;top:190px"><div class="bars" style="width:159.4px;height:148.8px"><i id="Hb0" style="left:42.5px;top:0.0px;width:116.9px;height:37.2px;background:#47D4D4"></i><i id="Hb1" style="left:0.0px;top:55.8px;width:159.4px;height:37.2px;background:#007B83"></i><i id="Hb2" style="left:0.0px;top:111.6px;width:116.9px;height:37.2px;background:#F0F1E8"></i></div><div class="nm" style="font-size:134px">Scaly <span>AI</span></div></div>
+        <div class="abs lead" id="Htag" style="left:0;top:430px;width:1920px;text-align:center">Software e IA a la medida de tu negocio.</div>
+        <div class="abs" id="Hcta" style="left:0;top:560px;width:1920px;display:flex;justify-content:center"><div class="btn" id="Hbtn">Conversemos de tu próximo piloto <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></div>
+        <div class="abs micro" id="Hmic" style="left:0;top:704px;width:1920px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Hurl" style="left:0;top:800px;width:1920px">SCALYAI.DEV</div>
+      </div></div>
+      <div class="abs" id="tbars" style="left:0;top:0;width:1920px;height:1080px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:360px;background:#007B83"></div><div class="tbar" style="top:720px;background:#041B3D"></div></div>
+      <div id="prog"></div>
+      <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>Son las once y cuarenta de la noche.</span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>Un cliente te escribe por <b>WhatsApp.</b></span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>Y <b>nadie</b> responde.</span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>De día,</span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>tu equipo copia pedidos a <b>Excel,</b></span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>los pasa al <b>CRM</b> y persigue pagos a mano.</span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>Esto es <b>Scaly</b> AI.</span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>Construimos software e <b>IA</b></span></div>
+      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>a la <b>medida</b> de tu negocio.</span></div>
+      <div class="cap" id="cap9" data-layout-allow-overlap="true"><span>Un asistente con <b>IA</b> responde</span></div>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>en <b>WhatsApp</b> en <b>segundos,</b></span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>y registra cada pedido en tu <b>CRM.</b></span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>Conectamos tu <b>CRM,</b> <b>WhatsApp,</b></span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>tus hojas de cálculo y tu <b>ERP.</b></span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>Automatizamos lo <b>repetitivo.</b></span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>Y ponemos tus <b>datos</b> a trabajar:</span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>ves lo que pasa en tu operación, cada día.</span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>Empezamos con un <b>piloto.</b></span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>Elegimos un proceso,</span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>lo ponemos a funcionar en <b>dos</b> semanas,</span></div>
+      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>y medimos el retorno en <b>seis.</b></span></div>
+      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span><b>Conversemos</b> de tu próximo <b>piloto.</b></span></div>
+      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span><b>Treinta</b> <b>minutos,</b> sin tarjeta, sin compromiso.</span></div>
+      <audio id="v_e1" src="audio/seg/e1.wav" data-start="0.6" data-duration="5.257" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e2" src="audio/seg/e2.wav" data-start="6.907" data-duration="5.812" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e3" src="audio/seg/e3.wav" data-start="14.769" data-duration="5.395" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e4" src="audio/seg/e4.wav" data-start="21.214" data-duration="6.222" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e5" src="audio/seg/e5.wav" data-start="28.286" data-duration="6.966" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e6" src="audio/seg/e6.wav" data-start="36.202" data-duration="4.763" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e7" src="audio/seg/e7.wav" data-start="41.815" data-duration="7.029" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_e8" src="audio/seg/e8.wav" data-start="51.095" data-duration="4.875" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="60.0" data-track-index="13" data-volume="0.8"></audio>
+      <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="60.0" data-track-index="14" data-volume="0.5"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const fmt = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      const capShow = (sel, a, b) => {
+        tl.fromTo(sel, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: "power2.out" }, a - 0.04);
+        tl.set(sel, { autoAlpha: 0 }, b);
+      };
+      tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 7.21, ease: "none" }, 0.000);
+      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 7.21, ease: "sine.inOut" }, 0.000);
+      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 8.06, ease: "none" }, 6.007);
+      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.06, ease: "sine.inOut" }, 6.007);
+      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 8.64, ease: "none" }, 12.869);
+      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.64, ease: "sine.inOut" }, 12.869);
+      tl.fromTo("#sD > .cam", { scale: 1 }, { scale: 1.035, duration: 8.47, ease: "none" }, 20.314);
+      tl.fromTo("#sD .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.47, ease: "sine.inOut" }, 20.314);
+      tl.fromTo("#sE > .cam", { scale: 1 }, { scale: 1.035, duration: 9.02, ease: "none" }, 27.586);
+      tl.fromTo("#sE .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 9.02, ease: "sine.inOut" }, 27.586);
+      tl.fromTo("#sF > .cam", { scale: 1 }, { scale: 1.035, duration: 6.91, ease: "none" }, 35.402);
+      tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.91, ease: "sine.inOut" }, 35.402);
+      tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 9.58, ease: "none" }, 41.115);
+      tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 9.58, ease: "sine.inOut" }, 41.115);
+      tl.fromTo("#sH > .cam", { scale: 1 }, { scale: 1.035, duration: 11.71, ease: "none" }, 49.495);
+      tl.fromTo("#sH .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.71, ease: "sine.inOut" }, 49.495);
+      tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.200);
+      tl.fromTo("#Aclk", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 0.350);
+      tl.fromTo("#Al1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 2.620);
+      tl.fromTo("#Anot", { autoAlpha: 0, y: 0, x: 40 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 2.720);
+      tl.fromTo("#Al2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 4.656);
+      tl.fromTo("#Await", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 4.756);
+      (() => { const o = { v: 0 }; const el = document.querySelector("#Ah"); tl.to(o, { v: 480, duration: 1.9, ease: "power2.in", onUpdate: () => { const m = Math.round(o.v); el.textContent = m < 60 ? m + " min" : Math.floor(m / 60) + " h"; } }, 4.956); })();
+      tl.to("#Anot", { opacity: 0.45, duration: 1.2, ease: "power1.inOut" }, 5.056);
+      tl.set(".tbar", { visibility: "visible" }, 5.347);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 5.347);
+      tl.set("#sA", { autoAlpha: 0 }, 6.007);
+      tl.set("#sB", { autoAlpha: 1 }, 6.007);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 6.047);
+      tl.set(".tbar", { visibility: "hidden" }, 6.797);
+      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.157);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 6.287);
+      tl.fromTo("#Bcard", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 9.556);
+      gsap.set(["#sB .tag.teal"], { autoAlpha: 0 });
+      tl.fromTo("#Br0 .ti", { autoAlpha: 0, y: 0, x: -12 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 10.042);
+      tl.to("#Br0", { backgroundColor: "#F7F7F1", duration: 0.3 }, 10.042);
+      tl.fromTo("#Br1 .ti", { autoAlpha: 0, y: 0, x: -12 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 11.364);
+      tl.to("#Br1", { backgroundColor: "#F7F7F1", duration: 0.3 }, 11.364);
+      tl.fromTo("#Br2 .ti", { autoAlpha: 0, y: 0, x: -12 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 11.839);
+      tl.to("#Br2", { backgroundColor: "#F7F7F1", duration: 0.3 }, 11.839);
+      tl.fromTo("#Br3 .ti", { autoAlpha: 0, y: 0, x: -12 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 12.415);
+      tl.to("#Br3", { backgroundColor: "#F7F7F1", duration: 0.3 }, 12.415);
+      tl.fromTo("#Bst", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.464);
+      (() => { const o = { v: 0 }; const el = document.querySelector("#Bh"); tl.to(o, { v: 12, duration: 1.6, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + " h"; } }, 11.764); })();
+      tl.to("#sB", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 12.569);
+      tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 12.819);
+      gsap.set(["#Cnav", "#Chero"], { autoAlpha: 0 });
+      tl.fromTo("#Cwm", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.01, ease: "power3.out" }, 12.969);
+      tl.fromTo("#Cb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 13.019);
+      tl.fromTo("#Cb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 13.159);
+      tl.fromTo("#Cb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 13.299);
+      tl.fromTo("#Cnm", { autoAlpha: 0, y: 0, x: -30 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 15.280);
+      tl.to("#Cwm", { autoAlpha: 0, y: -30, duration: 0.45, ease: "power2.in" }, 16.465);
+      tl.fromTo("#Cnav", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 16.765);
+      tl.fromTo("#Cs0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 16.765);
+      tl.fromTo("#Cs1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 16.845);
+      tl.fromTo("#Cs2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 16.925);
+      tl.set("#Chero", { autoAlpha: 1 }, 16.665);
+      tl.fromTo("#Cvb", { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.8, ease: "power3.out" }, 16.665);
+      tl.fromTo("#Ch0", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 16.715);
+      tl.fromTo("#Ch1", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 17.578);
+      tl.fromTo("#Ch2", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 18.607);
+      tl.fromTo("#Csub", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 20.264);
+      tl.set(".tbar", { visibility: "visible" }, 19.654);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 19.654);
+      tl.set("#sC", { autoAlpha: 0 }, 20.314);
+      tl.set("#sD", { autoAlpha: 1 }, 20.314);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 20.354);
+      tl.set(".tbar", { visibility: "hidden" }, 21.104);
+      tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 20.464);
+      tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 20.594);
+      gsap.set(["#Dty", "#Dm1", "#Dm2", "#Drc", "#Dfast", "#Dsub", "#Dcrm"], { autoAlpha: 0 });
+      tl.fromTo("#Dph", { autoAlpha: 0, y: 0, x: 60 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 20.514);
+      tl.fromTo("#Dm0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 20.914);
+      tl.set("#Dty", { autoAlpha: 1 }, 21.907);
+      tl.fromTo("#Dty i", { opacity: 0.35 }, { opacity: 1, duration: 0.25, stagger: 0.12, repeat: 1, yoyo: true, ease: "sine.inOut" }, 21.907);
+      tl.set("#Dty", { autoAlpha: 0 }, 22.407);
+      tl.fromTo("#Dm1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.407);
+      tl.fromTo("#Dfast", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 23.894);
+      tl.fromTo("#Dm2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 24.494);
+      tl.fromTo("#Drc", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 24.897);
+      tl.fromTo("#Dsub", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 24.897);
+      tl.fromTo("#Dcrm", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 25.147);
+      tl.set("#sE", { autoAlpha: 1 }, 27.186);
+      tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 27.186);
+      tl.set("#sD", { autoAlpha: 0 }, 27.906);
+      tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.736);
+      tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.866);
+      gsap.set(["#Ehub", "#sE .pulse", "#sE .tag.soft"], { autoAlpha: 0 });
+      tl.fromTo("#Ehub", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.886);
+      tl.fromTo("#En0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 29.271);
+      tl.to("#Eln0", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 29.421);
+      tl.fromTo("#En1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 29.677);
+      tl.to("#Eln1", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 29.827);
+      tl.fromTo("#En2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 31.002);
+      tl.to("#Eln2", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 31.152);
+      tl.fromTo("#En3", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 32.539);
+      tl.to("#Eln3", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 32.689);
+      tl.fromTo("#Ecard", { autoAlpha: 0, y: 0, x: 40 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 28.186);
+      tl.set("#Ep0", { autoAlpha: 1 }, 32.959);
+      tl.fromTo("#Ep0", { x: 0, y: 0 }, { x: 300, y: 174, duration: 0.7, ease: "power2.inOut" }, 32.959);
+      tl.set("#Ep0", { autoAlpha: 0 }, 33.659);
+      tl.fromTo("#Ea0", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 33.459);
+      tl.set("#Ep1", { autoAlpha: 1 }, 33.159);
+      tl.fromTo("#Ep1", { x: 0, y: 0 }, { x: -205, y: 174, duration: 0.7, ease: "power2.inOut" }, 33.159);
+      tl.set("#Ep1", { autoAlpha: 0 }, 33.859);
+      tl.fromTo("#Ea1", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 33.659);
+      tl.set("#Ep2", { autoAlpha: 1 }, 33.359);
+      tl.fromTo("#Ep2", { x: 0, y: 0 }, { x: 250, y: -206, duration: 0.7, ease: "power2.inOut" }, 33.359);
+      tl.set("#Ep2", { autoAlpha: 0 }, 34.059);
+      tl.fromTo("#Ea2", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 33.859);
+      tl.set("#Ep3", { autoAlpha: 1 }, 33.559);
+      tl.fromTo("#Ep3", { x: 0, y: 0 }, { x: -205, y: -206, duration: 0.7, ease: "power2.inOut" }, 33.559);
+      tl.set("#Ep3", { autoAlpha: 0 }, 34.259);
+      tl.fromTo("#Ea3", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power3.out" }, 34.059);
+      tl.to("#Ehub", { boxShadow: "0 0 0 18px rgba(71,212,212,.22), 0 20px 50px rgba(4,27,61,.3)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 33.359);
+      tl.set(".tbar", { visibility: "visible" }, 34.742);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 34.742);
+      tl.set("#sE", { autoAlpha: 0 }, 35.402);
+      tl.set("#sF", { autoAlpha: 1 }, 35.402);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 35.442);
+      tl.set(".tbar", { visibility: "hidden" }, 36.192);
+      tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.552);
+      tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 35.682);
+      tl.fromTo("#Fk0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 36.933);
+      tl.fromTo("#Fk1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 37.083);
+      tl.fromTo("#Fk2", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 37.233);
+      (() => { const o = { v: 0 }; const el = document.querySelector("#Fn0"); tl.to(o, { v: 1240, duration: 1.8, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + ""; } }, 37.233); })();
+      (() => { const o = { v: 0 }; const el = document.querySelector("#Fn1"); tl.to(o, { v: 18, duration: 1.6, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + ""; } }, 37.383); })();
+      tl.fromTo("#Fch", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 37.815);
+      tl.fromTo("#sF .cbar", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.7, stagger: 0.07, ease: "power3.out" }, 38.015);
+      tl.set("#sG", { autoAlpha: 1 }, 40.715);
+      tl.fromTo("#sG", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 40.715);
+      tl.set("#sF", { autoAlpha: 0 }, 41.435);
+      tl.fromTo("#Gey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 41.265);
+      tl.fromTo("#Gt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 41.395);
+      gsap.set(["#Gdo0", "#Gdo1", "#Gdo2"], { autoAlpha: 0 });
+      gsap.set("#Gfill", { scaleX: 0 });
+      tl.fromTo("#Gs0", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 43.421);
+      tl.to("#Gfill", { scaleX: 0.00, duration: 0.7, ease: "power2.inOut" }, 42.921);
+      tl.fromTo("#Gdo0", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 43.571);
+      tl.fromTo("#Gs1", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 45.454);
+      tl.to("#Gfill", { scaleX: 0.50, duration: 0.7, ease: "power2.inOut" }, 44.954);
+      tl.fromTo("#Gdo1", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 45.604);
+      tl.fromTo("#Gs2", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 47.074);
+      tl.to("#Gfill", { scaleX: 1.00, duration: 0.7, ease: "power2.inOut" }, 46.574);
+      tl.fromTo("#Gdo2", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.4, ease: "power3.out" }, 47.224);
+      tl.fromTo("#Gs1 b", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 45.904);
+      tl.fromTo("#Gs2 b", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 47.841);
+      tl.set(".tbar", { visibility: "visible" }, 48.835);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 48.835);
+      tl.set("#sG", { autoAlpha: 0 }, 49.495);
+      tl.set("#sH", { autoAlpha: 1 }, 49.495);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 49.535);
+      tl.set(".tbar", { visibility: "hidden" }, 50.285);
+      gsap.set(["#Hwm .nm"], { autoAlpha: 0 });
+      tl.fromTo("#Hb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 49.595);
+      tl.fromTo("#Hb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 49.735);
+      tl.fromTo("#Hb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 49.875);
+      tl.fromTo("#Hwm .nm", { autoAlpha: 0, y: 0, x: -30 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 49.945);
+      tl.fromTo("#Htag", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 50.395);
+      tl.fromTo("#Hcta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 50.995);
+      tl.fromTo("#Hmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 53.075);
+      tl.fromTo("#Hurl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 56.170);
+      tl.to("#Hbtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 56.370);
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 60.00, ease: "none" }, 0);
+      capShow("#cap0", 0.600, 2.745);
+      capShow("#cap1", 2.745, 4.731);
+      capShow("#cap2", 4.731, 6.207);
+      capShow("#cap3", 6.907, 9.734);
+      capShow("#cap4", 9.734, 11.328);
+      capShow("#cap5", 11.328, 13.069);
+      capShow("#cap6", 15.035, 17.015);
+      capShow("#cap7", 17.015, 18.560);
+      capShow("#cap8", 18.560, 20.514);
+      capShow("#cap9", 21.451, 23.127);
+      capShow("#cap10", 23.127, 24.845);
+      capShow("#cap11", 24.845, 27.786);
+      capShow("#cap12", 28.286, 30.873);
+      capShow("#cap13", 30.873, 33.509);
+      capShow("#cap14", 33.509, 35.602);
+      capShow("#cap15", 36.202, 38.415);
+      capShow("#cap16", 38.415, 41.315);
+      capShow("#cap17", 41.815, 43.621);
+      capShow("#cap18", 43.621, 45.041);
+      capShow("#cap19", 45.041, 47.162);
+      capShow("#cap20", 47.162, 49.194);
+      capShow("#cap21", 51.095, 53.225);
+      capShow("#cap22", 53.225, 56.370);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

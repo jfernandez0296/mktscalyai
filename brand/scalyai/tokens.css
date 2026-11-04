@@ -1,0 +1,19 @@
+/* Scaly AI — tokens definitivos (Guía de diseño v1, pág. 18) */
+:root{
+  --navy-900:#041b3d; --navy-700:#0d2f5c;
+  --teal-600:#007b83; --cyan-400:#47d4d4;
+  --slate-700:#2f4560;
+  --cream-100:#f0f1e8; --cream-200:#e3e5d9; --cream-300:#d6d9cb;
+  --fg-1:var(--navy-900); --fg-2:var(--slate-700); --fg-accent:var(--teal-600);
+  --bg-page:var(--cream-100); --bg-inverse:var(--navy-900);
+  --gradient-brand:linear-gradient(90deg,#0d2f5c,#47d4d4);
+  --font-sans:"Manrope",system-ui,sans-serif;
+  --fw-light:300; --fw-medium:500; --fw-bold:700; --fw-black:800;
+  --ls-display:-0.04em; --ls-heading:-0.03em; --ls-label:0.14em;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:24px; --space-6:32px; --space-7:48px; --space-8:72px;
+  --radius-sm:10px; --radius-md:16px; --radius-lg:20px; --radius-pill:999px;
+  --shadow-card:0 12px 30px rgba(4,27,61,.15);
+  --shadow-button:0 12px 28px rgba(4,27,61,.22);
+  --ease:cubic-bezier(.2,.7,.2,1); --dur:180ms;
+}
