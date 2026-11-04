@@ -1,0 +1,195 @@
+[
+ {
+  "id": "e1",
+  "text": "¿Sabes cuántas unidades te quedan de tu producto más vendido? ¿Y en qué tienda están?",
+  "start": 0.5,
+  "dur": 4.868,
+  "speech": [
+   [
+    0.0,
+    3.28
+   ],
+   [
+    3.752,
+    4.868
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "e2",
+  "text": "Con EnCatalogo, ves el stock de cada tienda, almacén, talla y color, en una sola vista.",
+  "start": 5.618,
+  "dur": 6.006,
+  "speech": [
+   [
+    0.0,
+    2.696
+   ],
+   [
+    2.969,
+    3.581
+   ],
+   [
+    3.846,
+    6.006
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "e3",
+  "text": "Mueves mercadería entre sedes y sigues cada traslado hasta que llega. Y te avisa qué reponer, antes de perder ventas.",
+  "start": 11.874,
+  "dur": 7.715,
+  "speech": [
+   [
+    0.0,
+    4.364
+   ],
+   [
+    4.894,
+    6.181
+   ],
+   [
+    6.492,
+    7.715
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "e4",
+  "text": "Desde el celular, ves tus ventas del día y los productos que se están agotando.",
+  "start": 19.839,
+  "dur": 4.423,
+  "speech": [
+   [
+    0.0,
+    0.965
+   ],
+   [
+    1.199,
+    2.44
+   ],
+   [
+    2.664,
+    4.423
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "e5",
+  "text": "Vendes, cobras y facturas en el mismo flujo: cada venta actualiza tu caja, tu stock y tu comprobante.",
+  "start": 24.512,
+  "dur": 7.216,
+  "speech": [
+   [
+    0.0,
+    3.144
+   ],
+   [
+    3.689,
+    7.216
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "e6",
+  "text": "Y en WhatsApp, tu vendedor con IA responde con stock real, envía fotos, tallas y precios, y valida el pago por Yape o Plin.",
+  "start": 31.977,
+  "dur": 8.649,
+  "speech": [
+   [
+    0.0,
+    0.784
+   ],
+   [
+    1.061,
+    3.632
+   ],
+   [
+    3.897,
+    4.827
+   ],
+   [
+    5.077,
+    6.208
+   ],
+   [
+    6.475,
+    8.649
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "e7",
+  "text": "Con AI Studio, la foto del celular se vuelve foto de catálogo. Y a Claude le preguntas qué reponer.",
+  "start": 40.876,
+  "dur": 6.838,
+  "speech": [
+   [
+    0.0,
+    1.278
+   ],
+   [
+    1.503,
+    4.154
+   ],
+   [
+    4.665,
+    6.838
+   ]
+  ],
+  "scene": 6
+ },
+ {
+  "id": "e8",
+  "text": "Un solo plan, desde ciento cincuenta soles al mes por tienda. Los almacenes son gratis.",
+  "start": 47.964,
+  "dur": 5.928,
+  "speech": [
+   [
+    0.0,
+    0.841
+   ],
+   [
+    1.199,
+    3.864
+   ],
+   [
+    4.381,
+    5.928
+   ]
+  ],
+  "scene": 7
+ },
+ {
+  "id": "e9",
+  "text": "EnCatalogo. Tu mercadería en orden. Tu negocio bajo control. Prueba siete días gratis, sin tarjeta.",
+  "start": 54.143,
+  "dur": 7.792,
+  "speech": [
+   [
+    0.0,
+    0.788
+   ],
+   [
+    1.203,
+    2.673
+   ],
+   [
+    3.133,
+    4.741
+   ],
+   [
+    5.334,
+    7.792
+   ]
+  ],
+  "scene": 8
+ }
+]
