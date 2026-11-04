@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>EnCatalogo flyer</title>
+<link rel="stylesheet" href="../../brand/encatalogo/tokens.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: 1080px 1350px; margin: 0; }
+  body { width: 1080px; height: 1350px; font-family: var(--ec-font-sans); color: var(--ec-ink); background: var(--ec-cream); }
+  .fl { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: var(--ec-cream); }
+  .top { padding: 70px 76px 0; }
+  .row { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 16px; font-size: 36px; font-weight: 700; }
+  .brand img { height: 60px; }
+  .badge { padding: 14px 26px; border-radius: 999px; background: var(--ec-terracotta-soft); color: var(--ec-terracotta-dark); font-size: 22px; font-weight: 700; letter-spacing: .12em; }
+  h1 { font-family: var(--ec-font-display); font-weight: 400; font-size: 82px; line-height: 1.05; letter-spacing: -.015em; margin-top: 44px; white-space: nowrap; }
+  h1 em { color: var(--ec-terracotta-dark); }
+  .lead { margin-top: 20px; font-size: 30px; line-height: 1.35; color: var(--ec-body); max-width: 900px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 34px; }
+  .it { display: flex; gap: 20px; align-items: flex-start; padding: 24px 24px; min-height: 150px; background: #fff; border: 2px solid var(--ec-border); border-radius: 30px; box-shadow: 0 14px 34px rgba(15,15,16,.05); }
+  .ic { flex: none; width: 70px; height: 70px; border-radius: 20px; background: var(--ec-terracotta-soft); display: flex; align-items: center; justify-content: center; }
+  .it b { display: block; font-size: 27px; font-weight: 700; line-height: 1.15; }
+  .it span { display: block; font-size: 21px; line-height: 1.32; color: var(--ec-body); margin-top: 6px; }
+  .stats { display: flex; justify-content: space-between; margin-top: 44px; padding: 0 6px; }
+  .st b { display: block; font-family: var(--ec-font-display); font-weight: 400; font-size: 52px; line-height: 1; }
+  .st span { display: block; font-size: 20px; color: var(--ec-body); margin-top: 6px; }
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 270px; background: var(--ec-ink); color: #fff; padding: 0 76px; display: flex; align-items: center; justify-content: space-between; }
+  .price small { display: block; font-size: 22px; font-weight: 700; letter-spacing: .14em; color: var(--ec-terracotta); }
+  .price b { display: block; font-family: var(--ec-font-display); font-weight: 400; font-size: 92px; line-height: 1; margin-top: 10px; white-space: nowrap; }
+  .price b i { display: block; margin-top: 8px; font-style: normal; font-family: var(--ec-font-sans); font-size: 28px; font-weight: 500; color: #CFC8BE; }
+  .price p { white-space: nowrap; font-size: 21px; color: #CFC8BE; margin-top: 12px; }
+  .cta { display: flex; align-items: center; gap: 28px; }
+  .btn { padding: 22px 32px; border-radius: 999px; background: var(--ec-terracotta); color: var(--ec-ink); font-size: 29px; font-weight: 700; white-space: nowrap; }
+  .web { margin-top: 14px; text-align: center; font-size: 24px; color: #CFC8BE; }
+  .qr { width: 150px; height: 150px; padding: 14px; background: var(--ec-cream); border-radius: 22px; }
+  .qr img { width: 100%; height: 100%; display: block; }
+</style>
+</head>
+<body>
+<div class="fl">
+  <div class="top">
+    <div class="row">
+      <div class="brand"><img src="../../brand/encatalogo/logo/encatalogo-logo.svg" alt="">EnCatalogo.pe</div>
+      <div class="badge">7 DÍAS GRATIS · SIN TARJETA</div>
+    </div>
+    <h1>Tu mercadería en orden.<br><em>Tu negocio bajo control.</em></h1>
+    <p class="lead">Inventario, ventas, facturación y un vendedor con IA en WhatsApp, para marcas de retail peruanas.</p>
+    <div class="grid">
+      <div class="it"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" /> <path d="M12 22V12" /> <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" /> <path d="m7.5 4.27 9 5.15" /></svg></div><div><b>Inventario y traslados</b><span>Stock por tienda, almacén y talla. Traslados trazables entre sedes.</span></div></div>
+      <div class="it"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /> <path d="M12 18h.01" /></svg></div><div><b>App móvil</b><span>Ventas del día y alertas de stock desde el celular.</span></div></div>
+      <div class="it"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" /> <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" /> <path d="M12 17.5v-11" /></svg></div><div><b>Facturación y caja</b><span>Cada venta actualiza caja, stock y comprobante SUNAT.</span></div></div>
+      <div class="it"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A65353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /></svg></div><div><b>Vendedor IA en WhatsApp</b><span>Responde con stock real y valida pagos por Yape o Plin.</span></div></div>
+    </div>
+    <div class="stats">
+      <div class="st"><b>+20 mil</b><span>clientes gestionados</span></div>
+      <div class="st"><b>+117 mil</b><span>mensajes de WhatsApp</span></div>
+      <div class="st"><b>+2.700</b><span>chats atendidos por la IA</span></div>
+    </div>
+  </div>
+  <div class="band">
+    <div class="price">
+      <small>UN SOLO PLAN</small>
+      <b>S/ 150<i>al mes por tienda</i></b>
+      <p>Almacenes gratis · IGV incluido</p>
+    </div>
+    <div class="cta">
+      <div><div class="btn">Prueba 7 días gratis</div><div class="web">encatalogo.pe</div></div>
+      <div class="qr"><img src="qr-encatalogo.svg" alt="QR encatalogo.pe"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
