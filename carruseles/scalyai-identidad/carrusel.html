@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Scaly AI · carrusel</title>
+<link rel="stylesheet" href="../../brand/scalyai/tokens.css">
+<style>
+@font-face { font-family:"Manrope"; font-weight:300; src:url("../../brand/scalyai/fonts/Manrope-300-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:400; src:url("../../brand/scalyai/fonts/Manrope-400-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:500; src:url("../../brand/scalyai/fonts/Manrope-500-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:700; src:url("../../brand/scalyai/fonts/Manrope-700-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:800; src:url("../../brand/scalyai/fonts/Manrope-800-latin.woff2") format("woff2"); }
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#999; font-family: var(--font-sans); color: var(--navy-900); }
+.slide { position:relative; width:1080px; height:1350px; overflow:hidden; margin-bottom:20px; background: var(--cream-100); }
+.slide.dark { background: var(--navy-900); color: var(--cream-100); }
+.grid { position:absolute; inset:0; background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px); background-size:64px 64px; opacity:.45; }
+.dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity:1; }
+.glow { position:absolute; right:-300px; top:300px; width:1000px; height:1000px; border-radius:50%; background: radial-gradient(closest-side, rgba(71,212,212,.35), rgba(71,212,212,0)); }
+.dark .glow { background: radial-gradient(closest-side, rgba(71,212,212,.15), rgba(71,212,212,0)); top:-200px; }
+header { position:absolute; left:80px; right:80px; top:72px; display:flex; justify-content:space-between; align-items:center; }
+.logo { display:flex; align-items:center; gap:14px; font-size:34px; font-weight:800; letter-spacing:-.04em; }
+.logo em, .biglogo em { font-style:normal; font-weight:500; color: var(--teal-600); letter-spacing:-.03em; }
+.dark .logo em, .dark .biglogo em { color: var(--cyan-400); }
+.count { font-size:22px; font-weight:800; letter-spacing:.14em; color: var(--slate-700); }
+.dark .count { color:#b9c3cf; }
+footer { position:absolute; left:80px; right:80px; bottom:64px; display:flex; justify-content:space-between; align-items:center; }
+.dots { display:flex; gap:10px; }
+.dots i { display:block; width:14px; height:14px; border-radius:7px; background: var(--cream-300); }
+.dots i.on { width:44px; background: var(--teal-600); }
+.dark .dots i { background: rgba(240,241,232,.22); }
+.dark .dots i.on { background: var(--cyan-400); }
+.swipe { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color: var(--teal-600); }
+.dark .swipe { color: var(--cyan-400); }
+.hero, .promise, .notif, .wait, .note, .card.list, .card.stat, .pillars, .pills, .steps { position:absolute; left:80px; right:80px; }
+.eyebrow { font-size:24px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--teal-600); }
+.dark .eyebrow { color: var(--cyan-400); }
+h1 { font-size:92px; font-weight:800; letter-spacing:-.04em; line-height:1.05; margin-top:22px; }
+h1.xl { font-size:110px; }
+h1 em { font-style:normal; color: var(--teal-600); }
+.dark h1 em { color: var(--cyan-400); }
+h1 .s { font-weight:500; color: var(--slate-700); }
+.lead { font-size:38px; font-weight:300; line-height:1.4; color: var(--slate-700); margin-top:28px; }
+.dark .lead { color: var(--cream-200); }
+.note { font-size:20px; font-weight:500; color: var(--slate-700); }
+.dark .note { color:#b9c3cf; }
+.tag { display:inline-flex; align-items:center; gap:10px; height:48px; padding:0 22px; border-radius:999px; font-size:19px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; }
+.tag.soft { background: var(--cream-200); color: var(--slate-700); }
+.tag.cyan { background: var(--cyan-400); color: var(--navy-900); }
+.card { background:#fff; border:1px solid var(--cream-300); border-radius:20px; box-shadow: var(--shadow-card); }
+.notif { display:flex; gap:26px; align-items:flex-start; padding:30px 34px; background: var(--cream-100); color: var(--navy-900); border-radius:20px; box-shadow:0 24px 60px rgba(0,0,0,.35); }
+.notif .wa { flex:none; width:76px; height:76px; border-radius:20px; background:#128c4a; display:flex; align-items:center; justify-content:center; }
+.notif .who { display:flex; justify-content:space-between; width:760px; font-size:22px; font-weight:700; color: var(--slate-700); }
+.notif .msg { font-size:36px; font-weight:500; margin-top:8px; }
+.wait { right:auto; display:flex; align-items:center; gap:16px; height:76px; padding:0 30px; border-radius:999px; border:1px solid rgba(240,241,232,.22); background: rgba(240,241,232,.06); font-size:28px; font-weight:700; }
+.task { display:flex; align-items:center; gap:22px; height:100px; padding:0 30px; border-bottom:1px solid var(--cream-300); font-size:30px; font-weight:500; }
+.task:last-child { border-bottom:0; }
+.ti { flex:none; width:56px; height:56px; border-radius:16px; background: var(--cream-100); display:flex; align-items:center; justify-content:center; }
+.tx { flex:1; }
+.card.stat { display:flex; align-items:center; gap:44px; padding:40px 48px; }
+.stat b { font-size:150px; font-weight:800; letter-spacing:-.05em; line-height:1; color: var(--teal-600); flex:none; }
+.stat span { display:block; font-size:34px; font-weight:700; line-height:1.3; }
+.stat i { display:block; font-style:normal; font-size:24px; font-weight:300; color: var(--slate-700); margin-top:8px; }
+.promise { padding-left:56px; }
+.promise .vbar { position:absolute; left:0; top:12px; bottom:8px; width:10px; border-radius:5px; background: var(--teal-600); }
+.promise h1 { margin-top:0; }
+.pillars { display:flex; flex-direction:column; gap:22px; }
+.pillar { display:flex; gap:28px; align-items:center; padding:30px 34px; }
+.pi { flex:none; width:84px; height:84px; border-radius:22px; background:#d6eeee; display:flex; align-items:center; justify-content:center; }
+.pillar h3 { font-size:38px; font-weight:700; letter-spacing:-.03em; }
+.pillar p { font-size:27px; font-weight:300; color: var(--slate-700); margin-top:6px; line-height:1.35; }
+.pills { display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+.pills .lbl { flex-basis:100%; font-size:22px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--teal-600); margin-right:6px; }
+.pill { display:inline-flex; align-items:center; gap:12px; height:68px; padding:0 26px 0 18px; border-radius:999px; background:#fff; border:1px solid var(--cream-300); font-size:26px; font-weight:700; }
+.phone { position:absolute; right:56px; top:300px; width:500px; height:880px; border-radius:58px; background: var(--navy-900); padding:15px; box-shadow:0 30px 70px rgba(4,27,61,.28); }
+.screen { position:relative; width:470px; height:850px; border-radius:44px; background: var(--cream-100); overflow:hidden; }
+.chd { position:absolute; left:0; top:0; right:0; height:120px; padding:36px 24px 0; display:flex; gap:16px; align-items:center; background:#fff; border-bottom:1px solid var(--cream-300); }
+.chd .av { width:60px; height:60px; border-radius:16px; background: var(--navy-900); display:flex; align-items:center; justify-content:center; }
+.chd b { display:block; font-size:23px; font-weight:700; }
+.chd i { display:block; font-style:normal; font-size:18px; font-weight:500; color: var(--teal-600); }
+.bub { position:absolute; max-width:370px; padding:16px 20px; border-radius:22px; font-size:24px; font-weight:500; line-height:1.3; }
+.bub small { display:block; font-size:16px; margin-top:6px; opacity:.75; text-align:right; }
+.bub.in { left:22px; background:#fff; border:1px solid var(--cream-300); border-bottom-left-radius:6px; }
+.bub.out { right:22px; background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius:6px; }
+.rcpt { position:absolute; left:22px; right:22px; display:flex; gap:14px; align-items:center; padding:16px 18px; border-radius:18px; background:#d6eeee; color:#00545a; font-size:22px; font-weight:700; }
+.steps { display:flex; flex-direction:column; gap:20px; }
+.rail { position:absolute; left:31px; top:80px; bottom:80px; width:10px; border-radius:5px; background: var(--gradient-brand); }
+.step { position:relative; display:flex; align-items:center; gap:32px; }
+.dot { flex:none; width:72px; height:72px; border-radius:36px; background: var(--teal-600); border:6px solid var(--cream-100); display:flex; align-items:center; justify-content:center; z-index:1; }
+.card.sc { flex:1; position:relative; padding:24px 34px; min-height:150px; }
+.sc .num { font-size:22px; font-weight:800; letter-spacing:.14em; color: var(--teal-600); }
+.sc h3 { font-size:40px; font-weight:700; letter-spacing:-.03em; margin-top:8px; }
+.sc b { display:block; font-size:58px; font-weight:800; letter-spacing:-.04em; color: var(--teal-600); margin-top:6px; }
+.sc i { position:absolute; right:30px; top:26px; padding:6px 18px; border-radius:999px; background: var(--cream-100); font-style:normal; font-size:22px; font-weight:500; color: var(--slate-700); }
+.close { position:absolute; left:0; right:0; top:330px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.biglogo { display:flex; align-items:center; gap:34px; font-size:124px; font-weight:800; letter-spacing:-.045em; }
+.close .lead { margin-top:44px; font-size:40px; }
+.btn { display:inline-flex; align-items:center; gap:16px; margin-top:70px; height:104px; padding:0 52px; border-radius:999px; background: var(--gradient-brand); color:#fff; font-size:38px; font-weight:700; box-shadow:0 16px 40px rgba(0,0,0,.35); }
+.micro { margin-top:34px; font-size:30px; font-weight:500; color: var(--cream-200); }
+.url { margin-top:40px; font-size:30px; font-weight:800; letter-spacing:.14em; color: var(--cyan-400); }
+
+</style></head><body>
+<section class="slide dark" id="slide-1"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg><span>Scaly <em>AI</em></span></div><span class="count">01 / 07</span></header>
+  <div class="hero" style="top:300px">
+    <div class="eyebrow">Automatización · IA</div>
+    <h1 class="xl">Son las 11:40 p. m. <em>Nadie responde.</em></h1>
+    <p class="lead">Un cliente te escribe por WhatsApp. Mañana ya le compró a otro.</p>
+  </div>
+  <div class="notif" style="top:930px">
+    <div class="wa"><svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div>
+    <div><div class="who"><span>Cliente nuevo</span><span>11:40 p. m.</span></div><div class="msg">Hola, ¿tienen stock de la talla M?</div></div>
+  </div>
+  <div class="wait" style="top:1110px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg>Sin respuesta · 8 h</div>
+  <div class="note" style="top:1125px;left:auto;right:80px">Caso ilustrativo</div><footer><div class="dots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-2"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">02 / 07</span></header>
+  <div class="hero" style="top:220px">
+    <div class="eyebrow">Tu operación hoy</div>
+    <h1>De día, todo <em>a mano.</em></h1>
+  </div>
+  <div class="card list" style="top:540px"><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="tx">Copiar el pedido #1042 a Excel</div><span class="tag soft">Pendiente</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><div class="tx">Pasar el pedido #1042 al CRM</div><span class="tag soft">Pendiente</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg></div><div class="tx">Perseguir el pago por WhatsApp</div><span class="tag soft">Pendiente</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div class="tx">Armar el reporte de la semana</div><span class="tag soft">Pendiente</span></div></div>
+  <div class="card stat" style="top:1000px"><b>12 h</b><div><span>a la semana copiando datos entre sistemas</span><i>Dato ilustrativo</i></div></div><footer><div class="dots"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-3"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">03 / 07</span></header>
+  <div class="promise" style="top:320px">
+    <div class="vbar"></div>
+    <h1 class="xl">Construimos <em>software e IA</em> <span class="s">a la medida de tu negocio.</span></h1>
+    <p class="lead">Automatizamos lo repetitivo y ponemos tus datos a trabajar.</p>
+  </div><footer><div class="dots"><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-4"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">04 / 07</span></header>
+  <div class="hero" style="top:220px">
+    <div class="eyebrow">Lo que hacemos</div>
+    <h1>Tres cosas, <em>bien hechas.</em></h1>
+  </div>
+  <div class="pillars" style="top:520px"><div class="card pillar"><div class="pi"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div><div><h3>Automatizamos lo repetitivo</h3><p>Los procesos que hoy hace tu equipo a mano, trabajan solos.</p></div></div><div class="card pillar"><div class="pi"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div><h3>Ponemos tus datos a trabajar</h3><p>Ves lo que pasa en tu operación, cada día.</p></div></div><div class="card pillar"><div class="pi"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+  <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+  <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+</svg></div><div><h3>Ordenamos tu operación</h3><p>Tus herramientas, conectadas en un solo flujo.</p></div></div></div>
+  <div class="pills" style="top:1100px"><span class="lbl">Conectamos</span><span class="pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>CRM</span><span class="pill"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#128C4A"/></svg>WhatsApp</span><span class="pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg>Hojas de cálculo</span><span class="pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg>ERP</span></div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-5"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">05 / 07</span></header>
+  <div class="hero" style="top:220px;right:auto;width:470px">
+    <div class="eyebrow">IA · WhatsApp</div>
+    <h1 style="font-size:66px">Responde en <em>segundos.</em></h1>
+    <p class="lead" style="max-width:420px">Y registra cada pedido en tu CRM, a cualquier hora.</p>
+    <span class="tag cyan" style="margin-top:36px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg>Respondió en 2 segundos</span>
+    <div class="note" style="position:static;margin-top:20px">Conversación ilustrativa</div>
+  </div>
+  <div class="phone"><div class="screen">
+    <div class="chd"><div class="av"><svg width="34" height="32" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg></div><div><b>Asistente Scaly AI</b><i>en línea</i></div></div>
+    <div class="bub in" style="top:150px">Hola, ¿tienen stock de la talla M?<small>11:40 p. m.</small></div>
+    <div class="bub out" style="top:290px">Sí, nos quedan 8. ¿Te la reservo?<small>11:40 p. m.</small></div>
+    <div class="bub in" style="top:440px">Sí, por favor.<small>11:41 p. m.</small></div>
+    <div class="rcpt" style="top:550px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg>Pedido #1042 registrado en tu CRM</div>
+  </div></div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-6"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">06 / 07</span></header>
+  <div class="hero" style="top:220px">
+    <div class="eyebrow">Cómo trabajamos</div>
+    <h1>Empezamos con <em>un piloto.</em></h1>
+    <p class="lead">No con una apuesta.</p>
+  </div>
+  <div class="steps" style="top:585px"><div class="rail"></div><div class="step"><div class="dot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="card sc"><div class="num">01</div><h3>Elegimos un proceso</h3><i>el que más te cuesta</i></div></div><div class="step"><div class="dot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="card sc"><div class="num">02</div><h3>Lo ponemos a funcionar</h3><b>2 semanas</b><i>en marcha</i></div></div><div class="step"><div class="dot"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="card sc"><div class="num">03</div><h3>Medimos el retorno</h3><b>6 semanas</b><i>ROI medible</i></div></div></div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide dark" id="slide-7"><div class="grid"></div><div class="glow"></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg><span>Scaly <em>AI</em></span></div><span class="count">07 / 07</span></header>
+  <div class="close">
+    <div class="biglogo"><svg width="141" height="131" viewBox="0 0 60 56" aria-label="Scaly AI"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg><span>Scaly <em>AI</em></span></div>
+    <p class="lead">Software e IA a la medida de tu negocio.</p>
+    <div class="btn">Conversemos de tu próximo piloto <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div>
+    <div class="micro">30 minutos · sin tarjeta · sin compromiso</div>
+    <div class="url">SCALYAI.DEV</div>
+  </div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i></div></footer></section>
+</body></html>
