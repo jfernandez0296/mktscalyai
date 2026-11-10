@@ -19,7 +19,7 @@
  {
   "id": "s2",
   "text": "Cada contacto que llega, por WhatsApp, por la web o por llamada, se registra solo como una oportunidad.",
-  "start": 5.726,
+  "start": 6.326,
   "dur": 5.925,
   "speech": [
    [
@@ -40,7 +40,7 @@
  {
   "id": "s3",
   "text": "La oportunidad avanza por etapas: nuevo, en conversación, propuesta y ganado.",
-  "start": 13.551,
+  "start": 14.751,
   "dur": 6.608,
   "speech": [
    [
@@ -69,7 +69,7 @@
  {
   "id": "s4",
   "text": "El CRM te recuerda a quién llamar hoy, para que ningún cliente se enfríe.",
-  "start": 22.059,
+  "start": 23.859,
   "dur": 4.594,
   "speech": [
    [
@@ -86,7 +86,7 @@
  {
   "id": "s5",
   "text": "Y ves cuánto vas a vender este mes, con datos, no con intuición.",
-  "start": 28.553,
+  "start": 30.953,
   "dur": 3.557,
   "speech": [
    [
@@ -101,9 +101,47 @@
   "scene": 4
  },
  {
+  "id": "s7",
+  "text": "Todo el historial queda en un solo lugar: mensajes, llamadas y propuestas. Cualquiera de tu equipo puede retomar la conversación.",
+  "start": 37.01,
+  "dur": 7.791,
+  "speech": [
+   [
+    0.0,
+    2.29
+   ],
+   [
+    2.749,
+    4.793
+   ],
+   [
+    5.394,
+    7.791
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "s8",
+  "text": "Y lo repetitivo se automatiza: el seguimiento, los recordatorios y el reporte de la semana.",
+  "start": 47.301,
+  "dur": 5.847,
+  "speech": [
+   [
+    0.0,
+    1.725
+   ],
+   [
+    2.223,
+    5.847
+   ]
+  ],
+  "scene": 6
+ },
+ {
   "id": "s6",
   "text": "¿Quieres un CRM hecho para tu negocio? Conversemos de tu próximo piloto.",
-  "start": 34.51,
+  "start": 56.148,
   "dur": 4.68,
   "speech": [
    [
@@ -115,14 +153,6 @@
     4.68
    ]
   ],
-  "scene": 5
- },
- {
-  "id": "s7",
-  "text": "Todo el historial queda en un solo lugar: mensajes, llamadas y propuestas. Cualquiera de tu equipo puede retomar la conversación."
- },
- {
-  "id": "s8",
-  "text": "Y lo repetitivo se automatiza: el seguimiento, los recordatorios y el reporte de la semana."
+  "scene": 7
  }
 ]

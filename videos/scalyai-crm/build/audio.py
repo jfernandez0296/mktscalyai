@@ -7,8 +7,8 @@ A = os.path.join(ROOT, "audio")
 SCENES = [["s1"], ["s2"], ["s3"], ["s4"], ["s5"], ["s7"], ["s8"], ["s6"]]
 LEAD = [0.6, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.5]  # silencio antes de la voz en cada escena (deja ver la transición/entrada)
 IN_GAP = 0.7
-TAIL = 3.0
-POST = [0.7, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.15]  # silencio tras la voz de cada escena
+TAIL = 4.02
+POST = [1.3, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 0.15]  # silencio tras la voz de cada escena
 
 def sh(*a): return subprocess.run(a, check=True, capture_output=True, text=True)
 def dur(p): return float(sh("ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", p).stdout)
