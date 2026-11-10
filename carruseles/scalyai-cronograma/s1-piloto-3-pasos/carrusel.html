@@ -1,0 +1,127 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>s1-piloto-3-pasos</title><link rel="stylesheet" href="../../../brand/scalyai/tokens.css"><style>
+@font-face { font-family:"Manrope"; font-weight:300; src:url("../../../brand/scalyai/fonts/Manrope-300-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:400; src:url("../../../brand/scalyai/fonts/Manrope-400-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:500; src:url("../../../brand/scalyai/fonts/Manrope-500-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:700; src:url("../../../brand/scalyai/fonts/Manrope-700-latin.woff2") format("woff2"); }
+@font-face { font-family:"Manrope"; font-weight:800; src:url("../../../brand/scalyai/fonts/Manrope-800-latin.woff2") format("woff2"); }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#999; font-family: var(--font-sans); color: var(--navy-900); }
+.slide { position:relative; width:1080px; height:1350px; overflow:hidden; margin-bottom:20px; background: var(--cream-100); }
+.slide.dark { background: var(--navy-900); color: var(--cream-100); }
+.abs { position:absolute; }
+.grid { position:absolute; inset:0; background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px); background-size:64px 64px; opacity:.45; }
+.dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity:1; }
+.glow { position:absolute; left:-300px; top:500px; width:1000px; height:1000px; border-radius:50%; background: radial-gradient(closest-side, rgba(71,212,212,.35), rgba(71,212,212,0)); }
+.dark .glow { background: radial-gradient(closest-side, rgba(71,212,212,.15), rgba(71,212,212,0)); left:300px; top:-200px; }
+.deco { position:absolute; width:700px; height:640px; }
+.deco i { position:absolute; display:block; border-radius:999px; }
+header { position:absolute; left:80px; right:80px; top:72px; display:flex; justify-content:space-between; align-items:center; }
+.logo { display:flex; align-items:center; gap:14px; font-size:34px; font-weight:800; letter-spacing:-.04em; }
+.logo em, .biglogo em { font-style:normal; font-weight:500; color: var(--teal-600); }
+.dark .logo em, .dark .biglogo em { color: var(--cyan-400); }
+.count { font-size:22px; font-weight:800; letter-spacing:.14em; color: var(--slate-700); }
+.dark .count { color:#b9c3cf; }
+footer { position:absolute; left:80px; right:80px; bottom:64px; display:flex; justify-content:space-between; align-items:center; }
+.dots { display:flex; gap:10px; }
+.dots i { display:block; width:14px; height:14px; border-radius:7px; background: var(--cream-300); }
+.dots i.on { width:44px; background: var(--teal-600); }
+.dark .dots i { background: rgba(240,241,232,.22); }
+.dark .dots i.on { background: var(--cyan-400); }
+.swipe { display:flex; align-items:center; gap:12px; font-size:26px; font-weight:700; color: var(--teal-600); }
+.dark .swipe { color: var(--cyan-400); }
+.blk { position:absolute; left:80px; right:80px; }
+.eyebrow { font-size:24px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--teal-600); }
+.dark .eyebrow { color: var(--cyan-400); }
+h1 { font-size:92px; font-weight:800; letter-spacing:-.04em; line-height:1.06; margin-top:18px; }
+h1 span { display:block; white-space:nowrap; }
+h1.xl { font-size:108px; }
+h1.md { font-size:80px; }
+h1.ctr { text-align:center; }
+h1 em { font-style:normal; color: var(--teal-600); }
+.dark h1 em { color: var(--cyan-400); }
+.lead { font-size:40px; font-weight:300; line-height:1.4; color: var(--slate-700); margin-top:28px; max-width:860px; }
+.gt { flex:none; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, #0d2f5c, #47d4d4); box-shadow: 0 18px 40px rgba(4,27,61,.28); }
+.gt.wa { background:#128C4A; }
+.gt.c-xls { background: linear-gradient(135deg, #1D6F42, #3FAE6B); }
+.gt.c-crm { background: linear-gradient(135deg, #1F4FBF, #5B8DEF); }
+.gt.c-erp { background: linear-gradient(135deg, #C56A1A, #F0A64B); }
+.pp { flex:none; border-radius:50%; overflow:hidden; border:5px solid #fff; box-shadow: 0 8px 20px rgba(4,27,61,.2); }
+.pp svg { display:block; }
+.avs { display:flex; }
+.avs .pp + .pp { margin-left:-24px; }
+.bignum { position:absolute; right:60px; top:150px; font-size:360px; font-weight:800; letter-spacing:-.06em; line-height:1; color: rgba(0,123,131,.10); }
+.tag { display:inline-flex; align-items:center; gap:10px; height:64px; padding:0 30px; border-radius:999px; font-size:24px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; white-space:nowrap; }
+.tag.soft { background: var(--cream-200); color: var(--slate-700); }
+.tag.teal { background:#d6eeee; color:#00646b; }
+.tag.navy { background: var(--navy-900); color: var(--cream-100); }
+.swap { display:flex; align-items:center; gap:22px; margin-top:44px; }
+.card { position:absolute; left:80px; right:80px; background:#fff; border:1px solid var(--cream-300); border-radius:20px; box-shadow: var(--shadow-card); }
+.cmp { padding:30px 36px; }
+.flab { font-size:24px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#1D6F42; margin-bottom:10px; }
+.flab.no { color:#C2416B; }
+.cr { display:flex; align-items:center; gap:20px; height:78px; font-size:34px; font-weight:500; }
+.ci { flex:none; width:50px; height:50px; border-radius:25px; display:flex; align-items:center; justify-content:center; }
+.ci.no { background:#C2416B; } .ci.si { background:#1D6F42; }
+.quote { position:absolute; left:80px; right:80px; padding-left:56px; }
+.quote .vbar { position:absolute; left:0; top:22px; bottom:8px; width:10px; border-radius:5px; background: var(--teal-600); }
+.quote h1 { margin-top:0; }
+.hub { width:170px; height:170px; border-radius:40px; background: var(--navy-900); display:flex; align-items:center; justify-content:center; box-shadow:0 20px 50px rgba(4,27,61,.3); }
+.nl { width:340px; text-align:center; font-size:32px; font-weight:700; }
+.close { position:absolute; left:0; right:0; top:230px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.biglogo { display:flex; align-items:center; gap:34px; font-size:124px; font-weight:800; letter-spacing:-.045em; }
+.close h1 { margin-top:60px; }
+.btn { display:inline-flex; align-items:center; gap:16px; margin-top:64px; height:104px; padding:0 52px; border-radius:999px; background: var(--gradient-brand); color:#fff; font-size:38px; font-weight:700; box-shadow:0 16px 40px rgba(0,0,0,.35); }
+.micro { margin-top:32px; font-size:30px; font-weight:500; color: var(--cream-200); }
+.url { margin-top:36px; font-size:30px; font-weight:800; letter-spacing:.14em; color: var(--cyan-400); }
+
+</style></head><body>
+<section class="slide dark" id="slide-1"><div class="grid"></div><div class="glow"></div><div class="deco" style="left:520px;top:1010px;opacity:0.1"><i style="left:179px;top:0px;width:493px;height:157px;background:#47D4D4"></i><i style="left:0px;top:235px;width:672px;height:157px;background:#007B83"></i><i style="left:0px;top:470px;width:493px;height:157px;background:#F0F1E8"></i></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg><span>Scaly <em>AI</em></span></div><span class="count">01 / 06</span></header><svg class="abs" style="left:0;top:0" width="1080" height="1350"><circle cx="760" cy="1000" r="190" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle cx="760" cy="1000" r="270" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle cx="760" cy="1000" r="350" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/></svg><div class="abs" style="left:445px;top:825px"><div class="gt c-crm" style="width:110px;height:110px;border-radius:30px"><svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div></div><div class="abs" style="left:935px;top:745px"><div class="gt c-erp" style="width:110px;height:110px;border-radius:30px"><svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div></div><div class="abs" style="left:505px;top:1125px"><div class="gt c-xls" style="width:110px;height:110px;border-radius:30px"><svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div></div><div class="abs" style="left:650px;top:890px"><div class="gt " style="width:220px;height:220px;border-radius:61px"><svg width="110" height="110" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div></div><div class="blk" style="top:230px"><div class="eyebrow">Cómo trabajamos</div><h1 class="xl"><span>El piloto,</span><span>en <em>3 pasos.</em></span></h1></div><footer><div class="dots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-2"><div class="grid"></div><div class="glow"></div><div class="deco" style="left:520px;top:1010px;opacity:0.14"><i style="left:179px;top:0px;width:493px;height:157px;background:#47D4D4"></i><i style="left:0px;top:235px;width:672px;height:157px;background:#007B83"></i><i style="left:0px;top:470px;width:493px;height:157px;background:#041B3D"></i></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">02 / 06</span></header><div class="bignum">01</div><div class="abs" style="left:80px;top:230px"><div class="gt " style="width:240px;height:240px;border-radius:67px"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div></div><div class="abs" style="left:350px;top:330px"><div class="avs"><div class="pp" style="width:96px;height:96px"><svg width="96" height="96" viewBox="0 0 100 100"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:96px;height:96px"><svg width="96" height="96" viewBox="0 0 100 100"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div><div class="blk" style="top:540px"><h1><span>Elegimos</span><span><em>un proceso.</em></span></h1><p class="lead">El que más tiempo le cuesta a tu equipo. Uno solo, para empezar bien.</p><div class="swap"><span class="tag navy">30 minutos de conversación</span></div></div><footer><div class="dots"><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-3"><div class="grid"></div><div class="glow"></div><div class="deco" style="left:520px;top:1010px;opacity:0.14"><i style="left:179px;top:0px;width:493px;height:157px;background:#47D4D4"></i><i style="left:0px;top:235px;width:672px;height:157px;background:#007B83"></i><i style="left:0px;top:470px;width:493px;height:157px;background:#041B3D"></i></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">03 / 06</span></header><div class="bignum">02</div><div class="abs" style="left:80px;top:230px"><div class="gt c-erp" style="width:240px;height:240px;border-radius:67px"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div></div><div class="abs" style="left:350px;top:330px"><div class="avs"><div class="pp" style="width:96px;height:96px"><svg width="96" height="96" viewBox="0 0 100 100"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:96px;height:96px"><svg width="96" height="96" viewBox="0 0 100 100"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div class="pp" style="width:96px;height:96px"><svg width="96" height="96" viewBox="0 0 100 100"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div><div class="blk" style="top:540px"><h1><span>Lo ponemos</span><span><em>a funcionar.</em></span></h1><p class="lead">Conectamos tus herramientas y lo probamos con casos reales de tu negocio.</p><div class="swap"><span class="tag navy">2 semanas</span></div></div><footer><div class="dots"><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-4"><div class="grid"></div><div class="glow"></div><div class="deco" style="left:520px;top:1010px;opacity:0.14"><i style="left:179px;top:0px;width:493px;height:157px;background:#47D4D4"></i><i style="left:0px;top:235px;width:672px;height:157px;background:#007B83"></i><i style="left:0px;top:470px;width:493px;height:157px;background:#041B3D"></i></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">04 / 06</span></header><div class="bignum">03</div><div class="abs" style="left:80px;top:230px"><div class="gt c-xls" style="width:240px;height:240px;border-radius:67px"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div></div><div class="blk" style="top:540px"><h1><span>Medimos</span><span><em>el retorno.</em></span></h1><p class="lead">Con números, no con impresiones.</p><div class="swap"><span class="tag navy">ROI medible en 6 semanas</span></div></div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide" id="slide-5"><div class="grid"></div><div class="glow"></div><div class="deco" style="left:520px;top:1010px;opacity:0.14"><i style="left:179px;top:0px;width:493px;height:157px;background:#47D4D4"></i><i style="left:0px;top:235px;width:672px;height:157px;background:#007B83"></i><i style="left:0px;top:470px;width:493px;height:157px;background:#041B3D"></i></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#041B3D"/></svg><span>Scaly <em>AI</em></span></div><span class="count">05 / 06</span></header><div class="quote" style="top:330px"><div class="vbar"></div><h1 class="xl"><span>Empezamos con</span><span>un piloto,</span><span><em>no con una</em></span><span><em>apuesta.</em></span></h1><p class="lead">Si funciona, lo hacemos crecer. Contigo.</p></div><div class="abs" style="left:136px;top:960px"><div class="avs"><div class="pp" style="width:120px;height:120px"><svg width="120" height="120" viewBox="0 0 100 100"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:120px;height:120px"><svg width="120" height="120" viewBox="0 0 100 100"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="pp" style="width:120px;height:120px"><svg width="120" height="120" viewBox="0 0 100 100"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i><i class=""></i></div><div class="swipe">Desliza <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></footer></section>
+<section class="slide dark" id="slide-6"><div class="grid"></div><div class="glow"></div><div class="deco" style="left:520px;top:1010px;opacity:0.1"><i style="left:179px;top:0px;width:493px;height:157px;background:#47D4D4"></i><i style="left:0px;top:235px;width:672px;height:157px;background:#007B83"></i><i style="left:0px;top:470px;width:493px;height:157px;background:#F0F1E8"></i></div><header><div class="logo"><svg width="41" height="38" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg><span>Scaly <em>AI</em></span></div><span class="count">06 / 06</span></header><div class="close"><div class="biglogo"><svg width="141" height="131" viewBox="0 0 60 56"><rect x="16" y="0" width="44" height="14" rx="7" fill="#47D4D4"/><rect x="0" y="21" width="60" height="14" rx="7" fill="#007B83"/><rect x="0" y="42" width="44" height="14" rx="7" fill="#F0F1E8"/></svg><span>Scaly <em>AI</em></span></div><h1 class="md ctr"><span>¿Qué proceso</span><span><em>elegirías tú?</em></span></h1><div class="btn">Conversemos de tu próximo piloto <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div><div class="micro">30 minutos · sin tarjeta · sin compromiso</div><div class="url">SCALYAI.DEV</div></div><footer><div class="dots"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on"></i></div></footer></section>
+</body></html>
