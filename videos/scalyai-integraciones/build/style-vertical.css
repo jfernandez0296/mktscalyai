@@ -6,4 +6,7 @@
       .wm .nm { font-size: 124px; }
       .btn { font-size: 34px; height: 96px; padding: 0 40px; }
       .lead { font-size: 36px; }
-      .appc .arow { margin-top: 16px; }
+      .x3 { font-size: 280px; }
+      .track2 { background: linear-gradient(180deg, #0d2f5c, #47d4d4); }
+      .grid9 { grid-template-columns: repeat(3, 56px); }
+      .bx { width: 56px; height: 56px; }

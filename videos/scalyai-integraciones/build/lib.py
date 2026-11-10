@@ -188,3 +188,41 @@ def render(SCN, title):
     open(os.path.join(ROOT, "index.html"), "w").write(html)
     print("captions", len(caps), "events", len(EV), "T", T)
     
+
+# ---------------------------------------------------------------- piezas gráficas compartidas
+def pos(x, y, w=None, h=None):
+    s = f"left:{x}px;top:{y}px"
+    if w: s += f";width:{w}px"
+    if h: s += f";height:{h}px"
+    return s
+def deco(x, y, k=1.0, dark=False, op=None):
+    """Las tres cápsulas del logo, gigantes y tenues, como motivo de fondo."""
+    op = op or (0.10 if dark else 0.16); u = 16 * k; low = CREAM if dark else NAVY
+    spec = [(16, 0, 44, CYAN), (0, 21, 60, TEAL), (0, 42, 44, low)]
+    inner = "".join(f'<i style="left:{a * u:.0f}px;top:{b * u:.0f}px;width:{w * u:.0f}px;height:{14 * u:.0f}px;background:{c}"></i>' for a, b, w, c in spec)
+    return f'<div class="abs deco" style="{pos(x, y, int(60 * u), int(56 * u))};opacity:{op}" data-layout-allow-overlap="true">{inner}</div>'
+def gt(ic, size, id_="", cls=""):
+    """Ficha con degradado de marca e ícono blanco grande."""
+    inner = wa(int(size * .52)) if ic == "wa" else icon(ic, int(size * .5), WHITE, 1.8)
+    return (f'<div class="gt{" wa" if ic == "wa" else ""} {cls}"{f" id={chr(34)}{id_}{chr(34)}" if id_ else ""} '
+            f'style="width:{size}px;height:{size}px;border-radius:{int(size * .28)}px">{inner}</div>')
+def ring(rid, size, sw, color, track):
+    r = (size - sw) / 2; c = size / 2
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}"><circle cx="{c}" cy="{c}" r="{r}" fill="none" stroke="{track}" stroke-width="{sw}"/>'
+            f'<circle id="{rid}" cx="{c}" cy="{c}" r="{r}" fill="none" stroke="{color}" stroke-width="{sw}" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 {c} {c})"/></svg>')
+def draw(sel, t, d=0.8): js(f'tl.to("{sel}", {{ strokeDashoffset: 0, duration: {d}, ease: "power2.inOut" }}, {t:.3f});')
+def drift(): js(f'tl.fromTo(".deco", {{ x: 0 }}, {{ x: -50, duration: {T:.2f}, ease: "none" }}, 0);')
+
+# ---------------------------------------------------------------- personas (avatares ilustrados)
+PEOPLE = [dict(skin="#E9B48A", hair="#2B1B12", shirt="#007B83", bg="#D6EEEE", long=False),
+          dict(skin="#C68655", hair="#1A1A1A", shirt="#0D2F5C", bg="#E3E5D9", long=True),
+          dict(skin="#F2C9A5", hair="#7A4A21", shirt="#D9822B", bg="#D6EEEE", long=True),
+          dict(skin="#8D5A3B", hair="#111111", shirt="#47D4D4", bg="#E3E5D9", long=False)]
+def person(i, size, id_=""):
+    p = PEOPLE[i % len(PEOPLE)]
+    back = f'<path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="{p["hair"]}"/>' if p["long"] else ""
+    svg = (f'<svg width="{size}" height="{size}" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="{p["bg"]}"/>{back}'
+           f'<path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="{p["shirt"]}"/><rect x="44" y="54" width="12" height="16" rx="5" fill="{p["skin"]}"/>'
+           f'<circle cx="50" cy="42" r="18" fill="{p["skin"]}"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="{p["hair"]}"/></svg>')
+    return f'<div class="pp"{f" id={chr(34)}{id_}{chr(34)}" if id_ else ""} style="width:{size}px;height:{size}px">{svg}</div>'
+def avs(ids, size): return '<div class="avs">' + "".join(person(i, size) for i in ids) + "</div>"
