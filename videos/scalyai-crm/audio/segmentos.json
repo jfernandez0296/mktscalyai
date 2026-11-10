@@ -1,8 +1,120 @@
 [
- {"id": "s1", "text": "¿Cómo se opera un CRM? Es más simple de lo que crees."},
- {"id": "s2", "text": "Cada contacto que llega, por WhatsApp, por la web o por llamada, se registra solo como una oportunidad."},
- {"id": "s3", "text": "La oportunidad avanza por etapas: nuevo, en conversación, propuesta y ganado."},
- {"id": "s4", "text": "El CRM te recuerda a quién llamar hoy, para que ningún cliente se enfríe."},
- {"id": "s5", "text": "Y ves cuánto vas a vender este mes, con datos, no con intuición."},
- {"id": "s6", "text": "¿Quieres un CRM hecho para tu negocio? Conversemos de tu próximo piloto."}
+ {
+  "id": "s1",
+  "text": "¿Cómo se opera un CRM? Es más simple de lo que crees.",
+  "start": 0.6,
+  "dur": 3.426,
+  "speech": [
+   [
+    0.0,
+    1.392
+   ],
+   [
+    1.863,
+    3.426
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "s2",
+  "text": "Cada contacto que llega, por WhatsApp, por la web o por llamada, se registra solo como una oportunidad.",
+  "start": 5.726,
+  "dur": 5.925,
+  "speech": [
+   [
+    0.0,
+    1.306
+   ],
+   [
+    1.616,
+    3.643
+   ],
+   [
+    3.901,
+    5.925
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "s3",
+  "text": "La oportunidad avanza por etapas: nuevo, en conversación, propuesta y ganado.",
+  "start": 13.551,
+  "dur": 6.608,
+  "speech": [
+   [
+    0.0,
+    2.066
+   ],
+   [
+    2.612,
+    2.973
+   ],
+   [
+    3.545,
+    4.405
+   ],
+   [
+    5.116,
+    5.598
+   ],
+   [
+    6.072,
+    6.608
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "s4",
+  "text": "El CRM te recuerda a quién llamar hoy, para que ningún cliente se enfríe.",
+  "start": 22.059,
+  "dur": 4.594,
+  "speech": [
+   [
+    0.0,
+    2.605
+   ],
+   [
+    2.953,
+    4.594
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "s5",
+  "text": "Y ves cuánto vas a vender este mes, con datos, no con intuición.",
+  "start": 28.553,
+  "dur": 3.557,
+  "speech": [
+   [
+    0.0,
+    1.712
+   ],
+   [
+    1.972,
+    3.557
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "s6",
+  "text": "¿Quieres un CRM hecho para tu negocio? Conversemos de tu próximo piloto.",
+  "start": 34.51,
+  "dur": 4.68,
+  "speech": [
+   [
+    0.0,
+    2.452
+   ],
+   [
+    2.787,
+    4.68
+   ]
+  ],
+  "scene": 5
+ }
 ]

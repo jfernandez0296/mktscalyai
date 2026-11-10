@@ -4,11 +4,11 @@ import numpy as np
 SR = 44100
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = os.path.join(ROOT, "audio")
-SCENES = [['p1'], ['p2', 'p3', 'p4', 'p5'], ['p6']]
-LEAD = [0.6, 1.0, 1.4]  # silencio antes de la voz en cada escena (deja ver la transición/entrada)
+SCENES = [["s1"], ["s2"], ["s3"], ["s4"], ["s5"], ["s6"]]
+LEAD = [0.6, 1.0, 1.0, 1.0, 1.0, 1.5]  # silencio antes de la voz en cada escena (deja ver la transición/entrada)
 IN_GAP = 0.7
 TAIL = 3.0
-POST = [0.6, 0.5, 0.15]  # silencio tras la voz de cada escena
+POST = [0.7, 0.9, 0.9, 0.9, 0.9, 0.15]  # silencio tras la voz de cada escena
 
 def sh(*a): return subprocess.run(a, check=True, capture_output=True, text=True)
 def dur(p): return float(sh("ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", p).stdout)

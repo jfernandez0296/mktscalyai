@@ -1,8 +1,108 @@
 [
- {"id": "s1", "text": "¿Cómo sería operar tu empresa con un ERP? Te lo muestro en menos de un minuto."},
- {"id": "s2", "text": "Todo empieza con una venta. Al registrarla, el ERP descuenta el stock automáticamente."},
- {"id": "s3", "text": "Si un producto baja del mínimo, genera la orden de compra por ti."},
- {"id": "s4", "text": "La factura se emite sola, y la cobranza queda programada."},
- {"id": "s5", "text": "Y cada área ve los mismos números: ventas, inventario y caja, en un solo lugar."},
- {"id": "s6", "text": "¿Tu empresa necesita un ERP a su medida? Conversemos de tu próximo piloto."}
+ {
+  "id": "s1",
+  "text": "¿Cómo sería operar tu empresa con un ERP? Te lo muestro en menos de un minuto.",
+  "start": 0.6,
+  "dur": 4.804,
+  "speech": [
+   [
+    0.0,
+    2.532
+   ],
+   [
+    3.112,
+    4.804
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "s2",
+  "text": "Todo empieza con una venta. Al registrarla, el ERP descuenta el stock automáticamente.",
+  "start": 7.104,
+  "dur": 6.639,
+  "speech": [
+   [
+    0.0,
+    1.802
+   ],
+   [
+    2.256,
+    6.639
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "s3",
+  "text": "Si un producto baja del mínimo, genera la orden de compra por ti.",
+  "start": 15.642,
+  "dur": 4.225,
+  "speech": [
+   [
+    0.0,
+    1.943
+   ],
+   [
+    2.2,
+    4.225
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "s4",
+  "text": "La factura se emite sola, y la cobranza queda programada.",
+  "start": 21.767,
+  "dur": 3.903,
+  "speech": [
+   [
+    0.0,
+    1.737
+   ],
+   [
+    2.021,
+    3.903
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "s5",
+  "text": "Y cada área ve los mismos números: ventas, inventario y caja, en un solo lugar.",
+  "start": 27.57,
+  "dur": 6.475,
+  "speech": [
+   [
+    0.0,
+    2.335
+   ],
+   [
+    2.697,
+    5.055
+   ],
+   [
+    5.404,
+    6.475
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "s6",
+  "text": "¿Tu empresa necesita un ERP a su medida? Conversemos de tu próximo piloto.",
+  "start": 36.445,
+  "dur": 5.127,
+  "speech": [
+   [
+    0.0,
+    2.753
+   ],
+   [
+    3.374,
+    5.127
+   ]
+  ],
+  "scene": 5
+ }
 ]

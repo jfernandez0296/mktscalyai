@@ -1,8 +1,124 @@
 [
- {"id": "s1", "text": "¿Tienes un hotel? Así podría trabajar, casi solo."},
- {"id": "s2", "text": "Un huésped escribe por WhatsApp a medianoche. Un asistente con IA responde, y confirma la reserva."},
- {"id": "s3", "text": "La reserva entra sola al sistema, y la habitación queda bloqueada en todos tus canales."},
- {"id": "s4", "text": "Antes de llegar, el huésped recibe su check-in digital. Y al salir, limpieza recibe el aviso al instante."},
- {"id": "s5", "text": "Tú ves la ocupación y los ingresos del día, sin armar ningún reporte."},
- {"id": "s6", "text": "¿Quieres automatizar tu hotel? Conversemos de tu próximo piloto. Treinta minutos, sin compromiso."}
+ {
+  "id": "s1",
+  "text": "¿Tienes un hotel? Así podría trabajar, casi solo.",
+  "start": 0.6,
+  "dur": 3.235,
+  "speech": [
+   [
+    0.0,
+    0.729
+   ],
+   [
+    1.351,
+    3.235
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "s2",
+  "text": "Un huésped escribe por WhatsApp a medianoche. Un asistente con IA responde, y confirma la reserva.",
+  "start": 5.535,
+  "dur": 6.439,
+  "speech": [
+   [
+    0.0,
+    2.575
+   ],
+   [
+    3.002,
+    4.998
+   ],
+   [
+    5.334,
+    6.439
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "s3",
+  "text": "La reserva entra sola al sistema, y la habitación queda bloqueada en todos tus canales.",
+  "start": 13.874,
+  "dur": 4.838,
+  "speech": [
+   [
+    0.0,
+    1.834
+   ],
+   [
+    2.172,
+    4.838
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "s4",
+  "text": "Antes de llegar, el huésped recibe su check-in digital. Y al salir, limpieza recibe el aviso al instante.",
+  "start": 20.612,
+  "dur": 6.649,
+  "speech": [
+   [
+    0.0,
+    0.863
+   ],
+   [
+    1.1,
+    3.281
+   ],
+   [
+    3.818,
+    4.318
+   ],
+   [
+    4.762,
+    6.649
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "s5",
+  "text": "Tú ves la ocupación y los ingresos del día, sin armar ningún reporte.",
+  "start": 29.16,
+  "dur": 4.053,
+  "speech": [
+   [
+    0.0,
+    2.135
+   ],
+   [
+    2.451,
+    4.053
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "s6",
+  "text": "¿Quieres automatizar tu hotel? Conversemos de tu próximo piloto. Treinta minutos, sin compromiso.",
+  "start": 35.613,
+  "dur": 5.547,
+  "speech": [
+   [
+    0.0,
+    1.303
+   ],
+   [
+    1.956,
+    3.321
+   ],
+   [
+    3.895,
+    4.562
+   ],
+   [
+    4.868,
+    5.547
+   ]
+  ],
+  "scene": 5
+ }
 ]

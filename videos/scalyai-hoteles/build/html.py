@@ -56,9 +56,10 @@ def a_flow(pid, m, seg):
     js(f'tl.fromTo("#{pid}tr", {{ scaleX: 0, transformOrigin: "0% 50%" }}, {{ scaleX: 1, duration: {d:.2f}, ease: "power2.inOut" }}, {t0:.3f});')
     js(f'tl.set("#{pid}chip", {{ autoAlpha: 1 }}, {t0:.3f});')
     js(f'tl.fromTo("#{pid}chip", {{ x: 0 }}, {{ x: {m["_dx"]}, duration: {d:.2f}, ease: "power2.inOut" }}, {t0:.3f});'); ev("chime2", t0 + d)
+    js(f'tl.to("#{pid}chip", {{ autoAlpha: 0, duration: 0.3 }}, {t0 + d - 0.25:.3f});')
 
 def m_grid(pid, m):
-    cols = m["cols"]; cw = (872 - (cols - 1) * 12) // cols
+    cols = m["cols"]; cw = (864 - (cols - 1) * 12) // cols
     cells = "".join(f'<div class="gc" id="{pid}c{i}" style="width:{cw}px;background:{ST[s][0]};color:{ST[s][1]};border-color:{ST[s][2]}">{lab}</div>' for i, (lab, s) in enumerate(m["cells"]))
     leg = "".join(f'<span><i style="background:{ST[k][0]};border-color:{ST[k][2]}"></i>{v}</span>' for k, v in m["legend"])
     rows = -(-len(m["cells"]) // cols)
@@ -73,7 +74,7 @@ def m_chat(pid, m):
     h = (f'<div class="ah">{person(m["person"], 72)}<b>{m["name"]}</b><i>{m["time"]}</i></div>'
          f'<div class="cb in" id="{pid}i">{m["msg"]}</div><div class="cb out" id="{pid}o"><em>{bars(26, pid + "lg", True)}Asistente IA</em>{m["reply"]}</div>'
          f'<div class="rc" id="{pid}k">{icon("circle-check", 34, TEAL, 2.2)}{m["done"]}</div>')
-    return h, 500
+    return h, 570
 def a_chat(pid, m, seg):
     js(f'gsap.set(["#{pid}i", "#{pid}o", "#{pid}k"], {{ autoAlpha: 0 }});')
     show(f"#{pid}i", F(seg, 0.08), 0.45, 16); ev("ping", F(seg, 0.08))
@@ -150,6 +151,7 @@ for k, sc in enumerate(spec.SCENES):
         <div class="abs" id="{sid}ic" style="{pos(M, 500)}">{tile(sc["icon"], 150, sc.get("cls", ""))}</div>
         <div class="abs lead" id="{sid}ld" style="{pos(M + 180, 506, 760)}">{sc["lead"]}</div>{ppl}
         {"".join(cards)}
+        <div class="abs note" style="{pos(M, 1452)}">{spec.NOTE}</div>
       </div></div>'''
     else:
         h = f'''      <div class="sc dark" id="s{sid}"><div class="cam">{BG(-10, 300, 1100)}{deco(300, 1380, 0.85, True)}{deco(-420, -200, 0.8, True)}
