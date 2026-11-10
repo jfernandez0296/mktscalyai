@@ -313,6 +313,29 @@
       .bcol i { display: block; width: 100%; border-radius: 12px 12px 4px 4px; }
       .bcol span { font-size: 20px; font-weight: 500; color: var(--slate-700); margin-top: 8px; white-space: nowrap; }
 
+      /* ---- diseño v2: color por escena ---- */
+      .band { left: 0; top: 0; width: 1080px; height: 650px; border-radius: 0 0 64px 64px; overflow: hidden; box-shadow: 0 24px 60px rgba(4,27,61,.22); }
+      .wmk { right: -70px; top: 210px; opacity: .14; transform-origin: 50% 50%; }
+      .band .num { right: 60px; top: 60px; font-size: 120px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(255,255,255,.16); }
+      .eyebrow.lt { color: rgba(255,255,255,.88); }
+      .h1.lt { color: #fff; }
+      .h1.lt em { color: var(--emc); }
+      .lead.lt { color: rgba(255,255,255,.94); font-weight: 400; font-size: 34px; }
+      .pdots.lt i { background: rgba(255,255,255,.32); }
+      .pdots.lt i.done { background: rgba(255,255,255,.6); }
+      .pdots.lt i.on { background: #fff; }
+      .pan { border-top: 8px solid var(--acc); }
+      .flab { color: var(--acc); }
+      .ks b { color: var(--acc); }
+      .rw { padding: 0 12px; margin: 0 -12px; border-radius: 16px; }
+      .bch { height: 222px; }
+      .bcol b { font-size: 22px; font-weight: 800; color: var(--navy-900); margin-bottom: 6px; }
+      .blob { border-radius: 50%; }
+      .oi { display: flex; flex-direction: column; align-items: center; width: 130px; }
+      .olab { margin-top: 12px; padding: 6px 16px; border-radius: 999px; background: rgba(240,241,232,.12); border: 1px solid rgba(240,241,232,.22); color: var(--cream-100); font-size: 22px; font-weight: 700; white-space: nowrap; }
+      .recap { display: flex; justify-content: center; gap: 28px; }
+      .dark .gt { box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+
       .cap span { font-size: 38px; padding: 14px 32px; }
 
       /* ---- 9:16 ---- */
@@ -332,108 +355,130 @@
       </head>
       <body>
         <div id="root" data-composition-id="main" data-start="0" data-duration="42.34" data-fps="30" data-width="1080" data-height="1920">
-          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-200px;width:1200px;height:1200px"></div><div class="abs deco" style="left:300px;top:1500px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-200px;width:1200px;height:1200px"></div>
+        <div class="abs blob" style="left:-300px;top:1000px;width:1000px;height:1000px;background:radial-gradient(closest-side, #1F4FBFAA, #1F4FBF00)"></div><div class="abs deco" style="left:300px;top:1500px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
         <div class="abs eyebrow" id="Aey" style="left:70px;top:250px">CRM · Ventas</div>
         <div class="abs h1 big" id="At" style="left:66px;top:300px"><span class="l">¿Cómo se opera</span><span class="l"><em>un CRM?</em></span></div>
-        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Ar0" cx="540" cy="1050" r="230" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle id="Ar1" cx="540" cy="1050" r="320" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle id="Ar2" cx="540" cy="1050" r="410" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/></svg>
-        <div class="abs" id="Ao0" style="left:130px;top:790px"><div class="gt wa " style="width:120px;height:120px;border-radius:33px"><svg width="62" height="62" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div></div><div class="abs" id="Ao1" style="left:830px;top:820px"><div class="gt c-xls" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="globe">
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Ar0" cx="540" cy="1050" r="230" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle id="Ar1" cx="540" cy="1050" r="320" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle id="Ar2" cx="540" cy="1050" r="410" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/><line id="Ak0" x1="540" y1="1050" x2="200" y2="840" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak1" x1="540" y1="1050" x2="880" y2="870" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak2" x1="540" y1="1050" x2="230" y2="1270" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak3" x1="540" y1="1050" x2="860" y2="1250" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/></svg>
+        <div class="abs oi" id="Ao0" style="left:135px;top:775px"><div class="gt wa " style="width:130px;height:130px;border-radius:36px"><svg width="67" height="67" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><span class="olab">WhatsApp</span></div><div class="abs oi" id="Ao1" style="left:815px;top:805px"><div class="gt c-xls" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="globe">
   <circle cx="12" cy="12" r="10" />
   <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
   <path d="M2 12h20" />
-</svg></div></div><div class="abs" id="Ao2" style="left:170px;top:1230px"><div class="gt c-erp" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="phone">
+</svg></div><span class="olab">Web</span></div><div class="abs oi" id="Ao2" style="left:165px;top:1205px"><div class="gt c-erp" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="phone">
   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-</svg></div></div><div class="abs" id="Ao3" style="left:800px;top:1200px"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="handshake">
+</svg></div><span class="olab">Llamadas</span></div><div class="abs oi" id="Ao3" style="left:795px;top:1185px"><div class="gt " style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="handshake">
   <path d="m11 17 2 2a1 1 0 1 0 3-3" />
   <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
   <path d="m21 3 1 11h-2" />
   <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
   <path d="M3 4h8" />
-</svg></div></div>
-        <div class="abs" id="Ahero" style="left:400px;top:910px"><div class="gt c-crm" style="width:280px;height:280px;border-radius:78px"><svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+</svg></div><span class="olab">Cierres</span></div>
+        <div class="abs" id="Ahero" style="left:390px;top:900px"><div class="gt c-crm" style="width:300px;height:300px;border-radius:84px"><svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
 </svg></div></div>
-        <div class="abs note" style="left:70px;top:1410px">Ejemplo ilustrativo</div>
+        <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Bey" style="left:70px;top:220px">Contactos</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
-        <div class="abs h1 st" id="Bt" style="left:66px;top:262px"><span class="l">Cada contacto,</span><span class="l"><em>registrado solo.</em></span></div>
-        <div class="abs" id="Bic" style="left:70px;top:500px"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+      <div class="sc" id="sB" style="--acc:#1F4FBF;--emc:#CFE0FF"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Bband" style="background:linear-gradient(135deg, #163A8C, #1F4FBF)"><div class="abs wmk" id="Bwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-</svg></div></div>
-        <div class="abs lead" id="Bld" style="left:250px;top:506px;width:760px">Llegue por donde llegue, entra como oportunidad.</div>
-        <div class="abs card pan" id="Bm0" style="left:70px;top:700px;width:940px;height:436px"><div class="flab t">Entradas de hoy</div><div class="rw" id="Bm0r0"><div class="gt wa " style="width:76px;height:76px;border-radius:21px"><svg width="39" height="39" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><div class="rt"><b>WhatsApp</b><span>María · consulta por precios</span></div><div class="rs"><span class="tag soft" id="Bm0a0">Nuevo</span><span class="tag teal" id="Bm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+</svg></div>
+          <div class="abs num">01</div></div>
+        <div class="abs eyebrow lt" id="Bey" style="left:70px;top:200px">Contactos</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Bt" style="left:66px;top:244px"><span class="l">Cada contacto,</span><span class="l"><em>registrado solo.</em></span></div>
+        <div class="abs lead lt" id="Bld" style="left:70px;top:468px;width:700px">Llegue por donde llegue, entra como oportunidad.</div>
+        <div class="abs card pan" id="Bm0" style="left:70px;top:700px;width:940px;height:436px"><div class="flab t">Entradas de hoy</div><div class="rw" id="Bm0r0"><div class="gt wa " style="width:84px;height:84px;border-radius:23px"><svg width="43" height="43" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><div class="rt"><b>WhatsApp</b><span>María · consulta por precios</span></div><div class="rs"><span class="tag soft" id="Bm0a0">Nuevo</span><span class="tag teal" id="Bm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Oportunidad</span></div></div><div class="rw" id="Bm0r1"><div class="gt c-xls" style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="globe">
+</svg>Oportunidad</span></div></div><div class="rw" id="Bm0r1"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="globe">
   <circle cx="12" cy="12" r="10" />
   <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
   <path d="M2 12h20" />
 </svg></div><div class="rt"><b>Formulario web</b><span>Carlos · pide una demo</span></div><div class="rs"><span class="tag soft" id="Bm0a1">Nuevo</span><span class="tag teal" id="Bm0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Oportunidad</span></div></div><div class="rw" id="Bm0r2"><div class="gt c-erp" style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="phone">
+</svg>Oportunidad</span></div></div><div class="rw" id="Bm0r2"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="phone">
   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
 </svg></div><div class="rt"><b>Llamada</b><span>Lucía · quiere cotización</span></div><div class="rs"><span class="tag soft" id="Bm0a2">Nuevo</span><span class="tag teal" id="Bm0b2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
 </svg>Oportunidad</span></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Cey" style="left:70px;top:220px">Etapas</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
-        <div class="abs h1 st" id="Ct" style="left:66px;top:262px"><span class="l">La oportunidad</span><span class="l"><em>avanza por etapas.</em></span></div>
-        <div class="abs" id="Cic" style="left:70px;top:500px"><div class="gt " style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="trending-up">
+      <div class="sc" id="sC" style="--acc:#007B83;--emc:#7FE3E3"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Cband" style="background:linear-gradient(135deg, #0D2F5C, #007B83)"><div class="abs wmk" id="Cwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="trending-up">
   <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
   <polyline points="16 7 22 7 22 13" />
-</svg></div></div>
-        <div class="abs lead" id="Cld" style="left:250px;top:506px;width:760px">Siempre sabes en qué va cada cliente.</div>
+</svg></div>
+          <div class="abs num">02</div></div>
+        <div class="abs eyebrow lt" id="Cey" style="left:70px;top:200px">Etapas</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Ct" style="left:66px;top:244px"><span class="l">La oportunidad</span><span class="l"><em>avanza por etapas.</em></span></div>
+        <div class="abs lead lt" id="Cld" style="left:70px;top:468px;width:700px">Siempre sabes en qué va cada cliente.</div>
         <div class="abs card pan" id="Cm0" style="left:70px;top:700px;width:940px;height:430px"><div class="flab t">Embudo de ventas</div><div class="rel pp-wrap"><div class="pcols"><div class="pc" style="width:207px"><div class="ph" style="background:#2F4560">Nuevo</div><div class="pslot"></div><div class="pg"></div><div class="pg"></div></div><div class="pc" style="width:207px"><div class="ph" style="background:#1F4FBF">Conversación</div><div class="pslot"></div><div class="pg"></div><div class="pg"></div></div><div class="pc" style="width:207px"><div class="ph" style="background:#B5651D">Propuesta</div><div class="pslot"></div><div class="pg"></div></div><div class="pc" style="width:207px"><div class="ph" style="background:#1D6F42">Ganado</div><div class="pslot"></div><div class="pg"></div></div></div><div class="abs pcard" id="Cm0card" style="left:8px;top:66px;width:191px"><div class="pp" style="width:44px;height:44px"><svg width="44" height="44" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div><b>María</b><span>S/ 3.200</span></div></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Dey" style="left:70px;top:220px">Seguimiento</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i></div>
-        <div class="abs h1 st" id="Dt" style="left:66px;top:262px"><span class="l">Te recuerda</span><span class="l"><em>a quién llamar hoy.</em></span></div>
-        <div class="abs" id="Dic" style="left:70px;top:500px"><div class="gt c-erp" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="bell">
+      <div class="sc" id="sD" style="--acc:#B5651D;--emc:#FFE0BD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Dband" style="background:linear-gradient(135deg, #8A4A12, #B5651D)"><div class="abs wmk" id="Dwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="bell">
   <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
   <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
-</svg></div></div>
-        <div class="abs lead" id="Dld" style="left:250px;top:506px;width:760px">Ningún cliente se enfría.</div>
-        <div class="abs card pan" id="Dm0" style="left:70px;top:700px;width:940px;height:436px"><div class="flab t">Tareas de hoy</div><div class="rw" id="Dm0r0"><div class="pp" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div class="rt"><b>María</b><span>Enviar la propuesta</span></div><div class="rs"><span class="tag soft" id="Dm0a0">10:00 a. m.</span><span class="tag teal" id="Dm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+</svg></div>
+          <div class="abs num">03</div></div>
+        <div class="abs eyebrow lt" id="Dey" style="left:70px;top:200px">Seguimiento</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Dt" style="left:66px;top:244px"><span class="l">Te recuerda</span><span class="l"><em>a quién llamar hoy.</em></span></div>
+        <div class="abs lead lt" id="Dld" style="left:70px;top:468px;width:700px">Ningún cliente se enfría.</div>
+        <div class="abs card pan" id="Dm0" style="left:70px;top:700px;width:940px;height:436px"><div class="flab t">Tareas de hoy</div><div class="rw" id="Dm0r0"><div class="pp" style="width:84px;height:84px"><svg width="84" height="84" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div class="rt"><b>María</b><span>Enviar la propuesta</span></div><div class="rs"><span class="tag soft" id="Dm0a0">10:00 a. m.</span><span class="tag teal" id="Dm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Hecho</span></div></div><div class="rw" id="Dm0r1"><div class="pp" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div><div class="rt"><b>Carlos</b><span>Llamar para la demo</span></div><div class="rs"><span class="tag soft" id="Dm0a1">12:30 p. m.</span><span class="tag teal" id="Dm0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+</svg>Hecho</span></div></div><div class="rw" id="Dm0r1"><div class="pp" style="width:84px;height:84px"><svg width="84" height="84" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div><div class="rt"><b>Carlos</b><span>Llamar para la demo</span></div><div class="rs"><span class="tag soft" id="Dm0a1">12:30 p. m.</span><span class="tag teal" id="Dm0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Hecho</span></div></div><div class="rw" id="Dm0r2"><div class="pp" style="width:76px;height:76px"><svg width="76" height="76" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="rt"><b>Lucía</b><span>Hacer seguimiento</span></div><div class="rs"><span class="tag soft" id="Dm0a2">4:00 p. m.</span></div></div></div>
+</svg>Hecho</span></div></div><div class="rw" id="Dm0r2"><div class="pp" style="width:84px;height:84px"><svg width="84" height="84" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="rt"><b>Lucía</b><span>Hacer seguimiento</span></div><div class="rs"><span class="tag soft" id="Dm0a2">4:00 p. m.</span></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Eey" style="left:70px;top:220px">Pronóstico</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
-        <div class="abs h1 st" id="Et" style="left:66px;top:262px"><span class="l">Cuánto vas a vender,</span><span class="l"><em>con datos.</em></span></div>
-        <div class="abs" id="Eic" style="left:70px;top:500px"><div class="gt c-xls" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+      <div class="sc" id="sE" style="--acc:#1D6F42;--emc:#BDEFD0"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Eband" style="background:linear-gradient(135deg, #14532F, #1D6F42)"><div class="abs wmk" id="Ewm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
   <path d="M3 3v16a2 2 0 0 0 2 2h16" />
   <path d="M18 17V9" />
   <path d="M13 17V5" />
   <path d="M8 17v-3" />
-</svg></div></div>
-        <div class="abs lead" id="Eld" style="left:250px;top:506px;width:760px">Tu pronóstico del mes, siempre actualizado.</div>
-        <div class="abs card pan" id="Em0" style="left:70px;top:700px;width:940px;height:400px"><div class="kwrap"><div class="rel kring"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150.0" cy="150.0" r="136.0" fill="none" stroke="#E3E5D9" stroke-width="28"/><circle id="Em0rg" cx="150.0" cy="150.0" r="136.0" fill="none" stroke="#007B83" stroke-width="28" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 150.0 150.0)"/></svg><div class="abs kin" style="left:0px;top:0px;width:300px;height:300px"><b><em id="Em0p">0</em>%</b><span>de la meta</span></div></div><div class="kstats"><div class="ks"><b>S/ <em id="Em0n0">0</em></b><span>pronóstico del mes</span></div><div class="ks"><b><em id="Em0n1">0</em></b><span>oportunidades abiertas</span></div></div></div></div><div class="abs card pan" id="Em1" style="left:70px;top:1126px;width:940px;height:310px"><div class="flab t">Oportunidades por etapa</div><div class="bch"><div class="bcol"><i id="Em1b0" style="height:150px;background:#2F4560"></i><span>Nuevo</span></div><div class="bcol"><i id="Em1b1" style="height:93px;background:#1F4FBF"></i><span>Conversación</span></div><div class="bcol"><i id="Em1b2" style="height:56px;background:#B5651D"></i><span>Propuesta</span></div><div class="bcol"><i id="Em1b3" style="height:37px;background:#1D6F42"></i><span>Ganado</span></div></div></div>
+</svg></div>
+          <div class="abs num">04</div></div>
+        <div class="abs eyebrow lt" id="Eey" style="left:70px;top:200px">Pronóstico</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+        <div class="abs h1 st lt" id="Et" style="left:66px;top:244px"><span class="l">Cuánto vas a vender,</span><span class="l"><em>con datos.</em></span></div>
+        <div class="abs lead lt" id="Eld" style="left:70px;top:468px;width:700px">Tu pronóstico del mes, siempre actualizado.</div>
+        <div class="abs card pan" id="Em0" style="left:70px;top:700px;width:940px;height:400px"><div class="kwrap"><div class="rel kring"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150.0" cy="150.0" r="135.0" fill="none" stroke="#E3E5D9" stroke-width="30"/><circle id="Em0rg" cx="150.0" cy="150.0" r="135.0" fill="none" stroke="#1D6F42" stroke-width="30" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 150.0 150.0)"/></svg><div class="abs kin" style="left:0px;top:0px;width:300px;height:300px"><b><em id="Em0p">0</em>%</b><span>de la meta</span></div></div><div class="kstats"><div class="ks"><b>S/ <em id="Em0n0">0</em></b><span>pronóstico del mes</span></div><div class="ks"><b><em id="Em0n1">0</em></b><span>oportunidades abiertas</span></div></div></div></div><div class="abs card pan" id="Em1" style="left:70px;top:1126px;width:940px;height:336px"><div class="flab t">Oportunidades por etapa</div><div class="bch"><div class="bcol"><b>8</b><i id="Em1b0" style="height:140px;background:#2F4560"></i><span>Nuevo</span></div><div class="bcol"><b>5</b><i id="Em1b1" style="height:87px;background:#1F4FBF"></i><span>Conversación</span></div><div class="bcol"><b>3</b><i id="Em1b2" style="height:52px;background:#B5651D"></i><span>Propuesta</span></div><div class="bcol"><b>2</b><i id="Em1b3" style="height:35px;background:#1D6F42"></i><span>Ganado</span></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
       <div class="sc dark" id="sF"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:300px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-420px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
-        <div class="abs navlogo dk" id="Flg" style="left:0px;top:400px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Fb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Fb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Fb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
-        <div class="abs h1 ctr" id="Ft" style="left:0px;top:540px;width:1080px"><span class="l">¿Quieres un CRM</span><span class="l">hecho para</span><span class="l"><em>tu negocio?</em></span></div>
-        <div class="abs" id="Fcta" style="left:0px;top:960px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Fbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+        <div class="abs recap" style="left:0px;top:260px;width:1080px"><div class="ri" id="Fri0"><div class="gt c-crm" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div></div><div class="ri" id="Fri1"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="trending-up">
+  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+  <polyline points="16 7 22 7 22 13" />
+</svg></div></div><div class="ri" id="Fri2"><div class="gt c-erp" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="bell">
+  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+</svg></div></div><div class="ri" id="Fri3"><div class="gt c-xls" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div></div></div>
+        <div class="abs navlogo dk" id="Flg" style="left:0px;top:470px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Fb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Fb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Fb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
+        <div class="abs h1 ctr" id="Ft" style="left:0px;top:600px;width:1080px"><span class="l">¿Quieres un CRM</span><span class="l">hecho para</span><span class="l"><em>tu negocio?</em></span></div>
+        <div class="abs" id="Fcta" style="left:0px;top:1000px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Fbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
   <path d="M5 12h14" />
   <path d="m12 5 7 7-7 7" />
 </svg></div></div>
-        <div class="abs micro" id="Fmic" style="left:0px;top:1110px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
-        <div class="abs url" id="Furl" style="left:0px;top:1200px;width:1080px">SCALYAI.DEV</div>
+        <div class="abs micro" id="Fmic" style="left:0px;top:1150px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Furl" style="left:0px;top:1240px;width:1080px">SCALYAI.DEV</div>
       </div></div>
           <div class="abs" id="tbars" style="left:0;top:0;width:1080px;height:1920px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:640px;background:#007B83"></div><div class="tbar" style="top:1280px;background:#041B3D"></div></div>
           <div id="prog"></div>
@@ -497,10 +542,19 @@
       tl.fromTo("#Ar0", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.607);
       tl.fromTo("#Ar1", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.727);
       tl.fromTo("#Ar2", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.847);
-      tl.fromTo("#Ao0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 2.313);
-      tl.fromTo("#Ao1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 2.493);
-      tl.fromTo("#Ao2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 2.673);
-      tl.fromTo("#Ao3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 2.853);
+      tl.fromTo("#Ahero", { y: 0 }, { y: -16, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.256);
+      tl.fromTo("#Ak0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 2.313);
+      tl.fromTo("#Ao0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 2.313);
+      tl.fromTo("#Ao0", { y: 0 }, { y: 14, duration: 1.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.863);
+      tl.fromTo("#Ak1", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 2.493);
+      tl.fromTo("#Ao1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 2.493);
+      tl.fromTo("#Ao1", { y: 0 }, { y: -14, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.043);
+      tl.fromTo("#Ak2", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 2.673);
+      tl.fromTo("#Ao2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 2.673);
+      tl.fromTo("#Ao2", { y: 0 }, { y: 14, duration: 2.0, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.223);
+      tl.fromTo("#Ak3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 2.853);
+      tl.fromTo("#Ao3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 2.853);
+      tl.fromTo("#Ao3", { y: 0 }, { y: -14, duration: 2.2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.403);
       tl.set(".tbar", { visibility: "visible" }, 4.066);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 4.066);
       tl.set("#sA", { autoAlpha: 0 }, 4.726);
@@ -509,26 +563,29 @@
       tl.set(".tbar", { visibility: "hidden" }, 5.516);
       tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 4.876);
       tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 5.006);
-      tl.fromTo("#Bic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 5.076);
       tl.fromTo("#Bld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 5.176);
+      tl.fromTo("#Bwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 9.03, ease: "none" }, 4.126);
       tl.fromTo("#Bm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 5.226);
       gsap.set("#Bm0 .rw", { autoAlpha: 0 });
       gsap.set("#Bm0 .tag.teal", { autoAlpha: 0 });
       tl.fromTo("#Bm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 6.022);
       tl.to("#Bm0a0", { autoAlpha: 0, duration: 0.2 }, 8.688);
       tl.fromTo("#Bm0b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 8.788);
+      tl.fromTo("#Bm0r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 8.688);
       tl.fromTo("#Bm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 6.911);
       tl.to("#Bm0a1", { autoAlpha: 0, duration: 0.2 }, 9.577);
       tl.fromTo("#Bm0b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 9.677);
+      tl.fromTo("#Bm0r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 9.577);
       tl.fromTo("#Bm0r2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 7.800);
       tl.to("#Bm0a2", { autoAlpha: 0, duration: 0.2 }, 10.466);
       tl.fromTo("#Bm0b2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 10.566);
+      tl.fromTo("#Bm0r2", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 10.466);
       tl.to("#sB", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 12.251);
       tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 12.501);
       tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 12.701);
       tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 12.831);
-      tl.fromTo("#Cic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 12.901);
       tl.fromTo("#Cld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.001);
+      tl.fromTo("#Cwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 9.71, ease: "none" }, 11.951);
       tl.fromTo("#Cm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 13.051);
       tl.fromTo("#Cm0card", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 13.881);
       tl.to("#Cm0card", { x: 221, duration: 0.55, ease: "power2.inOut" }, 16.062);
@@ -543,25 +600,27 @@
       tl.set(".tbar", { visibility: "hidden" }, 21.849);
       tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 21.209);
       tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 21.339);
-      tl.fromTo("#Dic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 21.409);
       tl.fromTo("#Dld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 21.509);
+      tl.fromTo("#Dwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 7.69, ease: "none" }, 20.459);
       tl.fromTo("#Dm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 21.559);
       gsap.set("#Dm0 .rw", { autoAlpha: 0 });
       gsap.set("#Dm0 .tag.teal", { autoAlpha: 0 });
       tl.fromTo("#Dm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.289);
       tl.to("#Dm0a0", { autoAlpha: 0, duration: 0.2 }, 24.356);
       tl.fromTo("#Dm0b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 24.456);
+      tl.fromTo("#Dm0r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 24.356);
       tl.fromTo("#Dm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.978);
       tl.to("#Dm0a1", { autoAlpha: 0, duration: 0.2 }, 25.045);
       tl.fromTo("#Dm0b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 25.145);
+      tl.fromTo("#Dm0r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 25.045);
       tl.fromTo("#Dm0r2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.667);
       tl.set("#sE", { autoAlpha: 1 }, 27.153);
       tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 27.153);
       tl.set("#sD", { autoAlpha: 0 }, 27.873);
       tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.703);
       tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.833);
-      tl.fromTo("#Eic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.903);
       tl.fromTo("#Eld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 28.003);
+      tl.fromTo("#Ewm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 6.66, ease: "none" }, 26.953);
       tl.fromTo("#Em0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 28.053);
       tl.to("#Em0rg", { strokeDashoffset: 0.32, duration: 1.4, ease: "power2.out" }, 28.909);
       (() => { const o = { v: 0 }; const el = document.querySelector("#Em0p"); tl.to(o, { v: 68, duration: 1.4, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + ""; } }, 28.909); })();
@@ -569,6 +628,7 @@
       (() => { const o = { v: 0 }; const el = document.querySelector("#Em0n1"); tl.to(o, { v: 18, duration: 1.3, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + ""; } }, 29.459); })();
       tl.fromTo("#Em1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 28.253);
       tl.fromTo("#Em1 .bcol i", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.6, stagger: 0.07, ease: "power3.out" }, 30.154);
+      tl.fromTo("#Em1 .bcol b", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power3.out" }, 30.504);
       tl.set(".tbar", { visibility: "visible" }, 32.350);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 32.350);
       tl.set("#sE", { autoAlpha: 0 }, 33.010);
@@ -579,6 +639,10 @@
       tl.fromTo("#Fb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 33.230);
       tl.fromTo("#Fb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 33.350);
       tl.fromTo("#Flg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.110);
+      tl.fromTo("#Fri0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.310);
+      tl.fromTo("#Fri1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.430);
+      tl.fromTo("#Fri2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.550);
+      tl.fromTo("#Fri3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.670);
       tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 34.310);
       tl.fromTo("#Fcta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 37.097);
       tl.fromTo("#Fmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 37.697);

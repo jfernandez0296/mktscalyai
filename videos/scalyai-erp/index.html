@@ -313,6 +313,29 @@
       .bcol i { display: block; width: 100%; border-radius: 12px 12px 4px 4px; }
       .bcol span { font-size: 20px; font-weight: 500; color: var(--slate-700); margin-top: 8px; white-space: nowrap; }
 
+      /* ---- diseño v2: color por escena ---- */
+      .band { left: 0; top: 0; width: 1080px; height: 650px; border-radius: 0 0 64px 64px; overflow: hidden; box-shadow: 0 24px 60px rgba(4,27,61,.22); }
+      .wmk { right: -70px; top: 210px; opacity: .14; transform-origin: 50% 50%; }
+      .band .num { right: 60px; top: 60px; font-size: 120px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(255,255,255,.16); }
+      .eyebrow.lt { color: rgba(255,255,255,.88); }
+      .h1.lt { color: #fff; }
+      .h1.lt em { color: var(--emc); }
+      .lead.lt { color: rgba(255,255,255,.94); font-weight: 400; font-size: 34px; }
+      .pdots.lt i { background: rgba(255,255,255,.32); }
+      .pdots.lt i.done { background: rgba(255,255,255,.6); }
+      .pdots.lt i.on { background: #fff; }
+      .pan { border-top: 8px solid var(--acc); }
+      .flab { color: var(--acc); }
+      .ks b { color: var(--acc); }
+      .rw { padding: 0 12px; margin: 0 -12px; border-radius: 16px; }
+      .bch { height: 222px; }
+      .bcol b { font-size: 22px; font-weight: 800; color: var(--navy-900); margin-bottom: 6px; }
+      .blob { border-radius: 50%; }
+      .oi { display: flex; flex-direction: column; align-items: center; width: 130px; }
+      .olab { margin-top: 12px; padding: 6px 16px; border-radius: 999px; background: rgba(240,241,232,.12); border: 1px solid rgba(240,241,232,.22); color: var(--cream-100); font-size: 22px; font-weight: 700; white-space: nowrap; }
+      .recap { display: flex; justify-content: center; gap: 28px; }
+      .dark .gt { box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+
       .cap span { font-size: 38px; padding: 14px 32px; }
 
       /* ---- 9:16 ---- */
@@ -332,28 +355,29 @@
       </head>
       <body>
         <div id="root" data-composition-id="main" data-start="0" data-duration="44.72" data-fps="30" data-width="1080" data-height="1920">
-          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-200px;width:1200px;height:1200px"></div><div class="abs deco" style="left:300px;top:1500px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-200px;width:1200px;height:1200px"></div>
+        <div class="abs blob" style="left:-300px;top:1000px;width:1000px;height:1000px;background:radial-gradient(closest-side, #B5651DAA, #B5651D00)"></div><div class="abs deco" style="left:300px;top:1500px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
         <div class="abs eyebrow" id="Aey" style="left:70px;top:250px">ERP · Operación</div>
         <div class="abs h1 big" id="At" style="left:66px;top:300px"><span class="l">¿Cómo sería operar</span><span class="l">tu empresa</span><span class="l"><em>con un ERP?</em></span></div>
-        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Ar0" cx="540" cy="1050" r="230" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle id="Ar1" cx="540" cy="1050" r="320" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle id="Ar2" cx="540" cy="1050" r="410" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/></svg>
-        <div class="abs" id="Ao0" style="left:130px;top:790px"><div class="gt c-crm" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="shopping-cart">
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Ar0" cx="540" cy="1050" r="230" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle id="Ar1" cx="540" cy="1050" r="320" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle id="Ar2" cx="540" cy="1050" r="410" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/><line id="Ak0" x1="540" y1="1050" x2="200" y2="840" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak1" x1="540" y1="1050" x2="880" y2="870" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak2" x1="540" y1="1050" x2="230" y2="1270" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak3" x1="540" y1="1050" x2="860" y2="1250" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/></svg>
+        <div class="abs oi" id="Ao0" style="left:135px;top:775px"><div class="gt c-crm" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="shopping-cart">
   <circle cx="8" cy="21" r="1" />
   <circle cx="19" cy="21" r="1" />
   <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-</svg></div></div><div class="abs" id="Ao1" style="left:830px;top:820px"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="package">
+</svg></div><span class="olab">Ventas</span></div><div class="abs oi" id="Ao1" style="left:815px;top:805px"><div class="gt " style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="package">
   <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
   <path d="M12 22V12" />
   <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
   <path d="m7.5 4.27 9 5.15" />
-</svg></div></div><div class="abs" id="Ao2" style="left:170px;top:1230px"><div class="gt c-xls" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
+</svg></div><span class="olab">Inventario</span></div><div class="abs oi" id="Ao2" style="left:165px;top:1205px"><div class="gt c-xls" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
   <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
   <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
   <path d="M12 17.5v-11" />
-</svg></div></div><div class="abs" id="Ao3" style="left:800px;top:1200px"><div class="gt c-erp" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="wallet">
+</svg></div><span class="olab">Facturas</span></div><div class="abs oi" id="Ao3" style="left:795px;top:1185px"><div class="gt c-erp" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="wallet">
   <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
   <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
-</svg></div></div>
-        <div class="abs" id="Ahero" style="left:400px;top:910px"><div class="gt c-erp" style="width:280px;height:280px;border-radius:78px"><svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+</svg></div><span class="olab">Caja</span></div>
+        <div class="abs" id="Ahero" style="left:390px;top:900px"><div class="gt c-erp" style="width:300px;height:300px;border-radius:84px"><svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
   <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
   <path d="m7 16.5-4.74-2.85" />
   <path d="m7 16.5 5-3" />
@@ -367,18 +391,19 @@
   <path d="m12 8 4.74-2.85" />
   <path d="M12 13.5V8" />
 </svg></div></div>
-        <div class="abs note" style="left:70px;top:1410px">Ejemplo ilustrativo</div>
+        <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Bey" style="left:70px;top:220px">Ventas</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
-        <div class="abs h1 st" id="Bt" style="left:66px;top:262px"><span class="l">Registras la venta.</span><span class="l"><em>El stock se descuenta.</em></span></div>
-        <div class="abs" id="Bic" style="left:70px;top:500px"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="shopping-cart">
+      <div class="sc" id="sB" style="--acc:#1F4FBF;--emc:#CFE0FF"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Bband" style="background:linear-gradient(135deg, #163A8C, #1F4FBF)"><div class="abs wmk" id="Bwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="shopping-cart">
   <circle cx="8" cy="21" r="1" />
   <circle cx="19" cy="21" r="1" />
   <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-</svg></div></div>
-        <div class="abs lead" id="Bld" style="left:250px;top:506px;width:760px">Una sola acción actualiza todo.</div>
+</svg></div>
+          <div class="abs num">01</div></div>
+        <div class="abs eyebrow lt" id="Bey" style="left:70px;top:200px">Ventas</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Bt" style="left:66px;top:244px"><span class="l">Registras la venta.</span><span class="l"><em>El stock se descuenta.</em></span></div>
+        <div class="abs lead lt" id="Bld" style="left:70px;top:468px;width:700px">Una sola acción actualiza todo.</div>
         <div class="abs card pan" id="Bm0" style="left:70px;top:700px;width:940px;height:330px"><div class="rel" style="height:250px"><div class="abs ftrack" id="Bm0tr" style="left:75px;top:109px;width:722px;height:10px"></div><div class="abs" id="Bm0t0" style="left:0px;top:40px"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="shopping-cart">
   <circle cx="8" cy="21" r="1" />
   <circle cx="19" cy="21" r="1" />
@@ -395,26 +420,27 @@
 </svg></div></div><div class="abs flabel" id="Bm0l2" style="left:667px;top:206px;width:260px">Factura</div><div class="abs chipn" id="Bm0chip" style="left:-10px;top:86px">Venta #2051</div></div></div><div class="abs card pan" id="Bm1" style="left:70px;top:1056px;width:940px;height:352px"><div class="flab t">Stock · Polo básico</div><div class="gg"><div class="gc" id="Bm1c0" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c1" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c2" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c3" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c4" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c5" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c6" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c7" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c8" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c9" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c10" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div><div class="gc" id="Bm1c11" style="width:134px;background:#007B83;color:#FFFFFF;border-color:#007B83"></div></div><div class="leg"><span><i style="background:#007B83;border-color:#007B83"></i>En stock</span><span><i style="background:#FFFFFF;border-color:#D6D9CB"></i>Vendido</span></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Cey" style="left:70px;top:220px">Compras</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
-        <div class="abs h1 st" id="Ct" style="left:66px;top:262px"><span class="l">Stock bajo.</span><span class="l"><em>Orden de compra lista.</em></span></div>
-        <div class="abs" id="Cic" style="left:70px;top:500px"><div class="gt c-erp" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
+      <div class="sc" id="sC" style="--acc:#B5651D;--emc:#FFE0BD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Cband" style="background:linear-gradient(135deg, #8A4A12, #B5651D)"><div class="abs wmk" id="Cwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
   <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
   <path d="M15 18H9" />
   <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
   <circle cx="17" cy="18" r="2" />
   <circle cx="7" cy="18" r="2" />
-</svg></div></div>
-        <div class="abs lead" id="Cld" style="left:250px;top:506px;width:760px">El ERP repone antes de que te quedes sin producto.</div>
-        <div class="abs card pan" id="Cm0" style="left:70px;top:700px;width:940px;height:436px"><div class="flab t">Reposición</div><div class="rw" id="Cm0r0"><div class="gt c-erp" style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="package">
+</svg></div>
+          <div class="abs num">02</div></div>
+        <div class="abs eyebrow lt" id="Cey" style="left:70px;top:200px">Compras</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Ct" style="left:66px;top:244px"><span class="l">Stock bajo.</span><span class="l"><em>Orden de compra lista.</em></span></div>
+        <div class="abs lead lt" id="Cld" style="left:70px;top:468px;width:700px">El ERP repone antes de que te quedes sin producto.</div>
+        <div class="abs card pan" id="Cm0" style="left:70px;top:700px;width:940px;height:436px"><div class="flab t">Reposición</div><div class="rw" id="Cm0r0"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="package">
   <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
   <path d="M12 22V12" />
   <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
   <path d="m7.5 4.27 9 5.15" />
 </svg></div><div class="rt"><b>Polo básico · M</b><span>Quedan 4 · mínimo 10</span></div><div class="rs"><span class="tag soft" id="Cm0a0">Bajo mínimo</span><span class="tag teal" id="Cm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Orden creada</span></div></div><div class="rw" id="Cm0r1"><div class="gt c-crm" style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="clipboard-list">
+</svg>Orden creada</span></div></div><div class="rw" id="Cm0r1"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="clipboard-list">
   <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
   <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
   <path d="M12 11h4" />
@@ -423,7 +449,7 @@
   <path d="M8 16h.01" />
 </svg></div><div class="rt"><b>Orden de compra OC-118</b><span>Proveedor asignado</span></div><div class="rs"><span class="tag soft" id="Cm0a1">Borrador</span><span class="tag teal" id="Cm0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Enviada</span></div></div><div class="rw" id="Cm0r2"><div class="gt " style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
+</svg>Enviada</span></div></div><div class="rw" id="Cm0r2"><div class="gt " style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
   <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
   <path d="M15 18H9" />
   <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
@@ -434,28 +460,29 @@
 </svg>Programada</span></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Dey" style="left:70px;top:220px">Finanzas</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i></div>
-        <div class="abs h1 st" id="Dt" style="left:66px;top:262px"><span class="l">Factura emitida.</span><span class="l"><em>Cobranza programada.</em></span></div>
-        <div class="abs" id="Dic" style="left:70px;top:500px"><div class="gt c-xls" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
+      <div class="sc" id="sD" style="--acc:#1D6F42;--emc:#BDEFD0"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Dband" style="background:linear-gradient(135deg, #14532F, #1D6F42)"><div class="abs wmk" id="Dwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
   <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
   <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
   <path d="M12 17.5v-11" />
-</svg></div></div>
-        <div class="abs lead" id="Dld" style="left:250px;top:506px;width:760px">Sin perseguir pagos a mano.</div><div class="abs" id="Dpp" style="left:250px;top:610px"><div class="avs"><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div>
-        <div class="abs card pan" id="Dm0" style="left:70px;top:700px;width:940px;height:392px"><div class="rw" id="Dm0r0"><div class="gt c-xls" style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
+</svg></div>
+          <div class="abs num">03</div></div>
+        <div class="abs eyebrow lt" id="Dey" style="left:70px;top:200px">Finanzas</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Dt" style="left:66px;top:244px"><span class="l">Factura emitida.</span><span class="l"><em>Cobranza programada.</em></span></div>
+        <div class="abs lead lt" id="Dld" style="left:70px;top:468px;width:700px">Sin perseguir pagos a mano.</div><div class="abs" id="Dpp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div>
+        <div class="abs card pan" id="Dm0" style="left:70px;top:730px;width:940px;height:392px"><div class="rw" id="Dm0r0"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
   <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
   <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
   <path d="M12 17.5v-11" />
 </svg></div><div class="rt"><b>Factura F001-2051</b><span>S/ 1.240</span></div><div class="rs"><span class="tag soft" id="Dm0a0">Pendiente</span><span class="tag teal" id="Dm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Emitida</span></div></div><div class="rw" id="Dm0r1"><div class="gt c-erp" style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="bell">
+</svg>Emitida</span></div></div><div class="rw" id="Dm0r1"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="bell">
   <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
   <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
 </svg></div><div class="rt"><b>Recordatorio de pago</b><span>3 días antes del vencimiento</span></div><div class="rs"><span class="tag soft" id="Dm0a1">Sin programar</span><span class="tag teal" id="Dm0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Programado</span></div></div><div class="rw" id="Dm0r2"><div class="gt " style="width:76px;height:76px;border-radius:21px"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="banknote">
+</svg>Programado</span></div></div><div class="rw" id="Dm0r2"><div class="gt " style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="banknote">
   <rect width="20" height="12" x="2" y="6" rx="2" />
   <circle cx="12" cy="12" r="2" />
   <path d="M6 12h.01M18 12h.01" />
@@ -464,29 +491,50 @@
 </svg>Conciliado</span></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
-      <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Eey" style="left:70px;top:220px">Un solo lugar</div>
-        <div class="abs pdots" style="left:auto;right:70px;top:224px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
-        <div class="abs h1 st" id="Et" style="left:66px;top:262px"><span class="l">Todas las áreas,</span><span class="l"><em>los mismos números.</em></span></div>
-        <div class="abs" id="Eic" style="left:70px;top:500px"><div class="gt " style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+      <div class="sc" id="sE" style="--acc:#007B83;--emc:#7FE3E3"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Eband" style="background:linear-gradient(135deg, #0D2F5C, #007B83)"><div class="abs wmk" id="Ewm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
   <path d="M3 3v16a2 2 0 0 0 2 2h16" />
   <path d="M18 17V9" />
   <path d="M13 17V5" />
   <path d="M8 17v-3" />
-</svg></div></div>
-        <div class="abs lead" id="Eld" style="left:250px;top:506px;width:760px">Ventas, inventario y caja, siempre al día.</div><div class="abs" id="Epp" style="left:250px;top:610px"><div class="avs"><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div>
-        <div class="abs card pan" id="Em0" style="left:70px;top:700px;width:940px;height:400px"><div class="kwrap"><div class="rel kring"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150.0" cy="150.0" r="136.0" fill="none" stroke="#E3E5D9" stroke-width="28"/><circle id="Em0rg" cx="150.0" cy="150.0" r="136.0" fill="none" stroke="#007B83" stroke-width="28" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 150.0 150.0)"/></svg><div class="abs kin" style="left:0px;top:0px;width:300px;height:300px"><b><em id="Em0p">0</em>%</b><span>meta del mes</span></div></div><div class="kstats"><div class="ks"><b>S/ <em id="Em0n0">0</em></b><span>ventas del mes</span></div><div class="ks"><b><em id="Em0n1">0</em></b><span>productos en stock</span></div></div></div></div><div class="abs card pan" id="Em1" style="left:70px;top:1126px;width:940px;height:310px"><div class="flab t">Ventas por semana</div><div class="bch"><div class="bcol"><i id="Em1b0" style="height:100px;background:#007B83"></i><span>Sem. 1</span></div><div class="bcol"><i id="Em1b1" style="height:120px;background:#007B83"></i><span>Sem. 2</span></div><div class="bcol"><i id="Em1b2" style="height:113px;background:#007B83"></i><span>Sem. 3</span></div><div class="bcol"><i id="Em1b3" style="height:150px;background:#1D6F42"></i><span>Sem. 4</span></div></div></div>
+</svg></div>
+          <div class="abs num">04</div></div>
+        <div class="abs eyebrow lt" id="Eey" style="left:70px;top:200px">Un solo lugar</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+        <div class="abs h1 st lt" id="Et" style="left:66px;top:244px"><span class="l">Todas las áreas,</span><span class="l"><em>los mismos números.</em></span></div>
+        <div class="abs lead lt" id="Eld" style="left:70px;top:468px;width:700px">Ventas, inventario y caja, siempre al día.</div><div class="abs" id="Epp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div>
+        <div class="abs card pan" id="Em0" style="left:70px;top:730px;width:940px;height:400px"><div class="kwrap"><div class="rel kring"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150.0" cy="150.0" r="135.0" fill="none" stroke="#E3E5D9" stroke-width="30"/><circle id="Em0rg" cx="150.0" cy="150.0" r="135.0" fill="none" stroke="#007B83" stroke-width="30" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 150.0 150.0)"/></svg><div class="abs kin" style="left:0px;top:0px;width:300px;height:300px"><b><em id="Em0p">0</em>%</b><span>meta del mes</span></div></div><div class="kstats"><div class="ks"><b>S/ <em id="Em0n0">0</em></b><span>ventas del mes</span></div><div class="ks"><b><em id="Em0n1">0</em></b><span>productos en stock</span></div></div></div></div><div class="abs card pan" id="Em1" style="left:70px;top:1156px;width:940px;height:336px"><div class="flab t">Ventas por semana</div><div class="bch"><div class="bcol"><b>60</b><i id="Em1b0" style="height:93px;background:#007B83"></i><span>Sem. 1</span></div><div class="bcol"><b>72</b><i id="Em1b1" style="height:112px;background:#007B83"></i><span>Sem. 2</span></div><div class="bcol"><b>68</b><i id="Em1b2" style="height:105px;background:#007B83"></i><span>Sem. 3</span></div><div class="bcol"><b>90</b><i id="Em1b3" style="height:140px;background:#1D6F42"></i><span>Sem. 4</span></div></div></div>
         <div class="abs note" style="left:70px;top:1452px">Ejemplo ilustrativo</div>
       </div></div>
       <div class="sc dark" id="sF"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:300px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-420px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
-        <div class="abs navlogo dk" id="Flg" style="left:0px;top:400px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Fb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Fb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Fb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
-        <div class="abs h1 ctr" id="Ft" style="left:0px;top:540px;width:1080px"><span class="l">¿Tu empresa necesita</span><span class="l">un ERP</span><span class="l"><em>a su medida?</em></span></div>
-        <div class="abs" id="Fcta" style="left:0px;top:960px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Fbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+        <div class="abs recap" style="left:0px;top:260px;width:1080px"><div class="ri" id="Fri0"><div class="gt c-crm" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="shopping-cart">
+  <circle cx="8" cy="21" r="1" />
+  <circle cx="19" cy="21" r="1" />
+  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+</svg></div></div><div class="ri" id="Fri1"><div class="gt c-erp" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
+  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+  <path d="M15 18H9" />
+  <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+  <circle cx="17" cy="18" r="2" />
+  <circle cx="7" cy="18" r="2" />
+</svg></div></div><div class="ri" id="Fri2"><div class="gt c-xls" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
+  <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+  <path d="M12 17.5v-11" />
+</svg></div></div><div class="ri" id="Fri3"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div></div></div>
+        <div class="abs navlogo dk" id="Flg" style="left:0px;top:470px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Fb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Fb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Fb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
+        <div class="abs h1 ctr" id="Ft" style="left:0px;top:600px;width:1080px"><span class="l">¿Tu empresa necesita</span><span class="l">un ERP</span><span class="l"><em>a su medida?</em></span></div>
+        <div class="abs" id="Fcta" style="left:0px;top:1000px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Fbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
   <path d="M5 12h14" />
   <path d="m12 5 7 7-7 7" />
 </svg></div></div>
-        <div class="abs micro" id="Fmic" style="left:0px;top:1110px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
-        <div class="abs url" id="Furl" style="left:0px;top:1200px;width:1080px">SCALYAI.DEV</div>
+        <div class="abs micro" id="Fmic" style="left:0px;top:1150px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Furl" style="left:0px;top:1240px;width:1080px">SCALYAI.DEV</div>
       </div></div>
           <div class="abs" id="tbars" style="left:0;top:0;width:1080px;height:1920px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:640px;background:#007B83"></div><div class="tbar" style="top:1280px;background:#041B3D"></div></div>
           <div id="prog"></div>
@@ -549,10 +597,19 @@
       tl.fromTo("#Ar0", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.951);
       tl.fromTo("#Ar1", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 2.071);
       tl.fromTo("#Ar2", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 2.191);
-      tl.fromTo("#Ao0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 3.002);
-      tl.fromTo("#Ao1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 3.182);
-      tl.fromTo("#Ao2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 3.362);
-      tl.fromTo("#Ao3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 3.542);
+      tl.fromTo("#Ahero", { y: 0 }, { y: -16, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.601);
+      tl.fromTo("#Ak0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.002);
+      tl.fromTo("#Ao0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.002);
+      tl.fromTo("#Ao0", { y: 0 }, { y: 14, duration: 1.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.552);
+      tl.fromTo("#Ak1", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.182);
+      tl.fromTo("#Ao1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.182);
+      tl.fromTo("#Ao1", { y: 0 }, { y: -14, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.732);
+      tl.fromTo("#Ak2", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.362);
+      tl.fromTo("#Ao2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.362);
+      tl.fromTo("#Ao2", { y: 0 }, { y: 14, duration: 2.0, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.912);
+      tl.fromTo("#Ak3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.542);
+      tl.fromTo("#Ao3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.542);
+      tl.fromTo("#Ao3", { y: 0 }, { y: -14, duration: 2.2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 4.092);
       tl.set(".tbar", { visibility: "visible" }, 5.444);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 5.444);
       tl.set("#sA", { autoAlpha: 0 }, 6.104);
@@ -561,8 +618,8 @@
       tl.set(".tbar", { visibility: "hidden" }, 6.894);
       tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.254);
       tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 6.384);
-      tl.fromTo("#Bic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.454);
       tl.fromTo("#Bld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.554);
+      tl.fromTo("#Bwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 9.74, ease: "none" }, 5.504);
       tl.fromTo("#Bm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 6.604);
       gsap.set("#Bm0chip", { autoAlpha: 0 });
       tl.fromTo("#Bm0t0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 7.436);
@@ -583,20 +640,23 @@
       tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 14.592);
       tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 14.792);
       tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 14.922);
-      tl.fromTo("#Cic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 14.992);
       tl.fromTo("#Cld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 15.092);
+      tl.fromTo("#Cwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 7.33, ease: "none" }, 14.042);
       tl.fromTo("#Cm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 15.142);
       gsap.set("#Cm0 .rw", { autoAlpha: 0 });
       gsap.set("#Cm0 .tag.teal", { autoAlpha: 0 });
       tl.fromTo("#Cm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 15.853);
       tl.to("#Cm0a0", { autoAlpha: 0, duration: 0.2 }, 17.755);
       tl.fromTo("#Cm0b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 17.855);
+      tl.fromTo("#Cm0r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 17.755);
       tl.fromTo("#Cm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 16.487);
       tl.to("#Cm0a1", { autoAlpha: 0, duration: 0.2 }, 18.388);
       tl.fromTo("#Cm0b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 18.488);
+      tl.fromTo("#Cm0r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 18.388);
       tl.fromTo("#Cm0r2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 17.121);
       tl.to("#Cm0a2", { autoAlpha: 0, duration: 0.2 }, 19.022);
       tl.fromTo("#Cm0b2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 19.122);
+      tl.fromTo("#Cm0r2", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 19.022);
       tl.set(".tbar", { visibility: "visible" }, 20.107);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 20.107);
       tl.set("#sC", { autoAlpha: 0 }, 20.767);
@@ -605,8 +665,8 @@
       tl.set(".tbar", { visibility: "hidden" }, 21.557);
       tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 20.917);
       tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 21.047);
-      tl.fromTo("#Dic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 21.117);
       tl.fromTo("#Dld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 21.217);
+      tl.fromTo("#Dwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 7.00, ease: "none" }, 20.167);
       tl.fromTo("#Dpp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 21.367);
       tl.fromTo("#Dm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 21.267);
       gsap.set("#Dm0 .rw", { autoAlpha: 0 });
@@ -614,19 +674,22 @@
       tl.fromTo("#Dm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 21.962);
       tl.to("#Dm0a0", { autoAlpha: 0, duration: 0.2 }, 23.718);
       tl.fromTo("#Dm0b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 23.819);
+      tl.fromTo("#Dm0r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 23.718);
       tl.fromTo("#Dm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.548);
       tl.to("#Dm0a1", { autoAlpha: 0, duration: 0.2 }, 24.304);
       tl.fromTo("#Dm0b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 24.404);
+      tl.fromTo("#Dm0r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 24.304);
       tl.fromTo("#Dm0r2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.133);
       tl.to("#Dm0a2", { autoAlpha: 0, duration: 0.2 }, 24.889);
       tl.fromTo("#Dm0b2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 24.989);
+      tl.fromTo("#Dm0r2", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 24.889);
       tl.set("#sE", { autoAlpha: 1 }, 26.170);
       tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 26.170);
       tl.set("#sD", { autoAlpha: 0 }, 26.890);
       tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 26.720);
       tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 26.850);
-      tl.fromTo("#Eic", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 26.920);
       tl.fromTo("#Eld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.020);
+      tl.fromTo("#Ewm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 9.57, ease: "none" }, 25.970);
       tl.fromTo("#Epp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.170);
       tl.fromTo("#Em0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.070);
       tl.to("#Em0rg", { strokeDashoffset: 0.26, duration: 1.4, ease: "power2.out" }, 28.218);
@@ -635,6 +698,7 @@
       (() => { const o = { v: 0 }; const el = document.querySelector("#Em0n1"); tl.to(o, { v: 312, duration: 1.3, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + ""; } }, 28.768); })();
       tl.fromTo("#Em1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.270);
       tl.fromTo("#Em1 .bcol i", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.6, stagger: 0.07, ease: "power3.out" }, 30.484);
+      tl.fromTo("#Em1 .bcol b", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power3.out" }, 30.834);
       tl.set(".tbar", { visibility: "visible" }, 34.285);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 34.285);
       tl.set("#sE", { autoAlpha: 0 }, 34.945);
@@ -645,6 +709,10 @@
       tl.fromTo("#Fb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 35.165);
       tl.fromTo("#Fb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 35.285);
       tl.fromTo("#Flg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.045);
+      tl.fromTo("#Fri0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.245);
+      tl.fromTo("#Fri1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.365);
+      tl.fromTo("#Fri2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.485);
+      tl.fromTo("#Fri3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.605);
       tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 36.245);
       tl.fromTo("#Fcta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 39.619);
       tl.fromTo("#Fmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 40.219);
