@@ -116,5 +116,13 @@
    ]
   ],
   "scene": 5
+ },
+ {
+  "id": "s7",
+  "text": "Todo el historial queda en un solo lugar: mensajes, llamadas y propuestas. Cualquiera de tu equipo puede retomar la conversación."
+ },
+ {
+  "id": "s8",
+  "text": "Y lo repetitivo se automatiza: el seguimiento, los recordatorios y el reporte de la semana."
  }
 ]

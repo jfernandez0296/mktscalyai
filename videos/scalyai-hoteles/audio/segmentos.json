@@ -19,7 +19,7 @@
  {
   "id": "s2",
   "text": "Un huésped escribe por WhatsApp a medianoche. Un asistente con IA responde, y confirma la reserva.",
-  "start": 5.535,
+  "start": 6.135,
   "dur": 6.439,
   "speech": [
    [
@@ -40,7 +40,7 @@
  {
   "id": "s3",
   "text": "La reserva entra sola al sistema, y la habitación queda bloqueada en todos tus canales.",
-  "start": 13.874,
+  "start": 15.074,
   "dur": 4.838,
   "speech": [
    [
@@ -57,7 +57,7 @@
  {
   "id": "s4",
   "text": "Antes de llegar, el huésped recibe su check-in digital. Y al salir, limpieza recibe el aviso al instante.",
-  "start": 20.612,
+  "start": 22.412,
   "dur": 6.649,
   "speech": [
    [
@@ -82,7 +82,7 @@
  {
   "id": "s5",
   "text": "Tú ves la ocupación y los ingresos del día, sin armar ningún reporte.",
-  "start": 29.16,
+  "start": 31.56,
   "dur": 4.053,
   "speech": [
    [
@@ -97,9 +97,51 @@
   "scene": 4
  },
  {
+  "id": "s7",
+  "text": "Después de la estadía, el sistema envía una encuesta y pide la reseña. Tú solo lees los comentarios.",
+  "start": 38.113,
+  "dur": 5.596,
+  "speech": [
+   [
+    0.0,
+    1.057
+   ],
+   [
+    1.339,
+    3.855
+   ],
+   [
+    4.086,
+    5.596
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "s8",
+  "text": "Y si algo se sale de lo normal, el caso pasa a una persona de tu equipo, con todo el historial.",
+  "start": 46.209,
+  "dur": 5.381,
+  "speech": [
+   [
+    0.0,
+    1.654
+   ],
+   [
+    2.086,
+    4.127
+   ],
+   [
+    4.434,
+    5.381
+   ]
+  ],
+  "scene": 6
+ },
+ {
   "id": "s6",
   "text": "¿Quieres automatizar tu hotel? Conversemos de tu próximo piloto. Treinta minutos, sin compromiso.",
-  "start": 35.613,
+  "start": 54.59,
   "dur": 5.547,
   "speech": [
    [
@@ -119,6 +161,6 @@
     5.547
    ]
   ],
-  "scene": 5
+  "scene": 7
  }
 ]

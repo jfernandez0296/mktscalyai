@@ -11,7 +11,11 @@ L = lambda parts: "".join(f'<span class="l">{p}</span>' for p in parts)
 F = lambda seg, f: SEG[seg]["start"] + f * SEG[seg]["dur"]
 ST = {"free": ("#FFFFFF", NAVY, CREAM3), "occ": (TEAL, WHITE, TEAL), "clean": ("#B5651D", WHITE, "#B5651D"), "block": ("#1F4FBF", WHITE, "#1F4FBF"),
       "low": ("#C2416B", WHITE, "#C2416B"), "ok": ("#1D6F42", WHITE, "#1D6F42")}
-ANIM = []   # (función, args) para ejecutar tras definir todas las escenas
+ACC = {"": ("#0D2F5C", "#007B83", "#7FE3E3"), "c-xls": ("#14532F", "#1D6F42", "#BDEFD0"), "c-crm": ("#163A8C", "#1F4FBF", "#CFE0FF"),
+       "c-erp": ("#8A4A12", "#B5651D", "#FFE0BD"), "wa": ("#0B5E32", "#128C4A", "#C9F2D8")}
+def acc(sc): return ACC["wa" if sc.get("icon") == "wa" else sc.get("cls", "")]
+CUR = {"acc": TEAL}
+def big_icon(ic, size): return wa(size, WHITE) if ic == "wa" else icon(ic, size, WHITE, 1.1)
 
 def tile(ic, size, cls=""): return gt("wa" if ic == "wa" else ic, size, cls=cls)
 
@@ -21,7 +25,7 @@ def m_rows(pid, m):
     for i, r in enumerate(m["rows"]):
         tags = f'<span class="tag soft" id="{pid}a{i}">{r["t0"]}</span>' if r.get("t0") else ""
         if r.get("t1"): tags += f'<span class="tag teal" id="{pid}b{i}">{icon("check", 20, "#00646B", 3)}{r["t1"]}</span>'
-        left = person(r["person"], 76) if "person" in r else tile(r["icon"], 76, r.get("cls", ""))
+        left = person(r["person"], 84) if "person" in r else tile(r["icon"], 84, r.get("cls", ""))
         rows.append(f'<div class="rw" id="{pid}r{i}">{left}<div class="rt"><b>{r["text"]}</b>{f"<span>{r[chr(115)+chr(117)+chr(98)]}</span>" if r.get("sub") else ""}</div><div class="rs">{tags}</div></div>')
     head = f'<div class="flab t">{m["title"]}</div>' if m.get("title") else ""
     return head + "".join(rows), 56 + len(m["rows"]) * 112 + (44 if m.get("title") else 0)
@@ -35,6 +39,7 @@ def a_rows(pid, m, seg):
             t2 = F(seg, mid + (b - mid) * i / max(1, n))
             if m["rows"][i].get("t0"): js(f'tl.to("#{pid}a{i}", {{ autoAlpha: 0, duration: 0.2 }}, {t2:.3f});')
             show(f"#{pid}b{i}", t2 + 0.1, 0.35, 0); ev("tick", t2)
+            js(f'tl.fromTo("#{pid}r{i}", {{ backgroundColor: "rgba(71,212,212,.30)" }}, {{ backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }}, {t2:.3f});')
     ev("chime2", F(seg, b))
 
 def m_flow(pid, m):
@@ -101,8 +106,8 @@ def a_pipe(pid, m, seg):
 def m_kpis(pid, m):
     r = m["ring"]
     stats = "".join(f'<div class="ks"><b>{s.get("pre", "")}<em id="{pid}n{i}">0</em>{s.get("suf", "")}</b><span>{s["label"]}</span></div>' for i, s in enumerate(m["stats"]))
-    return (f'<div class="kwrap"><div class="rel kring">{ring(pid + "rg", 300, 28, r.get("color", TEAL), CREAM2)}<div class="abs kin" style="{pos(0, 0, 300, 300)}"><b><em id="{pid}p">0</em>%</b><span>{r["label"]}</span></div></div>'
-            f'<div class="kstats">{stats}</div></div>'), 400
+    return (f'<div class="kwrap"><div class="rel kring">{ring(pid + "rg", 300, 30, r.get("color", CUR["acc"]), CREAM2)}<div class="abs kin" style="{pos(0, 0, 300, 300)}"><b><em id="{pid}p">0</em>%</b><span>{r["label"]}</span></div></div>'
+            f'<div class="kstats">{stats}</div></div>'), 384
 def a_kpis(pid, m, seg):
     t = F(seg, 0.1); p = m["ring"]["pct"]
     js(f'tl.to("#{pid}rg", {{ strokeDashoffset: {1 - p / 100:.2f}, duration: 1.4, ease: "power2.out" }}, {t:.3f});'); count(f"#{pid}p", t, 0, p, 1.4)
@@ -111,10 +116,11 @@ def a_kpis(pid, m, seg):
 
 def m_bars(pid, m):
     mx = max(v for _, v in m["bars"])
-    bs = "".join(f'<div class="bcol"><i id="{pid}b{i}" style="height:{int(150 * v / mx)}px;background:{m.get("colors", {}).get(i, TEAL)}"></i><span>{lab}</span></div>' for i, (lab, v) in enumerate(m["bars"]))
-    return f'<div class="flab t">{m["title"]}</div><div class="bch">{bs}</div>', 56 + 44 + 210
+    bs = "".join(f'<div class="bcol"><b>{v}{m.get("unit", "")}</b><i id="{pid}b{i}" style="height:{int(140 * v / mx)}px;background:{m.get("colors", {}).get(i, CUR["acc"])}"></i><span>{lab}</span></div>' for i, (lab, v) in enumerate(m["bars"]))
+    return f'<div class="flab t">{m["title"]}</div><div class="bch">{bs}</div>', 56 + 44 + 236
 def a_bars(pid, m, seg):
     js(f'tl.fromTo("#{pid} .bcol i", {{ scaleY: 0, transformOrigin: "50% 100%" }}, {{ scaleY: 1, duration: 0.6, stagger: 0.07, ease: {EASE} }}, {F(seg, m.get("at", 0.45)):.3f});')
+    js(f'tl.fromTo("#{pid} .bcol b", {{ autoAlpha: 0, y: 8 }}, {{ autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.07, ease: {EASE} }}, {F(seg, m.get("at", 0.45)) + 0.35:.3f});')
 
 MODS = {"rows": (m_rows, a_rows), "flow": (m_flow, a_flow), "grid": (m_grid, a_grid), "chat": (m_chat, a_chat), "pipe": (m_pipe, a_pipe), "kpis": (m_kpis, a_kpis), "bars": (m_bars, a_bars)}
 
@@ -122,44 +128,51 @@ MODS = {"rows": (m_rows, a_rows), "flow": (m_flow, a_flow), "grid": (m_grid, a_g
 LET = "ABCDEFGHIJ"
 html_scenes = []
 steps = [s for s in spec.SCENES if s["kind"] == "step"]
+OPOS = [(200, 840), (880, 870), (230, 1270), (860, 1250)]
 for k, sc in enumerate(spec.SCENES):
     sid = LET[k]; seg = sc["seg"]
     if sc["kind"] == "hook":
-        cxh, cyh = 540, 1050
+        a1, a2, tint = acc(sc); cxh, cyh = 540, 1050
         rings = "".join(f'<circle id="{sid}r{j}" cx="{cxh}" cy="{cyh}" r="{r}" fill="none" stroke="{CYAN}" stroke-width="2" opacity="{o}"/>' for j, (r, o) in enumerate([(230, .4), (320, .25), (410, .14)]))
-        orb = "".join(f'<div class="abs" id="{sid}o{j}" style="{pos(x - 60, y - 60)}">{tile(ic, 120, cls)}</div>' for j, ((ic, cls), (x, y)) in enumerate(zip(sc["orbit"], [(190, 850), (890, 880), (230, 1290), (860, 1260)])))
-        h = f'''      <div class="sc dark" id="s{sid}"><div class="cam">{BG(100, -200, 1200)}{deco(300, 1500, 0.8, True)}
+        spokes = "".join(f'<line id="{sid}k{j}" x1="{cxh}" y1="{cyh}" x2="{x}" y2="{y}" stroke="{CYAN}" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/>' for j, (x, y) in enumerate(OPOS[:len(sc["orbit"])]))
+        orb = "".join(f'<div class="abs oi" id="{sid}o{j}" style="{pos(x - 65, y - 65)}">{tile(ic, 130, cls)}<span class="olab">{lab}</span></div>' for j, ((ic, cls, lab), (x, y)) in enumerate(zip(sc["orbit"], OPOS)))
+        h = f'''      <div class="sc dark" id="s{sid}"><div class="cam">{BG(100, -200, 1200)}
+        <div class="abs blob" style="{pos(-300, 1000, 1000, 1000)};background:radial-gradient(closest-side, {a2}AA, {a2}00)"></div>{deco(300, 1500, 0.8, True)}
         <div class="abs eyebrow" id="{sid}ey" style="{pos(M, 250)}">{sc["eyebrow"]}</div>
         <div class="abs h1 big" id="{sid}t" style="{pos(M - 4, 300)}">{L(sc["title"])}</div>
-        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920">{rings}</svg>
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920">{rings}{spokes}</svg>
         {orb}
-        <div class="abs" id="{sid}hero" style="{pos(cxh - 140, cyh - 140)}">{tile(sc["icon"], 280, sc.get("cls", ""))}</div>
-        <div class="abs note" style="{pos(M, 1410)}">{spec.NOTE}</div>
+        <div class="abs" id="{sid}hero" style="{pos(cxh - 150, cyh - 150)}">{tile(sc["icon"], 300, sc.get("cls", ""))}</div>
+        <div class="abs note" style="{pos(M, 1452)}">{spec.NOTE}</div>
       </div></div>'''
     elif sc["kind"] == "step":
+        a1, a2, tint = acc(sc); CUR["acc"] = a2
         n = steps.index(sc) + 1
         dots = "".join(f'<i class="{"on" if j == n else ("done" if j < n else "")}"></i>' for j in range(1, len(steps) + 1))
-        y = 700; cards = []
+        y = 724 if sc.get("people") else 690; cards = []
         for j, m in enumerate(sc["mods"]):
             pid = f"{sid}m{j}"; inner, hh = MODS[m["type"]][0](pid, m)
             cards.append(f'<div class="abs card pan" id="{pid}" style="{pos(M, y, 940, hh)}">{inner}</div>'); y += hh + 26
-        ppl = f'<div class="abs" id="{sid}pp" style="{pos(M + 180, 610)}">{avs(sc["people"], 64)}</div>' if sc.get("people") else ""
-        h = f'''      <div class="sc" id="s{sid}"><div class="cam">{BG(-200, 900, 1100)}{deco(380, 1500, 0.75)}
-        <div class="abs eyebrow" id="{sid}ey" style="{pos(M, 220)}">{sc["eyebrow"]}</div>
-        <div class="abs pdots" style="left:auto;right:{M}px;top:224px">{dots}</div>
-        <div class="abs h1 st" id="{sid}t" style="{pos(M - 4, 262)}">{L(sc["title"])}</div>
-        <div class="abs" id="{sid}ic" style="{pos(M, 500)}">{tile(sc["icon"], 150, sc.get("cls", ""))}</div>
-        <div class="abs lead" id="{sid}ld" style="{pos(M + 180, 506, 760)}">{sc["lead"]}</div>{ppl}
+        ppl = f'<div class="abs" id="{sid}pp" style="{pos(M, 600)}">{avs(sc["people"], 88)}</div>' if sc.get("people") else ""
+        h = f'''      <div class="sc" id="s{sid}" style="--acc:{a2};--emc:{tint}"><div class="cam">{BG(-200, 900, 1100)}{deco(380, 1500, 0.75)}
+        <div class="abs band" id="{sid}band" style="background:linear-gradient(135deg, {a1}, {a2})"><div class="abs wmk" id="{sid}wm">{big_icon(sc["icon"], 460)}</div>
+          <div class="abs num">0{n}</div></div>
+        <div class="abs eyebrow lt" id="{sid}ey" style="{pos(M, 200)}">{sc["eyebrow"]}</div>
+        <div class="abs pdots lt" style="left:auto;right:{M}px;top:204px">{dots}</div>
+        <div class="abs h1 st lt" id="{sid}t" style="{pos(M - 4, 244)}">{L(sc["title"])}</div>
+        <div class="abs lead lt" id="{sid}ld" style="{pos(M, 468, 700)}">{sc["lead"]}</div>{ppl}
         {"".join(cards)}
         <div class="abs note" style="{pos(M, 1452)}">{spec.NOTE}</div>
       </div></div>'''
     else:
+        recap = "".join(f'<div class="ri" id="{sid}ri{j}">{tile(st["icon"], 120, st.get("cls", ""))}</div>' for j, st in enumerate(steps))
         h = f'''      <div class="sc dark" id="s{sid}"><div class="cam">{BG(-10, 300, 1100)}{deco(300, 1380, 0.85, True)}{deco(-420, -200, 0.8, True)}
-        <div class="abs navlogo dk" id="{sid}lg" style="{pos(0, 400, 1080)};justify-content:center">{bars(64, sid + "b", True)}<div>Scaly <span>AI</span></div></div>
-        <div class="abs h1 ctr" id="{sid}t" style="{pos(0, 540, 1080)}">{L(sc["title"])}</div>
-        <div class="abs" id="{sid}cta" style="{pos(0, 960, 1080)};display:flex;justify-content:center"><div class="btn" id="{sid}btn">Conversemos de tu próximo piloto {icon("arrow-right", 40, WHITE, 2.4)}</div></div>
-        <div class="abs micro" id="{sid}mic" style="{pos(0, 1110, 1080)}">30 minutos · sin tarjeta · sin compromiso</div>
-        <div class="abs url" id="{sid}url" style="{pos(0, 1200, 1080)}">SCALYAI.DEV</div>
+        <div class="abs recap" style="{pos(0, 260, 1080)}">{recap}</div>
+        <div class="abs navlogo dk" id="{sid}lg" style="{pos(0, 470, 1080)};justify-content:center">{bars(64, sid + "b", True)}<div>Scaly <span>AI</span></div></div>
+        <div class="abs h1 ctr" id="{sid}t" style="{pos(0, 600, 1080)}">{L(sc["title"])}</div>
+        <div class="abs" id="{sid}cta" style="{pos(0, 1000, 1080)};display:flex;justify-content:center"><div class="btn" id="{sid}btn">Conversemos de tu próximo piloto {icon("arrow-right", 40, WHITE, 2.4)}</div></div>
+        <div class="abs micro" id="{sid}mic" style="{pos(0, 1150, 1080)}">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="{sid}url" style="{pos(0, 1240, 1080)}">SCALYAI.DEV</div>
       </div></div>'''
     html_scenes.append(h)
 SCN = "\n".join(html_scenes)
@@ -180,10 +193,15 @@ for k, sc in enumerate(spec.SCENES):
         show(f"#{sid}hero", th, 0.7, 30); ev("chime2", th)
         for j in range(3):
             js(f'tl.fromTo("#{sid}r{j}", {{ scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }}, {{ scale: 1, autoAlpha: 1, duration: 0.8, ease: {EASE} }}, {th + 0.15 + j * 0.12:.3f});')
+        js(f'tl.fromTo("#{sid}hero", {{ y: 0 }}, {{ y: -16, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {th + 0.8:.3f});')
         for j in range(len(sc["orbit"])):
-            show(f"#{sid}o{j}", F(seg, 0.5) + j * 0.18, 0.5, 20); ev("tick", F(seg, 0.5) + j * 0.18)
+            to = F(seg, 0.5) + j * 0.18
+            js(f'tl.fromTo("#{sid}k{j}", {{ autoAlpha: 0 }}, {{ autoAlpha: 1, duration: 0.5 }}, {to:.3f});')
+            js(f'tl.fromTo("#{sid}o{j}", {{ autoAlpha: 0, scale: 0.7 }}, {{ autoAlpha: 1, scale: 1, duration: 0.5, ease: {EASE} }}, {to:.3f});'); ev("tick", to)
+            js(f'tl.fromTo("#{sid}o{j}", {{ y: 0 }}, {{ y: {-14 if j % 2 else 14}, duration: {1.6 + j * 0.2:.1f}, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {to + 0.55:.3f});')
     elif sc["kind"] == "step":
-        heading(sid, S[k]); show(f"#{sid}ic", S[k] + 0.35, 0.5, 20); show(f"#{sid}ld", S[k] + 0.45, 0.5, 16)
+        heading(sid, S[k]); show(f"#{sid}ld", S[k] + 0.45, 0.5, 16)
+        js(f'tl.fromTo("#{sid}wm", {{ x: 60, rotation: -6 }}, {{ x: -30, rotation: 4, duration: {ENDS[k] - S[k] + 1.2:.2f}, ease: "none" }}, {S[k] - 0.6:.3f});')
         if sc.get("people"): show(f"#{sid}pp", S[k] + 0.6, 0.5, 12)
         for j, m in enumerate(sc["mods"]):
             pid = f"{sid}m{j}"; show(f"#{pid}", S[k] + 0.5 + j * 0.2, 0.6, 24)
@@ -191,6 +209,7 @@ for k, sc in enumerate(spec.SCENES):
             MODS[m["type"]][1](pid, m, seg)
     else:
         grow(sid + "b", S[k] + 0.1, 0.12, 0.5); show(f"#{sid}lg", S[k] + 0.1, 0.5, 0)
+        for j in range(len(steps)): show(f"#{sid}ri{j}", S[k] + 0.3 + j * 0.12, 0.5, 20)
         show(f"#{sid}t", F(seg, 0.0) - 0.2, 0.7, 30)
         tc = W(seg, "conversemos", -0.2); show(f"#{sid}cta", tc, 0.6, 24); ev("chime", tc)
         show(f"#{sid}mic", tc + 0.6, 0.5, 16); show(f"#{sid}url", END(seg, 0.2), 0.5, 12)

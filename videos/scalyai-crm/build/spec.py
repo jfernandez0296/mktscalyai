@@ -2,7 +2,7 @@ TITLE = "Scaly AI — Cómo se opera un CRM"
 NOTE = "Ejemplo ilustrativo"
 SCENES = [
  dict(seg="s1", kind="hook", eyebrow="CRM · Ventas", title=["¿Cómo se opera", "<em>un CRM?</em>"], icon="users", cls="c-crm",
-      orbit=[("wa", ""), ("globe", "c-xls"), ("phone", "c-erp"), ("handshake", "")]),
+      orbit=[('wa', '', 'WhatsApp'), ('globe', 'c-xls', 'Web'), ('phone', 'c-erp', 'Llamadas'), ('handshake', '', 'Cierres')]),
  dict(seg="s2", kind="step", eyebrow="Contactos", title=["Cada contacto,", "<em>registrado solo.</em>"], icon="users", cls="c-crm", lead="Llegue por donde llegue, entra como oportunidad.",
       mods=[dict(type="rows", title="Entradas de hoy", rows=[dict(icon="wa", text="WhatsApp", sub="María · consulta por precios", t0="Nuevo", t1="Oportunidad"),
                                     dict(icon="globe", cls="c-xls", text="Formulario web", sub="Carlos · pide una demo", t0="Nuevo", t1="Oportunidad"),
@@ -16,5 +16,13 @@ SCENES = [
  dict(seg="s5", kind="step", eyebrow="Pronóstico", title=["Cuánto vas a vender,", "<em>con datos.</em>"], icon="chart-column", cls="c-xls", lead="Tu pronóstico del mes, siempre actualizado.",
       mods=[dict(type="kpis", ring=dict(pct=68, label="de la meta"), stats=[dict(pre="S/ ", value=32400, label="pronóstico del mes"), dict(value=18, label="oportunidades abiertas")]),
             dict(type="bars", title="Oportunidades por etapa", bars=[("Nuevo", 8), ("Conversación", 5), ("Propuesta", 3), ("Ganado", 2)], colors={0: "#2F4560", 1: "#1F4FBF", 2: "#B5651D", 3: "#1D6F42"})]),
+ dict(seg="s7", kind="step", eyebrow="Historial", title=["Todo el historial,", "<em>en un solo lugar.</em>"], icon="clipboard-list", lead="Cualquiera de tu equipo puede retomar la conversación.", people=[0, 1, 3],
+      mods=[dict(type="rows", title="María · historial", rows=[dict(icon="wa", text="Consulta por precios", sub="Lunes · WhatsApp", t1="Registrado"),
+                                    dict(icon="phone", cls="c-erp", text="Llamada de 8 minutos", sub="Martes", t1="Registrado"),
+                                    dict(icon="receipt", cls="c-xls", text="Propuesta enviada", sub="Miércoles · S/ 3.200", t1="Registrado")])]),
+ dict(seg="s8", kind="step", eyebrow="Automatización", title=["Lo repetitivo", "<em>se hace solo.</em>"], icon="zap", cls="c-erp", lead="Tu equipo se dedica a vender.",
+      mods=[dict(type="rows", rows=[dict(icon="bell", cls="c-erp", text="Seguimiento a los 3 días", sub="Sin respuesta del cliente", t0="A mano", t1="Automático"),
+                                    dict(icon="clock", cls="c-crm", text="Recordatorios de reunión", sub="Un día antes", t0="A mano", t1="Automático"),
+                                    dict(icon="chart-column", cls="c-xls", text="Reporte de la semana", sub="Cada lunes", t0="A mano", t1="Automático")])]),
  dict(seg="s6", kind="cta", title=["¿Quieres un CRM", "hecho para", "<em>tu negocio?</em>"]),
 ]

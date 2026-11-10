@@ -104,5 +104,13 @@
    ]
   ],
   "scene": 5
+ },
+ {
+  "id": "s7",
+  "text": "Tus compras, tus proveedores y tus costos quedan registrados. Así sabes cuánto ganas con cada producto."
+ },
+ {
+  "id": "s8",
+  "text": "Y no tienes que cambiar todo de golpe: se empieza por un área, y se suman las demás."
  }
 ]

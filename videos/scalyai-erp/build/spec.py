@@ -2,7 +2,7 @@ TITLE = "Scaly AI — Cómo sería operar un ERP"
 NOTE = "Ejemplo ilustrativo"
 SCENES = [
  dict(seg="s1", kind="hook", eyebrow="ERP · Operación", title=["¿Cómo sería operar", "tu empresa", "<em>con un ERP?</em>"], icon="boxes", cls="c-erp",
-      orbit=[("shopping-cart", "c-crm"), ("package", ""), ("receipt", "c-xls"), ("wallet", "c-erp")]),
+      orbit=[('shopping-cart', 'c-crm', 'Ventas'), ('package', '', 'Inventario'), ('receipt', 'c-xls', 'Facturas'), ('wallet', 'c-erp', 'Caja')]),
  dict(seg="s2", kind="step", eyebrow="Ventas", title=["Registras la venta.", "<em>El stock se descuenta.</em>"], icon="shopping-cart", cls="c-crm", lead="Una sola acción actualiza todo.",
       mods=[dict(type="flow", chip="Venta #2051", tiles=[dict(icon="shopping-cart", cls="c-crm", label="Venta"), dict(icon="package", label="Stock"), dict(icon="receipt", cls="c-xls", label="Factura")]),
             dict(type="grid", title="Stock · Polo básico", cols=6, cells=[("", "occ")] * 12, changes=[(11, "free", 0.62), (10, "free", 0.74)], legend=[("occ", "En stock"), ("free", "Vendido")])]),
@@ -17,5 +17,13 @@ SCENES = [
  dict(seg="s5", kind="step", eyebrow="Un solo lugar", title=["Todas las áreas,", "<em>los mismos números.</em>"], icon="chart-column", lead="Ventas, inventario y caja, siempre al día.", people=[0, 1, 3],
       mods=[dict(type="kpis", ring=dict(pct=74, label="meta del mes"), stats=[dict(pre="S/ ", value=48200, label="ventas del mes"), dict(value=312, label="productos en stock")]),
             dict(type="bars", title="Ventas por semana", bars=[("Sem. 1", 60), ("Sem. 2", 72), ("Sem. 3", 68), ("Sem. 4", 90)], colors={3: "#1D6F42"})]),
+ dict(seg="s7", kind="step", eyebrow="Rentabilidad", title=["Cuánto ganas", "<em>con cada producto.</em>"], icon="trending-up", cls="c-xls", lead="Compras, proveedores y costos, registrados.",
+      mods=[dict(type="kpis", ring=dict(pct=38, label="margen promedio"), stats=[dict(pre="S/ ", value=29900, label="costo del mes"), dict(pre="S/ ", value=48200, label="ventas del mes")]),
+            dict(type="bars", title="Margen por producto", unit="%", bars=[("Polo", 42), ("Jean", 35), ("Casaca", 48), ("Gorra", 27)])]),
+ dict(seg="s8", kind="step", eyebrow="Implementación", title=["Empieza por un área.", "<em>Suma las demás.</em>"], icon="layers", cls="c-crm", lead="No tienes que cambiar todo de golpe.", people=[0, 1],
+      mods=[dict(type="rows", title="Áreas", rows=[dict(icon="shopping-cart", cls="c-crm", text="Ventas", sub="Primera área", t0="Pendiente", t1="Activa"),
+                                    dict(icon="package", text="Inventario", sub="Segunda área", t0="Pendiente", t1="Activa"),
+                                    dict(icon="receipt", cls="c-xls", text="Facturación", sub="Tercera área", t0="Pendiente", t1="Activa"),
+                                    dict(icon="wallet", cls="c-erp", text="Caja", sub="Lo que sigue", t0="Siguiente")])]),
  dict(seg="s6", kind="cta", title=["¿Tu empresa necesita", "un ERP", "<em>a su medida?</em>"]),
 ]

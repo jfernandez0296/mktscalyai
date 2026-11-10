@@ -2,7 +2,7 @@ TITLE = "Scaly AI — Cómo automatizar un hotel"
 NOTE = "Ejemplo ilustrativo"
 SCENES = [
  dict(seg="s1", kind="hook", eyebrow="Hoteles · Automatización", title=["¿Tienes un hotel?", "Así podría trabajar,", "<em>casi solo.</em>"], icon="building-2",
-      orbit=[("wa", ""), ("bed-double", "c-crm"), ("calendar-check", "c-xls"), ("sparkles", "c-erp")]),
+      orbit=[('wa', '', 'WhatsApp'), ('bed-double', 'c-crm', 'Habitaciones'), ('calendar-check', 'c-xls', 'Reservas'), ('sparkles', 'c-erp', 'Limpieza')]),
  dict(seg="s2", kind="step", eyebrow="Reservas", title=["Responde y reserva,", "<em>a cualquier hora.</em>"], icon="wa", lead="Un asistente con IA atiende por WhatsApp y confirma la reserva.",
       mods=[dict(type="chat", person=2, name="Huésped", time="12:04 a. m.", msg="Hola, ¿tienen habitación doble para este sábado?", reply="Sí, tenemos una doble disponible. ¿La reservo a tu nombre?", done="Reserva confirmada · Hab. 204")]),
  dict(seg="s3", kind="step", eyebrow="Canales", title=["La reserva entra sola", "<em>al sistema.</em>"], icon="calendar-check", cls="c-xls", lead="La habitación queda bloqueada en todos tus canales.",
@@ -18,5 +18,12 @@ SCENES = [
  dict(seg="s5", kind="step", eyebrow="Indicadores", title=["Tu hotel,", "<em>en números.</em>"], icon="chart-column", cls="c-xls", lead="Ocupación e ingresos del día, sin armar reportes.",
       mods=[dict(type="kpis", ring=dict(pct=82, label="ocupación"), stats=[dict(pre="S/ ", value=6480, label="ingresos de hoy"), dict(value=14, label="check-ins de hoy")]),
             dict(type="bars", title="Ocupación de la semana", bars=[("L", 55), ("M", 60), ("M", 58), ("J", 70), ("V", 88), ("S", 96), ("D", 82)], colors={5: "#1D6F42"})]),
+ dict(seg="s7", kind="step", eyebrow="Después de la estadía", title=["La encuesta sale sola.", "<em>Las reseñas llegan.</em>"], icon="star", cls="c-crm", lead="Tú solo lees los comentarios.",
+      mods=[dict(type="rows", rows=[dict(icon="message-circle", cls="c-crm", text="Encuesta de satisfacción", sub="Enviada al check-out", t0="Pendiente", t1="Enviada"),
+                                    dict(icon="star", cls="c-erp", text="Reseña de 5 estrellas", sub="Hab. 204", t0="Solicitada", t1="Recibida")]),
+            dict(type="bars", title="Reseñas por semana", at=0.55, bars=[("Sem. 1", 6), ("Sem. 2", 9), ("Sem. 3", 11), ("Sem. 4", 15)])]),
+ dict(seg="s8", kind="step", eyebrow="Tu equipo", title=["Lo simple, solo.", "<em>Lo delicado, tu equipo.</em>"], icon="user-round", lead="Los casos especiales pasan a una persona, con todo el historial.", people=[0, 1, 3],
+      mods=[dict(type="rows", title="Casos derivados", rows=[dict(person=1, text="Recepción", sub="Recibe el caso con el historial", t0="Caso nuevo", t1="Atendido"),
+                                    dict(person=3, text="Gerencia", sub="Ve el resumen del día", t0="Pendiente", t1="Informada")])]),
  dict(seg="s6", kind="cta", title=["¿Quieres automatizar", "<em>tu hotel?</em>"]),
 ]
