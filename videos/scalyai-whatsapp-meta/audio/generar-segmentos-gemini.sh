@@ -12,12 +12,12 @@ for i in $(seq 0 $((n-1))); do
   if [ -n "$SOLO" ] && [[ ",$SOLO," != *",$id,"* ]]; then continue; fi
   body=$(jq -n --arg t "$STYLE$text" --arg v "$VOICE" '{contents:[{parts:[{text:$t}]}],generationConfig:{responseModalities:["AUDIO"],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:$v}}}}}')
   data=""; mime=""
-  for try in 1 2 3 4 5; do
+  for try in 1 2 3 4 5 6 7 8 9 10; do
     resp=$(curl -sS -m 120 -H "Content-Type: application/json" "https://generativelanguage.googleapis.com/v1beta/models/$MODEL:generateContent" -d "$body")
     data=$(echo "$resp" | jq -r '.candidates[0].content.parts[0].inlineData.data // empty')
     mime=$(echo "$resp" | jq -r '.candidates[0].content.parts[0].inlineData.mimeType // empty')
     [ -n "$data" ] && break
-    echo "$id: sin audio ($(echo "$resp" | jq -r '.error.message // .candidates[0].finishReason // "?"' | head -c 90)); espero 30 s"; sleep 30
+    echo "$id: sin audio ($(echo "$resp" | jq -r '.error.message // .candidates[0].finishReason // "?"' | head -c 90)); espero 60 s"; sleep 60
   done
   [ -z "$data" ] && { echo "$id: FALLÓ"; exit 1; }
   if [[ "$mime" == audio/wav* ]]; then echo "$data" | base64 -d > "seg/$id.raw.wav"

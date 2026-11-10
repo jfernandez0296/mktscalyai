@@ -80,34 +80,37 @@ CAPJS = "\n".join(f'      capShow("#cap{i}", {c[0]:.3f}, {c[1]:.3f});' for i, c 
 def html_escape(t): return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
 # ---------------------------------------------------------------- escenas (tutorial: WhatsApp Business + Meta + Claude)
-def step_head(sid, n, title_html, lead=None):
+def step_head(sid, n, title_html, ask=None, human=None, status=None):
     h = (f'<div class="abs eyebrow" id="{sid}ey" style="left:160px;top:130px">Paso {n} de 5</div>'
          f'<div class="abs h1 st" id="{sid}t" style="left:156px;top:176px">{title_html}</div>')
-    if lead: h += f'<div class="abs lead" id="{sid}ld" style="left:160px;top:420px;width:640px">{lead}</div>'
+    if ask: h += f'<div class="abs ask" id="{sid}q" style="left:160px;top:410px;width:700px"><div class="who">{icon("user-round", 24, TEAL)}Tú → Claude</div>{ask}</div>'
+    if human: h += f'<div class="abs tag soft" id="{sid}hu" style="left:160px;top:660px">{icon("user-round", 22, SLATE, 2.4)}{human}</div>'
+    if status: h += f'<div class="abs cstat" id="{sid}cs" style="left:160px;top:740px">{bars(34, sid + "cb")}<span>Claude</span><i id="{sid}cst">{status}</i>{icon("circle-check", 28, TEAL, 2.4)}</div>'
     dots = "".join(f'<i class="{"on" if j == n else ("done" if j < n else "")}"></i>' for j in range(1, 6))
     return h + f'<div class="abs pdots">{dots}</div>'
 def win(sid, url, inner, x=980, y=190, w=780, h=700):
     return (f'<div class="abs card win" id="{sid}w" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px">'
-            f'<div class="wbar"><i></i><i></i><i></i><span>{url}</span></div><div class="wbody">{inner}</div></div>')
+            f'<div class="wbar"><i></i><i></i><i></i><span>{url}</span><em class="cbadge">{icon("sparkles", 18, NAVY, 2.4)}Claude en Chrome</em></div><div class="wbody">{inner}</div></div>')
 def fld(sid, label, value, extra=""):
     return f'<div class="fld" id="{sid}"><label>{label}</label><div class="val">{value}{extra}</div></div>'
 
 A = f'''      <div class="sc dark" id="sA"><div class="cam">{BG(900, -300, 1200)}
         <div class="abs eyebrow" id="Aey" style="left:160px;top:170px">Tutorial · 90 segundos</div>
-        <div class="abs h1 big" id="At" style="left:156px;top:220px"><span class="l">Conecta tu WhatsApp Business</span><span class="l">a Meta, con <em>Claude</em></span><span class="l">como copiloto.</span></div>
+        <div class="abs h1 big" id="At" style="left:156px;top:220px"><span class="l">Conecta tu WhatsApp Business</span><span class="l">a Meta, haciéndolo</span><span class="l">desde <em>Claude.</em></span></div>
         <svg class="abs" style="left:0;top:0" width="1920" height="1080" viewBox="0 0 1920 1080"><path id="Aln" d="M560 760 L1360 760" pathLength="1" stroke="{CYAN}" stroke-width="4" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" fill="none"/></svg>
         <div class="abs flow" id="An0" style="left:160px;top:700px"><div class="ni" style="background:#128C4A">{wa(40, WHITE)}</div><div><b>WhatsApp Business</b><span>tu número</span></div></div>
         <div class="abs flow" id="An1" style="left:760px;top:700px"><div class="ni">{icon("link", 36, CYAN)}</div><div><b>API de Meta</b><span>WhatsApp Cloud API</span></div></div>
-        <div class="abs flow" id="An2" style="left:1360px;top:700px"><div class="ni">{icon("sparkles", 36, CYAN)}</div><div><b>Claude</b><span>escribe y responde</span></div></div>
+        <div class="abs flow" id="An2" style="left:1360px;top:700px"><div class="ni">{icon("sparkles", 36, CYAN)}</div><div><b>Claude</b><span>lo configura por ti</span></div></div>
       </div></div>'''
 
-NEED = [("building-2", "Una cuenta de Meta Business", "Desde business.facebook.com"),
-        ("smartphone", "Un número verificable", "Por SMS o llamada. Si ya lo usas en la app de WhatsApp, revisa las opciones de migración de Meta."),
-        ("sparkles", "Acceso a Claude", "Para escribir el webhook y responder con su API.")]
+NEED = [("terminal", "Claude Code", "Para escribir y publicar el webhook."),
+        ("sparkles", "Claude en Chrome", "La extensión que trabaja en tu navegador, con tu sesión de Meta."),
+        ("building-2", "Tu cuenta de Meta Business", "Y un número verificable por SMS o llamada. Si ya está en la app de WhatsApp, revisa la migración.")]
 B = f'''      <div class="sc" id="sB"><div class="cam">{BG(1000, 200, 1000)}
         <div class="abs eyebrow" id="Bey" style="left:160px;top:130px">Antes de empezar</div>
         <div class="abs h1" id="Bt" style="left:156px;top:176px">Necesitas <em>tres cosas.</em></div>
         {"".join(f'<div class="abs card need" id="Bc{i}" style="left:{160 + i * 540}px;top:380px"><div class="pi">{icon(ic, 44)}</div><h3>{h}</h3><p>{p}</p></div>' for i, (ic, h, p) in enumerate(NEED))}
+        <div class="abs tag cyan" id="Bapr" style="left:160px;top:850px">{icon("shield-check", 22, NAVY, 2.4)}Tú apruebas cada paso</div>
       </div></div>'''
 
 C_IN = f'''<div class="ftitle">Crear una app</div>
@@ -116,7 +119,7 @@ C_IN = f'''<div class="ftitle">Crear una app</div>
   <div class="sbtn" id="Cb0">Crear app</div>
   <div class="prod" id="Cpr"><div class="ni" style="background:#128C4A">{wa(36, WHITE)}</div><div><b>WhatsApp</b><span>Agregar producto</span></div><div class="sbtn sm" id="Cb1">Configurar</div></div>'''
 C = f'''      <div class="sc" id="sC"><div class="cam">{BG(-200, 300, 1000)}
-        {step_head("C", 1, '<span class="l">Crea una app</span><span class="l"><em>en Meta.</em></span>', 'Entra a developers.facebook.com, crea una app de tipo negocio y agrégale el producto WhatsApp.')}
+        {step_head("C", 1, '<span class="l">Claude crea</span><span class="l"><em>la app en Meta.</em></span>', 'Crea una app de tipo negocio en Meta para desarrolladores y agrégale WhatsApp.', None, 'App creada · WhatsApp agregado')}
         {win("C", "developers.facebook.com/apps", C_IN)}
       </div></div>'''
 
@@ -127,7 +130,7 @@ D_IN = f'''<div class="ftitle">WhatsApp › Configuración de la API</div>
   {fld("Df3", "ID del número de teléfono", "1098 7654 3210 123", f'<span class="copy" id="Dcp">Copiar</span>')}
   <div class="wnote">Datos de ejemplo</div>'''
 D = f'''      <div class="sc" id="sD"><div class="cam">{BG(-200, 300, 1000)}
-        {step_head("D", 2, '<span class="l">Agrega y verifica</span><span class="l"><em>tu número.</em></span>', 'Verifícalo con el código, define el nombre que verán tus clientes y anota el ID del número.')}
+        {step_head("D", 2, '<span class="l">Claude agrega</span><span class="l"><em>tu número.</em></span>', 'Agrega mi número de WhatsApp Business y anota su ID.', 'Tú le das el código SMS', 'ID del número anotado')}
         {win("D", "developers.facebook.com › WhatsApp", D_IN)}
       </div></div>'''
 
@@ -138,8 +141,7 @@ E_IN = f'''<div class="ftitle">Configuración del negocio › Usuarios del siste
   <div class="perm" id="Ep1"><span class="ok">{icon("check", 20, WHITE, 3)}</span>whatsapp_business_management</div>
   {fld("Etk", "Token de acceso", "EAAG•••••••••••••••••••••", f'<span class="copy">Permanente</span>')}'''
 E = f'''      <div class="sc" id="sE"><div class="cam">{BG(-200, 300, 1000)}
-        {step_head("E", 3, '<span class="l">Crea un token</span><span class="l"><em>permanente.</em></span>', 'Con un usuario del sistema y los permisos de WhatsApp.')}
-        <div class="abs tag cyan" id="Esafe" style="left:160px;top:560px">{icon("shield-check", 22, NAVY, 2.4)}Guárdalo en un lugar seguro</div>
+        {step_head("E", 3, '<span class="l">Claude prepara</span><span class="l"><em>el token.</em></span>', 'Crea un usuario del sistema y un token permanente con permisos de WhatsApp.', 'Tú guardas el token como variable de entorno', 'Permisos de WhatsApp listos')}
         {win("E", "business.facebook.com › Configuración", E_IN)}
       </div></div>'''
 
@@ -154,8 +156,8 @@ CODE = [("k", 'app.post("/webhook", async (req, res) => {'),
         ("k", '});')]
 F = f'''      <div class="sc dark" id="sF"><div class="cam">{BG(1000, -300, 1200)}
         {step_head("F", 4, '<span class="l">Claude escribe</span><span class="l"><em>el webhook.</em></span>')}
-        <div class="abs prompt" id="Fq" style="left:160px;top:420px;width:640px"><div class="who">{icon("user-round", 26, CYAN)}Tú</div>Escribe un webhook para la API de WhatsApp Cloud: recibe cada mensaje, genera la respuesta con la API de Claude y envíala por WhatsApp.</div>
-        <div class="abs envc" id="Fenv" style="left:160px;top:730px;width:640px"><div class="eh">.env<span class="tag cyan sm">Nunca en el chat</span></div><code>WHATSAPP_TOKEN=••••••••</code><code>ANTHROPIC_API_KEY=••••••••</code><code>VERIFY_TOKEN=••••••••</code></div>
+        <div class="abs prompt" id="Fq" style="left:160px;top:420px;width:640px"><div class="who">{icon("user-round", 26, CYAN)}Tú → Claude Code</div>Escribe y publica un webhook para la API de WhatsApp Cloud que responda cada mensaje con la API de Claude.</div>
+        <div class="abs envc" id="Fenv" style="left:160px;top:730px;width:640px"><div class="eh">.env<span class="tag cyan sm">Publicado · claves fuera del chat</span></div><code>WHATSAPP_TOKEN=••••••••</code><code>ANTHROPIC_API_KEY=••••••••</code><code>VERIFY_TOKEN=••••••••</code></div>
         <div class="abs editor" id="Fed" style="left:880px;top:330px;width:880px"><div class="wbar dk"><i></i><i></i><i></i><span>webhook.js</span></div>
           <div class="lines">{"".join(f'<div class="ln {k}" id="Fl{i}"><em>{i + 1}</em>{html_escape(t)}</div>' for i, (k, t) in enumerate(CODE))}</div></div>
       </div></div>'''
@@ -167,7 +169,7 @@ G_IN = f'''<div class="ftitle">WhatsApp › Configuración › Webhook</div>
   <div class="ftitle sm" style="margin-top:30px">Campos del webhook</div>
   <div class="sub" id="Gs"><code>messages</code><div class="tog" id="Gtg"><i id="Gkn"></i></div><span class="okt" id="Gsub">Suscrito</span></div>'''
 G = f'''      <div class="sc" id="sG"><div class="cam">{BG(-200, 300, 1000)}
-        {step_head("G", 5, '<span class="l">Conecta el webhook</span><span class="l"><em>en Meta.</em></span>', 'Publícalo, pega su dirección y el token de verificación, y suscríbete al campo de mensajes.')}
+        {step_head("G", 5, '<span class="l">Claude conecta</span><span class="l"><em>el webhook.</em></span>', 'Conecta el webhook en Meta y suscríbete a los mensajes.', None, 'Verificado y suscrito')}
         {win("G", "developers.facebook.com › WhatsApp", G_IN)}
       </div></div>'''
 
@@ -237,72 +239,78 @@ def press(sel, t):
     js(f'tl.to("{sel}", {{ scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }}, {t:.3f});'); ev("tick", t)
 def draw(sel, t, d=0.8): js(f'tl.to("{sel}", {{ strokeDashoffset: 0, duration: {d}, ease: "power2.inOut" }}, {t:.3f});')
 def win_in(sid, t): show(f"#{sid}w", t, 0.7, 0, 50)
-def step_in(sid, t):
+def step_in(sid, t, ask_t):
     heading(sid, t)
-    if sid in "CDG": show(f"#{sid}ld", t + 0.5, 0.6, 16)
+    js(f'gsap.set(["#{sid}cs"], {{ autoAlpha: 0 }});')
+    show(f"#{sid}q", ask_t, 0.6, 20); ev("tick", ask_t)
+def claude_done(sid, t): show(f"#{sid}cs", t, 0.5, 14); ev("chime2", t)
+def hint(sid, t): js(f'tl.fromTo("#{sid}w .cbadge", {{ boxShadow: "0 0 0 0 rgba(71,212,212,0)" }}, {{ boxShadow: "0 0 0 10px rgba(71,212,212,.25)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {t:.3f});')
 
 # A · gancho
 show("#Aey", 0.2, 0.5, 16); show("#At", 0.35, 0.8, 30)
 for i, w_ in enumerate(["whatsapp", "meta", "claude"]):
-    show(f"#An{i}", W("t1", w_, -0.2), 0.55, 20); ev("tick", W("t1", w_, -0.2))
+    show(f"#An{i}", W("t1", w_, -0.2, 1 if w_ == "claude" else 0), 0.55, 20); ev("tick", W("t1", w_, -0.2))
 draw("#Aln", W("t1", "meta", 0), 1.4)
 
 # B · lo que necesitas
 t_bars("#sA", "#sB", S[1] - 0.66); heading("B", S[1])
-for i, w_ in enumerate(["cuenta", "número", "acceso"]):
+for i, w_ in enumerate(["code", "chrome", "cuenta"]):
     show(f"#Bc{i}", W("t2", w_, -0.25), 0.6, 30); ev("tick", W("t2", w_, -0.25))
+show("#Bapr", W("t2", "apruebas", -0.3), 0.5, 16); ev("chime2", W("t2", "apruebas", -0.3))
 
-# C · paso 1
-t_fade("#sB", "#sC", S[2] - 0.3); step_in("C", S[2])
+# C · paso 1: la app
+t_fade("#sB", "#sC", S[2] - 0.3); step_in("C", S[2], W("t3", "escríbele", -0.1))
 js('gsap.set(["#Cok", "#Cpr"], { autoAlpha: 0 });')
-win_in("C", W("t3", "entra", -0.1))
-show("#Cf0", W("t3", "crea", -0.3), 0.4, 10); show("#Cf1", W("t3", "crea", 0.1), 0.4, 10)
-show("#Cok", W("t3", "negocio", -0.1), 0.3, 0); press("#Cb0", W("t3", "negocio", 0.4))
-show("#Cpr", W("t3", "agrégale", -0.1), 0.55, 20); press("#Cb1", W("t3", "whatsapp", 0.2)); ev("chime2", W("t3", "whatsapp", 0.4))
+win_in("C", W("t3", "abre", -0.2)); hint("C", W("t3", "abre", 0.4))
+show("#Cf0", W("t3", "completa", -0.2), 0.4, 10); show("#Cf1", W("t3", "completa", 0.2), 0.4, 10)
+show("#Cok", W("t3", "formulario", 0), 0.3, 0); press("#Cb0", W("t3", "formulario", 0.4))
+show("#Cpr", W("t3", "formulario", 0.2), 0.55, 20); press("#Cb1", W("t3", "formulario", 0.7)); claude_done("C", W("t3", "formulario", 0.8))
 
-# D · paso 2
-t_wipe("#sC", "#sD", S[3] - 0.4); step_in("D", S[3])
-js('gsap.set(["#Dok", "#Df1 .code6 i", "#Dcp"], { autoAlpha: 0 });')
-win_in("D", S[3] + 0.4)
-show("#Df0", W("t4", "agrega", -0.1), 0.4, 10)
-tv = W("t4", "verifícalo", -0.3)
+# D · paso 2: el número
+t_wipe("#sC", "#sD", S[3] - 0.4); step_in("D", S[3], W("t4", "pídele", -0.1))
+js('gsap.set(["#Dok", "#Df1 .code6 i", "#Dcp", "#Dhu"], { autoAlpha: 0 });')
+win_in("D", W("t4", "agregue", -0.2)); hint("D", W("t4", "agregue", 0.4))
+show("#Df0", W("t4", "número", -0.1), 0.4, 10)
+show("#Dhu", W("t4", "código", -0.3), 0.5, 14)
+tv = W("t4", "das", -0.3)
 js(f'tl.fromTo("#Df1 .code6 i", {{ autoAlpha: 0, y: 8 }}, {{ autoAlpha: 1, y: 0, duration: 0.25, stagger: 0.09, ease: {EASE} }}, {tv:.3f});')
-show("#Dok", tv + 0.7, 0.3, 0); ev("chime2", tv + 0.7)
-show("#Df2", W("t4", "define", -0.1), 0.4, 10)
-show("#Df3", W("t4", "anota", -0.2), 0.4, 10); show("#Dcp", W("t4", "teléfono", -0.2), 0.3, 0); press("#Dcp", W("t4", "teléfono", 0.2))
+show("#Dok", tv + 0.7, 0.3, 0); ev("tick", tv + 0.7)
+show("#Df2", tv + 0.9, 0.4, 10)
+show("#Df3", W("t4", "anota", -0.2), 0.4, 10); show("#Dcp", W("t4", "id", -0.1), 0.3, 0); press("#Dcp", W("t4", "id", 0.3))
+claude_done("D", W("t4", "anota", 0.4))
 
-# E · paso 3
-t_wipe("#sD", "#sE", S[4] - 0.4); step_in("E", S[4])
-js('gsap.set(["#Esafe"], { autoAlpha: 0 });')
-win_in("E", S[4] + 0.4)
+# E · paso 3: el token
+t_wipe("#sD", "#sE", S[4] - 0.4); step_in("E", S[4], W("t5", "pídele", -0.1))
+js('gsap.set(["#Ehu"], { autoAlpha: 0 });')
+win_in("E", W("t5", "claude", -0.2)); hint("E", W("t5", "claude", 0.4))
 show("#Eu", W("t5", "crea", -0.1), 0.5, 14); ev("tick", W("t5", "crea", -0.1))
-press("#Eb", W("t5", "genera", -0.05))
-show("#Ep0", W("t5", "permisos", -0.3), 0.4, 10); show("#Ep1", W("t5", "permisos", 0.0), 0.4, 10); ev("tick", W("t5", "permisos", -0.3))
-show("#Etk", W("t5", "whatsapp", 0.1), 0.5, 10)
-show("#Esafe", W("t5", "guárdalo", -0.2), 0.5, 16); ev("chime", W("t5", "guárdalo", -0.2))
+press("#Eb", W("t5", "sistema", 0))
+show("#Ep0", W("t5", "marca", -0.1), 0.4, 10); show("#Ep1", W("t5", "marca", 0.25), 0.4, 10); ev("tick", W("t5", "marca", -0.1))
+show("#Etk", W("t5", "whatsapp", 0.1), 0.5, 10); claude_done("E", W("t5", "whatsapp", 0.4))
+show("#Ehu", W("t5", "guardas", -0.3), 0.5, 16)
 
-# F · paso 4 (Claude)
+# F · paso 4: el webhook
 t_bars("#sE", "#sF", S[5] - 0.66); heading("F", S[5])
 js('gsap.set(["#sF .ln", "#Fenv"], { autoAlpha: 0 });')
 show("#Fq", W("t6", "pídele", -0.2), 0.6, 24); ev("tick", W("t6", "pídele", -0.2))
-show("#Fed", W("t6", "webhook", -0.3), 0.6, 0, 50)
-t0, t1 = W("t6", "reciba", -0.2), W("t6", "whatsapp", 0.3)
+show("#Fed", W("t6", "escribe", -0.3), 0.6, 0, 50)
+t0, t1 = W("t6", "recibe", -0.2), W("t6", "whatsapp", 0.3)
 for i in range(len(CODE)):
     tt_ = t0 + (t1 - t0) * i / (len(CODE) - 1)
     js(f'tl.fromTo("#Fl{i}", {{ autoAlpha: 0, x: -10 }}, {{ autoAlpha: 1, x: 0, duration: 0.3, ease: {EASE} }}, {tt_:.3f});')
     if i % 2 == 0: ev("tick", tt_)
-show("#Fenv", W("t6", "claves", -0.2), 0.6, 20); ev("chime2", W("t6", "nunca", -0.1))
+show("#Fenv", W("t6", "publica", -0.2), 0.6, 20); ev("chime2", W("t6", "publica", -0.1))
 
-# G · paso 5
-t_wipe("#sF", "#sG", S[6] - 0.4); step_in("G", S[6])
+# G · paso 5: conectar en Meta
+t_wipe("#sF", "#sG", S[6] - 0.4); step_in("G", S[6], S[6] + 0.6)
 js('gsap.set(["#Gok", "#Gsub"], { autoAlpha: 0 });')
-win_in("G", S[6] + 0.4)
-show("#Gf0", W("t7", "pega", -0.2), 0.4, 10); show("#Gf1", W("t7", "token", -0.1), 0.4, 10)
-tg = W("t7", "verificación", 0.3); press("#Gb", tg); show("#Gok", tg + 0.3, 0.4, 0); ev("chime2", tg + 0.3)
-ts = W("t7", "suscríbete", -0.1)
+win_in("G", W("t7", "meta", -0.2)); hint("G", W("t7", "meta", 0.4))
+show("#Gf0", W("t7", "pega", -0.1), 0.4, 10); show("#Gf1", W("t7", "token", -0.1), 0.4, 10)
+tg = W("t7", "verificación", 0.3); press("#Gb", tg); show("#Gok", tg + 0.3, 0.4, 0); ev("tick", tg + 0.3)
+ts = W("t7", "suscribe", -0.1)
 js(f'tl.to("#Gtg", {{ backgroundColor: "{TEAL}", duration: 0.3 }}, {ts:.3f});')
 js(f'tl.to("#Gkn", {{ x: 30, duration: 0.3, ease: "power2.inOut" }}, {ts:.3f});'); ev("tick", ts)
-show("#Gsub", W("t7", "mensajes", -0.1), 0.4, 0)
+show("#Gsub", W("t7", "mensajes", -0.1), 0.4, 0); claude_done("G", W("t7", "mensajes", 0.15))
 
 # H · prueba
 t_fade("#sG", "#sH", S[7] - 0.3); show("#Hey", S[7] + 0.15, 0.5, 16); show("#Ht", S[7] + 0.28, 0.6, 30)
@@ -323,6 +331,7 @@ show("#Ild", W("t9", "yo", -0.15), 0.6, 16)
 tc = W("t9", "escríbeme", -0.2); show("#Icta", tc, 0.6, 24); ev("chime", tc)
 show("#Iurl", END("t9", 0.3), 0.5, 12)
 js(f'tl.to("#Ibtn", {{ boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {END("t9", 0.5):.3f});')
+
 
 js(f'tl.fromTo("#prog", {{ scaleX: 0 }}, {{ scaleX: 1, duration: {T:.2f}, ease: "none" }}, 0);')
 

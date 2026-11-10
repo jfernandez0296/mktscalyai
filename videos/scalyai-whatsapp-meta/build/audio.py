@@ -6,8 +6,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = os.path.join(ROOT, "audio")
 SCENES = [["t1"], ["t2"], ["t3"], ["t4"], ["t5"], ["t6"], ["t7"], ["t8"], ["t9"]]
 LEAD = [0.5, 0.7, 0.7, 0.6, 0.6, 0.7, 0.6, 0.7, 1.2]  # silencio antes de la voz en cada escena (deja ver la transición/entrada)
-TAIL = 2.64
-POST = [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.4, 0.15]  # silencio tras la voz de cada escena
+TAIL = 2.66
+POST = [0.15, 0.15, 0.9, 0.15, 0.15, 0.15, 0.75, 0.4, 0.15]  # silencio tras la voz de cada escena
 
 def sh(*a): return subprocess.run(a, check=True, capture_output=True, text=True)
 def dur(p): return float(sh("ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", p).stdout)

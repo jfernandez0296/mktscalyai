@@ -227,6 +227,14 @@
       .tog i { position: absolute; left: 6px; top: 6px; width: 32px; height: 32px; border-radius: 16px; background: #fff; display: block; box-shadow: 0 2px 6px rgba(4,27,61,.2); }
       .sub .okt { margin-left: 0; }
       .h1.st { font-size: 80px; }
+      /* ---- versión "desde Claude" ---- */
+      .ask { padding: 26px 30px; border-radius: 20px; background: #fff; border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 500; line-height: 1.4; }
+      .ask .who { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 10px; }
+      .cstat { display: flex; align-items: center; gap: 14px; height: 76px; padding: 0 26px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 24px; font-weight: 700; white-space: nowrap; }
+      .cstat i { font-style: normal; font-weight: 500; color: var(--cream-200); margin-right: 6px; }
+      .cstat svg:last-child { stroke: var(--cyan-400); }
+      .cbadge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px; background: var(--cyan-400); color: var(--navy-900); font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .06em; white-space: nowrap; }
+      .wbar span { flex: 1; min-width: 0; overflow: hidden; }
 
     </style>
   </head>
@@ -234,7 +242,7 @@
     <div id="root" data-composition-id="main" data-start="0" data-duration="90.0" data-fps="30" data-width="1920" data-height="1080">
       <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:900px;top:-300px;width:1200px;height:1200px"></div>
         <div class="abs eyebrow" id="Aey" style="left:160px;top:170px">Tutorial · 90 segundos</div>
-        <div class="abs h1 big" id="At" style="left:156px;top:220px"><span class="l">Conecta tu WhatsApp Business</span><span class="l">a Meta, con <em>Claude</em></span><span class="l">como copiloto.</span></div>
+        <div class="abs h1 big" id="At" style="left:156px;top:220px"><span class="l">Conecta tu WhatsApp Business</span><span class="l">a Meta, haciéndolo</span><span class="l">desde <em>Claude.</em></span></div>
         <svg class="abs" style="left:0;top:0" width="1920" height="1080" viewBox="0 0 1920 1080"><path id="Aln" d="M560 760 L1360 760" pathLength="1" stroke="#47D4D4" stroke-width="4" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" fill="none"/></svg>
         <div class="abs flow" id="An0" style="left:160px;top:700px"><div class="ni" style="background:#128C4A"><svg width="40" height="40" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><div><b>WhatsApp Business</b><span>tu número</span></div></div>
         <div class="abs flow" id="An1" style="left:760px;top:700px"><div class="ni"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
@@ -247,12 +255,21 @@
   <path d="M22 5h-4" />
   <path d="M4 17v2" />
   <path d="M5 18H3" />
-</svg></div><div><b>Claude</b><span>escribe y responde</span></div></div>
+</svg></div><div><b>Claude</b><span>lo configura por ti</span></div></div>
       </div></div>
       <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:1000px;top:200px;width:1000px;height:1000px"></div>
         <div class="abs eyebrow" id="Bey" style="left:160px;top:130px">Antes de empezar</div>
         <div class="abs h1" id="Bt" style="left:156px;top:176px">Necesitas <em>tres cosas.</em></div>
-        <div class="abs card need" id="Bc0" style="left:160px;top:380px"><div class="pi"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="building-2">
+        <div class="abs card need" id="Bc0" style="left:160px;top:380px"><div class="pi"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="terminal">
+  <polyline points="4 17 10 11 4 5" />
+  <line x1="12" x2="20" y1="19" y2="19" />
+</svg></div><h3>Claude Code</h3><p>Para escribir y publicar el webhook.</p></div><div class="abs card need" id="Bc1" style="left:700px;top:380px"><div class="pi"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="sparkles">
+  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" />
+</svg></div><h3>Claude en Chrome</h3><p>La extensión que trabaja en tu navegador, con tu sesión de Meta.</p></div><div class="abs card need" id="Bc2" style="left:1240px;top:380px"><div class="pi"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="building-2">
   <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
   <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
   <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
@@ -260,20 +277,27 @@
   <path d="M10 10h4" />
   <path d="M10 14h4" />
   <path d="M10 18h4" />
-</svg></div><h3>Una cuenta de Meta Business</h3><p>Desde business.facebook.com</p></div><div class="abs card need" id="Bc1" style="left:700px;top:380px"><div class="pi"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="smartphone">
-  <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
-  <path d="M12 18h.01" />
-</svg></div><h3>Un número verificable</h3><p>Por SMS o llamada. Si ya lo usas en la app de WhatsApp, revisa las opciones de migración de Meta.</p></div><div class="abs card need" id="Bc2" style="left:1240px;top:380px"><div class="pi"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="sparkles">
+</svg></div><h3>Tu cuenta de Meta Business</h3><p>Y un número verificable por SMS o llamada. Si ya está en la app de WhatsApp, revisa la migración.</p></div>
+        <div class="abs tag cyan" id="Bapr" style="left:160px;top:850px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="shield-check">
+  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" />
+</svg>Tú apruebas cada paso</div>
+      </div></div>
+      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:300px;width:1000px;height:1000px"></div>
+        <div class="abs eyebrow" id="Cey" style="left:160px;top:130px">Paso 1 de 5</div><div class="abs h1 st" id="Ct" style="left:156px;top:176px"><span class="l">Claude crea</span><span class="l"><em>la app en Meta.</em></span></div><div class="abs ask" id="Cq" style="left:160px;top:410px;width:700px"><div class="who"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
+  <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+</svg>Tú → Claude</div>Crea una app de tipo negocio en Meta para desarrolladores y agrégale WhatsApp.</div><div class="abs cstat" id="Ccs" style="left:160px;top:740px"><div class="bars" style="width:31.9px;height:29.8px"><i id="Ccb0" style="left:8.5px;top:0.0px;width:23.4px;height:7.4px;background:#47D4D4"></i><i id="Ccb1" style="left:0.0px;top:11.2px;width:31.9px;height:7.4px;background:#007B83"></i><i id="Ccb2" style="left:0.0px;top:22.3px;width:23.4px;height:7.4px;background:#041B3D"></i></div><span>Claude</span><i id="Ccst">App creada · WhatsApp agregado</i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg></div><div class="abs pdots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs card win" id="Cw" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>developers.facebook.com/apps</span><em class="cbadge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="sparkles">
   <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
   <path d="M20 3v4" />
   <path d="M22 5h-4" />
   <path d="M4 17v2" />
   <path d="M5 18H3" />
-</svg></div><h3>Acceso a Claude</h3><p>Para escribir el webhook y responder con su API.</p></div>
-      </div></div>
-      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:300px;width:1000px;height:1000px"></div>
-        <div class="abs eyebrow" id="Cey" style="left:160px;top:130px">Paso 1 de 5</div><div class="abs h1 st" id="Ct" style="left:156px;top:176px"><span class="l">Crea una app</span><span class="l"><em>en Meta.</em></span></div><div class="abs lead" id="Cld" style="left:160px;top:420px;width:640px">Entra a developers.facebook.com, crea una app de tipo negocio y agrégale el producto WhatsApp.</div><div class="abs pdots"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
-        <div class="abs card win" id="Cw" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>developers.facebook.com/apps</span></div><div class="wbody"><div class="ftitle">Crear una app</div>
+</svg>Claude en Chrome</em></div><div class="wbody"><div class="ftitle">Crear una app</div>
   <div class="fld" id="Cf0"><label>Nombre de la app</label><div class="val">Agente WhatsApp</div></div>
   <div class="fld" id="Cf1"><label>Tipo de app</label><div class="val">Negocio<span class="ok" id="Cok"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
@@ -282,8 +306,23 @@
   <div class="prod" id="Cpr"><div class="ni" style="background:#128C4A"><svg width="36" height="36" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><div><b>WhatsApp</b><span>Agregar producto</span></div><div class="sbtn sm" id="Cb1">Configurar</div></div></div></div>
       </div></div>
       <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:300px;width:1000px;height:1000px"></div>
-        <div class="abs eyebrow" id="Dey" style="left:160px;top:130px">Paso 2 de 5</div><div class="abs h1 st" id="Dt" style="left:156px;top:176px"><span class="l">Agrega y verifica</span><span class="l"><em>tu número.</em></span></div><div class="abs lead" id="Dld" style="left:160px;top:420px;width:640px">Verifícalo con el código, define el nombre que verán tus clientes y anota el ID del número.</div><div class="abs pdots"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
-        <div class="abs card win" id="Dw" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>developers.facebook.com › WhatsApp</span></div><div class="wbody"><div class="ftitle">WhatsApp › Configuración de la API</div>
+        <div class="abs eyebrow" id="Dey" style="left:160px;top:130px">Paso 2 de 5</div><div class="abs h1 st" id="Dt" style="left:156px;top:176px"><span class="l">Claude agrega</span><span class="l"><em>tu número.</em></span></div><div class="abs ask" id="Dq" style="left:160px;top:410px;width:700px"><div class="who"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
+  <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+</svg>Tú → Claude</div>Agrega mi número de WhatsApp Business y anota su ID.</div><div class="abs tag soft" id="Dhu" style="left:160px;top:660px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F4560" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
+  <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+</svg>Tú le das el código SMS</div><div class="abs cstat" id="Dcs" style="left:160px;top:740px"><div class="bars" style="width:31.9px;height:29.8px"><i id="Dcb0" style="left:8.5px;top:0.0px;width:23.4px;height:7.4px;background:#47D4D4"></i><i id="Dcb1" style="left:0.0px;top:11.2px;width:31.9px;height:7.4px;background:#007B83"></i><i id="Dcb2" style="left:0.0px;top:22.3px;width:23.4px;height:7.4px;background:#041B3D"></i></div><span>Claude</span><i id="Dcst">ID del número anotado</i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg></div><div class="abs pdots"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs card win" id="Dw" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>developers.facebook.com › WhatsApp</span><em class="cbadge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="sparkles">
+  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" />
+</svg>Claude en Chrome</em></div><div class="wbody"><div class="ftitle">WhatsApp › Configuración de la API</div>
   <div class="fld" id="Df0"><label>Número de teléfono</label><div class="val">+51 9•• ••• •••</div></div>
   <div class="fld" id="Df1"><label>Código de verificación</label><div class="code6"><i>4</i><i>8</i><i>2</i><i>9</i><i>1</i><i>3</i><span class="ok" id="Dok"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
@@ -293,12 +332,23 @@
   <div class="wnote">Datos de ejemplo</div></div></div>
       </div></div>
       <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:300px;width:1000px;height:1000px"></div>
-        <div class="abs eyebrow" id="Eey" style="left:160px;top:130px">Paso 3 de 5</div><div class="abs h1 st" id="Et" style="left:156px;top:176px"><span class="l">Crea un token</span><span class="l"><em>permanente.</em></span></div><div class="abs lead" id="Eld" style="left:160px;top:420px;width:640px">Con un usuario del sistema y los permisos de WhatsApp.</div><div class="abs pdots"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
-        <div class="abs tag cyan" id="Esafe" style="left:160px;top:560px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="shield-check">
-  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+        <div class="abs eyebrow" id="Eey" style="left:160px;top:130px">Paso 3 de 5</div><div class="abs h1 st" id="Et" style="left:156px;top:176px"><span class="l">Claude prepara</span><span class="l"><em>el token.</em></span></div><div class="abs ask" id="Eq" style="left:160px;top:410px;width:700px"><div class="who"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
+  <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+</svg>Tú → Claude</div>Crea un usuario del sistema y un token permanente con permisos de WhatsApp.</div><div class="abs tag soft" id="Ehu" style="left:160px;top:660px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F4560" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
+  <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+</svg>Tú guardas el token como variable de entorno</div><div class="abs cstat" id="Ecs" style="left:160px;top:740px"><div class="bars" style="width:31.9px;height:29.8px"><i id="Ecb0" style="left:8.5px;top:0.0px;width:23.4px;height:7.4px;background:#47D4D4"></i><i id="Ecb1" style="left:0.0px;top:11.2px;width:31.9px;height:7.4px;background:#007B83"></i><i id="Ecb2" style="left:0.0px;top:22.3px;width:23.4px;height:7.4px;background:#041B3D"></i></div><span>Claude</span><i id="Ecst">Permisos de WhatsApp listos</i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
   <path d="m9 12 2 2 4-4" />
-</svg>Guárdalo en un lugar seguro</div>
-        <div class="abs card win" id="Ew" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>business.facebook.com › Configuración</span></div><div class="wbody"><div class="ftitle">Configuración del negocio › Usuarios del sistema</div>
+</svg></div><div class="abs pdots"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
+        <div class="abs card win" id="Ew" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>business.facebook.com › Configuración</span><em class="cbadge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="sparkles">
+  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" />
+</svg>Claude en Chrome</em></div><div class="wbody"><div class="ftitle">Configuración del negocio › Usuarios del sistema</div>
   <div class="urow" id="Eu"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="user-cog">
   <circle cx="18" cy="15" r="3" />
   <circle cx="9" cy="7" r="4" />
@@ -326,14 +376,26 @@
         <div class="abs prompt" id="Fq" style="left:160px;top:420px;width:640px"><div class="who"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
   <circle cx="12" cy="8" r="5" />
   <path d="M20 21a8 8 0 0 0-16 0" />
-</svg>Tú</div>Escribe un webhook para la API de WhatsApp Cloud: recibe cada mensaje, genera la respuesta con la API de Claude y envíala por WhatsApp.</div>
-        <div class="abs envc" id="Fenv" style="left:160px;top:730px;width:640px"><div class="eh">.env<span class="tag cyan sm">Nunca en el chat</span></div><code>WHATSAPP_TOKEN=••••••••</code><code>ANTHROPIC_API_KEY=••••••••</code><code>VERIFY_TOKEN=••••••••</code></div>
+</svg>Tú → Claude Code</div>Escribe y publica un webhook para la API de WhatsApp Cloud que responda cada mensaje con la API de Claude.</div>
+        <div class="abs envc" id="Fenv" style="left:160px;top:730px;width:640px"><div class="eh">.env<span class="tag cyan sm">Publicado · claves fuera del chat</span></div><code>WHATSAPP_TOKEN=••••••••</code><code>ANTHROPIC_API_KEY=••••••••</code><code>VERIFY_TOKEN=••••••••</code></div>
         <div class="abs editor" id="Fed" style="left:880px;top:330px;width:880px"><div class="wbar dk"><i></i><i></i><i></i><span>webhook.js</span></div>
           <div class="lines"><div class="ln k" id="Fl0"><em>1</em>app.post("/webhook", async (req, res) =&gt; {</div><div class="ln " id="Fl1"><em>2</em>  const msg = leerMensaje(req.body);</div><div class="ln " id="Fl2"><em>3</em>  const respuesta = await claude.messages.create({</div><div class="ln " id="Fl3"><em>4</em>    model: MODELO, max_tokens: 500, system: NEGOCIO,</div><div class="ln " id="Fl4"><em>5</em>    messages: [{ role: "user", content: msg.texto }],</div><div class="ln " id="Fl5"><em>6</em>  });</div><div class="ln " id="Fl6"><em>7</em>  await enviarWhatsApp(msg.de, respuesta);</div><div class="ln " id="Fl7"><em>8</em>  res.sendStatus(200);</div><div class="ln k" id="Fl8"><em>9</em>});</div></div></div>
       </div></div>
       <div class="sc" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:300px;width:1000px;height:1000px"></div>
-        <div class="abs eyebrow" id="Gey" style="left:160px;top:130px">Paso 5 de 5</div><div class="abs h1 st" id="Gt" style="left:156px;top:176px"><span class="l">Conecta el webhook</span><span class="l"><em>en Meta.</em></span></div><div class="abs lead" id="Gld" style="left:160px;top:420px;width:640px">Publícalo, pega su dirección y el token de verificación, y suscríbete al campo de mensajes.</div><div class="abs pdots"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
-        <div class="abs card win" id="Gw" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>developers.facebook.com › WhatsApp</span></div><div class="wbody"><div class="ftitle">WhatsApp › Configuración › Webhook</div>
+        <div class="abs eyebrow" id="Gey" style="left:160px;top:130px">Paso 5 de 5</div><div class="abs h1 st" id="Gt" style="left:156px;top:176px"><span class="l">Claude conecta</span><span class="l"><em>el webhook.</em></span></div><div class="abs ask" id="Gq" style="left:160px;top:410px;width:700px"><div class="who"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="user-round">
+  <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+</svg>Tú → Claude</div>Conecta el webhook en Meta y suscríbete a los mensajes.</div><div class="abs cstat" id="Gcs" style="left:160px;top:740px"><div class="bars" style="width:31.9px;height:29.8px"><i id="Gcb0" style="left:8.5px;top:0.0px;width:23.4px;height:7.4px;background:#47D4D4"></i><i id="Gcb1" style="left:0.0px;top:11.2px;width:31.9px;height:7.4px;background:#007B83"></i><i id="Gcb2" style="left:0.0px;top:22.3px;width:23.4px;height:7.4px;background:#041B3D"></i></div><span>Claude</span><i id="Gcst">Verificado y suscrito</i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg></div><div class="abs pdots"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+        <div class="abs card win" id="Gw" style="left:980px;top:190px;width:780px;height:700px"><div class="wbar"><i></i><i></i><i></i><span>developers.facebook.com › WhatsApp</span><em class="cbadge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#041B3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="sparkles">
+  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" />
+</svg>Claude en Chrome</em></div><div class="wbody"><div class="ftitle">WhatsApp › Configuración › Webhook</div>
   <div class="fld" id="Gf0"><label>URL de devolución de llamada</label><div class="val">https://tu-dominio.com/webhook</div></div>
   <div class="fld" id="Gf1"><label>Token de verificación</label><div class="val">••••••••••••</div></div>
   <div class="sbtn" id="Gb">Verificar y guardar</div><span class="okt" id="Gok"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
@@ -369,59 +431,60 @@
       </div></div>
       <div class="abs" id="tbars" style="left:0;top:0;width:1920px;height:1080px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:360px;background:#007B83"></div><div class="tbar" style="top:720px;background:#041B3D"></div></div>
       <div id="prog"></div>
-      <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>¿Quieres que tu <b>número</b> de <b>WhatsApp</b> Business</span></div>
-      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>responda con inteligencia artificial?</span></div>
-      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>Te muestro cómo conectarlo a <b>Meta,</b></span></div>
-      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>con <b>Claude</b> como copiloto.</span></div>
-      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>Necesitas <b>tres</b> cosas:</span></div>
-      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>una cuenta de <b>Meta</b> Business,</span></div>
-      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>un <b>número</b> que puedas</span></div>
-      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>verificar por SMS o llamada,</span></div>
-      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>y acceso a <b>Claude.</b></span></div>
+      <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>¿Quieres conectar tu <b>WhatsApp</b> Business a</span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span><b>Meta</b> sin pelearte con la configuración?</span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>Hazlo desde <b>Claude.</b></span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>Te muestro cómo.</span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>Usa <b>Claude</b> Code con la</span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>extensión de <b>Claude</b> en Chrome,</span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>y entra a <b>Meta</b> con tu cuenta de negocio.</span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span><b>Claude</b> trabaja en tu navegador,</span></div>
+      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>y tú apruebas cada <b>paso.</b></span></div>
       <div class="cap" id="cap9" data-layout-allow-overlap="true"><span><b>Paso</b> <b>uno.</b></span></div>
-      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>Entra a developers punto facebook punto com,</span></div>
-      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>crea una app de tipo negocio y</span></div>
-      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>agrégale el producto <b>WhatsApp.</b></span></div>
-      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span><b>Paso</b> <b>dos.</b></span></div>
-      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>En Configuración de la API,</span></div>
-      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>agrega tu <b>número,</b></span></div>
-      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>verifícalo con el código,</span></div>
-      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>y define el nombre que verán tus clientes.</span></div>
-      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>Anota el ID del <b>número</b> de teléfono.</span></div>
-      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span><b>Paso</b> <b>tres.</b></span></div>
-      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>En la configuración del negocio,</span></div>
-      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>crea un usuario del sistema,</span></div>
-      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span>y genera un <b>token</b> permanente</span></div>
-      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span>con los permisos de <b>WhatsApp.</b></span></div>
-      <div class="cap" id="cap24" data-layout-allow-overlap="true"><span>Guárdalo en un lugar seguro.</span></div>
-      <div class="cap" id="cap25" data-layout-allow-overlap="true"><span><b>Paso</b> <b>cuatro.</b></span></div>
-      <div class="cap" id="cap26" data-layout-allow-overlap="true"><span>Pídele a <b>Claude</b> que escriba el <b>webhook:</b></span></div>
-      <div class="cap" id="cap27" data-layout-allow-overlap="true"><span>que reciba cada mensaje,</span></div>
-      <div class="cap" id="cap28" data-layout-allow-overlap="true"><span>lo responda con la API de <b>Claude,</b></span></div>
-      <div class="cap" id="cap29" data-layout-allow-overlap="true"><span>y lo envíe de vuelta por <b>WhatsApp.</b></span></div>
-      <div class="cap" id="cap30" data-layout-allow-overlap="true"><span>Tus claves van como variables de entorno,</span></div>
-      <div class="cap" id="cap31" data-layout-allow-overlap="true"><span>nunca en el chat.</span></div>
-      <div class="cap" id="cap32" data-layout-allow-overlap="true"><span><b>Paso</b> <b>cinco.</b></span></div>
-      <div class="cap" id="cap33" data-layout-allow-overlap="true"><span>Publica el <b>webhook,</b></span></div>
-      <div class="cap" id="cap34" data-layout-allow-overlap="true"><span>y en <b>Meta</b> pega su dirección</span></div>
-      <div class="cap" id="cap35" data-layout-allow-overlap="true"><span>y el <b>token</b> de verificación.</span></div>
-      <div class="cap" id="cap36" data-layout-allow-overlap="true"><span>Luego suscríbete al campo mensajes.</span></div>
-      <div class="cap" id="cap37" data-layout-allow-overlap="true"><span>Escríbele a tu <b>número.</b></span></div>
-      <div class="cap" id="cap38" data-layout-allow-overlap="true"><span>En <b>segundos,</b></span></div>
-      <div class="cap" id="cap39" data-layout-allow-overlap="true"><span>tu agente responde.</span></div>
-      <div class="cap" id="cap40" data-layout-allow-overlap="true"><span>¿Necesitas un agente de <b>IA</b></span></div>
-      <div class="cap" id="cap41" data-layout-allow-overlap="true"><span>que responda en tu <b>WhatsApp?</b></span></div>
-      <div class="cap" id="cap42" data-layout-allow-overlap="true"><span>Yo te ayudo a configurarlo.</span></div>
-      <div class="cap" id="cap43" data-layout-allow-overlap="true"><span><b>Escríbeme.</b></span></div>
-      <audio id="v_t1" src="audio/seg/t1.wav" data-start="0.5" data-duration="9.102" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t2" src="audio/seg/t2.wav" data-start="10.452" data-duration="8.636" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t3" src="audio/seg/t3.wav" data-start="19.938" data-duration="8.61" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t4" src="audio/seg/t4.wav" data-start="29.298" data-duration="10.29" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t5" src="audio/seg/t5.wav" data-start="40.338" data-duration="10.829" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t6" src="audio/seg/t6.wav" data-start="52.016" data-duration="13.343" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t7" src="audio/seg/t7.wav" data-start="66.109" data-duration="8.805" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t8" src="audio/seg/t8.wav" data-start="75.764" data-duration="3.787" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_t9" src="audio/seg/t9.wav" data-start="81.151" data-duration="6.054" data-track-index="12" data-volume="1"></audio>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>Escríbele a <b>Claude:</b></span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>crea una app de tipo negocio en <b>Meta</b></span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>para desarrolladores y agrégale <b>WhatsApp.</b></span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span><b>Claude</b> abre la página y</span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>completa el formulario.</span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span><b>Paso</b> <b>dos.</b></span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>Pídele que agregue tu <b>número.</b></span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>Cuando llegue el código por SMS,</span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>tú se lo das,</span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>y <b>Claude</b> anota el ID del <b>número.</b></span></div>
+      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span><b>Paso</b> <b>tres.</b></span></div>
+      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>Pídele un <b>token</b> permanente:</span></div>
+      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span><b>Claude</b> crea el usuario del sistema</span></div>
+      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span>y marca los permisos de <b>WhatsApp.</b></span></div>
+      <div class="cap" id="cap24" data-layout-allow-overlap="true"><span>El <b>token</b> lo guardas tú,</span></div>
+      <div class="cap" id="cap25" data-layout-allow-overlap="true"><span>como variable de entorno.</span></div>
+      <div class="cap" id="cap26" data-layout-allow-overlap="true"><span><b>Paso</b> <b>cuatro.</b></span></div>
+      <div class="cap" id="cap27" data-layout-allow-overlap="true"><span>Pídele el <b>webhook:</b></span></div>
+      <div class="cap" id="cap28" data-layout-allow-overlap="true"><span><b>Claude</b> escribe el código</span></div>
+      <div class="cap" id="cap29" data-layout-allow-overlap="true"><span>que recibe cada mensaje,</span></div>
+      <div class="cap" id="cap30" data-layout-allow-overlap="true"><span>lo responde con la API de</span></div>
+      <div class="cap" id="cap31" data-layout-allow-overlap="true"><span><b>Claude</b> y lo envía por <b>WhatsApp.</b></span></div>
+      <div class="cap" id="cap32" data-layout-allow-overlap="true"><span>Luego lo publica.</span></div>
+      <div class="cap" id="cap33" data-layout-allow-overlap="true"><span><b>Paso</b> <b>cinco.</b></span></div>
+      <div class="cap" id="cap34" data-layout-allow-overlap="true"><span><b>Claude</b> vuelve a <b>Meta,</b></span></div>
+      <div class="cap" id="cap35" data-layout-allow-overlap="true"><span>pega la dirección del <b>webhook</b></span></div>
+      <div class="cap" id="cap36" data-layout-allow-overlap="true"><span>y el <b>token</b> de verificación,</span></div>
+      <div class="cap" id="cap37" data-layout-allow-overlap="true"><span>y se suscribe al campo mensajes.</span></div>
+      <div class="cap" id="cap38" data-layout-allow-overlap="true"><span>Escríbele a tu <b>número.</b></span></div>
+      <div class="cap" id="cap39" data-layout-allow-overlap="true"><span>En <b>segundos,</b></span></div>
+      <div class="cap" id="cap40" data-layout-allow-overlap="true"><span>tu agente responde.</span></div>
+      <div class="cap" id="cap41" data-layout-allow-overlap="true"><span>¿Necesitas un agente de <b>IA</b></span></div>
+      <div class="cap" id="cap42" data-layout-allow-overlap="true"><span>que responda en tu <b>WhatsApp?</b></span></div>
+      <div class="cap" id="cap43" data-layout-allow-overlap="true"><span>Yo te ayudo a configurarlo.</span></div>
+      <div class="cap" id="cap44" data-layout-allow-overlap="true"><span><b>Escríbeme.</b></span></div>
+      <audio id="v_t1" src="audio/seg/t1.wav" data-start="0.5" data-duration="6.63" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t2" src="audio/seg/t2.wav" data-start="7.98" data-duration="10.065" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t3" src="audio/seg/t3.wav" data-start="18.896" data-duration="11.351" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t4" src="audio/seg/t4.wav" data-start="31.747" data-duration="8.896" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t5" src="audio/seg/t5.wav" data-start="41.393" data-duration="10.451" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t6" src="audio/seg/t6.wav" data-start="52.694" data-duration="11.837" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t7" src="audio/seg/t7.wav" data-start="65.281" data-duration="8.456" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t8" src="audio/seg/t8.wav" data-start="75.186" data-duration="3.998" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_t9" src="audio/seg/t9.wav" data-start="80.784" data-duration="6.406" data-track-index="12" data-volume="1"></audio>
       <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="90.0" data-track-index="13" data-volume="0.8"></audio>
       <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="90.0" data-track-index="14" data-volume="0.5"></audio>
     </div>
@@ -433,190 +496,206 @@
         tl.fromTo(sel, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: "power2.out" }, a - 0.04);
         tl.set(sel, { autoAlpha: 0 }, b);
       };
-      tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 10.95, ease: "none" }, 0.000);
-      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.95, ease: "sine.inOut" }, 0.000);
-      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 10.69, ease: "none" }, 9.752);
-      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.69, ease: "sine.inOut" }, 9.752);
-      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 10.66, ease: "none" }, 19.238);
-      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.66, ease: "sine.inOut" }, 19.238);
-      tl.fromTo("#sD > .cam", { scale: 1 }, { scale: 1.035, duration: 12.24, ease: "none" }, 28.698);
-      tl.fromTo("#sD .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 12.24, ease: "sine.inOut" }, 28.698);
-      tl.fromTo("#sE > .cam", { scale: 1 }, { scale: 1.035, duration: 12.78, ease: "none" }, 39.738);
-      tl.fromTo("#sE .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 12.78, ease: "sine.inOut" }, 39.738);
-      tl.fromTo("#sF > .cam", { scale: 1 }, { scale: 1.035, duration: 15.39, ease: "none" }, 51.316);
-      tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 15.39, ease: "sine.inOut" }, 51.316);
-      tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 10.75, ease: "none" }, 65.509);
-      tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.75, ease: "sine.inOut" }, 65.509);
-      tl.fromTo("#sH > .cam", { scale: 1 }, { scale: 1.035, duration: 6.09, ease: "none" }, 75.064);
-      tl.fromTo("#sH .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.09, ease: "sine.inOut" }, 75.064);
-      tl.fromTo("#sI > .cam", { scale: 1 }, { scale: 1.035, duration: 11.25, ease: "none" }, 79.951);
-      tl.fromTo("#sI .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.25, ease: "sine.inOut" }, 79.951);
+      tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 8.48, ease: "none" }, 0.000);
+      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.48, ease: "sine.inOut" }, 0.000);
+      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 12.12, ease: "none" }, 7.280);
+      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 12.12, ease: "sine.inOut" }, 7.280);
+      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 14.15, ease: "none" }, 18.196);
+      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 14.15, ease: "sine.inOut" }, 18.196);
+      tl.fromTo("#sD > .cam", { scale: 1 }, { scale: 1.035, duration: 10.85, ease: "none" }, 31.147);
+      tl.fromTo("#sD .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.85, ease: "sine.inOut" }, 31.147);
+      tl.fromTo("#sE > .cam", { scale: 1 }, { scale: 1.035, duration: 12.40, ease: "none" }, 40.793);
+      tl.fromTo("#sE .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 12.40, ease: "sine.inOut" }, 40.793);
+      tl.fromTo("#sF > .cam", { scale: 1 }, { scale: 1.035, duration: 13.89, ease: "none" }, 51.994);
+      tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 13.89, ease: "sine.inOut" }, 51.994);
+      tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 11.01, ease: "none" }, 64.681);
+      tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.01, ease: "sine.inOut" }, 64.681);
+      tl.fromTo("#sH > .cam", { scale: 1 }, { scale: 1.035, duration: 6.30, ease: "none" }, 74.486);
+      tl.fromTo("#sH .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.30, ease: "sine.inOut" }, 74.486);
+      tl.fromTo("#sI > .cam", { scale: 1 }, { scale: 1.035, duration: 11.62, ease: "none" }, 79.584);
+      tl.fromTo("#sI .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.62, ease: "sine.inOut" }, 79.584);
       tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.200);
       tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.8, ease: "power3.out" }, 0.350);
-      tl.fromTo("#An0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 1.784);
-      tl.fromTo("#An1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 7.267);
-      tl.fromTo("#An2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 8.120);
-      tl.to("#Aln", { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 7.467);
-      tl.set(".tbar", { visibility: "visible" }, 9.092);
-      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 9.092);
-      tl.set("#sA", { autoAlpha: 0 }, 9.752);
-      tl.set("#sB", { autoAlpha: 1 }, 9.752);
-      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 9.792);
-      tl.set(".tbar", { visibility: "hidden" }, 10.542);
-      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 9.902);
-      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 10.032);
-      tl.fromTo("#Bc0", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 12.296);
-      tl.fromTo("#Bc1", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 14.291);
-      tl.fromTo("#Bc2", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 17.860);
-      tl.to("#sB", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 18.938);
-      tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 19.188);
-      tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 19.388);
-      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 19.518);
-      tl.fromTo("#Cld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 19.738);
+      tl.fromTo("#An0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 1.367);
+      tl.fromTo("#An1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 2.384);
+      tl.fromTo("#An2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 5.399);
+      tl.to("#Aln", { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 2.584);
+      tl.set(".tbar", { visibility: "visible" }, 6.620);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 6.620);
+      tl.set("#sA", { autoAlpha: 0 }, 7.280);
+      tl.set("#sB", { autoAlpha: 1 }, 7.280);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 7.320);
+      tl.set(".tbar", { visibility: "hidden" }, 8.070);
+      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 7.430);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.560);
+      tl.fromTo("#Bc0", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 8.641);
+      tl.fromTo("#Bc1", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 10.695);
+      tl.fromTo("#Bc2", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 12.640);
+      tl.fromTo("#Bapr", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 16.668);
+      tl.to("#sB", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 17.896);
+      tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 18.146);
+      tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 18.346);
+      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 18.476);
+      gsap.set(["#Ccs"], { autoAlpha: 0 });
+      tl.fromTo("#Cq", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 19.893);
       gsap.set(["#Cok", "#Cpr"], { autoAlpha: 0 });
-      tl.fromTo("#Cw", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 21.107);
-      tl.fromTo("#Cf0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 24.276);
-      tl.fromTo("#Cf1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 24.676);
-      tl.fromTo("#Cok", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.3, ease: "power3.out" }, 25.821);
-      tl.to("#Cb0", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 26.321);
-      tl.fromTo("#Cpr", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 26.462);
-      tl.to("#Cb1", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 28.107);
-      tl.set("#sD", { autoAlpha: 1 }, 28.298);
-      tl.fromTo("#sD", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 28.298);
-      tl.set("#sC", { autoAlpha: 0 }, 29.018);
-      tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 28.848);
-      tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 28.978);
-      tl.fromTo("#Dld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 29.198);
-      gsap.set(["#Dok", "#Df1 .code6 i", "#Dcp"], { autoAlpha: 0 });
-      tl.fromTo("#Dw", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 29.098);
-      tl.fromTo("#Df0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 31.948);
-      tl.fromTo("#Df1 .code6 i", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.25, stagger: 0.09, ease: "power3.out" }, 32.943);
-      tl.fromTo("#Dok", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.3, ease: "power3.out" }, 33.643);
-      tl.fromTo("#Df2", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 34.980);
-      tl.fromTo("#Df3", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 37.333);
-      tl.fromTo("#Dcp", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.3, ease: "power3.out" }, 38.817);
-      tl.to("#Dcp", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 39.217);
-      tl.set("#sE", { autoAlpha: 1 }, 39.338);
-      tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 39.338);
-      tl.set("#sD", { autoAlpha: 0 }, 40.058);
-      tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 39.888);
-      tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 40.018);
-      gsap.set(["#Esafe"], { autoAlpha: 0 });
-      tl.fromTo("#Ew", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 40.138);
-      tl.fromTo("#Eu", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.764);
-      tl.to("#Eb", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 45.894);
-      tl.fromTo("#Ep0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 47.553);
-      tl.fromTo("#Ep1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 47.853);
-      tl.fromTo("#Etk", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 48.608);
-      tl.fromTo("#Esafe", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 49.312);
-      tl.set(".tbar", { visibility: "visible" }, 50.656);
-      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 50.656);
-      tl.set("#sE", { autoAlpha: 0 }, 51.316);
-      tl.set("#sF", { autoAlpha: 1 }, 51.316);
-      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 51.356);
-      tl.set(".tbar", { visibility: "hidden" }, 52.106);
-      tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 51.466);
-      tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 51.596);
+      tl.fromTo("#Cw", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 27.667);
+      tl.fromTo("#Cw .cbadge", { boxShadow: "0 0 0 0 rgba(71,212,212,0)" }, { boxShadow: "0 0 0 10px rgba(71,212,212,.25)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 28.267);
+      tl.fromTo("#Cf0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 28.654);
+      tl.fromTo("#Cf1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 29.054);
+      tl.fromTo("#Cok", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.3, ease: "power3.out" }, 29.550);
+      tl.to("#Cb0", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 29.950);
+      tl.fromTo("#Cpr", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 29.750);
+      tl.to("#Cb1", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 30.250);
+      tl.fromTo("#Ccs", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 30.351);
+      tl.set("#sD", { autoAlpha: 1 }, 30.747);
+      tl.fromTo("#sD", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 30.747);
+      tl.set("#sC", { autoAlpha: 0 }, 31.467);
+      tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 31.297);
+      tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 31.427);
+      gsap.set(["#Dcs"], { autoAlpha: 0 });
+      tl.fromTo("#Dq", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 32.937);
+      gsap.set(["#Dok", "#Df1 .code6 i", "#Dcp", "#Dhu"], { autoAlpha: 0 });
+      tl.fromTo("#Dw", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 33.337);
+      tl.fromTo("#Dw .cbadge", { boxShadow: "0 0 0 0 rgba(71,212,212,0)" }, { boxShadow: "0 0 0 10px rgba(71,212,212,.25)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 33.937);
+      tl.fromTo("#Df0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 33.937);
+      tl.fromTo("#Dhu", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 35.837);
+      tl.fromTo("#Df1 .code6 i", { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.25, stagger: 0.09, ease: "power3.out" }, 37.586);
+      tl.fromTo("#Dok", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.3, ease: "power3.out" }, 38.286);
+      tl.fromTo("#Df2", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 38.486);
+      tl.fromTo("#Df3", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 38.877);
+      tl.fromTo("#Dcp", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.3, ease: "power3.out" }, 39.564);
+      tl.to("#Dcp", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 39.964);
+      tl.fromTo("#Dcs", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 39.477);
+      tl.set("#sE", { autoAlpha: 1 }, 40.393);
+      tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 40.393);
+      tl.set("#sD", { autoAlpha: 0 }, 41.113);
+      tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 40.943);
+      tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 41.073);
+      gsap.set(["#Ecs"], { autoAlpha: 0 });
+      tl.fromTo("#Eq", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 42.515);
+      gsap.set(["#Ehu"], { autoAlpha: 0 });
+      tl.fromTo("#Ew", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 44.727);
+      tl.fromTo("#Ew .cbadge", { boxShadow: "0 0 0 0 rgba(71,212,212,0)" }, { boxShadow: "0 0 0 10px rgba(71,212,212,.25)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 45.327);
+      tl.fromTo("#Eu", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 45.179);
+      tl.to("#Eb", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 46.283);
+      tl.fromTo("#Ep0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 46.686);
+      tl.fromTo("#Ep1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 47.036);
+      tl.fromTo("#Etk", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 47.991);
+      tl.fromTo("#Ecs", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 48.291);
+      tl.fromTo("#Ehu", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 49.419);
+      tl.set(".tbar", { visibility: "visible" }, 51.334);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 51.334);
+      tl.set("#sE", { autoAlpha: 0 }, 51.994);
+      tl.set("#sF", { autoAlpha: 1 }, 51.994);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 52.034);
+      tl.set(".tbar", { visibility: "hidden" }, 52.784);
+      tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.144);
+      tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 52.274);
       gsap.set(["#sF .ln", "#Fenv"], { autoAlpha: 0 });
-      tl.fromTo("#Fq", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 53.136);
-      tl.fromTo("#Fed", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 54.537);
-      tl.fromTo("#Fl0", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 55.702);
-      tl.fromTo("#Fl1", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 56.378);
-      tl.fromTo("#Fl2", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 57.055);
-      tl.fromTo("#Fl3", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 57.731);
-      tl.fromTo("#Fl4", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 58.407);
-      tl.fromTo("#Fl5", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 59.084);
-      tl.fromTo("#Fl6", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 59.760);
-      tl.fromTo("#Fl7", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 60.437);
-      tl.fromTo("#Fl8", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 61.113);
-      tl.fromTo("#Fenv", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 62.075);
-      tl.set("#sG", { autoAlpha: 1 }, 65.109);
-      tl.fromTo("#sG", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 65.109);
-      tl.set("#sF", { autoAlpha: 0 }, 65.829);
-      tl.fromTo("#Gey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 65.659);
-      tl.fromTo("#Gt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 65.789);
-      tl.fromTo("#Gld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 66.009);
+      tl.fromTo("#Fq", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 53.810);
+      tl.fromTo("#Fed", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 55.860);
+      tl.fromTo("#Fl0", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 57.411);
+      tl.fromTo("#Fl1", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 58.073);
+      tl.fromTo("#Fl2", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 58.735);
+      tl.fromTo("#Fl3", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 59.397);
+      tl.fromTo("#Fl4", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 60.059);
+      tl.fromTo("#Fl5", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 60.720);
+      tl.fromTo("#Fl6", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 61.382);
+      tl.fromTo("#Fl7", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 62.044);
+      tl.fromTo("#Fl8", { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: "power3.out" }, 62.706);
+      tl.fromTo("#Fenv", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 63.833);
+      tl.set("#sG", { autoAlpha: 1 }, 64.281);
+      tl.fromTo("#sG", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 64.281);
+      tl.set("#sF", { autoAlpha: 0 }, 65.001);
+      tl.fromTo("#Gey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 64.831);
+      tl.fromTo("#Gt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 64.961);
+      gsap.set(["#Gcs"], { autoAlpha: 0 });
+      tl.fromTo("#Gq", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 65.281);
       gsap.set(["#Gok", "#Gsub"], { autoAlpha: 0 });
-      tl.fromTo("#Gw", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 65.909);
-      tl.fromTo("#Gf0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 69.256);
-      tl.fromTo("#Gf1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 70.722);
-      tl.to("#Gb", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 71.656);
-      tl.fromTo("#Gok", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 71.956);
-      tl.to("#Gtg", { backgroundColor: "#007B83", duration: 0.3 }, 72.966);
-      tl.to("#Gkn", { x: 30, duration: 0.3, ease: "power2.inOut" }, 72.966);
-      tl.fromTo("#Gsub", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 74.198);
-      tl.to("#sG", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 74.764);
-      tl.fromTo("#sH", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 75.014);
-      tl.fromTo("#Hey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 75.214);
-      tl.fromTo("#Ht", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 75.344);
+      tl.fromTo("#Gw", { autoAlpha: 0, y: 0, x: 50 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 67.140);
+      tl.fromTo("#Gw .cbadge", { boxShadow: "0 0 0 0 rgba(71,212,212,0)" }, { boxShadow: "0 0 0 10px rgba(71,212,212,.25)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 67.740);
+      tl.fromTo("#Gf0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 67.977);
+      tl.fromTo("#Gf1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 69.897);
+      tl.to("#Gb", { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, 70.791);
+      tl.fromTo("#Gok", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 71.091);
+      tl.to("#Gtg", { backgroundColor: "#007B83", duration: 0.3 }, 71.891);
+      tl.to("#Gkn", { x: 30, duration: 0.3, ease: "power2.inOut" }, 71.891);
+      tl.fromTo("#Gsub", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 73.013);
+      tl.fromTo("#Gcs", { autoAlpha: 0, y: 14, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 73.263);
+      tl.to("#sG", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 74.186);
+      tl.fromTo("#sH", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 74.436);
+      tl.fromTo("#Hey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 74.636);
+      tl.fromTo("#Ht", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 74.766);
       gsap.set(["#Hty", "#Hm1", "#Hfast", "#Hm0"], { autoAlpha: 0 });
-      tl.fromTo("#Hph", { autoAlpha: 0, y: 0, x: 60 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 75.264);
-      tl.fromTo("#Hm0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 75.964);
-      tl.set("#Hty", { autoAlpha: 1 }, 76.564);
-      tl.fromTo("#Hty i", { opacity: 0.35 }, { opacity: 1, duration: 0.25, stagger: 0.12, repeat: 1, yoyo: true, ease: "sine.inOut" }, 76.564);
-      tl.set("#Hty", { autoAlpha: 0 }, 78.439);
-      tl.fromTo("#Hm1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 78.439);
-      tl.fromTo("#Hfast", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 77.595);
-      tl.set(".tbar", { visibility: "visible" }, 79.291);
-      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 79.291);
-      tl.set("#sH", { autoAlpha: 0 }, 79.951);
-      tl.set("#sI", { autoAlpha: 1 }, 79.951);
-      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 79.991);
-      tl.set(".tbar", { visibility: "hidden" }, 80.741);
-      tl.fromTo("#Ib0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 80.051);
-      tl.fromTo("#Ib1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 80.171);
-      tl.fromTo("#Ib2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 80.291);
-      tl.fromTo("#Ilg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 80.051);
-      tl.fromTo("#It", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 80.951);
-      tl.fromTo("#Ild", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 84.637);
-      tl.fromTo("#Icta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 86.427);
-      tl.fromTo("#Iurl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 87.505);
-      tl.to("#Ibtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 87.705);
+      tl.fromTo("#Hph", { autoAlpha: 0, y: 0, x: 60 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 74.686);
+      tl.fromTo("#Hm0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 75.386);
+      tl.set("#Hty", { autoAlpha: 1 }, 75.986);
+      tl.fromTo("#Hty i", { opacity: 0.35 }, { opacity: 1, duration: 0.25, stagger: 0.12, repeat: 1, yoyo: true, ease: "sine.inOut" }, 75.986);
+      tl.set("#Hty", { autoAlpha: 0 }, 78.041);
+      tl.fromTo("#Hm1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 78.041);
+      tl.fromTo("#Hfast", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 77.131);
+      tl.set(".tbar", { visibility: "visible" }, 78.924);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 78.924);
+      tl.set("#sH", { autoAlpha: 0 }, 79.584);
+      tl.set("#sI", { autoAlpha: 1 }, 79.584);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 79.624);
+      tl.set(".tbar", { visibility: "hidden" }, 80.374);
+      tl.fromTo("#Ib0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 79.684);
+      tl.fromTo("#Ib1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 79.804);
+      tl.fromTo("#Ib2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 79.924);
+      tl.fromTo("#Ilg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 79.684);
+      tl.fromTo("#It", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 80.584);
+      tl.fromTo("#Ild", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 84.477);
+      tl.fromTo("#Icta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 86.394);
+      tl.fromTo("#Iurl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 87.490);
+      tl.to("#Ibtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 87.690);
       tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 90.00, ease: "none" }, 0);
-      capShow("#cap0", 0.500, 3.011);
-      capShow("#cap1", 3.011, 5.811);
-      capShow("#cap2", 5.811, 8.087);
-      capShow("#cap3", 8.087, 9.952);
-      capShow("#cap4", 10.452, 12.324);
-      capShow("#cap5", 12.324, 14.343);
-      capShow("#cap6", 14.343, 15.726);
-      capShow("#cap7", 15.726, 17.995);
-      capShow("#cap8", 17.995, 19.438);
-      capShow("#cap9", 19.938, 21.207);
-      capShow("#cap10", 21.207, 24.576);
-      capShow("#cap11", 24.576, 26.562);
-      capShow("#cap12", 26.562, 28.898);
-      capShow("#cap13", 29.298, 30.310);
-      capShow("#cap14", 30.310, 32.048);
-      capShow("#cap15", 32.048, 33.243);
-      capShow("#cap16", 33.243, 34.975);
-      capShow("#cap17", 34.975, 37.533);
-      capShow("#cap18", 37.533, 39.938);
-      capShow("#cap19", 40.338, 41.396);
-      capShow("#cap20", 41.813, 43.864);
-      capShow("#cap21", 43.864, 45.835);
-      capShow("#cap22", 45.835, 47.417);
-      capShow("#cap23", 47.417, 49.512);
-      capShow("#cap24", 49.512, 51.517);
-      capShow("#cap25", 52.016, 53.336);
-      capShow("#cap26", 53.336, 55.682);
-      capShow("#cap27", 55.682, 57.415);
-      capShow("#cap28", 57.415, 59.549);
-      capShow("#cap29", 59.549, 61.669);
-      capShow("#cap30", 62.088, 64.411);
-      capShow("#cap31", 64.411, 65.709);
-      capShow("#cap32", 66.109, 67.430);
-      capShow("#cap33", 67.430, 68.862);
-      capShow("#cap34", 68.862, 70.525);
-      capShow("#cap35", 70.525, 72.697);
-      capShow("#cap36", 72.697, 75.264);
-      capShow("#cap37", 75.764, 77.540);
-      capShow("#cap38", 77.540, 78.478);
-      capShow("#cap39", 78.478, 79.901);
-      capShow("#cap40", 81.151, 82.663);
-      capShow("#cap41", 82.663, 84.787);
-      capShow("#cap42", 84.787, 86.627);
-      capShow("#cap43", 86.627, 87.605);
+      capShow("#cap0", 0.500, 2.584);
+      capShow("#cap1", 2.584, 5.021);
+      capShow("#cap2", 5.021, 6.351);
+      capShow("#cap3", 6.351, 7.480);
+      capShow("#cap4", 8.246, 9.595);
+      capShow("#cap5", 9.595, 11.776);
+      capShow("#cap6", 11.776, 14.202);
+      capShow("#cap7", 14.668, 16.699);
+      capShow("#cap8", 16.699, 18.395);
+      capShow("#cap9", 18.896, 19.993);
+      capShow("#cap10", 19.993, 21.715);
+      capShow("#cap11", 21.715, 24.091);
+      capShow("#cap12", 24.091, 27.461);
+      capShow("#cap13", 27.461, 28.854);
+      capShow("#cap14", 28.854, 30.597);
+      capShow("#cap15", 31.747, 33.037);
+      capShow("#cap16", 33.037, 35.054);
+      capShow("#cap17", 35.054, 37.497);
+      capShow("#cap18", 37.497, 38.490);
+      capShow("#cap19", 38.490, 40.993);
+      capShow("#cap20", 41.393, 42.615);
+      capShow("#cap21", 42.615, 44.459);
+      capShow("#cap22", 44.927, 46.685);
+      capShow("#cap23", 46.685, 48.743);
+      capShow("#cap24", 49.113, 50.648);
+      capShow("#cap25", 50.648, 52.194);
+      capShow("#cap26", 52.694, 54.010);
+      capShow("#cap27", 54.010, 55.345);
+      capShow("#cap28", 55.699, 57.347);
+      capShow("#cap29", 57.347, 59.493);
+      capShow("#cap30", 59.493, 61.071);
+      capShow("#cap31", 61.071, 63.535);
+      capShow("#cap32", 63.535, 64.881);
+      capShow("#cap33", 65.281, 66.506);
+      capShow("#cap34", 66.506, 68.077);
+      capShow("#cap35", 68.077, 69.723);
+      capShow("#cap36", 69.723, 71.679);
+      capShow("#cap37", 71.679, 74.087);
+      capShow("#cap38", 75.186, 77.069);
+      capShow("#cap39", 77.069, 78.074);
+      capShow("#cap40", 78.074, 79.534);
+      capShow("#cap41", 80.784, 82.388);
+      capShow("#cap42", 82.388, 84.627);
+      capShow("#cap43", 84.627, 86.594);
+      capShow("#cap44", 86.594, 87.590);
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>

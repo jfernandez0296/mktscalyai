@@ -1,25 +1,25 @@
-# Tutorial · Conecta WhatsApp Business a Meta con Claude (90 s, 16:9)
+# Tutorial · Conecta WhatsApp Business a Meta desde Claude (90 s, 16:9)
 
-1920×1080, 30 fps, 90,0 s, con voz (Gemini TTS, Charon, acelerada ×1,06), música, efectos y subtítulos. Identidad: `brand/scalyai/`.
+1920×1080, 30 fps, 90,0 s, con voz (Gemini TTS, Charon, velocidad natural), música, efectos y subtítulos. Identidad: `brand/scalyai/`.
 
 | Escena | Tiempo | Qué muestra |
 |---|---|---|
-| Gancho | 0–9,8 s | WhatsApp Business → API de Meta → Claude |
-| Lo que necesitas | 9,8–19 s | Cuenta de Meta Business, número verificable, acceso a Claude |
-| Paso 1 | 19–29 s | Crear app de tipo negocio en developers.facebook.com y agregar WhatsApp |
-| Paso 2 | 29–40 s | Agregar y verificar el número, nombre visible, ID del número |
-| Paso 3 | 40–51 s | Usuario del sistema y token permanente con permisos de WhatsApp |
-| Paso 4 | 51–65,5 s | Claude escribe el webhook; claves en variables de entorno |
-| Paso 5 | 65,5–75 s | URL de devolución de llamada, token de verificación, suscripción a `messages` |
-| Prueba | 75–80 s | El agente responde en el chat |
-| Cierre | 80–90 s | "¿Necesitas un agente de IA que responda en tu WhatsApp? Yo te ayudo a configurarlo." |
+| Gancho | 0–7,3 s | "Hazlo desde Claude": WhatsApp Business → API de Meta → Claude |
+| Lo que necesitas | 7,3–18 s | Claude Code, Claude en Chrome, cuenta de Meta Business; "Tú apruebas cada paso" |
+| Paso 1 | 18–31 s | Tú → Claude: crear la app de tipo negocio y agregar WhatsApp; Claude completa el formulario en Chrome |
+| Paso 2 | 31–41 s | Claude agrega el número; tú le das el código SMS; Claude anota el ID |
+| Paso 3 | 41–52 s | Claude crea el usuario del sistema y el token; tú lo guardas como variable de entorno |
+| Paso 4 | 52–64,7 s | Claude Code escribe y publica el webhook con la API de Claude |
+| Paso 5 | 64,7–74,5 s | Claude conecta el webhook en Meta y lo suscribe a `messages` |
+| Prueba | 74,5–79,6 s | El agente responde en el chat |
+| Cierre | 79,6–90 s | "¿Necesitas un agente de IA que responda en tu WhatsApp? Yo te ayudo a configurarlo." |
 
 Las pantallas son recreaciones simplificadas (no capturas de Meta); los números e IDs son de ejemplo y lo dicen en pantalla.
 
 ## Regenerar
 ```bash
 STYLE="Dilo en español latinoamericano neutro, con voz cálida, segura y cercana, ritmo claro de tutorial: " ./audio/generar-segmentos-gemini.sh Charon
-for f in audio/seg-orig/*.wav; do ffmpeg -y -i $f -af atempo=1.06 audio/seg/$(basename $f); done
+cp audio/seg/*.wav audio/seg-orig/   # tomas originales
 PLAN_ONLY=1 python3 build/audio.py && python3 build/html.py && python3 build/audio.py && python3 build/html.py
 npx --yes hyperframes@0.8.96 check && npx --yes hyperframes@0.8.96 render -o renders/scalyai-whatsapp-meta.mp4
 ```

@@ -1,13 +1,15 @@
-# Copy · tutorial WhatsApp Business + Meta + Claude
+# Copy · tutorial "Conecta WhatsApp Business a Meta desde Claude"
 
 ## LinkedIn
-¿Quieres que tu número de WhatsApp Business responda con IA? En 90 segundos te muestro cómo conectarlo a la API de Meta, con Claude como copiloto:
+¿Configurar la API de WhatsApp en Meta te parece un laberinto? Hazlo desde Claude.
 
-1. Crea una app de tipo negocio en developers.facebook.com y agrégale WhatsApp.
-2. Agrega y verifica tu número, define el nombre visible y anota su ID.
-3. Crea un usuario del sistema y genera un token permanente con los permisos de WhatsApp.
-4. Pídele a Claude que escriba el webhook: recibe cada mensaje, responde con la API de Claude y lo envía por WhatsApp. Tus claves van en variables de entorno, nunca en el chat.
-5. En Meta, pega la URL del webhook y el token de verificación, y suscríbete a "messages".
+Con Claude Code y la extensión de Claude en Chrome, Claude trabaja en tu navegador y tú apruebas cada paso:
+
+1. Le pides que cree la app de tipo negocio en Meta y le agregue WhatsApp.
+2. Agrega tu número; tú le das el código SMS y Claude anota el ID.
+3. Crea el usuario del sistema y el token permanente con permisos de WhatsApp. El token lo guardas tú, como variable de entorno.
+4. Escribe y publica el webhook que responde cada mensaje con la API de Claude.
+5. Vuelve a Meta, conecta el webhook y lo suscribe a los mensajes.
 
 ¿Necesitas un agente de IA que responda en tu WhatsApp? Yo te ayudo a configurarlo. Escríbeme.
 scalyai.dev
@@ -15,7 +17,7 @@ scalyai.dev
 #WhatsApp #InteligenciaArtificial #Claude #Automatización #PyMEs
 
 ## Instagram (Reels)
-Conecta tu WhatsApp Business a Meta con Claude, en 5 pasos. Guárdalo para cuando lo necesites.
+Conecta tu WhatsApp Business a Meta haciéndolo desde Claude, en 5 pasos. Guárdalo para cuando lo necesites.
 
 ¿Quieres un agente de IA que responda en tu WhatsApp? Yo te ayudo a configurarlo. Escríbeme.
 
