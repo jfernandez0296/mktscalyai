@@ -236,16 +236,32 @@
       .cbadge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px; background: var(--cyan-400); color: var(--navy-900); font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .06em; white-space: nowrap; }
       .wbar span { flex: 1; min-width: 0; overflow: hidden; }
 
-      /* ---- piloto 2 semanas ---- */
+      /* ---- piloto 2 semanas (gráfico) ---- */
+      .deco i { position: absolute; display: block; border-radius: 999px; }
+      .gt { flex: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0d2f5c, #47d4d4); box-shadow: 0 16px 36px rgba(4,27,61,.25); }
       .day { display: flex; align-items: flex-start; justify-content: flex-start; padding: 12px 14px; border-radius: 16px; background: #fff; border: 1px solid var(--cream-300); color: var(--navy-900); }
       .day b { font-size: 28px; font-weight: 800; }
       .day.dk { background: var(--navy-700); border-color: rgba(240,241,232,.14); color: var(--cream-100); }
-      .phase { display: flex; gap: 60px; align-items: center; padding: 40px 48px; }
-      .phase .pl { flex: none; width: 560px; }
+      .bignum { font-size: 430px; font-weight: 800; letter-spacing: -0.06em; line-height: 1; color: rgba(71,212,212,.16); text-align: center; white-space: nowrap; }
+      .bignum small { display: block; font-size: 70px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-top: -20px; }
+      .ptrack { border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .ptrack div { width: 100%; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #0d2f5c, #47d4d4); transform-origin: 0% 50%; }
+      .phase { display: flex; gap: 50px; align-items: center; padding: 40px 48px; overflow: hidden; }
+      .pt { flex: none; width: 780px; display: flex; gap: 36px; align-items: center; }
       .phase h3 { font-size: 54px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin-top: 18px; }
-      .phase .pr { flex: 1; display: flex; flex-direction: column; gap: 22px; }
+      .phase .pr { flex: 1; display: flex; flex-direction: column; gap: 22px; position: relative; z-index: 1; }
       .bl { display: flex; gap: 18px; align-items: center; font-size: 30px; font-weight: 500; line-height: 1.3; }
       .bl .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: #d6eeee; display: flex; align-items: center; justify-content: center; }
+      .pnum { position: absolute; right: 30px; bottom: -40px; font-size: 220px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(0,123,131,.08); }
+      /* ---- color por herramienta/etapa y personas ---- */
+      .gt.c-xls { background: linear-gradient(135deg, #1D6F42, #3FAE6B); }
+      .gt.c-crm { background: linear-gradient(135deg, #1F4FBF, #5B8DEF); }
+      .gt.c-erp { background: linear-gradient(135deg, #C56A1A, #F0A64B); }
+      .pp { flex: none; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 8px 20px rgba(4,27,61,.2); }
+      .pp svg { display: block; }
+      .avs { display: flex; align-items: center; }
+      .avs .pp + .pp { margin-left: -16px; }
+      .ptag { display: flex; align-items: center; gap: 16px; }
 
       .cap span { font-size: 38px; padding: 14px 32px; }
 
@@ -254,45 +270,64 @@
       .h1.big { font-size: 92px; }
       .h1.st { font-size: 84px; }
       .h1 .l { display: block; line-height: 1.12; }
-      .phase { flex-direction: column; align-items: flex-start; gap: 30px; padding: 40px 44px; }
-      .phase .pl { width: auto; }
+      .phase { flex-direction: column; align-items: flex-start; gap: 34px; padding: 40px 44px; }
+      .pt { width: auto; gap: 30px; }
+      .phase h3 { font-size: 50px; }
       .btn { font-size: 34px; height: 96px; padding: 0 40px; }
       .day b { font-size: 32px; }
+      .bignum { font-size: 270px; }
+      .bignum small { font-size: 54px; margin-top: -10px; }
 
         </style>
       </head>
       <body>
         <div id="root" data-composition-id="main" data-start="0" data-duration="46.56" data-fps="30" data-width="1080" data-height="1920">
-          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div>
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div><div class="abs deco" style="left:700px;top:1480px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+        <div class="abs bignum" id="Abig" style="left:0px;top:1130px;width:1080px">14<small>días</small></div>
         <div class="abs eyebrow" id="Aey" style="left:70px;top:300px">Cómo trabajamos</div>
         <div class="abs h1 big" id="At" style="left:66px;top:350px"><span class="l">¿Qué pasa en las</span><span class="l">primeras <em>2 semanas</em></span><span class="l">de un piloto?</span></div>
         <div class="abs day dk" id="Ad1" style="left:70px;top:900px;width:120px;height:120px"><b>1</b></div><div class="abs day dk" id="Ad2" style="left:205px;top:900px;width:120px;height:120px"><b>2</b></div><div class="abs day dk" id="Ad3" style="left:340px;top:900px;width:120px;height:120px"><b>3</b></div><div class="abs day dk" id="Ad4" style="left:475px;top:900px;width:120px;height:120px"><b>4</b></div><div class="abs day dk" id="Ad5" style="left:610px;top:900px;width:120px;height:120px"><b>5</b></div><div class="abs day dk" id="Ad6" style="left:745px;top:900px;width:120px;height:120px"><b>6</b></div><div class="abs day dk" id="Ad7" style="left:880px;top:900px;width:120px;height:120px"><b>7</b></div><div class="abs day dk" id="Ad8" style="left:70px;top:1035px;width:120px;height:120px"><b>8</b></div><div class="abs day dk" id="Ad9" style="left:205px;top:1035px;width:120px;height:120px"><b>9</b></div><div class="abs day dk" id="Ad10" style="left:340px;top:1035px;width:120px;height:120px"><b>10</b></div><div class="abs day dk" id="Ad11" style="left:475px;top:1035px;width:120px;height:120px"><b>11</b></div><div class="abs day dk" id="Ad12" style="left:610px;top:1035px;width:120px;height:120px"><b>12</b></div><div class="abs day dk" id="Ad13" style="left:745px;top:1035px;width:120px;height:120px"><b>13</b></div><div class="abs day dk" id="Ad14" style="left:880px;top:1035px;width:120px;height:120px"><b>14</b></div>
       </div></div>
-      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:1000px;width:1000px;height:1000px"></div>
+      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:1000px;width:1000px;height:1000px"></div><div class="abs deco" style="left:-350px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
         <div class="abs eyebrow" id="Bey" style="left:70px;top:230px">El piloto, día a día</div>
         <div class="abs h1 st" id="Bt" style="left:66px;top:276px"><span class="l">Las primeras</span><span class="l"><em>2 semanas.</em></span></div>
         <div class="abs day" id="Bd1" style="left:70px;top:500px;width:120px;height:120px"><b>1</b></div><div class="abs day" id="Bd2" style="left:205px;top:500px;width:120px;height:120px"><b>2</b></div><div class="abs day" id="Bd3" style="left:340px;top:500px;width:120px;height:120px"><b>3</b></div><div class="abs day" id="Bd4" style="left:475px;top:500px;width:120px;height:120px"><b>4</b></div><div class="abs day" id="Bd5" style="left:610px;top:500px;width:120px;height:120px"><b>5</b></div><div class="abs day" id="Bd6" style="left:745px;top:500px;width:120px;height:120px"><b>6</b></div><div class="abs day" id="Bd7" style="left:880px;top:500px;width:120px;height:120px"><b>7</b></div><div class="abs day" id="Bd8" style="left:70px;top:635px;width:120px;height:120px"><b>8</b></div><div class="abs day" id="Bd9" style="left:205px;top:635px;width:120px;height:120px"><b>9</b></div><div class="abs day" id="Bd10" style="left:340px;top:635px;width:120px;height:120px"><b>10</b></div><div class="abs day" id="Bd11" style="left:475px;top:635px;width:120px;height:120px"><b>11</b></div><div class="abs day" id="Bd12" style="left:610px;top:635px;width:120px;height:120px"><b>12</b></div><div class="abs day" id="Bd13" style="left:745px;top:635px;width:120px;height:120px"><b>13</b></div><div class="abs day" id="Bd14" style="left:880px;top:635px;width:120px;height:120px"><b>14</b></div>
-        <div class="abs card phase" id="Bp0" style="left:70px;top:900px;width:940px;height:400px"><div class="pl"><span class="tag teal">Días 1–2</span><h3>Elegimos un proceso</h3></div><div class="pr"><div class="bl" id="Bb00"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="message-circle">
+        <div class="abs ptrack" style="left:70px;top:780px;width:930px;height:12px"><div id="Bfill"></div></div>
+        <div class="abs card phase" id="Bp0" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt " style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div><div class="pl"><div class="ptag"><span class="tag teal">Días 1–2</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div><h3>Elegimos un proceso</h3></div></div><div class="pr"><div class="bl" id="Bb00"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="message-circle">
   <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
 </svg></div><span>Conversamos 30 minutos sobre tu operación</span></div><div class="bl" id="Bb01"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="2" />
-</svg></div><span>Elegimos el proceso que más tiempo le cuesta a tu equipo</span></div></div></div><div class="abs card phase" id="Bp1" style="left:70px;top:900px;width:940px;height:400px"><div class="pl"><span class="tag teal">Días 3–5</span><h3>Mapeamos y conectamos</h3></div><div class="pr"><div class="bl" id="Bb10"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="layers">
+</svg></div><span>Elegimos el proceso que más tiempo le cuesta a tu equipo</span></div></div><div class="pnum">01</div></div><div class="abs card phase" id="Bp1" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div><div class="pl"><div class="ptag"><span class="tag teal">Días 3–5</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div><h3>Mapeamos y conectamos</h3></div></div><div class="pr"><div class="bl" id="Bb10"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="layers">
   <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
   <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
   <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
 </svg></div><span>Vemos cómo funciona hoy, paso a paso</span></div><div class="bl" id="Bb11"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
   <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
   <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-</svg></div><span>Conectamos tus herramientas: WhatsApp, CRM, hojas de cálculo o ERP</span></div></div></div><div class="abs card phase" id="Bp2" style="left:70px;top:900px;width:940px;height:400px"><div class="pl"><span class="tag teal">Semana 2</span><h3>Lo ponemos a funcionar</h3></div><div class="pr"><div class="bl" id="Bb20"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+</svg></div><span>Conectamos tus herramientas: WhatsApp, CRM, hojas de cálculo o ERP</span></div></div><div class="pnum">02</div></div><div class="abs card phase" id="Bp2" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt c-erp" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div><div class="pl"><div class="ptag"><span class="tag teal">Semana 2</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div><h3>Lo ponemos a funcionar</h3></div></div><div class="pr"><div class="bl" id="Bb20"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
   <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
 </svg></div><span>Funciona con casos reales de tu negocio</span></div><div class="bl" id="Bb21"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-</svg></div><span>Lo ajustamos con tu equipo</span></div></div></div><div class="abs card phase" id="Bp3" style="left:70px;top:900px;width:940px;height:400px"><div class="pl"><span class="tag teal">Día 14</span><h3>El proceso trabaja solo</h3></div><div class="pr"><div class="bl" id="Bb30"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+</svg></div><span>Lo ajustamos con tu equipo</span></div></div><div class="pnum">03</div></div><div class="abs card phase" id="Bp3" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt c-xls" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div class="pl"><div class="ptag"><span class="tag teal">Día 14</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div><h3>El proceso trabaja solo</h3></div></div><div class="pr"><div class="bl" id="Bb30"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
   <path d="M3 3v16a2 2 0 0 0 2 2h16" />
   <path d="M18 17V9" />
   <path d="M13 17V5" />
@@ -301,10 +336,10 @@
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="2" />
-</svg></div><span>ROI medible en 6 semanas</span></div></div></div>
-        <div class="abs note" style="left:70px;top:1400px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+</svg></div><span>ROI medible en 6 semanas</span></div></div><div class="pnum">04</div></div>
+        <div class="abs note" style="left:70px;top:1350px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
       </div></div>
-      <div class="sc dark" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div>
+      <div class="sc dark" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:620px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-330px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
         <div class="abs navlogo dk" id="Clg" style="left:0px;top:420px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Cb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
         <div class="abs h1 ctr" id="Ct" style="left:0px;top:560px;width:1080px"><span class="l">Empezamos con</span><span class="l">un piloto, no con</span><span class="l"><em>una apuesta.</em></span></div>
         <div class="abs" id="Ccta" style="left:0px;top:960px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Cbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
@@ -363,8 +398,11 @@
       tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 30.42, ease: "sine.inOut" }, 5.341);
       tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 13.20, ease: "none" }, 34.557);
       tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 13.20, ease: "sine.inOut" }, 34.557);
+      tl.fromTo(".deco", { x: 0 }, { x: -50, duration: 46.56, ease: "none" }, 0);
       tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.200);
       tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.8, ease: "power3.out" }, 0.350);
+      gsap.set("#Abig", { autoAlpha: 0 });
+      tl.fromTo("#Abig", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out" }, 2.211);
       tl.fromTo("#sA .day", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }, 2.211);
       tl.set(".tbar", { visibility: "visible" }, 4.681);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 4.681);
@@ -375,32 +413,37 @@
       tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 5.491);
       tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 5.621);
       gsap.set(["#sB .phase", "#sB .bl"], { autoAlpha: 0 });
+      gsap.set("#Bfill", { scaleX: 0 });
       tl.fromTo("#sB .day", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 5.641);
       tl.fromTo("#Bp0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 6.191);
       tl.to("#Bd1", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 6.391);
       tl.to("#Bd2", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 6.471);
+      tl.to("#Bfill", { scaleX: 0.143, duration: 0.9, ease: "power2.inOut" }, 6.391);
       tl.fromTo("#Bb00", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 6.791);
       tl.fromTo("#Bb01", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 8.191);
       tl.to("#Bp0", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 14.129);
       tl.fromTo("#Bp1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 14.379);
-      tl.to("#Bd3", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 14.579);
-      tl.to("#Bd4", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 14.659);
-      tl.to("#Bd5", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 14.739);
+      tl.to("#Bd3", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 14.579);
+      tl.to("#Bd4", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 14.659);
+      tl.to("#Bd5", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 14.739);
+      tl.to("#Bfill", { scaleX: 0.357, duration: 0.9, ease: "power2.inOut" }, 14.579);
       tl.fromTo("#Bb10", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 14.979);
       tl.fromTo("#Bb11", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 16.379);
       tl.to("#Bp1", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 20.197);
       tl.fromTo("#Bp2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 20.447);
-      tl.to("#Bd8", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 20.647);
-      tl.to("#Bd9", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 20.727);
-      tl.to("#Bd10", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 20.807);
-      tl.to("#Bd11", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 20.887);
-      tl.to("#Bd12", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 20.967);
-      tl.to("#Bd13", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 21.047);
+      tl.to("#Bd8", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.647);
+      tl.to("#Bd9", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.727);
+      tl.to("#Bd10", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.807);
+      tl.to("#Bd11", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.887);
+      tl.to("#Bd12", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.967);
+      tl.to("#Bd13", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 21.047);
+      tl.to("#Bfill", { scaleX: 0.929, duration: 0.9, ease: "power2.inOut" }, 20.647);
       tl.fromTo("#Bb20", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 21.047);
       tl.fromTo("#Bb21", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.447);
       tl.to("#Bp2", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 26.237);
       tl.fromTo("#Bp3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 26.487);
-      tl.to("#Bd14", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 26.687);
+      tl.to("#Bd14", { backgroundColor: "#1D6F42", borderColor: "#1D6F42", color: "#FFFFFF", duration: 0.3 }, 26.687);
+      tl.to("#Bfill", { scaleX: 1.000, duration: 0.9, ease: "power2.inOut" }, 26.687);
       tl.fromTo("#Bb30", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 27.087);
       tl.fromTo("#Bb31", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 28.487);
       tl.set(".tbar", { visibility: "visible" }, 33.897);

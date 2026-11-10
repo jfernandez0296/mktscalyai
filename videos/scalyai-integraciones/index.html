@@ -236,39 +236,62 @@
       .cbadge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px; background: var(--cyan-400); color: var(--navy-900); font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .06em; white-space: nowrap; }
       .wbar span { flex: 1; min-width: 0; overflow: hidden; }
 
-      /* ---- integraciones ---- */
-      .ah { display: flex; align-items: center; gap: 16px; }
-      .ah .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
-      .dark .ah .ni { background: rgba(71,212,212,.12); }
-      .ah b { font-size: 32px; font-weight: 700; }
-      .ah i { margin-left: auto; font-style: normal; font-size: 20px; color: var(--slate-700); }
+      /* ---- piezas gráficas ---- */
+      .deco i { position: absolute; display: block; border-radius: 999px; }
+      .gt { flex: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0d2f5c, #47d4d4); box-shadow: 0 16px 36px rgba(4,27,61,.25); }
+      .gt.wa { background: #128C4A; }
+      .dark .gt { box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+      .tlab { font-size: 30px; font-weight: 700; text-align: center; white-space: nowrap; }
+      .dark .tlab { color: var(--cream-100); }
+      .tk { display: flex; justify-content: center; }
+      .tk span { display: inline-flex; align-items: center; height: 50px; padding: 0 22px; border-radius: 999px; background: rgba(240,241,232,.1); border: 1px solid rgba(240,241,232,.22); color: var(--cream-100); font-size: 22px; font-weight: 700; white-space: nowrap; }
+      .x3 { font-size: 250px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cyan-400); text-align: center; white-space: nowrap; }
+      .flab { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); white-space: nowrap; }
+      .flab.t { color: var(--teal-600); }
+      .bigtk { padding: 28px 30px; }
+      .bigtk b { display: block; margin-top: 22px; font-size: 78px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--cream-100); }
+      .neq { width: 84px; height: 84px; border-radius: 42px; background: #C2416B; color: #fff; font-size: 56px; font-weight: 800; line-height: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+      .ringc { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .ringc b { font-size: 104px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cyan-400); white-space: nowrap; }
+      .ringc span { font-size: 26px; font-weight: 500; color: var(--cream-100); margin-top: 8px; }
+      .track2 { border-radius: 5px; background: linear-gradient(90deg, #0d2f5c, #47d4d4); }
+      .chipn { display: flex; align-items: center; justify-content: center; width: 140px; height: 56px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 24px; font-weight: 800; box-shadow: 0 10px 24px rgba(4,27,61,.3); }
+      .ah { display: flex; align-items: center; gap: 18px; }
+      .ah b { font-size: 32px; font-weight: 700; white-space: nowrap; }
+      .ah i { margin-left: auto; font-style: normal; font-size: 22px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
       .ah .tag { margin-left: auto; }
-      .appc { padding: 30px 32px; }
-      .appc .arow { margin-top: 22px; padding: 16px 20px; border-radius: 14px; background: rgba(240,241,232,.08); font-size: 26px; font-weight: 500; color: var(--cream-100); white-space: nowrap; }
-      .appc .tag { position: absolute; right: 30px; top: 34px; }
-      .errc, .clk { padding: 34px 38px; }
-      .flab { font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); }
-      .fv { position: relative; margin-top: 10px; height: 76px; border-radius: 999px; border: 2px solid rgba(240,241,232,.2); display: flex; align-items: center; padding: 0 28px; font-size: 38px; font-weight: 700; color: var(--cream-100); }
-      .fv .errt { position: absolute; right: 16px; background: #C2416B; color: #fff; }
-      .clk { display: flex; gap: 30px; align-items: center; }
-      .clk .ni { flex: none; width: 96px; height: 96px; border-radius: 26px; background: rgba(71,212,212,.12); display: flex; align-items: center; justify-content: center; }
-      .clk b { display: block; font-size: 110px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cyan-400); }
-      .clk span { display: block; font-size: 30px; font-weight: 500; color: var(--cream-100); margin-top: 8px; }
-      .clk i { display: block; font-style: normal; font-size: 20px; color: #b9c3cf; margin-top: 8px; }
-      .msgc, .crm2, .sheet, .erpc { padding: 30px 34px; }
-      .bubx { margin-top: 26px; display: inline-block; padding: 20px 24px; border-radius: 22px; border-bottom-left-radius: 6px; background: var(--cream-100); border: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; }
-      .crm2 .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
-      .crm2 .row:first-of-type { margin-top: 18px; }
+      .msgc, .crm2, .sheet, .erpc { padding: 28px 32px; }
+      .bubx { margin-top: 18px; display: inline-block; padding: 20px 24px; border-radius: 22px; border-bottom-left-radius: 6px; background: var(--cream-100); border: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; }
+      .crm2 .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 11px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm2 .row:first-of-type { margin-top: 16px; }
       .crm2 .row b { font-weight: 700; }
-      .srow { display: grid; grid-template-columns: .6fr 1.4fr 1fr; align-items: center; height: 72px; padding: 0 16px; border-top: 1px solid var(--cream-300); font-size: 25px; font-weight: 500; white-space: nowrap; }
-      .srow:first-of-type { margin-top: 18px; }
+      .srow { display: grid; grid-template-columns: .6fr 1.4fr 1fr; align-items: center; height: 68px; padding: 0 16px; border-top: 1px solid var(--cream-300); font-size: 25px; font-weight: 500; white-space: nowrap; }
+      .srow:first-of-type { margin-top: 16px; }
       .srow span:last-child { justify-self: end; }
       .srow.new { background: #e3f3f3; border-radius: 12px; border-top-color: transparent; font-weight: 700; color: #00545a; }
-      .stk { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; font-size: 30px; font-weight: 500; }
-      .stk b { position: relative; width: 120px; height: 110px; overflow: hidden; }
-      .stk em { position: absolute; right: 0; top: 0; font-style: normal; font-size: 100px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--teal-600); }
-      .erpc .note { margin-top: 18px; }
-      .tlist .task .tag { margin-left: auto; }
+      .erpb { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding: 0 10px; }
+      .grid9 { display: grid; grid-template-columns: repeat(3, 52px); gap: 10px; }
+      .bx { width: 52px; height: 52px; border-radius: 14px; background: #D9822B; border: 2px solid #D9822B; }
+      .stkn { text-align: right; }
+      .stkn .num { position: relative; width: 150px; height: 124px; overflow: hidden; margin-left: auto; }
+      .stkn em { position: absolute; right: 0; top: 0; font-style: normal; font-size: 120px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; color: #B5651D; }
+      .stkn span { font-size: 24px; font-weight: 500; color: var(--slate-700); }
+      .erpc .note { margin-top: 14px; }
+      .badge { width: 56px; height: 56px; border-radius: 28px; background: var(--teal-600); border: 4px solid var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .barsc { padding: 36px 40px; }
+      .brow { margin-bottom: 26px; }
+      .brow label { display: block; font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+      .btrack { height: 40px; border-radius: 20px; background: var(--cream-200); overflow: hidden; }
+      .btrack i { display: block; width: 100%; height: 100%; border-radius: 20px; transform-origin: 0% 50%; }
+      /* ---- color por herramienta/etapa y personas ---- */
+      .gt.c-xls { background: linear-gradient(135deg, #1D6F42, #3FAE6B); }
+      .gt.c-crm { background: linear-gradient(135deg, #1F4FBF, #5B8DEF); }
+      .gt.c-erp { background: linear-gradient(135deg, #C56A1A, #F0A64B); }
+      .pp { flex: none; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 8px 20px rgba(4,27,61,.2); }
+      .pp svg { display: block; }
+      .avs { display: flex; align-items: center; }
+      .avs .pp + .pp { margin-left: -16px; }
+      .ptag { display: flex; align-items: center; gap: 16px; }
 
       .cap span { font-size: 38px; padding: 14px 32px; }
 
@@ -279,27 +302,33 @@
       .wm .nm { font-size: 124px; }
       .btn { font-size: 34px; height: 96px; padding: 0 40px; }
       .lead { font-size: 36px; }
-      .appc .arow { margin-top: 16px; }
+      .x3 { font-size: 280px; }
+      .track2 { background: linear-gradient(180deg, #0d2f5c, #47d4d4); }
+      .grid9 { grid-template-columns: repeat(3, 56px); }
+      .bx { width: 56px; height: 56px; }
 
         </style>
       </head>
       <body>
         <div id="root" data-composition-id="main" data-start="0" data-duration="40.91" data-fps="30" data-width="1080" data-height="1920">
-          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div>
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div><div class="abs deco" style="left:-260px;top:1450px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
         <div class="abs eyebrow" id="Aey" style="left:70px;top:204px">Tu operación hoy</div><div class="abs h1" id="At" style="left:66px;top:250px"><span class="l">El mismo pedido,</span><span class="l">copiado <em>tres veces.</em></span></div>
-        <div class="abs card appc" id="Aa0" style="left:70px;top:640px;width:940px;height:220px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+        <div class="abs x3" id="Ax3" style="left:0px;top:1120px;width:1080px">×3</div>
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><path id="Al0" d="M333.0 860 L427.0 860" pathLength="1" stroke="#47D4D4" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Al1" d="M653.0 860 L747.0 860" pathLength="1" stroke="#47D4D4" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        <div class="abs" id="Ap" style="left:465px;top:535px"><div class="pp" style="width:150px;height:150px"><svg width="150" height="150" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div></div><div class="abs tlab" id="Apn" style="left:370px;top:693px;width:340px">Tu equipo</div>
+        <div class="abs" id="Aa0" style="left:125px;top:765px"><div class="gt c-xls" style="width:190px;height:190px;border-radius:53px"><svg width="95" height="95" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
   <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
   <path d="M14 2v4a2 2 0 0 0 2 2h4" />
   <path d="M8 13h2" />
   <path d="M14 13h2" />
   <path d="M8 17h2" />
   <path d="M14 17h2" />
-</svg></div><b>Excel</b></div><div class="arow">Pedido #1042 · Polo básico M</div><span class="tag soft" id="Ac0">Copiado a mano</span></div><div class="abs card appc" id="Aa1" style="left:70px;top:890px;width:940px;height:220px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+</svg></div></div><div class="abs tlab" id="An0" style="left:50px;top:973px;width:340px">Excel</div><div class="abs tk" id="Ac0" style="left:70px;top:1029px;width:300px"><span>#1042 · a mano</span></div><div class="abs" id="Aa1" style="left:445px;top:765px"><div class="gt c-crm" style="width:190px;height:190px;border-radius:53px"><svg width="95" height="95" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-</svg></div><b>CRM</b></div><div class="arow">Pedido #1042 · Polo básico M</div><span class="tag soft" id="Ac1">Copiado a mano</span></div><div class="abs card appc" id="Aa2" style="left:70px;top:1140px;width:940px;height:220px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+</svg></div></div><div class="abs tlab" id="An1" style="left:370px;top:973px;width:340px">CRM</div><div class="abs tk" id="Ac1" style="left:390px;top:1029px;width:300px"><span>#1042 · a mano</span></div><div class="abs" id="Aa2" style="left:765px;top:765px"><div class="gt c-erp" style="width:190px;height:190px;border-radius:53px"><svg width="95" height="95" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
   <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
   <path d="m7 16.5-4.74-2.85" />
   <path d="m7 16.5 5-3" />
@@ -312,36 +341,41 @@
   <path d="M12 8 7.26 5.15" />
   <path d="m12 8 4.74-2.85" />
   <path d="M12 13.5V8" />
-</svg></div><b>ERP</b></div><div class="arow">Pedido #1042 · Polo básico M</div><span class="tag soft" id="Ac2">Copiado a mano</span></div>
-        <div class="abs note" style="left:70px;top:1420px">Caso ilustrativo</div>
+</svg></div></div><div class="abs tlab" id="An2" style="left:690px;top:973px;width:340px">ERP</div><div class="abs tk" id="Ac2" style="left:710px;top:1029px;width:300px"><span>#1042 · a mano</span></div>
+        <div class="abs note" style="left:70px;top:1400px">Caso ilustrativo</div>
       </div></div>
-      <div class="sc dark" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div>
+      <div class="sc dark" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div><div class="abs deco" style="left:760px;top:-300px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
         <div class="abs eyebrow" id="Bey" style="left:70px;top:204px">El costo</div><div class="abs h1" id="Bt" style="left:66px;top:250px"><span class="l">Tiempo perdido.</span><span class="l"><em>Errores.</em></span></div>
-        <div class="abs card errc" id="Bc0" style="left:70px;top:640px;width:940px;height:300px">
-          <div class="flab">Pedido en WhatsApp</div><div class="fv">#1042</div>
-          <div class="flab" style="margin-top:22px">Pedido en el CRM</div><div class="fv bad" id="Bbad">#1024<span class="tag errt">Mal copiado</span></div></div>
-        <div class="abs card clk" id="Bc1" style="left:70px;top:990px;width:940px;height:300px"><div class="ni"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
-  <circle cx="12" cy="12" r="10" />
-  <polyline points="12 6 12 12 16 14" />
-</svg></div><div><b id="Bh">0 h</b><span>a la semana copiando datos</span><i>Dato ilustrativo</i></div></div>
-      </div></div>
-      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:600px;width:1100px;height:1100px"></div>
-        <div class="abs eyebrow" id="Cey" style="left:70px;top:204px">Scaly AI</div><div class="abs h1" id="Ct" style="left:66px;top:250px"><span class="l">Un solo <em>flujo.</em></span></div>
-        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><path id="Cln0" d="M215 686 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln1" d="M790 686 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln2" d="M260 1296 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln3" d="M845 1296 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
-        <div class="abs hub" id="Chub" style="left:455px;top:915px"><div class="bars" style="width:90.0px;height:84.0px"><i id="Cb0" style="left:24.0px;top:0.0px;width:66.0px;height:21.0px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:31.5px;width:90.0px;height:21.0px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:63.0px;width:66.0px;height:21.0px;background:#F0F1E8"></i></div></div>
-        <div class="abs node" id="Cn0" style="left:70px;top:640px"><div class="ni"><svg width="34" height="34" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#128C4A"/></svg></div>WhatsApp</div><div class="abs node" id="Cn1" style="left:700px;top:640px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+        <div class="abs card bigtk" id="Bk0" style="left:70px;top:620px;width:410px;height:230px"><div class="flab"><svg width="26" height="26" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#47D4D4"/></svg>En WhatsApp</div><b>#1042</b></div>
+        <div class="abs card bigtk" id="Bk1" style="left:600px;top:620px;width:410px;height:230px"><div class="flab"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-</svg></div>CRM</div><div class="abs node" id="Cn2" style="left:70px;top:1250px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+</svg>En el CRM</div><b id="Bbad">#1024</b></div>
+        <div class="abs neq" id="Bneq" style="left:498px;top:693px">≠</div>
+        <div class="abs" id="Brw" style="left:350px;top:930px"><svg width="380" height="380" viewBox="0 0 380 380"><circle cx="190.0" cy="190.0" r="177.0" fill="none" stroke="rgba(240,241,232,.12)" stroke-width="26"/><circle id="Brg" cx="190.0" cy="190.0" r="177.0" fill="none" stroke="#47D4D4" stroke-width="26" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 190.0 190.0)"/></svg></div>
+        <div class="abs ringc" id="Brc" style="left:350px;top:930px;width:380px;height:380px"><b id="Bh">0 h</b><span>a la semana</span></div>
+        <div class="abs note" style="left:350px;top:1326px;width:380px;text-align:center">copiando datos · dato ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:600px;width:1100px;height:1100px"></div><div class="abs deco" style="left:-330px;top:1500px;width:768px;height:716px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#041B3D"></i></div>
+        <div class="abs eyebrow" id="Cey" style="left:70px;top:204px">Scaly AI</div><div class="abs h1" id="Ct" style="left:66px;top:250px"><span class="l">Un solo <em>flujo.</em></span></div>
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Cr0" cx="540" cy="1000" r="150" fill="none" stroke="#007B83" stroke-width="2" opacity="0.35"/><circle id="Cr1" cx="540" cy="1000" r="240" fill="none" stroke="#007B83" stroke-width="2" opacity="0.22"/><circle id="Cr2" cx="540" cy="1000" r="330" fill="none" stroke="#007B83" stroke-width="2" opacity="0.12"/><path id="Cln0" d="M215 686 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln1" d="M790 686 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln2" d="M260 1296 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln3" d="M845 1296 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        <div class="abs pulse" id="Cp0" style="left:206px;top:677px"></div><div class="abs pulse" id="Cp1" style="left:781px;top:677px"></div><div class="abs pulse" id="Cp2" style="left:251px;top:1287px"></div><div class="abs pulse" id="Cp3" style="left:836px;top:1287px"></div>
+        <div class="abs hub" id="Chub" style="left:455px;top:915px"><div class="bars" style="width:90.0px;height:84.0px"><i id="Cb0" style="left:24.0px;top:0.0px;width:66.0px;height:21.0px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:31.5px;width:90.0px;height:21.0px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:63.0px;width:66.0px;height:21.0px;background:#F0F1E8"></i></div></div>
+        <div class="abs node" id="Cn0" style="left:70px;top:640px"><div class="ni"><svg width="34" height="34" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#128C4A"/></svg></div>WhatsApp</div><div class="abs node" id="Cn1" style="left:700px;top:640px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1F4FBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div>CRM</div><div class="abs node" id="Cn2" style="left:70px;top:1250px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1D6F42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
   <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
   <path d="M14 2v4a2 2 0 0 0 2 2h4" />
   <path d="M8 13h2" />
   <path d="M14 13h2" />
   <path d="M8 17h2" />
   <path d="M14 17h2" />
-</svg></div>Hojas de cálculo</div><div class="abs node" id="Cn3" style="left:760px;top:1250px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+</svg></div>Hojas de cálculo</div><div class="abs node" id="Cn3" style="left:760px;top:1250px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C56A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
   <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
   <path d="m7 16.5-4.74-2.85" />
   <path d="m7 16.5 5-3" />
@@ -356,25 +390,24 @@
   <path d="M12 13.5V8" />
 </svg></div>ERP</div>
       </div></div>
-      <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div>
+      <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:-340px;top:1480px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
         <div class="abs eyebrow" id="Dey" style="left:70px;top:204px">Paso a paso</div><div class="abs h1 st" id="Dt" style="left:66px;top:250px"><span class="l">Llega el pedido.</span><span class="l"><em>Se registra solo.</em></span></div>
-        <div class="abs card msgc" id="Dm" style="left:70px;top:620px;width:940px;height:280px"><div class="ah"><div class="ni" style="background:#128C4A"><svg width="30" height="30" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><b>WhatsApp</b><i>ahora</i></div>
-          <div class="bubx">Hola, quiero el polo básico en talla M.</div></div>
-        <div class="abs arrow" id="Dar" style="left:500px;top:930px"><div style="transform:rotate(90deg)"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
-  <path d="M5 12h14" />
-  <path d="m12 5 7 7-7 7" />
-</svg></div></div>
-        <div class="abs card crm2" id="Dc" style="left:70px;top:1040px;width:940px;height:300px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+        <div class="abs track2" id="Dtr" style="left:140px;top:730px;width:10px;height:270px"></div>
+        <div class="abs" id="Dw" style="left:70px;top:560px"><div class="gt wa " style="width:150px;height:150px;border-radius:42px"><svg width="78" height="78" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div></div>
+        <div class="abs" id="Dk" style="left:70px;top:1020px"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-</svg></div><b>CRM</b><span class="tag teal" id="Dnew">Nuevo</span></div>
+</svg></div></div>
+        <div class="abs chipn" id="Dchip" style="left:75px;top:730px">#1042</div>
+        <div class="abs card msgc" id="Dm" style="left:250px;top:560px;width:760px"><div class="ah"><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><b>Cliente</b><i>ahora</i></div><div class="bubx">Hola, quiero el polo básico en talla M.</div></div>
+        <div class="abs card crm2" id="Dc" style="left:250px;top:1000px;width:760px"><div class="ah"><b>CRM</b><span class="tag teal" id="Dnew">Nuevo</span></div>
           <div class="row"><span>Pedido</span><b>#1042</b></div><div class="row"><span>Producto</span><b>Polo básico · M</b></div><div class="row"><span>Canal</span><b>WhatsApp</b></div></div>
       </div></div>
-      <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1000px;height:1000px"></div>
+      <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1000px;height:1000px"></div><div class="abs deco" style="left:-340px;top:1480px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
         <div class="abs eyebrow" id="Eey" style="left:70px;top:204px">Sin copiar nada</div><div class="abs h1 st" id="Et" style="left:66px;top:250px"><span class="l">Todo se</span><span class="l"><em>actualiza.</em></span></div>
-        <div class="abs card sheet" id="Es" style="left:70px;top:620px;width:940px;height:380px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+        <div class="abs card sheet" id="Es" style="left:70px;top:600px;width:940px;height:360px"><div class="ah"><div class="gt c-xls" style="width:64px;height:64px;border-radius:17px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
   <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
   <path d="M14 2v4a2 2 0 0 0 2 2h4" />
   <path d="M8 13h2" />
@@ -383,7 +416,7 @@
   <path d="M14 17h2" />
 </svg></div><b>Hoja de pedidos</b></div>
           <div class="srow" id="Er0"><span>#1040</span><span>Jean clásico · 30</span><span>Entregado</span></div><div class="srow" id="Er1"><span>#1041</span><span>Casaca · L</span><span>En camino</span></div><div class="srow new" id="Er2"><span>#1042</span><span>Polo básico · M</span><span>Registrado</span></div></div>
-        <div class="abs card erpc" id="Ee" style="left:70px;top:1060px;width:940px;height:300px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+        <div class="abs card erpc" id="Ee" style="left:70px;top:1010px;width:940px;height:340px"><div class="ah"><div class="gt c-erp" style="width:64px;height:64px;border-radius:17px"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
   <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
   <path d="m7 16.5-4.74-2.85" />
   <path d="m7 16.5 5-3" />
@@ -396,27 +429,52 @@
   <path d="M12 8 7.26 5.15" />
   <path d="m12 8 4.74-2.85" />
   <path d="M12 13.5V8" />
-</svg></div><b>ERP · Stock</b></div>
-          <div class="stk"><span>Polo básico · M</span><b><em id="Es9">9</em><em id="Es8">8</em></b></div><div class="note">Datos ilustrativos</div></div>
+</svg></div><b>ERP · Stock</b><i>Polo básico · M</i></div>
+          <div class="erpb"><div class="grid9"><div class="bx" id="Ex0"></div><div class="bx" id="Ex1"></div><div class="bx" id="Ex2"></div><div class="bx" id="Ex3"></div><div class="bx" id="Ex4"></div><div class="bx" id="Ex5"></div><div class="bx" id="Ex6"></div><div class="bx" id="Ex7"></div><div class="bx" id="Ex8"></div></div>
+            <div class="stkn"><div class="num"><em id="Es9">9</em><em id="Es8">8</em></div><span>unidades</span></div></div>
+          <div class="note">Datos ilustrativos</div></div>
       </div></div>
-      <div class="sc" id="sF"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:800px;width:1100px;height:1100px"></div>
+      <div class="sc" id="sF"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:800px;width:1100px;height:1100px"></div><div class="abs deco" style="left:-340px;top:1480px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
         <div class="abs eyebrow" id="Fey" style="left:70px;top:204px">El resultado</div><div class="abs h1 st" id="Ft" style="left:66px;top:250px"><span class="l">Menos copiar y pegar.</span><span class="l"><em>Más vender.</em></span></div>
-        <div class="abs card tlist" id="Fl" style="left:70px;top:640px;width:940px;height:350px">
-          <div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+        <div class="abs" id="Ft0" style="left:145px;top:625px"><div class="gt c-xls" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div></div><div class="abs badge" id="Fa0" style="left:261px;top:607px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg></div><div class="tx">Copiar el pedido a Excel</div><span class="tag teal" id="Fa0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+</svg></div><div class="abs tlab" id="Fn0" style="left:50px;top:791px;width:340px">Excel</div><div class="abs" id="Ft1" style="left:465px;top:625px"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div></div><div class="abs badge" id="Fa1" style="left:581px;top:607px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg>Automático</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+</svg></div><div class="abs tlab" id="Fn1" style="left:370px;top:791px;width:340px">CRM</div><div class="abs" id="Ft2" style="left:785px;top:625px"><div class="gt c-erp" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div></div><div class="abs badge" id="Fa2" style="left:901px;top:607px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
   <path d="M20 6 9 17l-5-5" />
-</svg></div><div class="tx">Pasar el pedido al CRM</div><span class="tag teal" id="Fa1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
-  <path d="M20 6 9 17l-5-5" />
-</svg>Automático</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
-  <path d="M20 6 9 17l-5-5" />
-</svg></div><div class="tx">Descontar el stock en el ERP</div><span class="tag teal" id="Fa2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
-  <path d="M20 6 9 17l-5-5" />
-</svg>Automático</span></div></div>
+</svg></div><div class="abs tlab" id="Fn2" style="left:690px;top:791px;width:340px">ERP</div>
+        <div class="abs card barsc" id="Fb" style="left:70px;top:930px;width:940px;height:420px">
+          <div class="ah" style="margin-bottom:24px"><div class="avs"><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="pp" style="width:64px;height:64px"><svg width="64" height="64" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div><b>Tu equipo</b></div>
+          <div class="brow"><label><span>Trabajo a mano</span></label><div class="btrack"><i id="Fb0" style="background:#2F4560"></i></div></div>
+          <div class="brow"><label><span>Automático</span></label><div class="btrack"><i id="Fb1" style="background:linear-gradient(90deg,#0d2f5c,#47d4d4)"></i></div></div>
+          <div class="note">Gráfico ilustrativo</div></div>
       </div></div>
-      <div class="sc dark" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div>
+      <div class="sc dark" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:620px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-330px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
         <div class="abs wm" id="Gwm" style="left:205px;top:520px;gap:36px"><div class="bars" style="width:140.6px;height:131.2px"><i id="Gb0" style="left:37.5px;top:0.0px;width:103.1px;height:32.8px;background:#47D4D4"></i><i id="Gb1" style="left:0.0px;top:49.2px;width:140.6px;height:32.8px;background:#007B83"></i><i id="Gb2" style="left:0.0px;top:98.4px;width:103.1px;height:32.8px;background:#F0F1E8"></i></div><div class="nm" style="font-size:124px">Scaly <span>AI</span></div></div>
         <div class="abs lead ctr" id="Gtag" style="left:0px;top:760px;width:1080px">Software e IA a la medida de tu negocio.</div>
         <div class="abs" id="Gcta" style="left:0px;top:900px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Gbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
@@ -480,25 +538,38 @@
       tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 5.52, ease: "sine.inOut" }, 26.863);
       tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 10.92, ease: "none" }, 31.187);
       tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.92, ease: "sine.inOut" }, 31.187);
+      tl.fromTo(".deco", { x: 0 }, { x: -50, duration: 40.91, ease: "none" }, 0);
       tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.150);
       tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 0.280);
-      gsap.set(["#Ac0", "#Ac1", "#Ac2"], { autoAlpha: 0 });
-      tl.fromTo("#Aa0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 3.435);
-      tl.fromTo("#Ac0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 3.785);
-      tl.fromTo("#Aa1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 4.550);
-      tl.fromTo("#Ac1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 4.900);
-      tl.fromTo("#Aa2", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 5.578);
-      tl.fromTo("#Ac2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 5.928);
+      gsap.set(["#Ac0", "#Ac1", "#Ac2", "#Ax3"], { autoAlpha: 0 });
+      tl.fromTo("#Ap", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 0.469);
+      tl.fromTo("#Apn", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 0.569);
+      tl.fromTo("#Ax3", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 2.203);
+      tl.fromTo("#Aa0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 3.385);
+      tl.fromTo("#An0", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 3.485);
+      tl.fromTo("#Ac0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 3.735);
+      tl.fromTo("#Aa1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 4.500);
+      tl.fromTo("#An1", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 4.600);
+      tl.fromTo("#Ac1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 4.850);
+      tl.to("#Al0", { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 4.350);
+      tl.fromTo("#Aa2", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 5.528);
+      tl.fromTo("#An2", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 5.628);
+      tl.fromTo("#Ac2", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 5.878);
+      tl.to("#Al1", { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 5.378);
       tl.to("#sA", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 6.207);
       tl.fromTo("#sB", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 6.457);
       tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.657);
       tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 6.787);
-      gsap.set(["#Bbad .errt"], { autoAlpha: 0 });
-      tl.fromTo("#Bc0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.764);
-      tl.fromTo("#Bc1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 8.164);
-      (() => { const o = { v: 0 }; const el = document.querySelector("#Bh"); tl.to(o, { v: 12, duration: 1.4, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + " h"; } }, 8.364); })();
-      tl.to("#Bbad", { borderColor: "#C2416B", color: "#C2416B", duration: 0.3 }, 10.324);
-      tl.fromTo("#Bbad .errt", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 10.424);
+      gsap.set(["#Bneq"], { autoAlpha: 0 });
+      tl.fromTo("#Brw", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.764);
+      tl.fromTo("#Brc", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.764);
+      tl.to("#Brg", { strokeDashoffset: 0.28, duration: 1.5, ease: "power2.out" }, 7.964);
+      (() => { const o = { v: 0 }; const el = document.querySelector("#Bh"); tl.to(o, { v: 12, duration: 1.5, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + " h"; } }, 7.964); })();
+      tl.fromTo("#Bk0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 9.495);
+      tl.fromTo("#Bk1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 9.645);
+      tl.fromTo("#Bneq", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 10.374);
+      tl.to("#Bbad", { color: "#F08BAA", duration: 0.3 }, 10.374);
+      tl.to("#Bk1", { borderColor: "#C2416B", duration: 0.3 }, 10.374);
       tl.set(".tbar", { visibility: "visible" }, 10.651);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 10.651);
       tl.set("#sB", { autoAlpha: 0 }, 11.311);
@@ -507,11 +578,14 @@
       tl.set(".tbar", { visibility: "hidden" }, 12.101);
       tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 11.461);
       tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.591);
-      gsap.set(["#Chub"], { autoAlpha: 0 });
+      gsap.set(["#Chub", "#sC .pulse"], { autoAlpha: 0 });
       tl.fromTo("#Chub", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 12.702);
       tl.fromTo("#Cb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 12.802);
       tl.fromTo("#Cb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 12.902);
       tl.fromTo("#Cb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 13.002);
+      tl.fromTo("#Cr0", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1000" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 12.852);
+      tl.fromTo("#Cr1", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1000" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 12.972);
+      tl.fromTo("#Cr2", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1000" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 13.092);
       tl.fromTo("#Cn0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.274);
       tl.to("#Cln0", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 13.574);
       tl.fromTo("#Cn1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.454);
@@ -520,38 +594,64 @@
       tl.to("#Cln2", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 13.934);
       tl.fromTo("#Cn3", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.814);
       tl.to("#Cln3", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 14.114);
-      tl.to("#Chub", { boxShadow: "0 0 0 18px rgba(71,212,212,.22), 0 20px 50px rgba(4,27,61,.3)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 15.853);
+      tl.set("#Cp0", { autoAlpha: 1 }, 15.653);
+      tl.fromTo("#Cp0", { x: 0, y: 0 }, { x: 325, y: 314, duration: 0.7, ease: "power2.inOut" }, 15.653);
+      tl.set("#Cp0", { autoAlpha: 0 }, 16.373);
+      tl.set("#Cp1", { autoAlpha: 1 }, 15.773);
+      tl.fromTo("#Cp1", { x: 0, y: 0 }, { x: -250, y: 314, duration: 0.7, ease: "power2.inOut" }, 15.773);
+      tl.set("#Cp1", { autoAlpha: 0 }, 16.493);
+      tl.set("#Cp2", { autoAlpha: 1 }, 15.893);
+      tl.fromTo("#Cp2", { x: 0, y: 0 }, { x: 280, y: -296, duration: 0.7, ease: "power2.inOut" }, 15.893);
+      tl.set("#Cp2", { autoAlpha: 0 }, 16.613);
+      tl.set("#Cp3", { autoAlpha: 1 }, 16.013);
+      tl.fromTo("#Cp3", { x: 0, y: 0 }, { x: -305, y: -296, duration: 0.7, ease: "power2.inOut" }, 16.013);
+      tl.set("#Cp3", { autoAlpha: 0 }, 16.733);
+      tl.to("#Chub", { boxShadow: "0 0 0 18px rgba(71,212,212,.22), 0 20px 50px rgba(4,27,61,.3)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 16.253);
       tl.set("#sD", { autoAlpha: 1 }, 16.298);
       tl.fromTo("#sD", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 16.298);
       tl.set("#sC", { autoAlpha: 0 }, 17.018);
       tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 16.848);
       tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 16.978);
-      gsap.set(["#Dnew"], { autoAlpha: 0 });
-      tl.fromTo("#Dm", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 17.198);
-      tl.fromTo("#Dar", { autoAlpha: 0, y: 0, x: -20 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 19.350);
-      tl.fromTo("#Dc", { autoAlpha: 0, y: 0, x: 40 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 19.550);
+      gsap.set(["#Dnew", "#Dchip"], { autoAlpha: 0 });
+      tl.fromTo("#Dw", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 17.148);
+      tl.fromTo("#Dm", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 17.298);
+      tl.fromTo("#Dtr", { scaleY: 0, transformOrigin: "0% 0%" }, { scaleY: 1, duration: 0.9, ease: "power2.inOut" }, 19.250);
+      tl.set("#Dchip", { autoAlpha: 1 }, 19.250);
+      tl.fromTo("#Dchip", { y: 0 }, { y: 214, duration: 0.9, ease: "power2.inOut" }, 19.250);
+      tl.fromTo("#Dk", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 19.750);
+      tl.fromTo("#Dc", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 19.950);
       tl.fromTo("#Dnew", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 21.209);
       tl.set("#sE", { autoAlpha: 1 }, 21.599);
       tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 21.599);
       tl.set("#sD", { autoAlpha: 0 }, 22.319);
       tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 22.149);
       tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 22.279);
-      gsap.set(["#Er2"], { autoAlpha: 0 });
+      gsap.set(["#Er2", "#Es8"], { autoAlpha: 0 });
       tl.fromTo("#Es", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 22.553);
       tl.fromTo("#Er2", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.632);
-      tl.fromTo("#Ee", { autoAlpha: 0, y: 0, x: 40 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 24.657);
-      gsap.set(["#Es8"], { autoAlpha: 0 });
-      tl.to("#Es9", { autoAlpha: 0, y: -30, duration: 0.3, ease: "power2.in" }, 25.894);
-      tl.fromTo("#Es8", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 26.094);
+      tl.fromTo("#Ee", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 24.657);
+      tl.fromTo("#sE .bx", { scale: 0.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.3, stagger: 0.04, ease: "power3.out" }, 24.857);
+      tl.to("#Ex8", { backgroundColor: "rgba(217,130,43,0)", duration: 0.35 }, 25.944);
+      tl.to("#Es9", { autoAlpha: 0, y: -30, duration: 0.3, ease: "power2.in" }, 25.944);
+      tl.fromTo("#Es8", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 26.144);
       tl.to("#sE", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 26.563);
       tl.fromTo("#sF", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 26.813);
       tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.013);
       tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.143);
       gsap.set(["#Fa0", "#Fa1", "#Fa2"], { autoAlpha: 0 });
-      tl.fromTo("#Fl", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.263);
-      tl.fromTo("#Fa0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.167);
-      tl.fromTo("#Fa1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.517);
-      tl.fromTo("#Fa2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.867);
+      gsap.set("#Fb1", { scaleX: 0 });
+      tl.fromTo("#Ft0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.263);
+      tl.fromTo("#Fn0", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 27.363);
+      tl.fromTo("#Ft1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.383);
+      tl.fromTo("#Fn1", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 27.483);
+      tl.fromTo("#Ft2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.503);
+      tl.fromTo("#Fn2", { autoAlpha: 0, y: 10, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 27.603);
+      tl.fromTo("#Fb", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.563);
+      tl.fromTo("#Fa0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.067);
+      tl.fromTo("#Fa1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.317);
+      tl.fromTo("#Fa2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.567);
+      tl.to("#Fb0", { scaleX: 0.14, duration: 1.4, ease: "power2.inOut" }, 28.067);
+      tl.to("#Fb1", { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, 28.367);
       tl.set(".tbar", { visibility: "visible" }, 30.527);
       tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 30.527);
       tl.set("#sF", { autoAlpha: 0 }, 31.187);
