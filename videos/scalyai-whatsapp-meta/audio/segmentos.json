@@ -1,0 +1,243 @@
+[
+ {
+  "id": "t1",
+  "text": "¿Quieres que tu número de WhatsApp Business responda con inteligencia artificial? Te muestro cómo conectarlo a Meta, con Claude como copiloto.",
+  "start": 0.5,
+  "dur": 9.102,
+  "speech": [
+   [
+    0.0,
+    4.68
+   ],
+   [
+    5.311,
+    7.31
+   ],
+   [
+    7.587,
+    9.102
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "t2",
+  "text": "Necesitas tres cosas: una cuenta de Meta Business, un número que puedas verificar por SMS o llamada, y acceso a Claude.",
+  "start": 10.452,
+  "dur": 8.636,
+  "speech": [
+   [
+    0.0,
+    1.466
+   ],
+   [
+    1.872,
+    3.481
+   ],
+   [
+    3.891,
+    7.185
+   ],
+   [
+    7.543,
+    8.636
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "t3",
+  "text": "Paso uno. Entra a developers punto facebook punto com, crea una app de tipo negocio y agrégale el producto WhatsApp.",
+  "start": 19.938,
+  "dur": 8.61,
+  "speech": [
+   [
+    0.0,
+    0.7
+   ],
+   [
+    1.269,
+    4.216
+   ],
+   [
+    4.638,
+    6.352
+   ],
+   [
+    6.635,
+    8.61
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "t4",
+  "text": "Paso dos. En Configuración de la API, agrega tu número, verifícalo con el código, y define el nombre que verán tus clientes. Anota el ID del número de teléfono.",
+  "start": 29.298,
+  "dur": 10.29,
+  "speech": [
+   [
+    0.0,
+    0.655
+   ],
+   [
+    1.012,
+    2.458
+   ],
+   [
+    2.75,
+    3.654
+   ],
+   [
+    3.945,
+    5.314
+   ],
+   [
+    5.677,
+    7.941
+   ],
+   [
+    8.235,
+    10.29
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "t5",
+  "text": "Paso tres. En la configuración del negocio, crea un usuario del sistema, y genera un token permanente con los permisos de WhatsApp. Guárdalo en un lugar seguro.",
+  "start": 40.338,
+  "dur": 10.829,
+  "speech": [
+   [
+    0.0,
+    0.708
+   ],
+   [
+    1.475,
+    3.175
+   ],
+   [
+    3.526,
+    5.02
+   ],
+   [
+    5.497,
+    8.715
+   ],
+   [
+    9.174,
+    10.829
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "t6",
+  "text": "Paso cuatro. Pídele a Claude que escriba el webhook: que reciba cada mensaje, lo responda con la API de Claude, y lo envíe de vuelta por WhatsApp. Tus claves van como variables de entorno, nunca en el chat.",
+  "start": 52.016,
+  "dur": 13.343,
+  "speech": [
+   [
+    0.0,
+    0.732
+   ],
+   [
+    1.32,
+    3.257
+   ],
+   [
+    3.666,
+    5.038
+   ],
+   [
+    5.399,
+    7.088
+   ],
+   [
+    7.533,
+    9.303
+   ],
+   [
+    10.072,
+    12.032
+   ],
+   [
+    12.395,
+    13.343
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "t7",
+  "text": "Paso cinco. Publica el webhook, y en Meta pega su dirección y el token de verificación. Luego suscríbete al campo mensajes.",
+  "start": 66.109,
+  "dur": 8.805,
+  "speech": [
+   [
+    0.0,
+    0.751
+   ],
+   [
+    1.321,
+    2.442
+   ],
+   [
+    2.753,
+    3.388
+   ],
+   [
+    3.619,
+    6.079
+   ],
+   [
+    6.588,
+    8.805
+   ]
+  ],
+  "scene": 6
+ },
+ {
+  "id": "t8",
+  "text": "Escríbele a tu número. En segundos, tu agente responde.",
+  "start": 75.764,
+  "dur": 3.787,
+  "speech": [
+   [
+    0.0,
+    1.257
+   ],
+   [
+    1.776,
+    2.446
+   ],
+   [
+    2.714,
+    3.787
+   ]
+  ],
+  "scene": 7
+ },
+ {
+  "id": "t9",
+  "text": "¿Necesitas un agente de IA que responda en tu WhatsApp? Yo te ayudo a configurarlo. Escríbeme.",
+  "start": 81.151,
+  "dur": 6.054,
+  "speech": [
+   [
+    0.0,
+    3.136
+   ],
+   [
+    3.636,
+    5.155
+   ],
+   [
+    5.476,
+    6.054
+   ]
+  ],
+  "scene": 8
+ }
+]
