@@ -1,0 +1,34 @@
+
+      /* ---- integraciones ---- */
+      .ah { display: flex; align-items: center; gap: 16px; }
+      .ah .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .dark .ah .ni { background: rgba(71,212,212,.12); }
+      .ah b { font-size: 32px; font-weight: 700; }
+      .ah i { margin-left: auto; font-style: normal; font-size: 20px; color: var(--slate-700); }
+      .ah .tag { margin-left: auto; }
+      .appc { padding: 30px 32px; }
+      .appc .arow { margin-top: 22px; padding: 16px 20px; border-radius: 14px; background: rgba(240,241,232,.08); font-size: 26px; font-weight: 500; color: var(--cream-100); white-space: nowrap; }
+      .appc .tag { position: absolute; right: 30px; top: 34px; }
+      .errc, .clk { padding: 34px 38px; }
+      .flab { font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); }
+      .fv { position: relative; margin-top: 10px; height: 76px; border-radius: 999px; border: 2px solid rgba(240,241,232,.2); display: flex; align-items: center; padding: 0 28px; font-size: 38px; font-weight: 700; color: var(--cream-100); }
+      .fv .errt { position: absolute; right: 16px; background: #C2416B; color: #fff; }
+      .clk { display: flex; gap: 30px; align-items: center; }
+      .clk .ni { flex: none; width: 96px; height: 96px; border-radius: 26px; background: rgba(71,212,212,.12); display: flex; align-items: center; justify-content: center; }
+      .clk b { display: block; font-size: 110px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cyan-400); }
+      .clk span { display: block; font-size: 30px; font-weight: 500; color: var(--cream-100); margin-top: 8px; }
+      .clk i { display: block; font-style: normal; font-size: 20px; color: #b9c3cf; margin-top: 8px; }
+      .msgc, .crm2, .sheet, .erpc { padding: 30px 34px; }
+      .bubx { margin-top: 26px; display: inline-block; padding: 20px 24px; border-radius: 22px; border-bottom-left-radius: 6px; background: var(--cream-100); border: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; }
+      .crm2 .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm2 .row:first-of-type { margin-top: 18px; }
+      .crm2 .row b { font-weight: 700; }
+      .srow { display: grid; grid-template-columns: .6fr 1.4fr 1fr; align-items: center; height: 72px; padding: 0 16px; border-top: 1px solid var(--cream-300); font-size: 25px; font-weight: 500; white-space: nowrap; }
+      .srow:first-of-type { margin-top: 18px; }
+      .srow span:last-child { justify-self: end; }
+      .srow.new { background: #e3f3f3; border-radius: 12px; border-top-color: transparent; font-weight: 700; color: #00545a; }
+      .stk { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; font-size: 30px; font-weight: 500; }
+      .stk b { position: relative; width: 120px; height: 110px; overflow: hidden; }
+      .stk em { position: absolute; right: 0; top: 0; font-style: normal; font-size: 100px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--teal-600); }
+      .erpc .note { margin-top: 18px; }
+      .tlist .task .tag { margin-left: auto; }

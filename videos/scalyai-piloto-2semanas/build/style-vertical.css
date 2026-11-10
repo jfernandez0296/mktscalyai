@@ -1,0 +1,10 @@
+
+      /* ---- 9:16 ---- */
+      .h1 { font-size: 92px; }
+      .h1.big { font-size: 92px; }
+      .h1.st { font-size: 84px; }
+      .h1 .l { display: block; line-height: 1.12; }
+      .phase { flex-direction: column; align-items: flex-start; gap: 30px; padding: 40px 44px; }
+      .phase .pl { width: auto; }
+      .btn { font-size: 34px; height: 96px; padding: 0 40px; }
+      .day b { font-size: 32px; }

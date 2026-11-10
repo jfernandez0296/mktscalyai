@@ -1,0 +1,597 @@
+<!doctype html>
+    <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1080, height=1920" />
+        <title>Scaly AI — Excel, CRM y ERP conectados</title>
+        <script src="assets/vendor/gsap.min.js"></script>
+        <style>
+          @font-face { font-family: "Manrope"; font-weight: 300; src: url("assets/fonts/Manrope-300-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 400; src: url("assets/fonts/Manrope-400-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); }
+      :root {
+        --navy-900: #041b3d; --navy-700: #0d2f5c; --teal-600: #007b83; --cyan-400: #47d4d4; --slate-700: #2f4560;
+        --cream-100: #f0f1e8; --cream-200: #e3e5d9; --cream-300: #d6d9cb; --white: #ffffff;
+        --gradient-brand: linear-gradient(90deg, #0d2f5c, #47d4d4);
+        --shadow-card: 0 12px 30px rgba(4,27,61,.15); --shadow-button: 0 12px 28px rgba(4,27,61,.22);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); font-family: "Manrope", system-ui, sans-serif; color: var(--navy-900); }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      .sc.dark { background: var(--navy-900); color: var(--cream-100); }
+      .cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 45%; }
+      #sB, #sC, #sD, #sE, #sF, #sG, #sH, .cap { visibility: hidden; opacity: 0; }
+
+      /* fondos: rejilla sutil + resplandor cian */
+      .grid { position: absolute; left: -64px; top: -64px; width: 1208px; height: 2048px;
+        background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px);
+        background-size: 64px 64px; opacity: .45; }
+      .dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity: 1; }
+      .glow { position: absolute; width: 1100px; height: 1100px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(71,212,212,.38), rgba(71,212,212,0)); }
+      .dark .glow { background: radial-gradient(closest-side, rgba(71,212,212,.16), rgba(71,212,212,0)); }
+
+      /* tipografía */
+      .eyebrow { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); white-space: nowrap; }
+      .dark .eyebrow { color: var(--cyan-400); }
+      .h1 { font-size: 92px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; white-space: nowrap; }
+      .h1 em { font-style: normal; color: var(--teal-600); }
+      .dark .h1 em { color: var(--cyan-400); }
+      .lead { font-size: 36px; font-weight: 300; line-height: 1.4; color: var(--slate-700); }
+      .dark .lead { color: var(--cream-200); }
+      .note { font-size: 18px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .dark .note { color: #b9c3cf; }
+      .tag { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 22px; border-radius: 999px; font-size: 18px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+      .tag.soft { background: var(--cream-200); color: var(--slate-700); }
+      .tag.teal { background: #d6eeee; color: #00646b; }
+      .tag.cyan { background: var(--cyan-400); color: var(--navy-900); }
+      .tag.navy { background: var(--navy-900); color: var(--cream-100); }
+
+      /* tarjetas */
+      .card { background: var(--white); border: 1px solid var(--cream-300); border-radius: 20px; box-shadow: var(--shadow-card); }
+      .dark .card { background: var(--navy-700); border-color: rgba(240,241,232,.12); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+
+      /* A · noche */
+      .clock { font-size: 230px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cream-100); white-space: nowrap; }
+      .clock small { font-size: 80px; font-weight: 500; letter-spacing: -0.02em; color: var(--cyan-400); margin-left: 18px; }
+      .line { font-size: 64px; font-weight: 800; letter-spacing: -0.035em; white-space: nowrap; }
+      .line.dim { color: #8fa0b5; font-weight: 700; }
+      .notif { width: 700px; padding: 30px 34px; display: flex; gap: 26px; align-items: flex-start; background: var(--cream-100); color: var(--navy-900); border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .notif .wa { flex: none; width: 76px; height: 76px; border-radius: 20px; background: #128c4a; display: flex; align-items: center; justify-content: center; }
+      .notif .who { font-size: 22px; font-weight: 700; color: var(--slate-700); display: flex; justify-content: space-between; width: 530px; }
+      .notif .msg { font-size: 34px; font-weight: 500; margin-top: 8px; white-space: nowrap; }
+      .wait { display: flex; align-items: center; gap: 18px; height: 84px; padding: 0 34px; border-radius: 999px; border: 1px solid rgba(240,241,232,.22); background: rgba(240,241,232,.06); font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .wait b { color: var(--cyan-400); font-weight: 800; min-width: 92px; text-align: right; }
+
+      /* filas de tareas */
+      .task { display: flex; align-items: center; gap: 24px; height: 104px; padding: 0 32px; border-bottom: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; white-space: nowrap; }
+      .task:last-child { border-bottom: 0; }
+      .task .ti { flex: none; width: 56px; height: 56px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .task .tx { flex: 1; }
+      .task .st { position: relative; width: 220px; height: 46px; }
+      .task .st .tag { position: absolute; right: 0; top: 0; }
+      .bigstat b { display: block; font-size: 150px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--teal-600); }
+      .bigstat span { display: block; font-size: 30px; font-weight: 700; margin-top: 14px; line-height: 1.3; }
+      .bigstat i { display: block; font-style: normal; font-size: 24px; font-weight: 300; color: var(--slate-700); margin-top: 8px; line-height: 1.4; }
+
+      /* C · marca */
+      .wm { display: flex; align-items: center; gap: 48px; white-space: nowrap; }
+      .wm .nm { font-size: 190px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+      .wm .nm span { font-weight: 500; color: var(--teal-600); letter-spacing: -0.03em; }
+      .dark .wm .nm span { color: var(--cyan-400); }
+      .bars { position: relative; }
+      .bars i { position: absolute; display: block; border-radius: 999px; }
+      .hero .h1 { font-size: 120px; line-height: 1.04; }
+      .hero .h1 .s { color: var(--slate-700); font-weight: 500; }
+      .vbar { width: 10px; border-radius: 5px; background: var(--teal-600); }
+      .navlogo { display: flex; align-items: center; gap: 16px; font-size: 40px; font-weight: 800; letter-spacing: -0.04em; white-space: nowrap; }
+      .navlogo span { font-weight: 500; color: var(--teal-600); }
+
+      /* D · chat */
+      .phone { width: 540px; height: 860px; border-radius: 60px; background: var(--navy-900); padding: 16px; box-shadow: 0 30px 70px rgba(4,27,61,.28); }
+      .screen { position: relative; width: 508px; height: 828px; border-radius: 46px; background: var(--cream-100); overflow: hidden; }
+      .chd { position: absolute; left: 0; top: 0; width: 508px; height: 128px; padding: 40px 28px 0; display: flex; gap: 18px; align-items: center; background: var(--white); border-bottom: 1px solid var(--cream-300); }
+      .chd .av { width: 64px; height: 64px; border-radius: 18px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; }
+      .chd b { display: block; font-size: 24px; font-weight: 700; }
+      .chd i { display: block; font-style: normal; font-size: 18px; font-weight: 500; color: var(--teal-600); }
+      .bub { position: absolute; max-width: 400px; padding: 18px 22px; border-radius: 22px; font-size: 25px; font-weight: 500; line-height: 1.3; }
+      .bub small { display: block; font-size: 16px; font-weight: 500; margin-top: 6px; opacity: .75; text-align: right; }
+      .bub.in { left: 24px; background: var(--white); border: 1px solid var(--cream-300); border-bottom-left-radius: 6px; }
+      .bub.out { right: 24px; background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius: 6px; }
+      .typing { position: absolute; right: 24px; display: flex; gap: 8px; padding: 22px 24px; border-radius: 22px; background: var(--navy-900); }
+      .typing i { width: 12px; height: 12px; border-radius: 6px; background: var(--cyan-400); display: block; }
+      .rcpt { position: absolute; left: 24px; width: 460px; display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 18px; background: #d6eeee; color: #00545a; font-size: 23px; font-weight: 700; }
+      .crm { width: 640px; padding: 26px 30px; }
+      .crm .hd { display: flex; justify-content: space-between; align-items: center; }
+      .crm .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm .row b { font-weight: 700; }
+
+      /* E · conexiones */
+      .hub { width: 170px; height: 170px; border-radius: 40px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(4,27,61,.3); }
+      .node { display: flex; align-items: center; gap: 16px; height: 92px; padding: 0 30px 0 18px; border-radius: 999px; background: var(--white); border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .node .ni { width: 60px; height: 60px; border-radius: 30px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .pulse { width: 18px; height: 18px; border-radius: 9px; background: var(--cyan-400); box-shadow: 0 0 0 6px rgba(71,212,212,.25); }
+
+      /* F · datos */
+      .kpi { width: 520px; height: 200px; padding: 30px 34px; }
+      .kpi b em { font-style: normal; }
+      .kpi b { display: block; font-size: 84px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--cyan-400); white-space: nowrap; }
+      .kpi span { display: block; font-size: 26px; font-weight: 500; color: var(--cream-200); margin-top: 16px; white-space: nowrap; }
+      .chart { width: 1600px; height: 300px; }
+      .cbar { position: absolute; bottom: 64px; width: 54px; border-radius: 10px 10px 4px 4px; }
+      .cbar.m { background: #5d708a; }
+      .cbar.a { background: var(--cyan-400); }
+      .lg { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 500; color: var(--cream-200); white-space: nowrap; }
+      .lg i { width: 22px; height: 22px; border-radius: 6px; display: block; }
+      .wk { position: absolute; bottom: 22px; width: 140px; text-align: center; font-size: 18px; font-weight: 500; color: #b9c3cf; }
+
+      /* G · piloto */
+      .track { height: 12px; border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .track div { width: 100%; height: 100%; background: var(--gradient-brand); transform-origin: 0% 50%; }
+      .dot { width: 64px; height: 64px; border-radius: 32px; background: var(--white); border: 2px solid var(--cream-300); display: flex; align-items: center; justify-content: center; }
+      .dot.on { background: var(--teal-600); border-color: var(--teal-600); }
+      .step { width: 480px; height: 290px; padding: 32px 36px; }
+      .step .num { font-size: 22px; font-weight: 800; letter-spacing: .14em; color: var(--teal-600); }
+      .step h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; margin-top: 14px; white-space: nowrap; }
+      .step b { display: block; font-size: 64px; font-weight: 800; letter-spacing: -0.04em; color: var(--teal-600); margin-top: 26px; white-space: nowrap; }
+      .step i { font-style: normal; font-size: 26px; font-weight: 300; color: var(--slate-700); white-space: nowrap; }
+
+      /* H · cierre */
+      .btn { display: flex; align-items: center; justify-content: center; gap: 18px; height: 104px; padding: 0 56px; border-radius: 999px; background: var(--gradient-brand); color: var(--white); font-size: 40px; font-weight: 700; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+      .micro { font-size: 30px; font-weight: 500; color: var(--cream-200); white-space: nowrap; text-align: center; }
+      .url { font-size: 30px; font-weight: 800; letter-spacing: .14em; color: var(--cyan-400); text-align: center; }
+
+      /* transición con las tres barras del logo */
+      .tbar { position: absolute; left: 0; width: 1800px; height: 640px; border-radius: 320px; visibility: hidden; }
+      #prog { position: absolute; left: 0; bottom: 0; width: 1080px; height: 6px; background: var(--gradient-brand); transform-origin: 0% 50%; }
+
+      /* subtítulos */
+      .cap { position: absolute; left: 0; top: 1490px; width: 1080px; display: flex; justify-content: center; pointer-events: none; }
+      .cap span { padding: 12px 30px; border-radius: 999px; background: rgba(4,27,61,.92); color: var(--cream-100); font-size: 34px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(4,27,61,.25); }
+      .cap b { font-weight: 800; color: var(--cyan-400); }
+      #Ecard .task { font-size: 27px; height: 100px; } #Ecard .task .st { width: 210px; }
+
+      /* ---- tutorial WhatsApp + Meta + Claude ---- */
+      #sI { visibility: hidden; opacity: 0; }
+      .h1 .l { display: block; line-height: 1.14; }
+      .h1.big { font-size: 104px; line-height: 1.08; }
+      .h1.ctr, .lead.ctr { text-align: center; }
+      .navlogo.dk { color: var(--cream-100); }
+      .navlogo.dk span { color: var(--cyan-400); }
+      .pdots { position: absolute; right: 160px; top: 132px; display: flex; gap: 10px; }
+      .pdots i { display: block; width: 14px; height: 14px; border-radius: 7px; background: var(--cream-300); }
+      .pdots i.done { background: #7fc3c7; }
+      .pdots i.on { width: 44px; background: var(--teal-600); }
+      .dark .pdots i { background: rgba(240,241,232,.22); }
+      .dark .pdots i.done { background: rgba(71,212,212,.5); }
+      .dark .pdots i.on { background: var(--cyan-400); }
+      .flow { display: flex; align-items: center; gap: 20px; width: 400px; padding: 24px 28px; border-radius: 20px; background: var(--navy-700); border: 1px solid rgba(240,241,232,.12); }
+      .flow .ni { flex: none; width: 72px; height: 72px; border-radius: 20px; background: rgba(71,212,212,.12); display: flex; align-items: center; justify-content: center; }
+      .flow b { display: block; font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .flow span { display: block; font-size: 22px; font-weight: 300; color: var(--cream-200); margin-top: 4px; white-space: nowrap; }
+      .need { width: 500px; height: 420px; padding: 40px 40px; }
+      .need .pi { width: 88px; height: 88px; border-radius: 24px; background: #d6eeee; display: flex; align-items: center; justify-content: center; }
+      .need h3 { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin-top: 30px; }
+      .need p { font-size: 26px; font-weight: 300; line-height: 1.4; color: var(--slate-700); margin-top: 12px; }
+      .win { overflow: hidden; }
+      .wbar { height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 22px; background: var(--cream-200); border-bottom: 1px solid var(--cream-300); }
+      .wbar i { width: 14px; height: 14px; border-radius: 7px; background: var(--cream-300); display: block; }
+      .wbar span { margin-left: 16px; flex: 1; height: 36px; border-radius: 999px; background: #fff; display: flex; align-items: center; padding: 0 18px; font-size: 19px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .wbar.dk { background: #0a2348; border-bottom-color: rgba(240,241,232,.1); }
+      .wbar.dk i { background: rgba(240,241,232,.2); }
+      .wbar.dk span { background: transparent; color: var(--cream-200); padding: 0; }
+      .wbody { padding: 34px 44px; }
+      .ftitle { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 26px; white-space: nowrap; }
+      .ftitle.sm { margin-bottom: 14px; }
+      .fld { margin-bottom: 22px; }
+      .fld label { display: block; font-size: 20px; font-weight: 700; color: var(--slate-700); margin-bottom: 8px; }
+      .fld .val { position: relative; height: 62px; border-radius: 999px; border: 1px solid var(--cream-300); background: var(--cream-100); display: flex; align-items: center; padding: 0 26px; font-size: 26px; font-weight: 500; white-space: nowrap; }
+      .ok { position: absolute; right: 14px; top: 50%; margin-top: -19px; width: 38px; height: 38px; border-radius: 19px; background: var(--teal-600); display: flex; align-items: center; justify-content: center; }
+      .perm .ok { position: static; margin: 0; width: 34px; height: 34px; flex: none; }
+      .copy { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); padding: 6px 18px; border-radius: 999px; background: #d6eeee; color: #00646b; font-size: 18px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      .sbtn { display: inline-flex; align-items: center; height: 60px; padding: 0 32px; border-radius: 999px; background: var(--gradient-brand); color: #fff; font-size: 24px; font-weight: 700; box-shadow: var(--shadow-button); margin: 6px 0 26px; }
+      .sbtn.sm { height: 50px; padding: 0 24px; font-size: 21px; margin: 0; }
+      .prod { display: flex; align-items: center; gap: 20px; padding: 22px 24px; border-radius: 20px; border: 1px solid var(--cream-300); }
+      .prod .ni { flex: none; width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+      .prod > div:nth-child(2) { flex: 1; }
+      .prod b { display: block; font-size: 28px; font-weight: 700; }
+      .prod span { display: block; font-size: 21px; font-weight: 300; color: var(--slate-700); }
+      .code6 { position: relative; display: flex; gap: 12px; }
+      .code6 i { display: flex; width: 62px; height: 70px; border-radius: 14px; border: 1px solid var(--cream-300); background: var(--cream-100); align-items: center; justify-content: center; font-style: normal; font-size: 32px; font-weight: 700; }
+      .code6 .ok { right: auto; left: 470px; }
+      .wnote { font-size: 18px; font-weight: 500; color: var(--slate-700); }
+      .urow { display: flex; align-items: center; gap: 18px; padding: 20px 22px; border-radius: 20px; border: 1px solid var(--cream-300); margin-bottom: 22px; }
+      .urow .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .urow b { display: block; font-size: 26px; font-weight: 700; }
+      .urow span { display: block; font-size: 20px; font-weight: 300; color: var(--slate-700); }
+      .perm { display: flex; align-items: center; gap: 14px; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; margin-bottom: 14px; }
+      .prompt { padding: 30px 34px; border-radius: 20px; background: var(--navy-700); border: 1px solid rgba(240,241,232,.12); font-size: 30px; font-weight: 500; line-height: 1.45; color: var(--cream-100); }
+      .prompt .who { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); margin-bottom: 12px; }
+      .envc { padding: 26px 30px; border-radius: 20px; background: #020f24; border: 1px solid rgba(240,241,232,.12); }
+      .envc .eh { display: flex; justify-content: space-between; align-items: center; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; color: var(--cream-200); margin-bottom: 14px; }
+      .envc code { display: block; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; line-height: 1.7; color: var(--cyan-400); }
+      .tag.sm { height: 36px; padding: 0 14px; font-size: 14px; }
+      .editor { border-radius: 20px; background: #020f24; border: 1px solid rgba(240,241,232,.12); overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .lines { padding: 26px 28px 30px 10px; }
+      .ln { font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; line-height: 1.95; color: var(--cream-100); white-space: pre; }
+      .ln em { display: inline-block; width: 46px; text-align: right; margin-right: 22px; font-style: normal; color: #9aaabd; }
+      .ln.k { color: var(--cyan-400); }
+      .okt { display: inline-flex; align-items: center; gap: 10px; margin-left: 20px; font-size: 24px; font-weight: 700; color: var(--teal-600); vertical-align: middle; }
+      .sub { display: flex; align-items: center; gap: 20px; padding: 18px 22px; border-radius: 18px; border: 1px solid var(--cream-300); }
+      .sub code { flex: 1; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 26px; }
+      .tog { position: relative; width: 74px; height: 44px; border-radius: 22px; background: var(--cream-300); }
+      .tog i { position: absolute; left: 6px; top: 6px; width: 32px; height: 32px; border-radius: 16px; background: #fff; display: block; box-shadow: 0 2px 6px rgba(4,27,61,.2); }
+      .sub .okt { margin-left: 0; }
+      .h1.st { font-size: 80px; }
+      /* ---- versión "desde Claude" ---- */
+      .ask { padding: 26px 30px; border-radius: 20px; background: #fff; border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 500; line-height: 1.4; }
+      .ask .who { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 10px; }
+      .cstat { display: flex; align-items: center; gap: 14px; height: 76px; padding: 0 26px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 24px; font-weight: 700; white-space: nowrap; }
+      .cstat i { font-style: normal; font-weight: 500; color: var(--cream-200); margin-right: 6px; }
+      .cstat svg:last-child { stroke: var(--cyan-400); }
+      .cbadge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px; background: var(--cyan-400); color: var(--navy-900); font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .06em; white-space: nowrap; }
+      .wbar span { flex: 1; min-width: 0; overflow: hidden; }
+
+      /* ---- integraciones ---- */
+      .ah { display: flex; align-items: center; gap: 16px; }
+      .ah .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .dark .ah .ni { background: rgba(71,212,212,.12); }
+      .ah b { font-size: 32px; font-weight: 700; }
+      .ah i { margin-left: auto; font-style: normal; font-size: 20px; color: var(--slate-700); }
+      .ah .tag { margin-left: auto; }
+      .appc { padding: 30px 32px; }
+      .appc .arow { margin-top: 22px; padding: 16px 20px; border-radius: 14px; background: rgba(240,241,232,.08); font-size: 26px; font-weight: 500; color: var(--cream-100); white-space: nowrap; }
+      .appc .tag { position: absolute; right: 30px; top: 34px; }
+      .errc, .clk { padding: 34px 38px; }
+      .flab { font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); }
+      .fv { position: relative; margin-top: 10px; height: 76px; border-radius: 999px; border: 2px solid rgba(240,241,232,.2); display: flex; align-items: center; padding: 0 28px; font-size: 38px; font-weight: 700; color: var(--cream-100); }
+      .fv .errt { position: absolute; right: 16px; background: #C2416B; color: #fff; }
+      .clk { display: flex; gap: 30px; align-items: center; }
+      .clk .ni { flex: none; width: 96px; height: 96px; border-radius: 26px; background: rgba(71,212,212,.12); display: flex; align-items: center; justify-content: center; }
+      .clk b { display: block; font-size: 110px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cyan-400); }
+      .clk span { display: block; font-size: 30px; font-weight: 500; color: var(--cream-100); margin-top: 8px; }
+      .clk i { display: block; font-style: normal; font-size: 20px; color: #b9c3cf; margin-top: 8px; }
+      .msgc, .crm2, .sheet, .erpc { padding: 30px 34px; }
+      .bubx { margin-top: 26px; display: inline-block; padding: 20px 24px; border-radius: 22px; border-bottom-left-radius: 6px; background: var(--cream-100); border: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; }
+      .crm2 .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm2 .row:first-of-type { margin-top: 18px; }
+      .crm2 .row b { font-weight: 700; }
+      .srow { display: grid; grid-template-columns: .6fr 1.4fr 1fr; align-items: center; height: 72px; padding: 0 16px; border-top: 1px solid var(--cream-300); font-size: 25px; font-weight: 500; white-space: nowrap; }
+      .srow:first-of-type { margin-top: 18px; }
+      .srow span:last-child { justify-self: end; }
+      .srow.new { background: #e3f3f3; border-radius: 12px; border-top-color: transparent; font-weight: 700; color: #00545a; }
+      .stk { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; font-size: 30px; font-weight: 500; }
+      .stk b { position: relative; width: 120px; height: 110px; overflow: hidden; }
+      .stk em { position: absolute; right: 0; top: 0; font-style: normal; font-size: 100px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; color: var(--teal-600); }
+      .erpc .note { margin-top: 18px; }
+      .tlist .task .tag { margin-left: auto; }
+
+      .cap span { font-size: 38px; padding: 14px 32px; }
+
+      /* ---- 9:16 ---- */
+      .h1 { font-size: 92px; }
+      .h1.st { font-size: 80px; }
+      .h1 .l { display: block; line-height: 1.12; }
+      .wm .nm { font-size: 124px; }
+      .btn { font-size: 34px; height: 96px; padding: 0 40px; }
+      .lead { font-size: 36px; }
+      .appc .arow { margin-top: 16px; }
+
+        </style>
+      </head>
+      <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="40.91" data-fps="30" data-width="1080" data-height="1920">
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div>
+        <div class="abs eyebrow" id="Aey" style="left:70px;top:204px">Tu operación hoy</div><div class="abs h1" id="At" style="left:66px;top:250px"><span class="l">El mismo pedido,</span><span class="l">copiado <em>tres veces.</em></span></div>
+        <div class="abs card appc" id="Aa0" style="left:70px;top:640px;width:940px;height:220px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><b>Excel</b></div><div class="arow">Pedido #1042 · Polo básico M</div><span class="tag soft" id="Ac0">Copiado a mano</span></div><div class="abs card appc" id="Aa1" style="left:70px;top:890px;width:940px;height:220px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><b>CRM</b></div><div class="arow">Pedido #1042 · Polo básico M</div><span class="tag soft" id="Ac1">Copiado a mano</span></div><div class="abs card appc" id="Aa2" style="left:70px;top:1140px;width:940px;height:220px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div><b>ERP</b></div><div class="arow">Pedido #1042 · Polo básico M</div><span class="tag soft" id="Ac2">Copiado a mano</span></div>
+        <div class="abs note" style="left:70px;top:1420px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc dark" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div>
+        <div class="abs eyebrow" id="Bey" style="left:70px;top:204px">El costo</div><div class="abs h1" id="Bt" style="left:66px;top:250px"><span class="l">Tiempo perdido.</span><span class="l"><em>Errores.</em></span></div>
+        <div class="abs card errc" id="Bc0" style="left:70px;top:640px;width:940px;height:300px">
+          <div class="flab">Pedido en WhatsApp</div><div class="fv">#1042</div>
+          <div class="flab" style="margin-top:22px">Pedido en el CRM</div><div class="fv bad" id="Bbad">#1024<span class="tag errt">Mal copiado</span></div></div>
+        <div class="abs card clk" id="Bc1" style="left:70px;top:990px;width:940px;height:300px"><div class="ni"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#47D4D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg></div><div><b id="Bh">0 h</b><span>a la semana copiando datos</span><i>Dato ilustrativo</i></div></div>
+      </div></div>
+      <div class="sc" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:600px;width:1100px;height:1100px"></div>
+        <div class="abs eyebrow" id="Cey" style="left:70px;top:204px">Scaly AI</div><div class="abs h1" id="Ct" style="left:66px;top:250px"><span class="l">Un solo <em>flujo.</em></span></div>
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><path id="Cln0" d="M215 686 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln1" d="M790 686 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln2" d="M260 1296 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/><path id="Cln3" d="M845 1296 L540 1000" pathLength="1" stroke="#007B83" stroke-width="4" stroke-linecap="round" fill="none" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
+        <div class="abs hub" id="Chub" style="left:455px;top:915px"><div class="bars" style="width:90.0px;height:84.0px"><i id="Cb0" style="left:24.0px;top:0.0px;width:66.0px;height:21.0px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:31.5px;width:90.0px;height:21.0px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:63.0px;width:66.0px;height:21.0px;background:#F0F1E8"></i></div></div>
+        <div class="abs node" id="Cn0" style="left:70px;top:640px"><div class="ni"><svg width="34" height="34" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#128C4A"/></svg></div>WhatsApp</div><div class="abs node" id="Cn1" style="left:700px;top:640px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div>CRM</div><div class="abs node" id="Cn2" style="left:70px;top:1250px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div>Hojas de cálculo</div><div class="abs node" id="Cn3" style="left:760px;top:1250px"><div class="ni"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div>ERP</div>
+      </div></div>
+      <div class="sc" id="sD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div>
+        <div class="abs eyebrow" id="Dey" style="left:70px;top:204px">Paso a paso</div><div class="abs h1 st" id="Dt" style="left:66px;top:250px"><span class="l">Llega el pedido.</span><span class="l"><em>Se registra solo.</em></span></div>
+        <div class="abs card msgc" id="Dm" style="left:70px;top:620px;width:940px;height:280px"><div class="ah"><div class="ni" style="background:#128C4A"><svg width="30" height="30" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><b>WhatsApp</b><i>ahora</i></div>
+          <div class="bubx">Hola, quiero el polo básico en talla M.</div></div>
+        <div class="abs arrow" id="Dar" style="left:500px;top:930px"><div style="transform:rotate(90deg)"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></div>
+        <div class="abs card crm2" id="Dc" style="left:70px;top:1040px;width:940px;height:300px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><b>CRM</b><span class="tag teal" id="Dnew">Nuevo</span></div>
+          <div class="row"><span>Pedido</span><b>#1042</b></div><div class="row"><span>Producto</span><b>Polo básico · M</b></div><div class="row"><span>Canal</span><b>WhatsApp</b></div></div>
+      </div></div>
+      <div class="sc" id="sE"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1000px;height:1000px"></div>
+        <div class="abs eyebrow" id="Eey" style="left:70px;top:204px">Sin copiar nada</div><div class="abs h1 st" id="Et" style="left:66px;top:250px"><span class="l">Todo se</span><span class="l"><em>actualiza.</em></span></div>
+        <div class="abs card sheet" id="Es" style="left:70px;top:620px;width:940px;height:380px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><b>Hoja de pedidos</b></div>
+          <div class="srow" id="Er0"><span>#1040</span><span>Jean clásico · 30</span><span>Entregado</span></div><div class="srow" id="Er1"><span>#1041</span><span>Casaca · L</span><span>En camino</span></div><div class="srow new" id="Er2"><span>#1042</span><span>Polo básico · M</span><span>Registrado</span></div></div>
+        <div class="abs card erpc" id="Ee" style="left:70px;top:1060px;width:940px;height:300px"><div class="ah"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div><b>ERP · Stock</b></div>
+          <div class="stk"><span>Polo básico · M</span><b><em id="Es9">9</em><em id="Es8">8</em></b></div><div class="note">Datos ilustrativos</div></div>
+      </div></div>
+      <div class="sc" id="sF"><div class="cam"><div class="grid"></div><div class="glow" style="left:0px;top:800px;width:1100px;height:1100px"></div>
+        <div class="abs eyebrow" id="Fey" style="left:70px;top:204px">El resultado</div><div class="abs h1 st" id="Ft" style="left:66px;top:250px"><span class="l">Menos copiar y pegar.</span><span class="l"><em>Más vender.</em></span></div>
+        <div class="abs card tlist" id="Fl" style="left:70px;top:640px;width:940px;height:350px">
+          <div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="tx">Copiar el pedido a Excel</div><span class="tag teal" id="Fa0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="tx">Pasar el pedido al CRM</div><span class="tag teal" id="Fa1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div><div class="task"><div class="ti"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg></div><div class="tx">Descontar el stock en el ERP</div><span class="tag teal" id="Fa2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Automático</span></div></div>
+      </div></div>
+      <div class="sc dark" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div>
+        <div class="abs wm" id="Gwm" style="left:205px;top:520px;gap:36px"><div class="bars" style="width:140.6px;height:131.2px"><i id="Gb0" style="left:37.5px;top:0.0px;width:103.1px;height:32.8px;background:#47D4D4"></i><i id="Gb1" style="left:0.0px;top:49.2px;width:140.6px;height:32.8px;background:#007B83"></i><i id="Gb2" style="left:0.0px;top:98.4px;width:103.1px;height:32.8px;background:#F0F1E8"></i></div><div class="nm" style="font-size:124px">Scaly <span>AI</span></div></div>
+        <div class="abs lead ctr" id="Gtag" style="left:0px;top:760px;width:1080px">Software e IA a la medida de tu negocio.</div>
+        <div class="abs" id="Gcta" style="left:0px;top:900px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Gbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></div>
+        <div class="abs micro" id="Gmic" style="left:0px;top:1050px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Gurl" style="left:0px;top:1140px;width:1080px">SCALYAI.DEV</div>
+      </div></div>
+          <div class="abs" id="tbars" style="left:0;top:0;width:1080px;height:1920px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:640px;background:#007B83"></div><div class="tbar" style="top:1280px;background:#041B3D"></div></div>
+          <div id="prog"></div>
+          <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>Tu equipo copia el</span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>mismo pedido tres veces:</span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>en <b>Excel,</b> en el</span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span><b>CRM</b> y en el <b>ERP.</b></span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>Cada copia es tiempo perdido,</span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>y una oportunidad de <b>error.</b></span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>En <b>Scaly</b> AI conectamos tus</span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>herramientas en un solo <b>flujo.</b></span></div>
+      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>Llega un pedido por <b>WhatsApp,</b></span></div>
+      <div class="cap" id="cap9" data-layout-allow-overlap="true"><span>y se registra solo en tu <b>CRM.</b></span></div>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>Tu hoja de cálculo</span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>se actualiza,</span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>y el <b>ERP</b> descuenta el stock.</span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>Tu equipo deja de</span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>copiar y pegar,</span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>y se dedica a <b>vender.</b></span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span><b>Conversemos</b> de tu</span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>próximo <b>piloto.</b></span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span><b>Treinta</b> <b>minutos,</b></span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>sin tarjeta, sin compromiso.</span></div>
+          <audio id="v_s1" src="audio/seg/s1.wav" data-start="0.6" data-duration="5.607" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s2" src="audio/seg/s2.wav" data-start="7.207" data-duration="3.804" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s3" src="audio/seg/s3.wav" data-start="12.711" data-duration="3.687" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s4" src="audio/seg/s4.wav" data-start="17.398" data-duration="4.301" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s5" src="audio/seg/s5.wav" data-start="22.699" data-duration="3.864" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s6" src="audio/seg/s6.wav" data-start="27.563" data-duration="3.224" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s7" src="audio/seg/s7.wav" data-start="32.587" data-duration="5.172" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="40.91" data-track-index="13" data-volume="0.8"></audio>
+          <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="40.91" data-track-index="14" data-volume="0.5"></audio>
+        </div>
+        <script>
+          window.__timelines = window.__timelines || {};
+          const tl = gsap.timeline({ paused: true });
+          const fmt = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          const capShow = (sel, a, b) => {
+            tl.fromTo(sel, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: "power2.out" }, a - 0.04);
+            tl.set(sel, { autoAlpha: 0 }, b);
+          };
+          tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 7.71, ease: "none" }, 0.000);
+      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 7.71, ease: "sine.inOut" }, 0.000);
+      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 6.00, ease: "none" }, 6.507);
+      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.00, ease: "sine.inOut" }, 6.507);
+      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 6.59, ease: "none" }, 11.311);
+      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.59, ease: "sine.inOut" }, 11.311);
+      tl.fromTo("#sD > .cam", { scale: 1 }, { scale: 1.035, duration: 6.50, ease: "none" }, 16.698);
+      tl.fromTo("#sD .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.50, ease: "sine.inOut" }, 16.698);
+      tl.fromTo("#sE > .cam", { scale: 1 }, { scale: 1.035, duration: 6.06, ease: "none" }, 21.999);
+      tl.fromTo("#sE .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.06, ease: "sine.inOut" }, 21.999);
+      tl.fromTo("#sF > .cam", { scale: 1 }, { scale: 1.035, duration: 5.52, ease: "none" }, 26.863);
+      tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 5.52, ease: "sine.inOut" }, 26.863);
+      tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 10.92, ease: "none" }, 31.187);
+      tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.92, ease: "sine.inOut" }, 31.187);
+      tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.150);
+      tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 0.280);
+      gsap.set(["#Ac0", "#Ac1", "#Ac2"], { autoAlpha: 0 });
+      tl.fromTo("#Aa0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 3.435);
+      tl.fromTo("#Ac0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 3.785);
+      tl.fromTo("#Aa1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 4.550);
+      tl.fromTo("#Ac1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 4.900);
+      tl.fromTo("#Aa2", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 5.578);
+      tl.fromTo("#Ac2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 5.928);
+      tl.to("#sA", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 6.207);
+      tl.fromTo("#sB", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 6.457);
+      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.657);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 6.787);
+      gsap.set(["#Bbad .errt"], { autoAlpha: 0 });
+      tl.fromTo("#Bc0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.764);
+      tl.fromTo("#Bc1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 8.164);
+      (() => { const o = { v: 0 }; const el = document.querySelector("#Bh"); tl.to(o, { v: 12, duration: 1.4, ease: "power2.out", onUpdate: () => { el.textContent = fmt(o.v) + " h"; } }, 8.364); })();
+      tl.to("#Bbad", { borderColor: "#C2416B", color: "#C2416B", duration: 0.3 }, 10.324);
+      tl.fromTo("#Bbad .errt", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 10.424);
+      tl.set(".tbar", { visibility: "visible" }, 10.651);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 10.651);
+      tl.set("#sB", { autoAlpha: 0 }, 11.311);
+      tl.set("#sC", { autoAlpha: 1 }, 11.311);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 11.351);
+      tl.set(".tbar", { visibility: "hidden" }, 12.101);
+      tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 11.461);
+      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.591);
+      gsap.set(["#Chub"], { autoAlpha: 0 });
+      tl.fromTo("#Chub", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 12.702);
+      tl.fromTo("#Cb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 12.802);
+      tl.fromTo("#Cb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 12.902);
+      tl.fromTo("#Cb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 13.002);
+      tl.fromTo("#Cn0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.274);
+      tl.to("#Cln0", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 13.574);
+      tl.fromTo("#Cn1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.454);
+      tl.to("#Cln1", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 13.754);
+      tl.fromTo("#Cn2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.634);
+      tl.to("#Cln2", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 13.934);
+      tl.fromTo("#Cn3", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 13.814);
+      tl.to("#Cln3", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, 14.114);
+      tl.to("#Chub", { boxShadow: "0 0 0 18px rgba(71,212,212,.22), 0 20px 50px rgba(4,27,61,.3)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }, 15.853);
+      tl.set("#sD", { autoAlpha: 1 }, 16.298);
+      tl.fromTo("#sD", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 16.298);
+      tl.set("#sC", { autoAlpha: 0 }, 17.018);
+      tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 16.848);
+      tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 16.978);
+      gsap.set(["#Dnew"], { autoAlpha: 0 });
+      tl.fromTo("#Dm", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 17.198);
+      tl.fromTo("#Dar", { autoAlpha: 0, y: 0, x: -20 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 19.350);
+      tl.fromTo("#Dc", { autoAlpha: 0, y: 0, x: 40 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 19.550);
+      tl.fromTo("#Dnew", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 21.209);
+      tl.set("#sE", { autoAlpha: 1 }, 21.599);
+      tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 21.599);
+      tl.set("#sD", { autoAlpha: 0 }, 22.319);
+      tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 22.149);
+      tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 22.279);
+      gsap.set(["#Er2"], { autoAlpha: 0 });
+      tl.fromTo("#Es", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 22.553);
+      tl.fromTo("#Er2", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.632);
+      tl.fromTo("#Ee", { autoAlpha: 0, y: 0, x: 40 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 24.657);
+      gsap.set(["#Es8"], { autoAlpha: 0 });
+      tl.to("#Es9", { autoAlpha: 0, y: -30, duration: 0.3, ease: "power2.in" }, 25.894);
+      tl.fromTo("#Es8", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 26.094);
+      tl.to("#sE", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 26.563);
+      tl.fromTo("#sF", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 26.813);
+      tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.013);
+      tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.143);
+      gsap.set(["#Fa0", "#Fa1", "#Fa2"], { autoAlpha: 0 });
+      tl.fromTo("#Fl", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.263);
+      tl.fromTo("#Fa0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.167);
+      tl.fromTo("#Fa1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.517);
+      tl.fromTo("#Fa2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 28.867);
+      tl.set(".tbar", { visibility: "visible" }, 30.527);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 30.527);
+      tl.set("#sF", { autoAlpha: 0 }, 31.187);
+      tl.set("#sG", { autoAlpha: 1 }, 31.187);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 31.227);
+      tl.set(".tbar", { visibility: "hidden" }, 31.977);
+      gsap.set(["#Gwm .nm"], { autoAlpha: 0 });
+      tl.fromTo("#Gb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 31.287);
+      tl.fromTo("#Gb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 31.427);
+      tl.fromTo("#Gb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 31.567);
+      tl.fromTo("#Gwm .nm", { autoAlpha: 0, y: 0, x: -30 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 31.637);
+      tl.fromTo("#Gtag", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 31.987);
+      tl.fromTo("#Gcta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 32.487);
+      tl.fromTo("#Gmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 34.754);
+      tl.fromTo("#Gurl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 37.959);
+      tl.to("#Gbtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 38.159);
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 40.91, ease: "none" }, 0);
+          capShow("#cap0", 0.600, 1.670);
+      capShow("#cap1", 1.670, 3.378);
+      capShow("#cap2", 3.378, 4.750);
+      capShow("#cap3", 4.750, 6.557);
+      capShow("#cap4", 7.207, 9.463);
+      capShow("#cap5", 9.463, 11.361);
+      capShow("#cap6", 12.711, 14.427);
+      capShow("#cap7", 14.427, 16.748);
+      capShow("#cap8", 17.398, 19.360);
+      capShow("#cap9", 19.360, 22.049);
+      capShow("#cap10", 22.699, 23.677);
+      capShow("#cap11", 23.677, 24.622);
+      capShow("#cap12", 24.622, 26.913);
+      capShow("#cap13", 27.563, 28.471);
+      capShow("#cap14", 28.471, 29.580);
+      capShow("#cap15", 29.580, 31.137);
+      capShow("#cap16", 32.587, 33.471);
+      capShow("#cap17", 33.471, 34.904);
+      capShow("#cap18", 34.904, 36.947);
+      capShow("#cap19", 36.947, 38.159);
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        </script>
+      </body>
+    </html>
+    
