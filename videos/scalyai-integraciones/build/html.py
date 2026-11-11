@@ -145,6 +145,9 @@ te = W("s2", "error", -0.25)
 show("#Bneq", te, 0.4, 0); ev("ping", te)
 js(f'tl.to("#Bbad", {{ color: "#F08BAA", duration: 0.3 }}, {te:.3f});')
 js(f'tl.to("#Bk1", {{ borderColor: "{ERR}", duration: 0.3 }}, {te:.3f});')
+tb2 = W("s2b", "mal", -0.2); ev("ping", tb2)
+js(f'tl.fromTo(["#Bk0", "#Bk1"], {{ scale: 1 }}, {{ scale: 1.05, duration: 0.3, stagger: 0.12, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {tb2:.3f});')
+js(f'tl.fromTo("#Bneq", {{ scale: 1 }}, {{ scale: 1.25, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }}, {W("s2b", "tarde", -0.2):.3f});')
 # C
 t_bars("#sB", "#sC", S[2] - 0.66); heading("C", S[2])
 js('gsap.set(["#Chub", "#sC .pulse"], { autoAlpha: 0 });')
@@ -162,6 +165,13 @@ for i in range(4):
     js(f'tl.fromTo("#Cp{i}", {{ x: 0, y: 0 }}, {{ x: {HX - nc(i)[0]:.0f}, y: {HY - nc(i)[1]:.0f}, duration: 0.7, ease: "power2.inOut" }}, {tf + i * 0.12:.3f});')
     js(f'tl.set("#Cp{i}", {{ autoAlpha: 0 }}, {tf + 0.72 + i * 0.12:.3f});')
 js(f'tl.to("#Chub", {{ boxShadow: "0 0 0 18px rgba(71,212,212,.22), 0 20px 50px rgba(4,27,61,.3)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {tf + 0.6:.3f});')
+tf2 = W("s3b", "herramientas", -0.3); ev("tick", tf2)
+for i in range(4):
+    js(f'tl.fromTo("#Cn{i}", {{ scale: 1 }}, {{ scale: 1.08, duration: 0.3, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {tf2 + i * 0.12:.3f});')
+    js(f'tl.set("#Cp{i}", {{ autoAlpha: 1 }}, {tf2 + 0.5 + i * 0.12:.3f});')
+    js(f'tl.fromTo("#Cp{i}", {{ x: 0, y: 0 }}, {{ x: {HX - nc(i)[0]:.0f}, y: {HY - nc(i)[1]:.0f}, duration: 0.7, ease: "power2.inOut" }}, {tf2 + 0.5 + i * 0.12:.3f});')
+    js(f'tl.set("#Cp{i}", {{ autoAlpha: 0 }}, {tf2 + 1.22 + i * 0.12:.3f});')
+js(f'tl.to("#Chub", {{ boxShadow: "0 0 0 18px rgba(71,212,212,.22), 0 20px 50px rgba(4,27,61,.3)", duration: 0.5, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {tf2 + 1.1:.3f});')
 # D
 t_wipe("#sC", "#sD", S[3] - 0.4); heading("D", S[3])
 js('gsap.set(["#Dnew", "#Dchip"], { autoAlpha: 0 });')
@@ -184,6 +194,9 @@ js(f'tl.fromTo("#sE .bx", {{ scale: 0.6, autoAlpha: 0 }}, {{ scale: 1, autoAlpha
 ts_ = W("s5", "stock", -0.15)
 js(f'tl.to("#Ex8", {{ backgroundColor: "rgba(217,130,43,0)", duration: 0.35 }}, {ts_:.3f});')
 hide("#Es9", ts_, 0.3, -30); show("#Es8", ts_ + 0.2, 0.4, 30); ev("chime2", ts_ + 0.2)
+te2 = W("s5b", "registrado", -0.2); ev("tick", te2)
+js(f'tl.fromTo(["#Er2", "#Es8"], {{ scale: 1 }}, {{ scale: 1.06, duration: 0.3, stagger: 0.2, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {te2:.3f});')
+js(f'tl.fromTo("#sE .bx", {{ scale: 1 }}, {{ scale: 1.15, duration: 0.25, stagger: 0.03, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {W("s5b", "nadie", -0.2):.3f});')
 # F
 t_fade("#sE", "#sF", S[5] - 0.3); heading("F", S[5])
 js('gsap.set(["#Fa0", "#Fa1", "#Fa2"], { autoAlpha: 0 });')
@@ -197,6 +210,9 @@ for i in range(3):
 js(f'tl.to("#Fb0", {{ scaleX: 0.14, duration: 1.4, ease: "power2.inOut" }}, {td_:.3f});')
 js(f'tl.to("#Fb1", {{ scaleX: 1, duration: 1.4, ease: "power2.inOut" }}, {td_ + 0.3:.3f});')
 ev("chime", W("s6", "vender", -0.1))
+tg2 = W("s6b", "misma", -0.2)
+for i in range(3):
+    js(f'tl.fromTo(["#Ft{i}", "#Fa{i}"], {{ scale: 1 }}, {{ scale: 1.1, duration: 0.28, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {tg2 + i * 0.2:.3f});'); ev("tick", tg2 + i * 0.2)
 # G
 t_bars("#sF", "#sG", S[6] - 0.66)
 js('gsap.set(["#Gwm .nm"], { autoAlpha: 0 });')

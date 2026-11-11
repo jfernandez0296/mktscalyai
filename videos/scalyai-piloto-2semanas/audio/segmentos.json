@@ -13,9 +13,26 @@
   "scene": 0
  },
  {
+  "id": "p1b",
+  "text": "Son catorce días, enfocados en un solo proceso, y sin detener tu operación.",
+  "start": 5.441,
+  "dur": 5.175,
+  "speech": [
+   [
+    0.0,
+    3.317
+   ],
+   [
+    3.574,
+    5.175
+   ]
+  ],
+  "scene": 0
+ },
+ {
   "id": "p2",
   "text": "Días uno y dos: conversamos y elegimos un solo proceso, el que más tiempo le cuesta a tu equipo.",
-  "start": 6.341,
+  "start": 12.216,
   "dur": 7.488,
   "speech": [
    [
@@ -36,7 +53,7 @@
  {
   "id": "p3",
   "text": "Días tres a cinco: mapeamos cómo funciona hoy, y conectamos tus herramientas.",
-  "start": 14.529,
+  "start": 20.404,
   "dur": 5.368,
   "speech": [
    [
@@ -57,7 +74,7 @@
  {
   "id": "p4",
   "text": "Segunda semana: lo ponemos a funcionar con casos reales, y lo ajustamos con tu equipo.",
-  "start": 20.597,
+  "start": 26.472,
   "dur": 5.341,
   "speech": [
    [
@@ -74,7 +91,7 @@
  {
   "id": "p5",
   "text": "Al día catorce, el proceso ya trabaja solo. Y empezamos a medir el retorno, para verlo en seis semanas.",
-  "start": 26.637,
+  "start": 32.512,
   "dur": 7.42,
   "speech": [
    [
@@ -97,9 +114,30 @@
   "scene": 1
  },
  {
+  "id": "p5b",
+  "text": "Después del piloto, medimos el resultado con datos reales, y tú decides si lo llevamos a otros procesos.",
+  "start": 40.632,
+  "dur": 6.974,
+  "speech": [
+   [
+    0.0,
+    1.183
+   ],
+   [
+    1.465,
+    3.955
+   ],
+   [
+    4.371,
+    6.974
+   ]
+  ],
+  "scene": 1
+ },
+ {
   "id": "p6",
   "text": "Empezamos con un piloto, no con una apuesta. Conversemos: treinta minutos, sin tarjeta, sin compromiso.",
-  "start": 35.957,
+  "start": 49.507,
   "dur": 7.452,
   "speech": [
    [

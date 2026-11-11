@@ -2,7 +2,7 @@
     <html lang="es">
       <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=1080, height=1920" />
+        <meta name="viewport" content="width=1920, height=1080" />
         <title>Scaly AI — Las primeras 2 semanas de un piloto</title>
         <script src="assets/vendor/gsap.min.js"></script>
         <style>
@@ -18,16 +18,16 @@
         --shadow-card: 0 12px 30px rgba(4,27,61,.15); --shadow-button: 0 12px 28px rgba(4,27,61,.22);
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
-      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); font-family: "Manrope", system-ui, sans-serif; color: var(--navy-900); }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream-100); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--cream-100); font-family: "Manrope", system-ui, sans-serif; color: var(--navy-900); }
       .abs { position: absolute; }
-      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      .sc { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--cream-100); }
       .sc.dark { background: var(--navy-900); color: var(--cream-100); }
-      .cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 45%; }
+      .cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 50% 45%; }
       #sB, #sC, #sD, #sE, #sF, #sG, #sH, .cap { visibility: hidden; opacity: 0; }
 
       /* fondos: rejilla sutil + resplandor cian */
-      .grid { position: absolute; left: -64px; top: -64px; width: 1208px; height: 2048px;
+      .grid { position: absolute; left: -64px; top: -64px; width: 2048px; height: 1208px;
         background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px);
         background-size: 64px 64px; opacity: .45; }
       .dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity: 1; }
@@ -146,11 +146,11 @@
       .url { font-size: 30px; font-weight: 800; letter-spacing: .14em; color: var(--cyan-400); text-align: center; }
 
       /* transición con las tres barras del logo */
-      .tbar { position: absolute; left: 0; width: 1800px; height: 640px; border-radius: 320px; visibility: hidden; }
-      #prog { position: absolute; left: 0; bottom: 0; width: 1080px; height: 6px; background: var(--gradient-brand); transform-origin: 0% 50%; }
+      .tbar { position: absolute; left: 0; width: 2320px; height: 360px; border-radius: 180px; visibility: hidden; }
+      #prog { position: absolute; left: 0; bottom: 0; width: 1920px; height: 6px; background: var(--gradient-brand); transform-origin: 0% 50%; }
 
       /* subtítulos */
-      .cap { position: absolute; left: 0; top: 1490px; width: 1080px; display: flex; justify-content: center; pointer-events: none; }
+      .cap { position: absolute; left: 0; top: 958px; width: 1920px; display: flex; justify-content: center; pointer-events: none; }
       .cap span { padding: 12px 30px; border-radius: 999px; background: rgba(4,27,61,.92); color: var(--cream-100); font-size: 34px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(4,27,61,.25); }
       .cap b { font-weight: 800; color: var(--cyan-400); }
       #Ecard .task { font-size: 27px; height: 100px; } #Ecard .task .st { width: 210px; }
@@ -263,37 +263,22 @@
       .avs .pp + .pp { margin-left: -16px; }
       .ptag { display: flex; align-items: center; gap: 16px; }
 
-      .cap span { font-size: 38px; padding: 14px 32px; }
-
-      /* ---- 9:16 ---- */
-      .h1 { font-size: 92px; }
-      .h1.big { font-size: 92px; }
-      .h1.st { font-size: 84px; }
-      .h1 .l { display: block; line-height: 1.12; }
-      .phase { flex-direction: column; align-items: flex-start; gap: 34px; padding: 40px 44px; }
-      .pt { width: auto; gap: 30px; }
-      .phase h3 { font-size: 50px; }
-      .btn { font-size: 34px; height: 96px; padding: 0 40px; }
-      .day b { font-size: 32px; }
-      .bignum { font-size: 270px; }
-      .bignum small { font-size: 54px; margin-top: -10px; }
-
         </style>
       </head>
       <body>
-        <div id="root" data-composition-id="main" data-start="0" data-duration="46.56" data-fps="30" data-width="1080" data-height="1920">
-          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-300px;width:1200px;height:1200px"></div><div class="abs deco" style="left:700px;top:1480px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
-        <div class="abs bignum" id="Abig" style="left:0px;top:1130px;width:1080px">14<small>días</small></div>
-        <div class="abs eyebrow" id="Aey" style="left:70px;top:300px">Cómo trabajamos</div>
-        <div class="abs h1 big" id="At" style="left:66px;top:350px"><span class="l">¿Qué pasa en las</span><span class="l">primeras <em>2 semanas</em></span><span class="l">de un piloto?</span></div>
-        <div class="abs day dk" id="Ad1" style="left:70px;top:900px;width:120px;height:120px"><b>1</b></div><div class="abs day dk" id="Ad2" style="left:205px;top:900px;width:120px;height:120px"><b>2</b></div><div class="abs day dk" id="Ad3" style="left:340px;top:900px;width:120px;height:120px"><b>3</b></div><div class="abs day dk" id="Ad4" style="left:475px;top:900px;width:120px;height:120px"><b>4</b></div><div class="abs day dk" id="Ad5" style="left:610px;top:900px;width:120px;height:120px"><b>5</b></div><div class="abs day dk" id="Ad6" style="left:745px;top:900px;width:120px;height:120px"><b>6</b></div><div class="abs day dk" id="Ad7" style="left:880px;top:900px;width:120px;height:120px"><b>7</b></div><div class="abs day dk" id="Ad8" style="left:70px;top:1035px;width:120px;height:120px"><b>8</b></div><div class="abs day dk" id="Ad9" style="left:205px;top:1035px;width:120px;height:120px"><b>9</b></div><div class="abs day dk" id="Ad10" style="left:340px;top:1035px;width:120px;height:120px"><b>10</b></div><div class="abs day dk" id="Ad11" style="left:475px;top:1035px;width:120px;height:120px"><b>11</b></div><div class="abs day dk" id="Ad12" style="left:610px;top:1035px;width:120px;height:120px"><b>12</b></div><div class="abs day dk" id="Ad13" style="left:745px;top:1035px;width:120px;height:120px"><b>13</b></div><div class="abs day dk" id="Ad14" style="left:880px;top:1035px;width:120px;height:120px"><b>14</b></div>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="61.0" data-fps="30" data-width="1920" data-height="1080">
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:900px;top:-300px;width:1200px;height:1200px"></div><div class="abs deco" style="left:1100px;top:300px;width:960px;height:896px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:256px;top:0px;width:704px;height:224px;background:#47D4D4"></i><i style="left:0px;top:336px;width:960px;height:224px;background:#007B83"></i><i style="left:0px;top:672px;width:704px;height:224px;background:#F0F1E8"></i></div>
+        <div class="abs bignum" id="Abig" style="left:1180px;top:150px;width:640px">14<small>días</small></div>
+        <div class="abs eyebrow" id="Aey" style="left:160px;top:150px">Cómo trabajamos</div>
+        <div class="abs h1 big" id="At" style="left:156px;top:200px"><span class="l">¿Qué pasa en las</span><span class="l">primeras <em>2 semanas</em></span><span class="l">de un piloto?</span></div>
+        <div class="abs day dk" id="Ad1" style="left:160px;top:660px;width:100px;height:100px"><b>1</b></div><div class="abs day dk" id="Ad2" style="left:274px;top:660px;width:100px;height:100px"><b>2</b></div><div class="abs day dk" id="Ad3" style="left:388px;top:660px;width:100px;height:100px"><b>3</b></div><div class="abs day dk" id="Ad4" style="left:502px;top:660px;width:100px;height:100px"><b>4</b></div><div class="abs day dk" id="Ad5" style="left:616px;top:660px;width:100px;height:100px"><b>5</b></div><div class="abs day dk" id="Ad6" style="left:730px;top:660px;width:100px;height:100px"><b>6</b></div><div class="abs day dk" id="Ad7" style="left:844px;top:660px;width:100px;height:100px"><b>7</b></div><div class="abs day dk" id="Ad8" style="left:958px;top:660px;width:100px;height:100px"><b>8</b></div><div class="abs day dk" id="Ad9" style="left:1072px;top:660px;width:100px;height:100px"><b>9</b></div><div class="abs day dk" id="Ad10" style="left:1186px;top:660px;width:100px;height:100px"><b>10</b></div><div class="abs day dk" id="Ad11" style="left:1300px;top:660px;width:100px;height:100px"><b>11</b></div><div class="abs day dk" id="Ad12" style="left:1414px;top:660px;width:100px;height:100px"><b>12</b></div><div class="abs day dk" id="Ad13" style="left:1528px;top:660px;width:100px;height:100px"><b>13</b></div><div class="abs day dk" id="Ad14" style="left:1642px;top:660px;width:100px;height:100px"><b>14</b></div>
       </div></div>
-      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:1000px;width:1000px;height:1000px"></div><div class="abs deco" style="left:-350px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
-        <div class="abs eyebrow" id="Bey" style="left:70px;top:230px">El piloto, día a día</div>
-        <div class="abs h1 st" id="Bt" style="left:66px;top:276px"><span class="l">Las primeras</span><span class="l"><em>2 semanas.</em></span></div>
-        <div class="abs day" id="Bd1" style="left:70px;top:500px;width:120px;height:120px"><b>1</b></div><div class="abs day" id="Bd2" style="left:205px;top:500px;width:120px;height:120px"><b>2</b></div><div class="abs day" id="Bd3" style="left:340px;top:500px;width:120px;height:120px"><b>3</b></div><div class="abs day" id="Bd4" style="left:475px;top:500px;width:120px;height:120px"><b>4</b></div><div class="abs day" id="Bd5" style="left:610px;top:500px;width:120px;height:120px"><b>5</b></div><div class="abs day" id="Bd6" style="left:745px;top:500px;width:120px;height:120px"><b>6</b></div><div class="abs day" id="Bd7" style="left:880px;top:500px;width:120px;height:120px"><b>7</b></div><div class="abs day" id="Bd8" style="left:70px;top:635px;width:120px;height:120px"><b>8</b></div><div class="abs day" id="Bd9" style="left:205px;top:635px;width:120px;height:120px"><b>9</b></div><div class="abs day" id="Bd10" style="left:340px;top:635px;width:120px;height:120px"><b>10</b></div><div class="abs day" id="Bd11" style="left:475px;top:635px;width:120px;height:120px"><b>11</b></div><div class="abs day" id="Bd12" style="left:610px;top:635px;width:120px;height:120px"><b>12</b></div><div class="abs day" id="Bd13" style="left:745px;top:635px;width:120px;height:120px"><b>13</b></div><div class="abs day" id="Bd14" style="left:880px;top:635px;width:120px;height:120px"><b>14</b></div>
-        <div class="abs ptrack" style="left:70px;top:780px;width:930px;height:12px"><div id="Bfill"></div></div>
-        <div class="abs card phase" id="Bp0" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt " style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+      <div class="sc" id="sB"><div class="cam"><div class="grid"></div><div class="glow" style="left:1100px;top:300px;width:1000px;height:1000px"></div><div class="abs deco" style="left:1240px;top:380px;width:864px;height:806px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:230px;top:0px;width:634px;height:202px;background:#47D4D4"></i><i style="left:0px;top:302px;width:864px;height:202px;background:#007B83"></i><i style="left:0px;top:605px;width:634px;height:202px;background:#041B3D"></i></div>
+        <div class="abs eyebrow" id="Bey" style="left:160px;top:130px">El piloto, día a día</div>
+        <div class="abs h1 st" id="Bt" style="left:156px;top:176px"><span class="l">Las primeras <em>2 semanas.</em></span></div>
+        <div class="abs day" id="Bd1" style="left:160px;top:380px;width:100px;height:100px"><b>1</b></div><div class="abs day" id="Bd2" style="left:274px;top:380px;width:100px;height:100px"><b>2</b></div><div class="abs day" id="Bd3" style="left:388px;top:380px;width:100px;height:100px"><b>3</b></div><div class="abs day" id="Bd4" style="left:502px;top:380px;width:100px;height:100px"><b>4</b></div><div class="abs day" id="Bd5" style="left:616px;top:380px;width:100px;height:100px"><b>5</b></div><div class="abs day" id="Bd6" style="left:730px;top:380px;width:100px;height:100px"><b>6</b></div><div class="abs day" id="Bd7" style="left:844px;top:380px;width:100px;height:100px"><b>7</b></div><div class="abs day" id="Bd8" style="left:958px;top:380px;width:100px;height:100px"><b>8</b></div><div class="abs day" id="Bd9" style="left:1072px;top:380px;width:100px;height:100px"><b>9</b></div><div class="abs day" id="Bd10" style="left:1186px;top:380px;width:100px;height:100px"><b>10</b></div><div class="abs day" id="Bd11" style="left:1300px;top:380px;width:100px;height:100px"><b>11</b></div><div class="abs day" id="Bd12" style="left:1414px;top:380px;width:100px;height:100px"><b>12</b></div><div class="abs day" id="Bd13" style="left:1528px;top:380px;width:100px;height:100px"><b>13</b></div><div class="abs day" id="Bd14" style="left:1642px;top:380px;width:100px;height:100px"><b>14</b></div>
+        <div class="abs ptrack" style="left:160px;top:512px;width:1582px;height:12px"><div id="Bfill"></div></div>
+        <div class="abs card phase" id="Bp0" style="left:160px;top:570px;width:1600px;height:300px"><div class="pt"><div class="gt " style="width:170px;height:170px;border-radius:47px"><svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="2" />
@@ -303,7 +288,7 @@
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="2" />
-</svg></div><span>Elegimos el proceso que más tiempo le cuesta a tu equipo</span></div></div><div class="pnum">01</div></div><div class="abs card phase" id="Bp1" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+</svg></div><span>Elegimos el proceso que más tiempo le cuesta a tu equipo</span></div></div><div class="pnum">01</div></div><div class="abs card phase" id="Bp1" style="left:160px;top:570px;width:1600px;height:300px"><div class="pt"><div class="gt c-crm" style="width:170px;height:170px;border-radius:47px"><svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
   <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
   <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
 </svg></div><div class="pl"><div class="ptag"><span class="tag teal">Días 3–5</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div><h3>Mapeamos y conectamos</h3></div></div><div class="pr"><div class="bl" id="Bb10"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="layers">
@@ -313,7 +298,7 @@
 </svg></div><span>Vemos cómo funciona hoy, paso a paso</span></div><div class="bl" id="Bb11"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
   <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
   <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-</svg></div><span>Conectamos tus herramientas: WhatsApp, CRM, hojas de cálculo o ERP</span></div></div><div class="pnum">02</div></div><div class="abs card phase" id="Bp2" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt c-erp" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+</svg></div><span>Conectamos tus herramientas: WhatsApp, CRM, hojas de cálculo o ERP</span></div></div><div class="pnum">02</div></div><div class="abs card phase" id="Bp2" style="left:160px;top:570px;width:1600px;height:300px"><div class="pt"><div class="gt c-erp" style="width:170px;height:170px;border-radius:47px"><svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
   <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
 </svg></div><div class="pl"><div class="ptag"><span class="tag teal">Semana 2</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div><h3>Lo ponemos a funcionar</h3></div></div><div class="pr"><div class="bl" id="Bb20"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
   <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
@@ -322,7 +307,7 @@
   <circle cx="9" cy="7" r="4" />
   <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-</svg></div><span>Lo ajustamos con tu equipo</span></div></div><div class="pnum">03</div></div><div class="abs card phase" id="Bp3" style="left:70px;top:850px;width:940px;height:480px"><div class="pt"><div class="gt c-xls" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+</svg></div><span>Lo ajustamos con tu equipo</span></div></div><div class="pnum">03</div></div><div class="abs card phase" id="Bp3" style="left:160px;top:570px;width:1600px;height:300px"><div class="pt"><div class="gt c-xls" style="width:170px;height:170px;border-radius:47px"><svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
   <path d="M3 3v16a2 2 0 0 0 2 2h16" />
   <path d="M18 17V9" />
   <path d="M13 17V5" />
@@ -336,53 +321,69 @@
   <circle cx="12" cy="12" r="10" />
   <circle cx="12" cy="12" r="6" />
   <circle cx="12" cy="12" r="2" />
-</svg></div><span>ROI medible en 6 semanas</span></div></div><div class="pnum">04</div></div>
-        <div class="abs note" style="left:70px;top:1350px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+</svg></div><span>ROI medible en 6 semanas</span></div></div><div class="pnum">04</div></div><div class="abs card phase" id="Bp4" style="left:160px;top:570px;width:1600px;height:300px"><div class="pt"><div class="gt " style="width:170px;height:170px;border-radius:47px"><svg width="85" height="85" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div><div class="pl"><div class="ptag"><span class="tag teal">Después</span><div class="avs"><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:56px;height:56px"><svg width="56" height="56" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div></div></div><h3>Medimos y tú decides</h3></div></div><div class="pr"><div class="bl" id="Bb40"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><span>Medimos el resultado con datos reales</span></div><div class="bl" id="Bb41"><div class="ni"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="layers">
+  <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+  <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+  <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+</svg></div><span>Tú decides si lo llevamos a otros procesos</span></div></div><div class="pnum">05</div></div>
+        <div class="abs note" style="left:160px;top:888px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
       </div></div>
-      <div class="sc dark" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:620px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-330px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
-        <div class="abs navlogo dk" id="Clg" style="left:0px;top:420px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Cb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
-        <div class="abs h1 ctr" id="Ct" style="left:0px;top:560px;width:1080px"><span class="l">Empezamos con</span><span class="l">un piloto, no con</span><span class="l"><em>una apuesta.</em></span></div>
-        <div class="abs" id="Ccta" style="left:0px;top:960px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Cbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+      <div class="sc dark" id="sC"><div class="cam"><div class="grid"></div><div class="glow" style="left:410px;top:-160px;width:1100px;height:1100px"></div><div class="abs deco" style="left:1180px;top:300px;width:960px;height:896px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:256px;top:0px;width:704px;height:224px;background:#47D4D4"></i><i style="left:0px;top:336px;width:960px;height:224px;background:#007B83"></i><i style="left:0px;top:672px;width:704px;height:224px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-520px;top:-420px;width:864px;height:806px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:230px;top:0px;width:634px;height:202px;background:#47D4D4"></i><i style="left:0px;top:302px;width:864px;height:202px;background:#007B83"></i><i style="left:0px;top:605px;width:634px;height:202px;background:#F0F1E8"></i></div>
+        <div class="abs navlogo dk" id="Clg" style="left:0px;top:150px;width:1920px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Cb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Cb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Cb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
+        <div class="abs h1 ctr" id="Ct" style="left:0px;top:290px;width:1920px"><span class="l">Empezamos con un piloto,</span><span class="l"><em>no con una apuesta.</em></span></div>
+        <div class="abs" id="Ccta" style="left:0px;top:560px;width:1920px;display:flex;justify-content:center"><div class="btn" id="Cbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
   <path d="M5 12h14" />
   <path d="m12 5 7 7-7 7" />
 </svg></div></div>
-        <div class="abs micro" id="Cmic" style="left:0px;top:1110px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
-        <div class="abs url" id="Curl" style="left:0px;top:1200px;width:1080px">SCALYAI.DEV</div>
+        <div class="abs micro" id="Cmic" style="left:0px;top:704px;width:1920px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Curl" style="left:0px;top:800px;width:1920px">SCALYAI.DEV</div>
       </div></div>
-          <div class="abs" id="tbars" style="left:0;top:0;width:1080px;height:1920px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:640px;background:#007B83"></div><div class="tbar" style="top:1280px;background:#041B3D"></div></div>
+          <div class="abs" id="tbars" style="left:0;top:0;width:1920px;height:1080px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:360px;background:#007B83"></div><div class="tbar" style="top:720px;background:#041B3D"></div></div>
           <div id="prog"></div>
-          <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>¿Qué pasa en las</span></div>
-      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>primeras <b>dos</b> <b>semanas</b> de</span></div>
-      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>un <b>piloto</b> con <b>Scaly</b> AI?</span></div>
-      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>Días uno y <b>dos:</b></span></div>
-      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>conversamos y elegimos</span></div>
-      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>un solo <b>proceso,</b></span></div>
-      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>el que más tiempo le</span></div>
-      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>cuesta a tu equipo.</span></div>
+          <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>¿Qué pasa en las primeras <b>dos</b></span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span><b>semanas</b> de un <b>piloto</b> con <b>Scaly</b> AI?</span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>Son <b>catorce</b> días, enfocados</span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>en un solo <b>proceso,</b></span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>y sin detener tu operación.</span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>Días uno y <b>dos:</b></span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>conversamos y elegimos un solo <b>proceso,</b></span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>el que más tiempo le cuesta a tu equipo.</span></div>
       <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>Días tres a cinco:</span></div>
       <div class="cap" id="cap9" data-layout-allow-overlap="true"><span>mapeamos cómo funciona hoy,</span></div>
-      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>y conectamos</span></div>
-      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>tus herramientas.</span></div>
-      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>Segunda semana: lo ponemos a</span></div>
-      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>funcionar con casos reales,</span></div>
-      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>y lo ajustamos con tu equipo.</span></div>
-      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>Al día <b>catorce,</b></span></div>
-      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>el <b>proceso</b> ya trabaja solo.</span></div>
-      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>Y empezamos a</span></div>
-      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>medir el retorno,</span></div>
-      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>para verlo en <b>seis</b> <b>semanas.</b></span></div>
-      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>Empezamos con un <b>piloto,</b></span></div>
-      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>no con una apuesta.</span></div>
-      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span><b>Conversemos:</b> <b>treinta</b> <b>minutos,</b></span></div>
-      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span>sin tarjeta, sin compromiso.</span></div>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>y conectamos tus herramientas.</span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>Segunda semana: lo ponemos a</span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>funcionar con casos reales,</span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>y lo ajustamos con tu equipo.</span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>Al día <b>catorce,</b></span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>el <b>proceso</b> ya trabaja solo.</span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>Y empezamos a medir el retorno,</span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>para verlo en <b>seis</b> <b>semanas.</b></span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>Después del <b>piloto,</b></span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>medimos el resultado con datos reales,</span></div>
+      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>y tú decides si lo llevamos a otros procesos.</span></div>
+      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>Empezamos con un <b>piloto,</b></span></div>
+      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span>no con una apuesta.</span></div>
+      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span><b>Conversemos:</b> <b>treinta</b> <b>minutos,</b></span></div>
+      <div class="cap" id="cap24" data-layout-allow-overlap="true"><span>sin tarjeta, sin compromiso.</span></div>
           <audio id="v_p1" src="audio/seg/p1.wav" data-start="0.6" data-duration="4.141" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_p2" src="audio/seg/p2.wav" data-start="6.341" data-duration="7.488" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_p3" src="audio/seg/p3.wav" data-start="14.529" data-duration="5.368" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_p4" src="audio/seg/p4.wav" data-start="20.597" data-duration="5.341" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_p5" src="audio/seg/p5.wav" data-start="26.637" data-duration="7.42" data-track-index="12" data-volume="1"></audio>
-      <audio id="v_p6" src="audio/seg/p6.wav" data-start="35.957" data-duration="7.452" data-track-index="12" data-volume="1"></audio>
-      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="46.56" data-track-index="13" data-volume="0.8"></audio>
-          <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="46.56" data-track-index="14" data-volume="0.5"></audio>
+      <audio id="v_p1b" src="audio/seg/p1b.wav" data-start="5.441" data-duration="5.175" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p2" src="audio/seg/p2.wav" data-start="12.216" data-duration="7.488" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p3" src="audio/seg/p3.wav" data-start="20.404" data-duration="5.368" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p4" src="audio/seg/p4.wav" data-start="26.472" data-duration="5.341" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p5" src="audio/seg/p5.wav" data-start="32.512" data-duration="7.42" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p5b" src="audio/seg/p5b.wav" data-start="40.632" data-duration="6.974" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p6" src="audio/seg/p6.wav" data-start="49.507" data-duration="7.452" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="61.0" data-track-index="13" data-volume="0.8"></audio>
+          <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="61.0" data-track-index="14" data-volume="0.5"></audio>
         </div>
         <script>
           window.__timelines = window.__timelines || {};
@@ -392,100 +393,106 @@
             tl.fromTo(sel, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: "power2.out" }, a - 0.04);
             tl.set(sel, { autoAlpha: 0 }, b);
           };
-          tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 6.54, ease: "none" }, 0.000);
-      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 6.54, ease: "sine.inOut" }, 0.000);
-      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 30.42, ease: "none" }, 5.341);
-      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 30.42, ease: "sine.inOut" }, 5.341);
-      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 13.20, ease: "none" }, 34.557);
-      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 13.20, ease: "sine.inOut" }, 34.557);
-      tl.fromTo(".deco", { x: 0 }, { x: -50, duration: 46.56, ease: "none" }, 0);
+          tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 12.42, ease: "none" }, 0.000);
+      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 12.42, ease: "sine.inOut" }, 0.000);
+      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 38.09, ease: "none" }, 11.216);
+      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 38.09, ease: "sine.inOut" }, 11.216);
+      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 14.09, ease: "none" }, 48.107);
+      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 14.09, ease: "sine.inOut" }, 48.107);
+      tl.fromTo(".deco", { x: 0 }, { x: -50, duration: 61.00, ease: "none" }, 0);
       tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.200);
       tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.8, ease: "power3.out" }, 0.350);
       gsap.set("#Abig", { autoAlpha: 0 });
       tl.fromTo("#Abig", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out" }, 2.211);
-      tl.fromTo("#sA .day", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power3.out" }, 2.211);
-      tl.set(".tbar", { visibility: "visible" }, 4.681);
-      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 4.681);
-      tl.set("#sA", { autoAlpha: 0 }, 5.341);
-      tl.set("#sB", { autoAlpha: 1 }, 5.341);
-      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 5.381);
-      tl.set(".tbar", { visibility: "hidden" }, 6.131);
-      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 5.491);
-      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 5.621);
+      tl.fromTo("#sA .day", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.09, ease: "power3.out" }, 5.467);
+      tl.to("#sA .day", { backgroundColor: "#007B83", borderColor: "#47D4D4", duration: 0.3, stagger: 0.05 }, 7.936);
+      tl.set(".tbar", { visibility: "visible" }, 10.556);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 10.556);
+      tl.set("#sA", { autoAlpha: 0 }, 11.216);
+      tl.set("#sB", { autoAlpha: 1 }, 11.216);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 11.256);
+      tl.set(".tbar", { visibility: "hidden" }, 12.006);
+      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 11.366);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.496);
       gsap.set(["#sB .phase", "#sB .bl"], { autoAlpha: 0 });
       gsap.set("#Bfill", { scaleX: 0 });
-      tl.fromTo("#sB .day", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 5.641);
-      tl.fromTo("#Bp0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 6.191);
-      tl.to("#Bd1", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 6.391);
-      tl.to("#Bd2", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 6.471);
-      tl.to("#Bfill", { scaleX: 0.143, duration: 0.9, ease: "power2.inOut" }, 6.391);
-      tl.fromTo("#Bb00", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 6.791);
-      tl.fromTo("#Bb01", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 8.191);
-      tl.to("#Bp0", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 14.129);
-      tl.fromTo("#Bp1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 14.379);
-      tl.to("#Bd3", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 14.579);
-      tl.to("#Bd4", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 14.659);
-      tl.to("#Bd5", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 14.739);
-      tl.to("#Bfill", { scaleX: 0.357, duration: 0.9, ease: "power2.inOut" }, 14.579);
-      tl.fromTo("#Bb10", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 14.979);
-      tl.fromTo("#Bb11", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 16.379);
-      tl.to("#Bp1", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 20.197);
-      tl.fromTo("#Bp2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 20.447);
-      tl.to("#Bd8", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.647);
-      tl.to("#Bd9", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.727);
-      tl.to("#Bd10", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.807);
-      tl.to("#Bd11", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.887);
-      tl.to("#Bd12", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 20.967);
-      tl.to("#Bd13", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 21.047);
-      tl.to("#Bfill", { scaleX: 0.929, duration: 0.9, ease: "power2.inOut" }, 20.647);
-      tl.fromTo("#Bb20", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 21.047);
-      tl.fromTo("#Bb21", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.447);
-      tl.to("#Bp2", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 26.237);
-      tl.fromTo("#Bp3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 26.487);
-      tl.to("#Bd14", { backgroundColor: "#1D6F42", borderColor: "#1D6F42", color: "#FFFFFF", duration: 0.3 }, 26.687);
-      tl.to("#Bfill", { scaleX: 1.000, duration: 0.9, ease: "power2.inOut" }, 26.687);
-      tl.fromTo("#Bb30", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 27.087);
-      tl.fromTo("#Bb31", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 28.487);
-      tl.set(".tbar", { visibility: "visible" }, 33.897);
-      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 33.897);
-      tl.set("#sB", { autoAlpha: 0 }, 34.557);
-      tl.set("#sC", { autoAlpha: 1 }, 34.557);
-      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 34.597);
-      tl.set(".tbar", { visibility: "hidden" }, 35.347);
-      tl.fromTo("#Cb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 34.657);
-      tl.fromTo("#Cb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 34.777);
-      tl.fromTo("#Cb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 34.897);
-      tl.fromTo("#Clg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 34.657);
-      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 35.757);
-      tl.fromTo("#Ccta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 39.276);
-      tl.fromTo("#Cmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 39.554);
-      tl.fromTo("#Curl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.609);
-      tl.to("#Cbtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 43.809);
-      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 46.56, ease: "none" }, 0);
-          capShow("#cap0", 0.600, 1.683);
-      capShow("#cap1", 1.683, 3.212);
-      capShow("#cap2", 3.212, 5.091);
-      capShow("#cap3", 6.341, 8.340);
-      capShow("#cap4", 8.340, 9.928);
-      capShow("#cap5", 9.928, 11.601);
-      capShow("#cap6", 11.601, 12.742);
-      capShow("#cap7", 12.742, 14.529);
-      capShow("#cap8", 14.529, 16.322);
-      capShow("#cap9", 16.322, 18.297);
-      capShow("#cap10", 18.297, 18.968);
-      capShow("#cap11", 18.968, 20.247);
-      capShow("#cap12", 20.597, 21.084);
-      capShow("#cap13", 21.084, 21.998);
-      capShow("#cap14", 21.998, 26.637);
-      capShow("#cap15", 26.637, 27.986);
-      capShow("#cap16", 27.986, 30.196);
-      capShow("#cap17", 30.196, 31.030);
-      capShow("#cap18", 31.030, 32.410);
-      capShow("#cap19", 32.410, 34.407);
-      capShow("#cap20", 35.957, 37.711);
-      capShow("#cap21", 37.711, 39.030);
-      capShow("#cap22", 39.476, 40.517);
-      capShow("#cap23", 40.517, 43.809);
+      tl.fromTo("#sB .day", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 11.516);
+      tl.fromTo("#Bp0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 12.066);
+      tl.to("#Bd1", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 12.266);
+      tl.to("#Bd2", { backgroundColor: "#007B83", borderColor: "#007B83", color: "#FFFFFF", duration: 0.3 }, 12.346);
+      tl.to("#Bfill", { scaleX: 0.143, duration: 0.9, ease: "power2.inOut" }, 12.266);
+      tl.fromTo("#Bb00", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 12.666);
+      tl.fromTo("#Bb01", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 14.066);
+      tl.to("#Bp0", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 20.004);
+      tl.fromTo("#Bp1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 20.254);
+      tl.to("#Bd3", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 20.454);
+      tl.to("#Bd4", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 20.534);
+      tl.to("#Bd5", { backgroundColor: "#1F4FBF", borderColor: "#1F4FBF", color: "#FFFFFF", duration: 0.3 }, 20.614);
+      tl.to("#Bfill", { scaleX: 0.357, duration: 0.9, ease: "power2.inOut" }, 20.454);
+      tl.fromTo("#Bb10", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 20.854);
+      tl.fromTo("#Bb11", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.254);
+      tl.to("#Bp1", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 26.072);
+      tl.fromTo("#Bp2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 26.322);
+      tl.to("#Bd8", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 26.522);
+      tl.to("#Bd9", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 26.602);
+      tl.to("#Bd10", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 26.682);
+      tl.to("#Bd11", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 26.762);
+      tl.to("#Bd12", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 26.842);
+      tl.to("#Bd13", { backgroundColor: "#B5651D", borderColor: "#B5651D", color: "#FFFFFF", duration: 0.3 }, 26.922);
+      tl.to("#Bfill", { scaleX: 0.929, duration: 0.9, ease: "power2.inOut" }, 26.522);
+      tl.fromTo("#Bb20", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 26.922);
+      tl.fromTo("#Bb21", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 28.322);
+      tl.to("#Bp2", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 32.112);
+      tl.fromTo("#Bp3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 32.362);
+      tl.to("#Bd14", { backgroundColor: "#1D6F42", borderColor: "#1D6F42", color: "#FFFFFF", duration: 0.3 }, 32.562);
+      tl.to("#Bfill", { scaleX: 1.000, duration: 0.9, ease: "power2.inOut" }, 32.562);
+      tl.fromTo("#Bb30", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 32.962);
+      tl.fromTo("#Bb31", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 34.362);
+      tl.to("#Bp3", { autoAlpha: 0, y: -14, duration: 0.3, ease: "power2.in" }, 40.232);
+      tl.fromTo("#Bp4", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.55, ease: "power3.out" }, 40.482);
+      tl.fromTo("#Bb40", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 41.082);
+      tl.fromTo("#Bb41", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 42.482);
+      tl.set(".tbar", { visibility: "visible" }, 47.447);
+      tl.fromTo(".tbar", { x: -2420 }, { x: -220, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 47.447);
+      tl.set("#sB", { autoAlpha: 0 }, 48.107);
+      tl.set("#sC", { autoAlpha: 1 }, 48.107);
+      tl.to(".tbar", { x: 2000, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 48.147);
+      tl.set(".tbar", { visibility: "hidden" }, 48.897);
+      tl.fromTo("#Cb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 48.207);
+      tl.fromTo("#Cb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 48.327);
+      tl.fromTo("#Cb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 48.447);
+      tl.fromTo("#Clg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 48.207);
+      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 49.307);
+      tl.fromTo("#Ccta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 52.826);
+      tl.fromTo("#Cmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 53.104);
+      tl.fromTo("#Curl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 57.159);
+      tl.to("#Cbtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 57.359);
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 61.00, ease: "none" }, 0);
+          capShow("#cap0", 0.600, 2.511);
+      capShow("#cap1", 2.511, 5.091);
+      capShow("#cap2", 5.441, 7.376);
+      capShow("#cap3", 7.376, 9.015);
+      capShow("#cap4", 9.015, 10.966);
+      capShow("#cap5", 12.216, 14.215);
+      capShow("#cap6", 14.215, 17.476);
+      capShow("#cap7", 17.476, 20.404);
+      capShow("#cap8", 20.404, 22.197);
+      capShow("#cap9", 22.197, 24.172);
+      capShow("#cap10", 24.172, 26.472);
+      capShow("#cap11", 26.472, 26.959);
+      capShow("#cap12", 26.959, 27.873);
+      capShow("#cap13", 27.873, 32.512);
+      capShow("#cap14", 32.512, 33.861);
+      capShow("#cap15", 33.861, 36.071);
+      capShow("#cap16", 36.071, 38.285);
+      capShow("#cap17", 38.285, 40.282);
+      capShow("#cap18", 40.632, 42.097);
+      capShow("#cap19", 42.097, 45.003);
+      capShow("#cap20", 45.003, 47.956);
+      capShow("#cap21", 49.507, 51.261);
+      capShow("#cap22", 51.261, 52.580);
+      capShow("#cap23", 53.026, 54.067);
+      capShow("#cap24", 54.067, 57.359);
           window.__timelines["main"] = tl;
           tl.seek(0);
         </script>

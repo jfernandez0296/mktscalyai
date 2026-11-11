@@ -19,7 +19,7 @@
  {
   "id": "s2",
   "text": "Cada copia es tiempo perdido, y una oportunidad de error.",
-  "start": 7.207,
+  "start": 7.307,
   "dur": 3.804,
   "speech": [
    [
@@ -34,9 +34,30 @@
   "scene": 1
  },
  {
+  "id": "s2b",
+  "text": "Un dato mal copiado, y el pedido sale tarde, o con el precio equivocado.",
+  "start": 11.811,
+  "dur": 4.611,
+  "speech": [
+   [
+    0.0,
+    2.823
+   ],
+   [
+    3.135,
+    3.282
+   ],
+   [
+    3.564,
+    4.611
+   ]
+  ],
+  "scene": 1
+ },
+ {
   "id": "s3",
   "text": "En Scaly AI conectamos tus herramientas en un solo flujo.",
-  "start": 12.711,
+  "start": 18.322,
   "dur": 3.687,
   "speech": [
    [
@@ -47,9 +68,26 @@
   "scene": 2
  },
  {
+  "id": "s3b",
+  "text": "Sin cambiar de sistema: trabajamos con las herramientas que ya usas.",
+  "start": 22.71,
+  "dur": 3.666,
+  "speech": [
+   [
+    0.0,
+    1.281
+   ],
+   [
+    1.737,
+    3.666
+   ]
+  ],
+  "scene": 2
+ },
+ {
   "id": "s4",
   "text": "Llega un pedido por WhatsApp, y se registra solo en tu CRM.",
-  "start": 17.398,
+  "start": 27.576,
   "dur": 4.301,
   "speech": [
    [
@@ -66,7 +104,7 @@
  {
   "id": "s5",
   "text": "Tu hoja de cálculo se actualiza, y el ERP descuenta el stock.",
-  "start": 22.699,
+  "start": 32.976,
   "dur": 3.864,
   "speech": [
    [
@@ -81,9 +119,22 @@
   "scene": 4
  },
  {
+  "id": "s5b",
+  "text": "Todo queda registrado al instante, sin que nadie lo vuelva a escribir.",
+  "start": 37.541,
+  "dur": 3.803,
+  "speech": [
+   [
+    0.0,
+    3.803
+   ]
+  ],
+  "scene": 4
+ },
+ {
   "id": "s6",
   "text": "Tu equipo deja de copiar y pegar, y se dedica a vender.",
-  "start": 27.563,
+  "start": 42.544,
   "dur": 3.224,
   "speech": [
    [
@@ -98,9 +149,26 @@
   "scene": 5
  },
  {
+  "id": "s6b",
+  "text": "Y la información es la misma en todas partes, siempre al día.",
+  "start": 46.468,
+  "dur": 3.883,
+  "speech": [
+   [
+    0.0,
+    2.295
+   ],
+   [
+    2.711,
+    3.883
+   ]
+  ],
+  "scene": 5
+ },
+ {
   "id": "s7",
   "text": "Conversemos de tu próximo piloto. Treinta minutos, sin tarjeta, sin compromiso.",
-  "start": 32.587,
+  "start": 52.251,
   "dur": 5.172,
   "speech": [
    [
