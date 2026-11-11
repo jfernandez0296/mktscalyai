@@ -1,4 +1,4 @@
-# Scaly AI · "¿Qué pasa en las primeras 2 semanas de un piloto?" (~45 s)
+# Scaly AI · "¿Qué pasa en las primeras 2 semanas de un piloto?" (1:01)
 
 Dos formatos desde el mismo generador: `FMT=h` → 1920×1080 (`renders/scalyai-piloto-2semanas-16x9.mp4`), `FMT=v` → 1080×1920 (`renders/scalyai-piloto-2semanas-9x16.mp4`). Voz Gemini TTS (gemini-3.1-flash-tts-preview, Charon). Base común en `build/lib.py`.
 
