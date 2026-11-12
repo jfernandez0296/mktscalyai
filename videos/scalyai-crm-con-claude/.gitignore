@@ -1,0 +1,6 @@
+renders/work-*/
+renders/.*hf-transaction*/
+audio/tts.log
+build/__pycache__/
+audio/seg/*.raw.wav
+audio/seg/*.pcm

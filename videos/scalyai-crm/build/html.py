@@ -14,19 +14,23 @@ ST = {"free": ("#FFFFFF", NAVY, CREAM3), "occ": (TEAL, WHITE, TEAL), "clean": ("
 ACC = {"": ("#0D2F5C", "#007B83", "#7FE3E3"), "c-xls": ("#14532F", "#1D6F42", "#BDEFD0"), "c-crm": ("#163A8C", "#1F4FBF", "#CFE0FF"),
        "c-erp": ("#8A4A12", "#B5651D", "#FFE0BD"), "wa": ("#0B5E32", "#128C4A", "#C9F2D8")}
 def acc(sc): return ACC["wa" if sc.get("icon") == "wa" else sc.get("cls", "")]
-CUR = {"acc": TEAL}
+CUR = {"acc": TEAL, "w": 872}
+Y0, Y1, ZMAX = 690, 1420, 1.36   # zona útil de los módulos y ampliación máxima
 def big_icon(ic, size): return wa(size, WHITE) if ic == "wa" else icon(ic, size, WHITE, 1.1)
 
 def tile(ic, size, cls=""): return gt("wa" if ic == "wa" else ic, size, cls=cls)
 
 # ---------------------------------------------------------------- módulos (devuelven html, alto)
+def tagw(t): return 0 if not t else 44 + 30 + int(len(t) * 14.5)
 def m_rows(pid, m):
-    rows = []
+    rows = []; rsw = max([max(tagw(r.get("t0")), tagw(r.get("t1"))) for r in m["rows"]] + [120])
+    txt = max(max(len(r["text"]) * 15.5, len(r.get("sub", "")) * 10.5) for r in m["rows"])
+    m["_need"] = 84 + 44 + txt + rsw + 24
     for i, r in enumerate(m["rows"]):
         tags = f'<span class="tag soft" id="{pid}a{i}">{r["t0"]}</span>' if r.get("t0") else ""
         if r.get("t1"): tags += f'<span class="tag teal" id="{pid}b{i}">{icon("check", 20, "#00646B", 3)}{r["t1"]}</span>'
         left = person(r["person"], 84) if "person" in r else tile(r["icon"], 84, r.get("cls", ""))
-        rows.append(f'<div class="rw" id="{pid}r{i}">{left}<div class="rt"><b>{r["text"]}</b>{f"<span>{r[chr(115)+chr(117)+chr(98)]}</span>" if r.get("sub") else ""}</div><div class="rs">{tags}</div></div>')
+        rows.append(f'<div class="rw" id="{pid}r{i}">{left}<div class="rt"><b>{r["text"]}</b>{f"<span>{r[chr(115)+chr(117)+chr(98)]}</span>" if r.get("sub") else ""}</div><div class="rs" style="width:{rsw}px">{tags}</div></div>')
     head = f'<div class="flab t">{m["title"]}</div>' if m.get("title") else ""
     return head + "".join(rows), 56 + len(m["rows"]) * 112 + (44 if m.get("title") else 0)
 def a_rows(pid, m, seg):
@@ -43,7 +47,7 @@ def a_rows(pid, m, seg):
     ev("chime2", F(seg, b))
 
 def m_flow(pid, m):
-    ts = m["tiles"]; n = len(ts); S_ = 150; inner = 872
+    ts = m["tiles"]; n = len(ts); S_ = 150; inner = CUR["w"]
     xs = [int(S_ / 2 + i * (inner - S_) / (n - 1)) for i in range(n)]
     out = [f'<div class="abs ftrack" id="{pid}tr" style="{pos(xs[0], 109, xs[-1] - xs[0], 10)}"></div>']
     for i, t in enumerate(ts):
@@ -64,7 +68,7 @@ def a_flow(pid, m, seg):
     js(f'tl.to("#{pid}chip", {{ autoAlpha: 0, duration: 0.3 }}, {t0 + d - 0.25:.3f});')
 
 def m_grid(pid, m):
-    cols = m["cols"]; cw = (864 - (cols - 1) * 12) // cols
+    cols = m["cols"]; cw = (CUR["w"] - 8 - (cols - 1) * 12) // cols
     cells = "".join(f'<div class="gc" id="{pid}c{i}" style="width:{cw}px;background:{ST[s][0]};color:{ST[s][1]};border-color:{ST[s][2]}">{lab}</div>' for i, (lab, s) in enumerate(m["cells"]))
     leg = "".join(f'<span><i style="background:{ST[k][0]};border-color:{ST[k][2]}"></i>{v}</span>' for k, v in m["legend"])
     rows = -(-len(m["cells"]) // cols)
@@ -87,11 +91,12 @@ def a_chat(pid, m, seg):
     show(f"#{pid}k", F(seg, 0.85), 0.45, 12); ev("chime", F(seg, 0.85))
 
 def m_pipe(pid, m):
-    cols = m["cols"]; n = len(cols); cw = (872 - (n - 1) * 14) // n
+    cols = m["cols"]; n = len(cols); cw = (CUR["w"] - (n - 1) * 14) // n
     out = []
     for i, (name, col) in enumerate(cols):
         ghosts = "".join('<div class="pg"></div>' for _ in range(m.get("ghost", [2, 2, 1, 1])[i]))
         out.append(f'<div class="pc" style="width:{cw}px"><div class="ph" style="background:{col}">{name}</div><div class="pslot"></div>{ghosts}</div>')
+    m["_need"] = 730
     card = f'<div class="abs pcard" id="{pid}card" style="{pos(8, 66, cw - 16)}">{person(m["person"], 44)}<div><b>{m["deal"]}</b><span>{m["amount"]}</span></div></div>'
     m["_step"] = cw + 14
     return f'<div class="flab t">{m["title"]}</div><div class="rel pp-wrap"><div class="pcols">{"".join(out)}</div>{card}</div>', 56 + 44 + 330
@@ -122,7 +127,22 @@ def a_bars(pid, m, seg):
     js(f'tl.fromTo("#{pid} .bcol i", {{ scaleY: 0, transformOrigin: "50% 100%" }}, {{ scaleY: 1, duration: 0.6, stagger: 0.07, ease: {EASE} }}, {F(seg, m.get("at", 0.45)):.3f});')
     js(f'tl.fromTo("#{pid} .bcol b", {{ autoAlpha: 0, y: 8 }}, {{ autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.07, ease: {EASE} }}, {F(seg, m.get("at", 0.45)) + 0.35:.3f});')
 
-MODS = {"rows": (m_rows, a_rows), "flow": (m_flow, a_flow), "grid": (m_grid, a_grid), "chat": (m_chat, a_chat), "pipe": (m_pipe, a_pipe), "kpis": (m_kpis, a_kpis), "bars": (m_bars, a_bars)}
+def m_prompt(pid, m):
+    lines = "".join(f'<div class="pl" id="{pid}l{i}">{t}</div>' for i, t in enumerate(m["lines"]))
+    h = (f'<div class="ptop"><span class="pchip">{icon("terminal", 26, CYAN, 2.4)}Tú → Claude</span><i></i><i></i><i></i></div>'
+         f'<div class="pbody">{lines}<span class="pcur" id="{pid}cur"></span></div>'
+         f'<div class="pans" id="{pid}k">{bars(30, pid + "lg", True)}<b>Claude</b><span>{m["done"]}</span>{icon("circle-check", 34, CYAN, 2.2)}</div>')
+    return h, 150 + len(m["lines"]) * 50 + 104
+def a_prompt(pid, m, seg):
+    n = len(m["lines"]); a, b = m.get("span", (0.04, 0.9))
+    js(f'gsap.set(["#{pid} .pl", "#{pid}k"], {{ autoAlpha: 0 }});')
+    for i in range(n):
+        t = F(seg, a + (b - a) * 0.6 * i / n)
+        js(f'tl.fromTo("#{pid}l{i}", {{ autoAlpha: 0, clipPath: "inset(0 100% 0 0)" }}, {{ autoAlpha: 1, clipPath: "inset(0 0% 0 0)", duration: 0.7, ease: "power1.out" }}, {t:.3f});'); ev("tick", t)
+    js(f'tl.fromTo("#{pid}cur", {{ autoAlpha: 1 }}, {{ autoAlpha: 0, duration: 0.4, yoyo: true, repeat: 9, ease: "steps(1)" }}, {F(seg, a):.3f});')
+    show(f"#{pid}k", F(seg, b), 0.45, 12); ev("chime", F(seg, b))
+
+MODS = {"prompt": (m_prompt, a_prompt), "rows": (m_rows, a_rows), "flow": (m_flow, a_flow), "grid": (m_grid, a_grid), "chat": (m_chat, a_chat), "pipe": (m_pipe, a_pipe), "kpis": (m_kpis, a_kpis), "bars": (m_bars, a_bars)}
 
 # ---------------------------------------------------------------- escenas
 LET = "ABCDEFGHIJ"
@@ -149,10 +169,17 @@ for k, sc in enumerate(spec.SCENES):
         a1, a2, tint = acc(sc); CUR["acc"] = a2
         n = steps.index(sc) + 1
         dots = "".join(f'<i class="{"on" if j == n else ("done" if j < n else "")}"></i>' for j in range(1, len(steps) + 1))
-        y = 724 if sc.get("people") else 690; cards = []
+        y0 = Y0 + (34 if sc.get("people") else 0); cards = []; GAP = 26
+        CUR["w"] = 872; hs = [MODS[m["type"]][0](f"{sid}m{j}", dict(m))[1] for j, m in enumerate(sc["mods"])]
+        mm = [dict(m) for m in sc["mods"]]
+        for j, m in enumerate(mm): MODS[m["type"]][0](f"{sid}m{j}", m)
+        zcap = max(1.0, min([ZMAX] + [940 / (m["_need"] + 68) for m in mm if m.get("_need")]))
+        z = max(0.88, min(zcap, (Y1 - y0 - GAP * (len(hs) - 1)) / sum(hs)))
+        used = sum(hs) * z + GAP * (len(hs) - 1); y = y0 + max(0, (Y1 - y0 - used) * 0.3)
+        CUR["w"] = int(940 / z) - 68
         for j, m in enumerate(sc["mods"]):
             pid = f"{sid}m{j}"; inner, hh = MODS[m["type"]][0](pid, m)
-            cards.append(f'<div class="abs card pan" id="{pid}" style="{pos(M, y, 940, hh)}">{inner}</div>'); y += hh + 26
+            cards.append(f'<div class="abs card pan" id="{pid}" style="left:{M / z:.1f}px;top:{y / z:.1f}px;width:{940 / z:.1f}px;height:{hh}px;zoom:{z:.3f}">{inner}</div>'); y += hh * z + GAP
         ppl = f'<div class="abs" id="{sid}pp" style="{pos(M, 600)}">{avs(sc["people"], 88)}</div>' if sc.get("people") else ""
         h = f'''      <div class="sc" id="s{sid}" style="--acc:{a2};--emc:{tint}"><div class="cam">{BG(-200, 900, 1100)}{deco(380, 1500, 0.75)}
         <div class="abs band" id="{sid}band" style="background:linear-gradient(135deg, {a1}, {a2})"><div class="abs wmk" id="{sid}wm">{big_icon(sc["icon"], 460)}</div>

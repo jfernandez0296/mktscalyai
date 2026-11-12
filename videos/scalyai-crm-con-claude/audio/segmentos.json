@@ -1,0 +1,190 @@
+[
+ {
+  "id": "s1",
+  "text": "¿Sabías que puedes crear tu propio CRM con Claude? Te muestro cómo, paso a paso.",
+  "start": 0.6,
+  "dur": 5.584,
+  "speech": [
+   [
+    0.0,
+    3.137
+   ],
+   [
+    3.744,
+    4.538
+   ],
+   [
+    4.852,
+    5.584
+   ]
+  ],
+  "scene": 0
+ },
+ {
+  "id": "s2",
+  "text": "Primero, cuéntale a Claude cómo vendes: de dónde llegan tus clientes, y qué etapas sigue cada venta.",
+  "start": 7.884,
+  "dur": 6.67,
+  "speech": [
+   [
+    0.0,
+    0.526
+   ],
+   [
+    0.88,
+    2.657
+   ],
+   [
+    3.005,
+    4.463
+   ],
+   [
+    4.711,
+    6.67
+   ]
+  ],
+  "scene": 1
+ },
+ {
+  "id": "s3",
+  "text": "Con eso, Claude diseña la base de datos: contactos, oportunidades y tareas, con los campos que tu negocio necesita.",
+  "start": 16.253,
+  "dur": 8.318,
+  "speech": [
+   [
+    0.0,
+    0.542
+   ],
+   [
+    0.884,
+    2.843
+   ],
+   [
+    3.292,
+    5.638
+   ],
+   [
+    6.017,
+    8.318
+   ]
+  ],
+  "scene": 2
+ },
+ {
+  "id": "s4",
+  "text": "Después construye las pantallas: tu embudo de ventas, la ficha de cada cliente, y las tareas del día.",
+  "start": 26.271,
+  "dur": 7.091,
+  "speech": [
+   [
+    0.0,
+    2.117
+   ],
+   [
+    2.501,
+    7.091
+   ]
+  ],
+  "scene": 3
+ },
+ {
+  "id": "s5",
+  "text": "Luego conecta tus canales. Cada mensaje de WhatsApp, o formulario de tu web, entra solo como una oportunidad.",
+  "start": 35.063,
+  "dur": 7.762,
+  "speech": [
+   [
+    0.0,
+    1.874
+   ],
+   [
+    2.493,
+    5.37
+   ],
+   [
+    5.739,
+    7.762
+   ]
+  ],
+  "scene": 4
+ },
+ {
+  "id": "s7",
+  "text": "¿Falta algo? Se lo pides con tus palabras: un campo nuevo, un recordatorio, un reporte. Y Claude lo ajusta.",
+  "start": 44.524,
+  "dur": 8.624,
+  "speech": [
+   [
+    0.0,
+    0.687
+   ],
+   [
+    1.244,
+    2.828
+   ],
+   [
+    3.32,
+    4.374
+   ],
+   [
+    4.617,
+    6.678
+   ],
+   [
+    7.229,
+    7.612
+   ],
+   [
+    7.925,
+    8.624
+   ]
+  ],
+  "scene": 5
+ },
+ {
+  "id": "s8",
+  "text": "Por último, lo publicas, y tu equipo empieza a usarlo desde el celular o la computadora.",
+  "start": 54.848,
+  "dur": 5.664,
+  "speech": [
+   [
+    0.0,
+    0.612
+   ],
+   [
+    0.859,
+    1.704
+   ],
+   [
+    2.03,
+    5.664
+   ]
+  ],
+  "scene": 6
+ },
+ {
+  "id": "s6",
+  "text": "¿Prefieres que lo hagamos por ti? Conversemos de tu próximo piloto: treinta minutos, sin tarjeta, sin compromiso.",
+  "start": 62.712,
+  "dur": 6.428,
+  "speech": [
+   [
+    0.0,
+    1.259
+   ],
+   [
+    1.963,
+    3.541
+   ],
+   [
+    4.039,
+    5.496
+   ],
+   [
+    5.717,
+    6.428
+   ]
+  ],
+  "scene": 7
+ }
+]

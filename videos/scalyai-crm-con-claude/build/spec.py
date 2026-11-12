@@ -1,0 +1,28 @@
+TITLE = "Scaly AI — Cómo hacer un CRM con Claude"
+NOTE = "Ejemplo ilustrativo"
+SCENES = [
+ dict(seg="s1", kind="hook", eyebrow="Tutorial · CRM con IA", title=["¿Cómo hacer", "un CRM", "<em>con Claude?</em>"], icon="terminal", cls="c-crm",
+      orbit=[('users', 'c-crm', 'Contactos'), ('kanban', 'c-erp', 'Embudo'), ('bell', '', 'Tareas'), ('chart-column', 'c-xls', 'Reportes')]),
+ dict(seg="s2", kind="step", eyebrow="Paso 1 · Tu proceso", title=["Cuéntale", "<em>cómo vendes.</em>"], icon="message-circle", cls="c-crm", lead="Canales, etapas y lo que necesitas ver.",
+      mods=[dict(type="prompt", lines=["Quiero un CRM para mi negocio.", "Mis clientes llegan por <em>WhatsApp</em>", "y por el <em>formulario web</em>.", "Etapas: <em>nuevo</em>, <em>conversación</em>,", "<em>propuesta</em> y <em>ganado</em>."], done="Entendido. Armo el plan.")]),
+ dict(seg="s3", kind="step", eyebrow="Paso 2 · Datos", title=["Claude diseña", "<em>la base de datos.</em>"], icon="database", lead="Con los campos que tu negocio necesita.",
+      mods=[dict(type="rows", title="Tablas del CRM", rows=[dict(icon="users", cls="c-crm", text="Contactos", sub="Nombre · teléfono · canal", t0="Creando", t1="Lista"),
+                                    dict(icon="handshake", cls="c-erp", text="Oportunidades", sub="Etapa · monto · responsable", t0="Creando", t1="Lista"),
+                                    dict(icon="clipboard-list", cls="c-xls", text="Tareas", sub="Qué hacer · cuándo · con quién", t0="Creando", t1="Lista")])]),
+ dict(seg="s4", kind="step", eyebrow="Paso 3 · Pantallas", title=["Construye", "<em>las pantallas.</em>"], icon="layout-dashboard", cls="c-erp", lead="Embudo, ficha del cliente y tareas del día.",
+      mods=[dict(type="pipe", title="Embudo de ventas", cols=[("Nuevo", "#2F4560"), ("Conversación", "#1F4FBF"), ("Propuesta", "#B5651D"), ("Ganado", "#1D6F42")], person=2, deal="María", amount="S/ 3.200", at=[0.4, 0.62, 0.84]),
+            dict(type="rows", title="Tareas de hoy", rows=[dict(person=3, text="Carlos", sub="Llamar para la demo", t0="12:30 p. m."), dict(person=1, text="Lucía", sub="Enviar la propuesta", t0="4:00 p. m.")])]),
+ dict(seg="s5", kind="step", eyebrow="Paso 4 · Canales", title=["Conecta", "<em>tus canales.</em>"], icon="wa", lead="Cada mensaje entra solo como oportunidad.",
+      mods=[dict(type="flow", tiles=[dict(icon="wa", label="WhatsApp"), dict(icon="globe", cls="c-xls", label="Web"), dict(icon="users", cls="c-crm", label="Tu CRM")], chip="Nuevo contacto", span=(0.3, 0.95)),
+            dict(type="rows", title="Entradas de hoy", rows=[dict(icon="wa", text="María", sub="WhatsApp · consulta por precios", t0="Nuevo", t1="Oportunidad"),
+                                    dict(icon="globe", cls="c-xls", text="Carlos", sub="Web · pide una demo", t0="Nuevo", t1="Oportunidad")], span=(0.45, 0.98))]),
+ dict(seg="s7", kind="step", eyebrow="Paso 5 · Ajustes", title=["Pídele cambios", "<em>con tus palabras.</em>"], icon="sparkles", lead="Tú revisas y apruebas cada cambio.",
+      mods=[dict(type="rows", title="Tus pedidos a Claude", rows=[dict(icon="database", cls="c-crm", text="“Agrega el campo RUC”", sub="Un campo nuevo", t0="Pedido", t1="Hecho"),
+                                    dict(icon="bell", cls="c-erp", text="“Avísame a los 3 días”", sub="Un recordatorio", t0="Pedido", t1="Hecho"),
+                                    dict(icon="chart-column", cls="c-xls", text="“Reporte cada lunes”", sub="Un reporte", t0="Pedido", t1="Hecho")])]),
+ dict(seg="s8", kind="step", eyebrow="Paso 6 · Publicar", title=["Publícalo", "<em>para tu equipo.</em>"], icon="rocket", cls="c-crm", lead="Desde el celular o la computadora.", people=[0, 1, 3],
+      mods=[dict(type="rows", title="Tu CRM, en línea", rows=[dict(icon="globe", cls="c-crm", text="crm.tu-negocio.com", sub="Dirección de ejemplo", t0="Publicando", t1="En línea"),
+                                    dict(icon="smartphone", cls="c-erp", text="Celular", sub="Para vender en la calle", t1="Listo"),
+                                    dict(icon="users", cls="c-xls", text="Tu equipo", sub="Cada uno con su usuario", t1="Listo")])]),
+ dict(seg="s6", kind="cta", title=["¿Prefieres que", "lo hagamos", "<em>por ti?</em>"]),
+]

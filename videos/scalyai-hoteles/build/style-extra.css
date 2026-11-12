@@ -98,3 +98,16 @@
       .olab { margin-top: 12px; padding: 6px 16px; border-radius: 999px; background: rgba(240,241,232,.12); border: 1px solid rgba(240,241,232,.22); color: var(--cream-100); font-size: 22px; font-weight: 700; white-space: nowrap; }
       .recap { display: flex; justify-content: center; gap: 28px; }
       .dark .gt { box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+
+      /* ---- módulo prompt (Tú → Claude) ---- */
+      .pan.dk, .pan:has(.pbody) { background: #06224a; border-top-color: var(--cyan-400); color: var(--cream-100); }
+      .ptop { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+      .pchip { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: rgba(71,212,212,.14); color: var(--cyan-400); font-size: 19px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-right: auto; white-space: nowrap; }
+      .ptop i { width: 14px; height: 14px; border-radius: 50%; background: rgba(240,241,232,.22); }
+      .pbody { font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 27px; line-height: 50px; color: #e9f4f4; }
+      .pl { height: 50px; white-space: nowrap; }
+      .pl em { font-style: normal; color: var(--cyan-400); }
+      .pcur { display: inline-block; width: 14px; height: 30px; background: var(--cyan-400); vertical-align: middle; }
+      .pans { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 16px 20px; border-radius: 18px; background: rgba(71,212,212,.13); border: 1px solid rgba(71,212,212,.35); font-size: 25px; }
+      .pans b { font-weight: 800; color: var(--cyan-400); }
+      .pans span { flex: 1; font-weight: 600; white-space: nowrap; }
