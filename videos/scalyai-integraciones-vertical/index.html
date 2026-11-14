@@ -1,0 +1,886 @@
+<!doctype html>
+    <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1080, height=1920" />
+        <title>Scaly AI — Excel, CRM y ERP conectados</title>
+        <script src="assets/vendor/gsap.min.js"></script>
+        <style>
+          @font-face { font-family: "Manrope"; font-weight: 300; src: url("assets/fonts/Manrope-300-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 400; src: url("assets/fonts/Manrope-400-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); }
+      :root {
+        --navy-900: #041b3d; --navy-700: #0d2f5c; --teal-600: #007b83; --cyan-400: #47d4d4; --slate-700: #2f4560;
+        --cream-100: #f0f1e8; --cream-200: #e3e5d9; --cream-300: #d6d9cb; --white: #ffffff;
+        --gradient-brand: linear-gradient(90deg, #0d2f5c, #47d4d4);
+        --shadow-card: 0 12px 30px rgba(4,27,61,.15); --shadow-button: 0 12px 28px rgba(4,27,61,.22);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); font-family: "Manrope", system-ui, sans-serif; color: var(--navy-900); }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      .sc.dark { background: var(--navy-900); color: var(--cream-100); }
+      .cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 45%; }
+      #sB, #sC, #sD, #sE, #sF, #sG, #sH, .cap { visibility: hidden; opacity: 0; }
+
+      /* fondos: rejilla sutil + resplandor cian */
+      .grid { position: absolute; left: -64px; top: -64px; width: 1208px; height: 2048px;
+        background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px);
+        background-size: 64px 64px; opacity: .45; }
+      .dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity: 1; }
+      .glow { position: absolute; width: 1100px; height: 1100px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(71,212,212,.38), rgba(71,212,212,0)); }
+      .dark .glow { background: radial-gradient(closest-side, rgba(71,212,212,.16), rgba(71,212,212,0)); }
+
+      /* tipografía */
+      .eyebrow { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); white-space: nowrap; }
+      .dark .eyebrow { color: var(--cyan-400); }
+      .h1 { font-size: 92px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; white-space: nowrap; }
+      .h1 em { font-style: normal; color: var(--teal-600); }
+      .dark .h1 em { color: var(--cyan-400); }
+      .lead { font-size: 36px; font-weight: 300; line-height: 1.4; color: var(--slate-700); }
+      .dark .lead { color: var(--cream-200); }
+      .note { font-size: 18px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .dark .note { color: #b9c3cf; }
+      .tag { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 22px; border-radius: 999px; font-size: 18px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+      .tag.soft { background: var(--cream-200); color: var(--slate-700); }
+      .tag.teal { background: #d6eeee; color: #00646b; }
+      .tag.cyan { background: var(--cyan-400); color: var(--navy-900); }
+      .tag.navy { background: var(--navy-900); color: var(--cream-100); }
+
+      /* tarjetas */
+      .card { background: var(--white); border: 1px solid var(--cream-300); border-radius: 20px; box-shadow: var(--shadow-card); }
+      .dark .card { background: var(--navy-700); border-color: rgba(240,241,232,.12); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+
+      /* A · noche */
+      .clock { font-size: 230px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cream-100); white-space: nowrap; }
+      .clock small { font-size: 80px; font-weight: 500; letter-spacing: -0.02em; color: var(--cyan-400); margin-left: 18px; }
+      .line { font-size: 64px; font-weight: 800; letter-spacing: -0.035em; white-space: nowrap; }
+      .line.dim { color: #8fa0b5; font-weight: 700; }
+      .notif { width: 700px; padding: 30px 34px; display: flex; gap: 26px; align-items: flex-start; background: var(--cream-100); color: var(--navy-900); border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .notif .wa { flex: none; width: 76px; height: 76px; border-radius: 20px; background: #128c4a; display: flex; align-items: center; justify-content: center; }
+      .notif .who { font-size: 22px; font-weight: 700; color: var(--slate-700); display: flex; justify-content: space-between; width: 530px; }
+      .notif .msg { font-size: 34px; font-weight: 500; margin-top: 8px; white-space: nowrap; }
+      .wait { display: flex; align-items: center; gap: 18px; height: 84px; padding: 0 34px; border-radius: 999px; border: 1px solid rgba(240,241,232,.22); background: rgba(240,241,232,.06); font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .wait b { color: var(--cyan-400); font-weight: 800; min-width: 92px; text-align: right; }
+
+      /* filas de tareas */
+      .task { display: flex; align-items: center; gap: 24px; height: 104px; padding: 0 32px; border-bottom: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; white-space: nowrap; }
+      .task:last-child { border-bottom: 0; }
+      .task .ti { flex: none; width: 56px; height: 56px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .task .tx { flex: 1; }
+      .task .st { position: relative; width: 220px; height: 46px; }
+      .task .st .tag { position: absolute; right: 0; top: 0; }
+      .bigstat b { display: block; font-size: 150px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--teal-600); }
+      .bigstat span { display: block; font-size: 30px; font-weight: 700; margin-top: 14px; line-height: 1.3; }
+      .bigstat i { display: block; font-style: normal; font-size: 24px; font-weight: 300; color: var(--slate-700); margin-top: 8px; line-height: 1.4; }
+
+      /* C · marca */
+      .wm { display: flex; align-items: center; gap: 48px; white-space: nowrap; }
+      .wm .nm { font-size: 190px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+      .wm .nm span { font-weight: 500; color: var(--teal-600); letter-spacing: -0.03em; }
+      .dark .wm .nm span { color: var(--cyan-400); }
+      .bars { position: relative; }
+      .bars i { position: absolute; display: block; border-radius: 999px; }
+      .hero .h1 { font-size: 120px; line-height: 1.04; }
+      .hero .h1 .s { color: var(--slate-700); font-weight: 500; }
+      .vbar { width: 10px; border-radius: 5px; background: var(--teal-600); }
+      .navlogo { display: flex; align-items: center; gap: 16px; font-size: 40px; font-weight: 800; letter-spacing: -0.04em; white-space: nowrap; }
+      .navlogo span { font-weight: 500; color: var(--teal-600); }
+
+      /* D · chat */
+      .phone { width: 540px; height: 860px; border-radius: 60px; background: var(--navy-900); padding: 16px; box-shadow: 0 30px 70px rgba(4,27,61,.28); }
+      .screen { position: relative; width: 508px; height: 828px; border-radius: 46px; background: var(--cream-100); overflow: hidden; }
+      .chd { position: absolute; left: 0; top: 0; width: 508px; height: 128px; padding: 40px 28px 0; display: flex; gap: 18px; align-items: center; background: var(--white); border-bottom: 1px solid var(--cream-300); }
+      .chd .av { width: 64px; height: 64px; border-radius: 18px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; }
+      .chd b { display: block; font-size: 24px; font-weight: 700; }
+      .chd i { display: block; font-style: normal; font-size: 18px; font-weight: 500; color: var(--teal-600); }
+      .bub { position: absolute; max-width: 400px; padding: 18px 22px; border-radius: 22px; font-size: 25px; font-weight: 500; line-height: 1.3; }
+      .bub small { display: block; font-size: 16px; font-weight: 500; margin-top: 6px; opacity: .75; text-align: right; }
+      .bub.in { left: 24px; background: var(--white); border: 1px solid var(--cream-300); border-bottom-left-radius: 6px; }
+      .bub.out { right: 24px; background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius: 6px; }
+      .typing { position: absolute; right: 24px; display: flex; gap: 8px; padding: 22px 24px; border-radius: 22px; background: var(--navy-900); }
+      .typing i { width: 12px; height: 12px; border-radius: 6px; background: var(--cyan-400); display: block; }
+      .rcpt { position: absolute; left: 24px; width: 460px; display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 18px; background: #d6eeee; color: #00545a; font-size: 23px; font-weight: 700; }
+      .crm { width: 640px; padding: 26px 30px; }
+      .crm .hd { display: flex; justify-content: space-between; align-items: center; }
+      .crm .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm .row b { font-weight: 700; }
+
+      /* E · conexiones */
+      .hub { width: 170px; height: 170px; border-radius: 40px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(4,27,61,.3); }
+      .node { display: flex; align-items: center; gap: 16px; height: 92px; padding: 0 30px 0 18px; border-radius: 999px; background: var(--white); border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .node .ni { width: 60px; height: 60px; border-radius: 30px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .pulse { width: 18px; height: 18px; border-radius: 9px; background: var(--cyan-400); box-shadow: 0 0 0 6px rgba(71,212,212,.25); }
+
+      /* F · datos */
+      .kpi { width: 520px; height: 200px; padding: 30px 34px; }
+      .kpi b em { font-style: normal; }
+      .kpi b { display: block; font-size: 84px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--cyan-400); white-space: nowrap; }
+      .kpi span { display: block; font-size: 26px; font-weight: 500; color: var(--cream-200); margin-top: 16px; white-space: nowrap; }
+      .chart { width: 1600px; height: 300px; }
+      .cbar { position: absolute; bottom: 64px; width: 54px; border-radius: 10px 10px 4px 4px; }
+      .cbar.m { background: #5d708a; }
+      .cbar.a { background: var(--cyan-400); }
+      .lg { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 500; color: var(--cream-200); white-space: nowrap; }
+      .lg i { width: 22px; height: 22px; border-radius: 6px; display: block; }
+      .wk { position: absolute; bottom: 22px; width: 140px; text-align: center; font-size: 18px; font-weight: 500; color: #b9c3cf; }
+
+      /* G · piloto */
+      .track { height: 12px; border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .track div { width: 100%; height: 100%; background: var(--gradient-brand); transform-origin: 0% 50%; }
+      .dot { width: 64px; height: 64px; border-radius: 32px; background: var(--white); border: 2px solid var(--cream-300); display: flex; align-items: center; justify-content: center; }
+      .dot.on { background: var(--teal-600); border-color: var(--teal-600); }
+      .step { width: 480px; height: 290px; padding: 32px 36px; }
+      .step .num { font-size: 22px; font-weight: 800; letter-spacing: .14em; color: var(--teal-600); }
+      .step h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; margin-top: 14px; white-space: nowrap; }
+      .step b { display: block; font-size: 64px; font-weight: 800; letter-spacing: -0.04em; color: var(--teal-600); margin-top: 26px; white-space: nowrap; }
+      .step i { font-style: normal; font-size: 26px; font-weight: 300; color: var(--slate-700); white-space: nowrap; }
+
+      /* H · cierre */
+      .btn { display: flex; align-items: center; justify-content: center; gap: 18px; height: 104px; padding: 0 56px; border-radius: 999px; background: var(--gradient-brand); color: var(--white); font-size: 40px; font-weight: 700; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+      .micro { font-size: 30px; font-weight: 500; color: var(--cream-200); white-space: nowrap; text-align: center; }
+      .url { font-size: 30px; font-weight: 800; letter-spacing: .14em; color: var(--cyan-400); text-align: center; }
+
+      /* transición con las tres barras del logo */
+      .tbar { position: absolute; left: 0; width: 1800px; height: 640px; border-radius: 320px; visibility: hidden; }
+      #prog { position: absolute; left: 0; bottom: 0; width: 1080px; height: 6px; background: var(--gradient-brand); transform-origin: 0% 50%; }
+
+      /* subtítulos */
+      .cap { position: absolute; left: 0; top: 1490px; width: 1080px; display: flex; justify-content: center; pointer-events: none; }
+      .cap span { padding: 12px 30px; border-radius: 999px; background: rgba(4,27,61,.92); color: var(--cream-100); font-size: 34px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(4,27,61,.25); }
+      .cap b { font-weight: 800; color: var(--cyan-400); }
+      #Ecard .task { font-size: 27px; height: 100px; } #Ecard .task .st { width: 210px; }
+
+      /* ---- tutorial WhatsApp + Meta + Claude ---- */
+      #sI { visibility: hidden; opacity: 0; }
+      .h1 .l { display: block; line-height: 1.14; }
+      .h1.big { font-size: 104px; line-height: 1.08; }
+      .h1.ctr, .lead.ctr { text-align: center; }
+      .navlogo.dk { color: var(--cream-100); }
+      .navlogo.dk span { color: var(--cyan-400); }
+      .pdots { position: absolute; right: 160px; top: 132px; display: flex; gap: 10px; }
+      .pdots i { display: block; width: 14px; height: 14px; border-radius: 7px; background: var(--cream-300); }
+      .pdots i.done { background: #7fc3c7; }
+      .pdots i.on { width: 44px; background: var(--teal-600); }
+      .dark .pdots i { background: rgba(240,241,232,.22); }
+      .dark .pdots i.done { background: rgba(71,212,212,.5); }
+      .dark .pdots i.on { background: var(--cyan-400); }
+      .flow { display: flex; align-items: center; gap: 20px; width: 400px; padding: 24px 28px; border-radius: 20px; background: var(--navy-700); border: 1px solid rgba(240,241,232,.12); }
+      .flow .ni { flex: none; width: 72px; height: 72px; border-radius: 20px; background: rgba(71,212,212,.12); display: flex; align-items: center; justify-content: center; }
+      .flow b { display: block; font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .flow span { display: block; font-size: 22px; font-weight: 300; color: var(--cream-200); margin-top: 4px; white-space: nowrap; }
+      .need { width: 500px; height: 420px; padding: 40px 40px; }
+      .need .pi { width: 88px; height: 88px; border-radius: 24px; background: #d6eeee; display: flex; align-items: center; justify-content: center; }
+      .need h3 { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin-top: 30px; }
+      .need p { font-size: 26px; font-weight: 300; line-height: 1.4; color: var(--slate-700); margin-top: 12px; }
+      .win { overflow: hidden; }
+      .wbar { height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 22px; background: var(--cream-200); border-bottom: 1px solid var(--cream-300); }
+      .wbar i { width: 14px; height: 14px; border-radius: 7px; background: var(--cream-300); display: block; }
+      .wbar span { margin-left: 16px; flex: 1; height: 36px; border-radius: 999px; background: #fff; display: flex; align-items: center; padding: 0 18px; font-size: 19px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .wbar.dk { background: #0a2348; border-bottom-color: rgba(240,241,232,.1); }
+      .wbar.dk i { background: rgba(240,241,232,.2); }
+      .wbar.dk span { background: transparent; color: var(--cream-200); padding: 0; }
+      .wbody { padding: 34px 44px; }
+      .ftitle { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 26px; white-space: nowrap; }
+      .ftitle.sm { margin-bottom: 14px; }
+      .fld { margin-bottom: 22px; }
+      .fld label { display: block; font-size: 20px; font-weight: 700; color: var(--slate-700); margin-bottom: 8px; }
+      .fld .val { position: relative; height: 62px; border-radius: 999px; border: 1px solid var(--cream-300); background: var(--cream-100); display: flex; align-items: center; padding: 0 26px; font-size: 26px; font-weight: 500; white-space: nowrap; }
+      .ok { position: absolute; right: 14px; top: 50%; margin-top: -19px; width: 38px; height: 38px; border-radius: 19px; background: var(--teal-600); display: flex; align-items: center; justify-content: center; }
+      .perm .ok { position: static; margin: 0; width: 34px; height: 34px; flex: none; }
+      .copy { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); padding: 6px 18px; border-radius: 999px; background: #d6eeee; color: #00646b; font-size: 18px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      .sbtn { display: inline-flex; align-items: center; height: 60px; padding: 0 32px; border-radius: 999px; background: var(--gradient-brand); color: #fff; font-size: 24px; font-weight: 700; box-shadow: var(--shadow-button); margin: 6px 0 26px; }
+      .sbtn.sm { height: 50px; padding: 0 24px; font-size: 21px; margin: 0; }
+      .prod { display: flex; align-items: center; gap: 20px; padding: 22px 24px; border-radius: 20px; border: 1px solid var(--cream-300); }
+      .prod .ni { flex: none; width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+      .prod > div:nth-child(2) { flex: 1; }
+      .prod b { display: block; font-size: 28px; font-weight: 700; }
+      .prod span { display: block; font-size: 21px; font-weight: 300; color: var(--slate-700); }
+      .code6 { position: relative; display: flex; gap: 12px; }
+      .code6 i { display: flex; width: 62px; height: 70px; border-radius: 14px; border: 1px solid var(--cream-300); background: var(--cream-100); align-items: center; justify-content: center; font-style: normal; font-size: 32px; font-weight: 700; }
+      .code6 .ok { right: auto; left: 470px; }
+      .wnote { font-size: 18px; font-weight: 500; color: var(--slate-700); }
+      .urow { display: flex; align-items: center; gap: 18px; padding: 20px 22px; border-radius: 20px; border: 1px solid var(--cream-300); margin-bottom: 22px; }
+      .urow .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .urow b { display: block; font-size: 26px; font-weight: 700; }
+      .urow span { display: block; font-size: 20px; font-weight: 300; color: var(--slate-700); }
+      .perm { display: flex; align-items: center; gap: 14px; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; margin-bottom: 14px; }
+      .prompt { padding: 30px 34px; border-radius: 20px; background: var(--navy-700); border: 1px solid rgba(240,241,232,.12); font-size: 30px; font-weight: 500; line-height: 1.45; color: var(--cream-100); }
+      .prompt .who { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); margin-bottom: 12px; }
+      .envc { padding: 26px 30px; border-radius: 20px; background: #020f24; border: 1px solid rgba(240,241,232,.12); }
+      .envc .eh { display: flex; justify-content: space-between; align-items: center; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; color: var(--cream-200); margin-bottom: 14px; }
+      .envc code { display: block; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; line-height: 1.7; color: var(--cyan-400); }
+      .tag.sm { height: 36px; padding: 0 14px; font-size: 14px; }
+      .editor { border-radius: 20px; background: #020f24; border: 1px solid rgba(240,241,232,.12); overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .lines { padding: 26px 28px 30px 10px; }
+      .ln { font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; line-height: 1.95; color: var(--cream-100); white-space: pre; }
+      .ln em { display: inline-block; width: 46px; text-align: right; margin-right: 22px; font-style: normal; color: #9aaabd; }
+      .ln.k { color: var(--cyan-400); }
+      .okt { display: inline-flex; align-items: center; gap: 10px; margin-left: 20px; font-size: 24px; font-weight: 700; color: var(--teal-600); vertical-align: middle; }
+      .sub { display: flex; align-items: center; gap: 20px; padding: 18px 22px; border-radius: 18px; border: 1px solid var(--cream-300); }
+      .sub code { flex: 1; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 26px; }
+      .tog { position: relative; width: 74px; height: 44px; border-radius: 22px; background: var(--cream-300); }
+      .tog i { position: absolute; left: 6px; top: 6px; width: 32px; height: 32px; border-radius: 16px; background: #fff; display: block; box-shadow: 0 2px 6px rgba(4,27,61,.2); }
+      .sub .okt { margin-left: 0; }
+      .h1.st { font-size: 80px; }
+      /* ---- versión "desde Claude" ---- */
+      .ask { padding: 26px 30px; border-radius: 20px; background: #fff; border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 500; line-height: 1.4; }
+      .ask .who { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 10px; }
+      .cstat { display: flex; align-items: center; gap: 14px; height: 76px; padding: 0 26px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 24px; font-weight: 700; white-space: nowrap; }
+      .cstat i { font-style: normal; font-weight: 500; color: var(--cream-200); margin-right: 6px; }
+      .cstat svg:last-child { stroke: var(--cyan-400); }
+      .cbadge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px; background: var(--cyan-400); color: var(--navy-900); font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .06em; white-space: nowrap; }
+      .wbar span { flex: 1; min-width: 0; overflow: hidden; }
+
+      /* ---- piloto 2 semanas (gráfico) ---- */
+      .deco i { position: absolute; display: block; border-radius: 999px; }
+      .gt { flex: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0d2f5c, #47d4d4); box-shadow: 0 16px 36px rgba(4,27,61,.25); }
+      .day { display: flex; align-items: flex-start; justify-content: flex-start; padding: 12px 14px; border-radius: 16px; background: #fff; border: 1px solid var(--cream-300); color: var(--navy-900); }
+      .day b { font-size: 28px; font-weight: 800; }
+      .day.dk { background: var(--navy-700); border-color: rgba(240,241,232,.14); color: var(--cream-100); }
+      .bignum { font-size: 430px; font-weight: 800; letter-spacing: -0.06em; line-height: 1; color: rgba(71,212,212,.16); text-align: center; white-space: nowrap; }
+      .bignum small { display: block; font-size: 70px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-top: -20px; }
+      .ptrack { border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .ptrack div { width: 100%; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #0d2f5c, #47d4d4); transform-origin: 0% 50%; }
+      .phase { display: flex; gap: 50px; align-items: center; padding: 40px 48px; overflow: hidden; }
+      .pt { flex: none; width: 780px; display: flex; gap: 36px; align-items: center; }
+      .phase h3 { font-size: 54px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin-top: 18px; }
+      .phase .pr { flex: 1; display: flex; flex-direction: column; gap: 22px; position: relative; z-index: 1; }
+      .bl { display: flex; gap: 18px; align-items: center; font-size: 30px; font-weight: 500; line-height: 1.3; }
+      .bl .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: #d6eeee; display: flex; align-items: center; justify-content: center; }
+      .pnum { position: absolute; right: 30px; bottom: -40px; font-size: 220px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(0,123,131,.08); }
+      /* ---- color por herramienta/etapa y personas ---- */
+      .gt.c-xls { background: linear-gradient(135deg, #1D6F42, #3FAE6B); }
+      .gt.c-crm { background: linear-gradient(135deg, #1F4FBF, #5B8DEF); }
+      .gt.c-erp { background: linear-gradient(135deg, #C56A1A, #F0A64B); }
+      .pp { flex: none; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 8px 20px rgba(4,27,61,.2); }
+      .pp svg { display: block; }
+      .avs { display: flex; align-items: center; }
+      .avs .pp + .pp { margin-left: -16px; }
+      .ptag { display: flex; align-items: center; gap: 16px; }
+
+      /* ---- módulos del motor vertical ---- */
+      .rel { position: relative; }
+      .pan { padding: 28px 34px; }
+      .flab { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); white-space: nowrap; margin-bottom: 8px; }
+      .ah { display: flex; align-items: center; gap: 18px; }
+      .ah b { font-size: 32px; font-weight: 700; white-space: nowrap; }
+      .ah i { margin-left: auto; font-style: normal; font-size: 22px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .rw { display: flex; align-items: center; gap: 22px; height: 112px; border-top: 1px solid var(--cream-300); }
+      .pan > .rw:first-child, .flab + .rw { border-top: 0; }
+      .rt { flex: 1; min-width: 0; }
+      .rt b { display: block; font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .rt span { display: block; font-size: 22px; font-weight: 500; color: var(--slate-700); white-space: nowrap; margin-top: 2px; }
+      .rs { position: relative; flex: none; width: 250px; height: 46px; }
+      .rs .tag { position: absolute; right: 0; top: 0; }
+      .ftrack { border-radius: 5px; background: linear-gradient(90deg, #0d2f5c, #47d4d4); }
+      .flabel { text-align: center; font-size: 26px; font-weight: 700; white-space: nowrap; }
+      .chipn { display: flex; align-items: center; justify-content: center; width: 170px; height: 56px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 21px; font-weight: 800; white-space: nowrap; box-shadow: 0 10px 24px rgba(4,27,61,.3); }
+      .gg { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+      .gc { height: 84px; border-radius: 16px; border: 2px solid; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; }
+      .leg { display: flex; gap: 28px; margin-top: 18px; font-size: 22px; font-weight: 500; color: var(--slate-700); }
+      .leg i { display: inline-block; width: 20px; height: 20px; border-radius: 6px; border: 2px solid; margin-right: 8px; vertical-align: -3px; }
+      .cb { width: fit-content; max-width: 720px; padding: 22px 26px; border-radius: 24px; font-size: 30px; font-weight: 500; line-height: 1.3; margin-top: 22px; }
+      .cb.in { background: var(--cream-100); border: 1px solid var(--cream-300); border-bottom-left-radius: 6px; }
+      .cb.out { background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius: 6px; margin-left: auto; }
+      .cb.out em { display: flex; align-items: center; gap: 10px; font-style: normal; font-size: 19px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan-400); margin-bottom: 8px; }
+      .rc { display: flex; gap: 14px; align-items: center; margin-top: 22px; padding: 18px 22px; border-radius: 18px; background: #d6eeee; color: #00545a; font-size: 26px; font-weight: 700; }
+      .pp-wrap { margin-top: 14px; }
+      .pcols { display: flex; gap: 14px; }
+      .pc { height: 300px; border-radius: 16px; background: var(--cream-100); border: 1px solid var(--cream-300); padding: 8px; }
+      .ph { height: 46px; border-radius: 10px; color: #fff; font-size: 19px; font-weight: 800; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+      .pslot { height: 88px; }
+      .pg { height: 58px; border-radius: 12px; background: var(--cream-200); margin-top: 10px; }
+      .pcard { display: flex; gap: 10px; align-items: center; height: 78px; padding: 0 10px; border-radius: 12px; background: var(--navy-900); color: var(--cream-100); box-shadow: 0 10px 24px rgba(4,27,61,.3); }
+      .pcard b { display: block; font-size: 22px; font-weight: 800; white-space: nowrap; }
+      .pcard span { display: block; font-size: 18px; font-weight: 500; white-space: nowrap; }
+      .pcard .pp { border-width: 2px; }
+      .kwrap { display: flex; gap: 44px; align-items: center; padding-top: 16px; }
+      .kring { flex: none; width: 300px; height: 300px; }
+      .kin { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .kin b { font-size: 84px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; }
+      .kin em, .ks em { font-style: normal; }
+      .kin span { font-size: 24px; font-weight: 500; color: var(--slate-700); margin-top: 6px; }
+      .kstats { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+      .ks b { display: block; font-size: 66px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--teal-600); white-space: nowrap; }
+      .ks span { display: block; font-size: 24px; font-weight: 500; color: var(--slate-700); margin-top: 6px; }
+      .bch { display: flex; align-items: flex-end; gap: 18px; height: 196px; margin-top: 6px; }
+      .bcol { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+      .bcol i { display: block; width: 100%; border-radius: 12px 12px 4px 4px; }
+      .bcol span { font-size: 20px; font-weight: 500; color: var(--slate-700); margin-top: 8px; white-space: nowrap; }
+
+      /* ---- diseño v2: color por escena ---- */
+      .band { left: 0; top: 0; width: 1080px; height: 650px; border-radius: 0 0 64px 64px; overflow: hidden; box-shadow: 0 24px 60px rgba(4,27,61,.22); }
+      .wmk { right: -70px; top: 210px; opacity: .14; transform-origin: 50% 50%; }
+      .band .num { right: 60px; top: 60px; font-size: 120px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(255,255,255,.16); }
+      .eyebrow.lt { color: rgba(255,255,255,.88); }
+      .h1.lt { color: #fff; }
+      .h1.lt em { color: var(--emc); }
+      .lead.lt { color: rgba(255,255,255,.94); font-weight: 400; font-size: 34px; }
+      .pdots.lt i { background: rgba(255,255,255,.32); }
+      .pdots.lt i.done { background: rgba(255,255,255,.6); }
+      .pdots.lt i.on { background: #fff; }
+      .pan { border-top: 8px solid var(--acc); }
+      .flab { color: var(--acc); }
+      .ks b { color: var(--acc); }
+      .rw { padding: 0 12px; margin: 0 -12px; border-radius: 16px; }
+      .bch { height: 222px; }
+      .bcol b { font-size: 22px; font-weight: 800; color: var(--navy-900); margin-bottom: 6px; }
+      .blob { border-radius: 50%; }
+      .oi { display: flex; flex-direction: column; align-items: center; width: 130px; }
+      .olab { margin-top: 12px; padding: 6px 16px; border-radius: 999px; background: rgba(240,241,232,.12); border: 1px solid rgba(240,241,232,.22); color: var(--cream-100); font-size: 22px; font-weight: 700; white-space: nowrap; }
+      .recap { display: flex; justify-content: center; gap: 28px; }
+      .dark .gt { box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+
+      /* ---- módulo prompt (Tú → Claude) ---- */
+      .pan.dk, .pan:has(.pbody) { background: #06224a; border-top-color: var(--cyan-400); color: var(--cream-100); }
+      .ptop { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+      .pchip { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: rgba(71,212,212,.14); color: var(--cyan-400); font-size: 19px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-right: auto; white-space: nowrap; }
+      .ptop i { width: 14px; height: 14px; border-radius: 50%; background: rgba(240,241,232,.22); }
+      .pbody { font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 31px; line-height: 54px; color: #e9f4f4; }
+      .pl { height: 54px; white-space: nowrap; }
+      .pl em { font-style: normal; color: var(--cyan-400); }
+      .pcur { display: inline-block; width: 14px; height: 30px; background: var(--cyan-400); vertical-align: middle; }
+      .pans { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 16px 20px; border-radius: 18px; background: rgba(71,212,212,.13); border: 1px solid rgba(71,212,212,.35); font-size: 25px; }
+      .pans b { font-weight: 800; color: var(--cyan-400); }
+      .pans span { flex: 1; font-weight: 600; white-space: nowrap; }
+
+      .cap span { font-size: 38px; padding: 14px 32px; }
+
+      /* ---- 9:16 ---- */
+      .h1 { font-size: 92px; }
+      .h1.big { font-size: 92px; }
+      .h1.st { font-size: 84px; }
+      .h1 .l { display: block; line-height: 1.12; }
+      .phase { flex-direction: column; align-items: flex-start; gap: 34px; padding: 40px 44px; }
+      .pt { width: auto; gap: 30px; }
+      .phase h3 { font-size: 50px; }
+      .btn { font-size: 34px; height: 96px; padding: 0 40px; }
+      .day b { font-size: 32px; }
+      .bignum { font-size: 270px; }
+      .bignum small { font-size: 54px; margin-top: -10px; }
+
+        </style>
+      </head>
+      <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="62.47" data-fps="30" data-width="1080" data-height="1920">
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-200px;width:1200px;height:1200px"></div>
+        <div class="abs blob" style="left:-300px;top:1000px;width:1000px;height:1000px;background:radial-gradient(closest-side, #1F4FBFAA, #1F4FBF00)"></div><div class="abs deco" style="left:300px;top:1500px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+        <div class="abs eyebrow" id="Aey" style="left:70px;top:250px">Tu operación hoy</div>
+        <div class="abs h1 big" id="At" style="left:66px;top:300px"><span class="l">El mismo pedido,</span><span class="l">copiado</span><span class="l"><em>tres veces.</em></span></div>
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Ar0" cx="540" cy="1050" r="230" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle id="Ar1" cx="540" cy="1050" r="320" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle id="Ar2" cx="540" cy="1050" r="410" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/><line id="Ak0" x1="540" y1="1050" x2="200" y2="840" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak1" x1="540" y1="1050" x2="880" y2="870" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak2" x1="540" y1="1050" x2="230" y2="1270" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak3" x1="540" y1="1050" x2="860" y2="1250" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/></svg>
+        <div class="abs oi" id="Ao0" style="left:135px;top:775px"><div class="gt c-xls" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><span class="olab">Excel</span></div><div class="abs oi" id="Ao1" style="left:815px;top:805px"><div class="gt c-crm" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><span class="olab">CRM</span></div><div class="abs oi" id="Ao2" style="left:165px;top:1205px"><div class="gt c-erp" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div><span class="olab">ERP</span></div><div class="abs oi" id="Ao3" style="left:795px;top:1185px"><div class="gt wa " style="width:130px;height:130px;border-radius:36px"><svg width="67" height="67" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><span class="olab">WhatsApp</span></div>
+        <div class="abs" id="Ahero" style="left:390px;top:900px"><div class="gt c-crm" style="width:300px;height:300px;border-radius:84px"><svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sB" style="--acc:#B5651D;--emc:#FFE0BD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Bband" style="background:linear-gradient(135deg, #8A4A12, #B5651D)"><div class="abs wmk" id="Bwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg></div>
+          <div class="abs num">01</div></div>
+        <div class="abs eyebrow lt" id="Bey" style="left:70px;top:200px">El costo</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Bt" style="left:66px;top:244px"><span class="l">Tiempo perdido.</span><span class="l"><em>Errores.</em></span></div>
+        <div class="abs lead lt" id="Bld" style="left:70px;top:468px;width:700px">Cada copia es una oportunidad de equivocarse.</div>
+        <div class="abs card pan" id="Bm0" style="left:71.2px;top:701.8px;width:956.0px;height:392px;zoom:0.983"><div class="rw" id="Bm0r0"><div class="gt wa " style="width:84px;height:84px;border-radius:23px"><svg width="43" height="43" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><div class="rt"><b>Pedido #1042</b><span>Llega por WhatsApp</span></div><div class="rs" style="width:233px"><span class="tag soft" id="Bm0a0">Original</span></div></div><div class="rw" id="Bm0r1"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="rt"><b>Pedido #1042</b><span>Copiado a Excel</span></div><div class="rs" style="width:233px"><span class="tag soft" id="Bm0a1">Copia 1</span></div></div><div class="rw" id="Bm0r2"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><div class="rt"><b>Pedido #1024</b><span>Copiado al CRM</span></div><div class="rs" style="width:233px"><span class="tag soft" id="Bm0a2">No coincide</span></div></div></div><div class="abs card pan" id="Bm1" style="left:71.2px;top:1120.2px;width:956.0px;height:324px;zoom:0.983"><div class="flab t">Lo que cuesta un error</div><div class="rw" id="Bm1r0"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="truck">
+  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+  <path d="M15 18H9" />
+  <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+  <circle cx="17" cy="18" r="2" />
+  <circle cx="7" cy="18" r="2" />
+</svg></div><div class="rt"><b>El pedido sale tarde</b></div><div class="rs" style="width:161px"><span class="tag soft" id="Bm1a0">Riesgo</span></div></div><div class="rw" id="Bm1r1"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="receipt">
+  <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+  <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+  <path d="M12 17.5v-11" />
+</svg></div><div class="rt"><b>O con el precio equivocado</b></div><div class="rs" style="width:161px"><span class="tag soft" id="Bm1a1">Riesgo</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sC" style="--acc:#007B83;--emc:#7FE3E3"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Cband" style="background:linear-gradient(135deg, #0D2F5C, #007B83)"><div class="abs wmk" id="Cwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div>
+          <div class="abs num">02</div></div>
+        <div class="abs eyebrow lt" id="Cey" style="left:70px;top:200px">Scaly AI</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Ct" style="left:66px;top:244px"><span class="l">Un solo</span><span class="l"><em>flujo.</em></span></div>
+        <div class="abs lead lt" id="Cld" style="left:70px;top:468px;width:700px">Conectamos las herramientas que ya usas.</div>
+        <div class="abs card pan" id="Cm0" style="left:65.0px;top:641.0px;width:873.2px;height:330px;zoom:1.076"><div class="rel" style="height:250px"><div class="abs ftrack" id="Cm0tr" style="left:75px;top:109px;width:655px;height:10px"></div><div class="abs" id="Cm0t0" style="left:0px;top:40px"><div class="gt wa " style="width:150px;height:150px;border-radius:42px"><svg width="78" height="78" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div></div><div class="abs flabel" id="Cm0l0" style="left:-55px;top:206px;width:260px">WhatsApp</div><div class="abs" id="Cm0t1" style="left:218px;top:40px"><div class="gt c-crm" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div></div><div class="abs flabel" id="Cm0l1" style="left:163px;top:206px;width:260px">CRM</div><div class="abs" id="Cm0t2" style="left:436px;top:40px"><div class="gt c-xls" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div></div><div class="abs flabel" id="Cm0l2" style="left:381px;top:206px;width:260px">Hojas</div><div class="abs" id="Cm0t3" style="left:655px;top:40px"><div class="gt c-erp" style="width:150px;height:150px;border-radius:42px"><svg width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div></div><div class="abs flabel" id="Cm0l3" style="left:600px;top:206px;width:260px">ERP</div><div class="abs chipn" id="Cm0chip" style="left:-10px;top:86px">#1042</div></div></div><div class="abs card pan" id="Cm1" style="left:65.0px;top:995.1px;width:873.2px;height:324px;zoom:1.076"><div class="flab t">Sin cambiar de sistema</div><div class="rw" id="Cm1r0"><div class="gt wa " style="width:84px;height:84px;border-radius:23px"><svg width="43" height="43" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div><div class="rt"><b>WhatsApp y CRM</b><span>Tus clientes y oportunidades</span></div><div class="rs" style="width:204px"><span class="tag teal" id="Cm1b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Conectado</span></div></div><div class="rw" id="Cm1r1"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div><div class="rt"><b>Hojas y ERP</b><span>Tu stock y facturación</span></div><div class="rs" style="width:204px"><span class="tag teal" id="Cm1b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Conectado</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sD" style="--acc:#128C4A;--emc:#C9F2D8"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Dband" style="background:linear-gradient(135deg, #0B5E32, #128C4A)"><div class="abs wmk" id="Dwm"><svg width="460" height="460" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div>
+          <div class="abs num">03</div></div>
+        <div class="abs eyebrow lt" id="Dey" style="left:70px;top:200px">Paso a paso</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Dt" style="left:66px;top:244px"><span class="l">Llega el pedido.</span><span class="l"><em>Se registra solo.</em></span></div>
+        <div class="abs lead lt" id="Dld" style="left:70px;top:468px;width:700px">Sin que nadie lo copie.</div>
+        <div class="abs card pan" id="Dm0" style="left:54.7px;top:538.8px;width:734.0px;height:570px;zoom:1.281"><div class="ah"><div class="pp" style="width:72px;height:72px"><svg width="72" height="72" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><b>Cliente</b><i>ahora</i></div><div class="cb in" id="Dm0i">Hola, quiero el polo básico en talla M.</div><div class="cb out" id="Dm0o"><em><div class="bars" style="width:24.4px;height:22.8px"><i id="Dm0lg0" style="left:6.5px;top:0.0px;width:17.9px;height:5.7px;background:#47D4D4"></i><i id="Dm0lg1" style="left:0.0px;top:8.5px;width:24.4px;height:5.7px;background:#007B83"></i><i id="Dm0lg2" style="left:0.0px;top:17.1px;width:17.9px;height:5.7px;background:#F0F1E8"></i></div>Asistente IA</em>¡Listo! Registré tu pedido #1042.</div><div class="rc" id="Dm0k"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#007B83" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg>Registrado en tu CRM · #1042</div></div>
+        <div class="abs note" style="left:70px;top:1452px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sE" style="--acc:#1D6F42;--emc:#BDEFD0"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Eband" style="background:linear-gradient(135deg, #14532F, #1D6F42)"><div class="abs wmk" id="Ewm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div>
+          <div class="abs num">04</div></div>
+        <div class="abs eyebrow lt" id="Eey" style="left:70px;top:200px">Sin copiar nada</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Et" style="left:66px;top:244px"><span class="l">Todo se</span><span class="l"><em>actualiza.</em></span></div>
+        <div class="abs lead lt" id="Eld" style="left:70px;top:468px;width:700px">La hoja y el ERP, al mismo tiempo.</div>
+        <div class="abs card pan" id="Em0" style="left:56.9px;top:572.1px;width:764.5px;height:324px;zoom:1.230"><div class="flab t">Hoja de pedidos</div><div class="rw" id="Em0r0"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="rt"><b>#1041 · Casaca L</b><span>En camino</span></div><div class="rs" style="width:219px"><span class="tag soft" id="Em0a0">Ayer</span></div></div><div class="rw" id="Em0r1"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="rt"><b>#1042 · Polo básico M</b><span>Recién llegado</span></div><div class="rs" style="width:219px"><span class="tag soft" id="Em0a1">Nuevo</span><span class="tag teal" id="Em0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Registrado</span></div></div></div><div class="abs card pan" id="Em1" style="left:56.9px;top:917.3px;width:764.5px;height:212px;zoom:1.230"><div class="flab t">ERP · Stock</div><div class="rw" id="Em1r0"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div><div class="rt"><b>Polo básico · M</b><span>Datos ilustrativos</span></div><div class="rs" style="width:219px"><span class="tag soft" id="Em1a0">9 unidades</span><span class="tag teal" id="Em1b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>8 unidades</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc" id="sF" style="--acc:#1F4FBF;--emc:#CFE0FF"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Fband" style="background:linear-gradient(135deg, #163A8C, #1F4FBF)"><div class="abs wmk" id="Fwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="trending-up">
+  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+  <polyline points="16 7 22 7 22 13" />
+</svg></div>
+          <div class="abs num">05</div></div>
+        <div class="abs eyebrow lt" id="Fey" style="left:70px;top:200px">El resultado</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+        <div class="abs h1 st lt" id="Ft" style="left:66px;top:244px"><span class="l">Menos copiar y pegar.</span><span class="l"><em>Más vender.</em></span></div>
+        <div class="abs lead lt" id="Fld" style="left:70px;top:468px;width:700px">Tu equipo se dedica a los clientes.</div><div class="abs" id="Fpp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div>
+        <div class="abs card pan" id="Fm0" style="left:51.5px;top:555.1px;width:691.2px;height:436px;zoom:1.360"><div class="flab t">La misma información, en todas partes</div><div class="rw" id="Fm0r0"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div><div class="rt"><b>Excel</b><span>Pedido #1042</span></div><div class="rs" style="width:161px"><span class="tag teal" id="Fm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Al día</span></div></div><div class="rw" id="Fm0r1"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><div class="rt"><b>CRM</b><span>Pedido #1042</span></div><div class="rs" style="width:161px"><span class="tag teal" id="Fm0b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Al día</span></div></div><div class="rw" id="Fm0r2"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="boxes">
+  <path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z" />
+  <path d="m7 16.5-4.74-2.85" />
+  <path d="m7 16.5 5-3" />
+  <path d="M7 16.5v5.17" />
+  <path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z" />
+  <path d="m17 16.5-5-3" />
+  <path d="m17 16.5 4.74-2.85" />
+  <path d="M17 16.5v5.17" />
+  <path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z" />
+  <path d="M12 8 7.26 5.15" />
+  <path d="m12 8 4.74-2.85" />
+  <path d="M12 13.5V8" />
+</svg></div><div class="rt"><b>ERP</b><span>Pedido #1042</span></div><div class="rs" style="width:161px"><span class="tag teal" id="Fm0b2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Al día</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Caso ilustrativo</div>
+      </div></div>
+      <div class="sc dark" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:300px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-420px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+        <div class="abs recap" style="left:0px;top:260px;width:1080px"><div class="ri" id="Gri0"><div class="gt c-erp" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="clock">
+  <circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" />
+</svg></div></div><div class="ri" id="Gri1"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div></div><div class="ri" id="Gri2"><div class="gt wa " style="width:120px;height:120px;border-radius:33px"><svg width="62" height="62" viewBox="0 0 24 24" aria-label="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="#FFFFFF"/></svg></div></div><div class="ri" id="Gri3"><div class="gt c-xls" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="file-spreadsheet">
+  <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+  <path d="M8 13h2" />
+  <path d="M14 13h2" />
+  <path d="M8 17h2" />
+  <path d="M14 17h2" />
+</svg></div></div><div class="ri" id="Gri4"><div class="gt c-crm" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="trending-up">
+  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+  <polyline points="16 7 22 7 22 13" />
+</svg></div></div></div>
+        <div class="abs navlogo dk" id="Glg" style="left:0px;top:470px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Gb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Gb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Gb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
+        <div class="abs h1 ctr" id="Gt" style="left:0px;top:600px;width:1080px"><span class="l">Conecta lo que</span><span class="l">ya usas, en</span><span class="l"><em>un solo flujo.</em></span></div>
+        <div class="abs" id="Gcta" style="left:0px;top:1000px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Gbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></div>
+        <div class="abs micro" id="Gmic" style="left:0px;top:1150px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Gurl" style="left:0px;top:1240px;width:1080px">SCALYAI.DEV</div>
+      </div></div>
+          <div class="abs" id="tbars" style="left:0;top:0;width:1080px;height:1920px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:640px;background:#007B83"></div><div class="tbar" style="top:1280px;background:#041B3D"></div></div>
+          <div id="prog"></div>
+          <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>Tu equipo copia el</span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>mismo pedido tres veces:</span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>en <b>Excel,</b> en el</span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span><b>CRM</b> y en el <b>ERP.</b></span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>Cada copia es tiempo perdido,</span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>y una <b>oportunidad</b> de <b>error.</b></span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>Un dato mal copiado,</span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>y el pedido sale tarde,</span></div>
+      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>o con el precio equivocado.</span></div>
+      <div class="cap" id="cap9" data-layout-allow-overlap="true"><span>En <b>Scaly</b> AI conectamos tus</span></div>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>herramientas en un solo <b>flujo.</b></span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>Sin cambiar de sistema:</span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>trabajamos con las</span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>herramientas que ya usas.</span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>Llega un pedido por <b>WhatsApp,</b></span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>y se registra solo en tu <b>CRM.</b></span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>Tu hoja de cálculo</span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>se actualiza,</span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>y el <b>ERP</b> descuenta el <b>stock.</b></span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>Todo queda registrado al</span></div>
+      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>instante, sin que nadie</span></div>
+      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>lo vuelva a escribir.</span></div>
+      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span>Tu equipo deja de</span></div>
+      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span>copiar y pegar,</span></div>
+      <div class="cap" id="cap24" data-layout-allow-overlap="true"><span>y se dedica a <b>vender.</b></span></div>
+      <div class="cap" id="cap25" data-layout-allow-overlap="true"><span>Y la información es la</span></div>
+      <div class="cap" id="cap26" data-layout-allow-overlap="true"><span>misma en todas partes,</span></div>
+      <div class="cap" id="cap27" data-layout-allow-overlap="true"><span>siempre al día.</span></div>
+      <div class="cap" id="cap28" data-layout-allow-overlap="true"><span><b>Conversemos</b> de tu</span></div>
+      <div class="cap" id="cap29" data-layout-allow-overlap="true"><span>próximo <b>piloto.</b></span></div>
+      <div class="cap" id="cap30" data-layout-allow-overlap="true"><span><b>Treinta</b> <b>minutos,</b></span></div>
+      <div class="cap" id="cap31" data-layout-allow-overlap="true"><span>sin tarjeta, sin compromiso.</span></div>
+          <audio id="v_s1" src="audio/seg/s1.wav" data-start="0.6" data-duration="5.607" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s2" src="audio/seg/s2.wav" data-start="7.807" data-duration="3.804" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s2b" src="audio/seg/s2b.wav" data-start="12.311" data-duration="4.611" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s3" src="audio/seg/s3.wav" data-start="18.522" data-duration="3.687" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s3b" src="audio/seg/s3b.wav" data-start="22.91" data-duration="3.666" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s4" src="audio/seg/s4.wav" data-start="28.176" data-duration="4.301" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s5" src="audio/seg/s5.wav" data-start="34.076" data-duration="3.864" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s5b" src="audio/seg/s5b.wav" data-start="38.641" data-duration="3.803" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s6" src="audio/seg/s6.wav" data-start="44.044" data-duration="3.224" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s6b" src="audio/seg/s6b.wav" data-start="47.968" data-duration="3.883" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_s7" src="audio/seg/s7.wav" data-start="53.951" data-duration="5.172" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="62.47" data-track-index="13" data-volume="0.8"></audio>
+          <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="62.47" data-track-index="14" data-volume="0.5"></audio>
+        </div>
+        <script>
+          window.__timelines = window.__timelines || {};
+          const tl = gsap.timeline({ paused: true });
+          const fmt = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          const capShow = (sel, a, b) => {
+            tl.fromTo(sel, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: "power2.out" }, a - 0.04);
+            tl.set(sel, { autoAlpha: 0 }, b);
+          };
+          tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 8.01, ease: "none" }, 0.000);
+      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.01, ease: "sine.inOut" }, 0.000);
+      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 11.91, ease: "none" }, 6.807);
+      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.91, ease: "sine.inOut" }, 6.807);
+      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 10.85, ease: "none" }, 17.522);
+      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.85, ease: "sine.inOut" }, 17.522);
+      tl.fromTo("#sD > .cam", { scale: 1 }, { scale: 1.035, duration: 7.10, ease: "none" }, 27.176);
+      tl.fromTo("#sD .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 7.10, ease: "sine.inOut" }, 27.176);
+      tl.fromTo("#sE > .cam", { scale: 1 }, { scale: 1.035, duration: 11.17, ease: "none" }, 33.076);
+      tl.fromTo("#sE .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.17, ease: "sine.inOut" }, 33.076);
+      tl.fromTo("#sF > .cam", { scale: 1 }, { scale: 1.035, duration: 10.61, ease: "none" }, 43.044);
+      tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.61, ease: "sine.inOut" }, 43.044);
+      tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 11.22, ease: "none" }, 52.451);
+      tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 11.22, ease: "sine.inOut" }, 52.451);
+      tl.fromTo(".deco", { x: 0 }, { x: -50, duration: 62.47, ease: "none" }, 0);
+      tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.200);
+      tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.8, ease: "power3.out" }, 0.350);
+      tl.fromTo("#Ahero", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 2.002);
+      tl.fromTo("#Ar0", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 2.152);
+      tl.fromTo("#Ar1", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 2.272);
+      tl.fromTo("#Ar2", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 2.392);
+      tl.fromTo("#Ahero", { y: 0 }, { y: -16, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.802);
+      tl.fromTo("#Ak0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.404);
+      tl.fromTo("#Ao0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.404);
+      tl.fromTo("#Ao0", { y: 0 }, { y: 14, duration: 1.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.954);
+      tl.fromTo("#Ak1", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.584);
+      tl.fromTo("#Ao1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.584);
+      tl.fromTo("#Ao1", { y: 0 }, { y: -14, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 4.134);
+      tl.fromTo("#Ak2", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.764);
+      tl.fromTo("#Ao2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.764);
+      tl.fromTo("#Ao2", { y: 0 }, { y: 14, duration: 2.0, yoyo: true, repeat: 3, ease: "sine.inOut" }, 4.314);
+      tl.fromTo("#Ak3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.944);
+      tl.fromTo("#Ao3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.944);
+      tl.fromTo("#Ao3", { y: 0 }, { y: -14, duration: 2.2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 4.494);
+      tl.set(".tbar", { visibility: "visible" }, 6.147);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 6.147);
+      tl.set("#sA", { autoAlpha: 0 }, 6.807);
+      tl.set("#sB", { autoAlpha: 1 }, 6.807);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 6.847);
+      tl.set(".tbar", { visibility: "hidden" }, 7.597);
+      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 6.957);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.087);
+      tl.fromTo("#Bld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 7.257);
+      tl.fromTo("#Bwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 11.91, ease: "none" }, 6.207);
+      tl.fromTo("#Bm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.307);
+      gsap.set("#Bm0 .rw", { autoAlpha: 0 });
+      gsap.set("#Bm0 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Bm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 7.997);
+      tl.fromTo("#Bm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 8.568);
+      tl.fromTo("#Bm0r2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 9.138);
+      tl.fromTo("#Bm1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 7.507);
+      gsap.set("#Bm1 .rw", { autoAlpha: 0 });
+      gsap.set("#Bm1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Bm1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 12.542);
+      tl.fromTo("#Bm1r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 13.579);
+      tl.to("#sB", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 17.222);
+      tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 17.472);
+      tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 17.672);
+      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 17.802);
+      tl.fromTo("#Cld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 17.972);
+      tl.fromTo("#Cwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 10.85, ease: "none" }, 16.922);
+      tl.fromTo("#Cm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 18.022);
+      gsap.set("#Cm0chip", { autoAlpha: 0 });
+      tl.fromTo("#Cm0t0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 18.891);
+      tl.fromTo("#Cm0l0", { autoAlpha: 0, y: 8, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 18.991);
+      tl.fromTo("#Cm0t1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 19.165);
+      tl.fromTo("#Cm0l1", { autoAlpha: 0, y: 8, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 19.265);
+      tl.fromTo("#Cm0t2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 19.439);
+      tl.fromTo("#Cm0l2", { autoAlpha: 0, y: 8, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 19.539);
+      tl.fromTo("#Cm0t3", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 19.713);
+      tl.fromTo("#Cm0l3", { autoAlpha: 0, y: 8, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.4, ease: "power3.out" }, 19.813);
+      tl.fromTo("#Cm0tr", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.57, ease: "power2.inOut" }, 20.144);
+      tl.set("#Cm0chip", { autoAlpha: 1 }, 20.144);
+      tl.fromTo("#Cm0chip", { x: 0 }, { x: 655, duration: 1.57, ease: "power2.inOut" }, 20.144);
+      tl.to("#Cm0chip", { autoAlpha: 0, duration: 0.3 }, 21.461);
+      tl.fromTo("#Cm1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 18.222);
+      gsap.set("#Cm1 .rw", { autoAlpha: 0 });
+      gsap.set("#Cm1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Cm1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.093);
+      tl.fromTo("#Cm1b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 24.843);
+      tl.fromTo("#Cm1r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 24.743);
+      tl.fromTo("#Cm1r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.918);
+      tl.fromTo("#Cm1b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 25.668);
+      tl.fromTo("#Cm1r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 25.568);
+      tl.set(".tbar", { visibility: "visible" }, 26.516);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 26.516);
+      tl.set("#sC", { autoAlpha: 0 }, 27.176);
+      tl.set("#sD", { autoAlpha: 1 }, 27.176);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 27.216);
+      tl.set(".tbar", { visibility: "hidden" }, 27.966);
+      tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.326);
+      tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.456);
+      tl.fromTo("#Dld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.626);
+      tl.fromTo("#Dwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 7.10, ease: "none" }, 26.576);
+      tl.fromTo("#Dm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.676);
+      gsap.set(["#Dm0i", "#Dm0o", "#Dm0k"], { autoAlpha: 0 });
+      tl.fromTo("#Dm0i", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 28.520);
+      tl.fromTo("#Dm0o", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 30.542);
+      tl.fromTo("#Dm0k", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 31.832);
+      tl.set("#sE", { autoAlpha: 1 }, 32.676);
+      tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 32.676);
+      tl.set("#sD", { autoAlpha: 0 }, 33.396);
+      tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.226);
+      tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 33.356);
+      tl.fromTo("#Eld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 33.526);
+      tl.fromTo("#Ewm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 11.17, ease: "none" }, 32.476);
+      tl.fromTo("#Em0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 33.576);
+      gsap.set("#Em0 .rw", { autoAlpha: 0 });
+      gsap.set("#Em0 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Em0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 34.269);
+      tl.fromTo("#Em0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 34.800);
+      tl.to("#Em0a1", { autoAlpha: 0, duration: 0.2 }, 35.863);
+      tl.fromTo("#Em0b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 35.963);
+      tl.fromTo("#Em0r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 35.863);
+      tl.fromTo("#Em1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 33.776);
+      gsap.set("#Em1 .rw", { autoAlpha: 0 });
+      gsap.set("#Em1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Em1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 36.008);
+      tl.to("#Em1a0", { autoAlpha: 0, duration: 0.2 }, 36.935);
+      tl.fromTo("#Em1b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 37.035);
+      tl.fromTo("#Em1r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 36.935);
+      tl.to("#sE", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 42.744);
+      tl.fromTo("#sF", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 42.994);
+      tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.194);
+      tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 43.324);
+      tl.fromTo("#Fld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.494);
+      tl.fromTo("#Fwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 10.61, ease: "none" }, 42.444);
+      tl.fromTo("#Fpp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.644);
+      tl.fromTo("#Fm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 43.544);
+      gsap.set("#Fm0 .rw", { autoAlpha: 0 });
+      gsap.set("#Fm0 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Fm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 47.968);
+      tl.fromTo("#Fm0b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 49.621);
+      tl.fromTo("#Fm0r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 49.521);
+      tl.fromTo("#Fm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 48.486);
+      tl.fromTo("#Fm0b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 50.139);
+      tl.fromTo("#Fm0r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 50.039);
+      tl.fromTo("#Fm0r2", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 49.003);
+      tl.fromTo("#Fm0b2", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 50.657);
+      tl.fromTo("#Fm0r2", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 50.557);
+      tl.set(".tbar", { visibility: "visible" }, 51.791);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 51.791);
+      tl.set("#sF", { autoAlpha: 0 }, 52.451);
+      tl.set("#sG", { autoAlpha: 1 }, 52.451);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 52.491);
+      tl.set(".tbar", { visibility: "hidden" }, 53.241);
+      tl.fromTo("#Gb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 52.551);
+      tl.fromTo("#Gb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 52.671);
+      tl.fromTo("#Gb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 52.791);
+      tl.fromTo("#Glg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.551);
+      tl.fromTo("#Gri0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.751);
+      tl.fromTo("#Gri1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.871);
+      tl.fromTo("#Gri2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.991);
+      tl.fromTo("#Gri3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 53.111);
+      tl.fromTo("#Gri4", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 53.231);
+      tl.fromTo("#Gt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 53.751);
+      tl.fromTo("#Gcta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 53.751);
+      tl.fromTo("#Gmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 54.351);
+      tl.fromTo("#Gurl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 59.323);
+      tl.to("#Gbtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 59.523);
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 62.47, ease: "none" }, 0);
+          capShow("#cap0", 0.600, 1.670);
+      capShow("#cap1", 1.670, 3.378);
+      capShow("#cap2", 3.378, 4.750);
+      capShow("#cap3", 4.750, 6.557);
+      capShow("#cap4", 7.807, 10.063);
+      capShow("#cap5", 10.063, 12.311);
+      capShow("#cap6", 12.311, 15.446);
+      capShow("#cap7", 15.446, 15.875);
+      capShow("#cap8", 15.875, 17.272);
+      capShow("#cap9", 18.522, 20.238);
+      capShow("#cap10", 20.238, 22.559);
+      capShow("#cap11", 22.910, 24.647);
+      capShow("#cap12", 24.647, 25.461);
+      capShow("#cap13", 25.461, 26.926);
+      capShow("#cap14", 28.176, 30.138);
+      capShow("#cap15", 30.138, 32.827);
+      capShow("#cap16", 34.076, 35.054);
+      capShow("#cap17", 35.054, 35.999);
+      capShow("#cap18", 35.999, 38.290);
+      capShow("#cap19", 38.641, 39.980);
+      capShow("#cap20", 39.980, 41.266);
+      capShow("#cap21", 41.266, 42.794);
+      capShow("#cap22", 44.044, 44.952);
+      capShow("#cap23", 44.952, 46.061);
+      capShow("#cap24", 46.061, 47.618);
+      capShow("#cap25", 47.968, 49.116);
+      capShow("#cap26", 49.116, 50.679);
+      capShow("#cap27", 50.679, 52.201);
+      capShow("#cap28", 53.951, 54.835);
+      capShow("#cap29", 54.835, 56.268);
+      capShow("#cap30", 56.268, 58.311);
+      capShow("#cap31", 58.311, 59.523);
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        </script>
+      </body>
+    </html>
+    

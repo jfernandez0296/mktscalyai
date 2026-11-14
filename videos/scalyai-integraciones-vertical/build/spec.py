@@ -1,0 +1,27 @@
+TITLE = "Scaly AI — Excel, CRM y ERP conectados"
+NOTE = "Caso ilustrativo"
+SCENES = [
+ dict(seg="s1", kind="hook", eyebrow="Tu operación hoy", title=["El mismo pedido,", "copiado", "<em>tres veces.</em>"], icon="users", cls="c-crm",
+      orbit=[('file-spreadsheet', 'c-xls', 'Excel'), ('users', 'c-crm', 'CRM'), ('boxes', 'c-erp', 'ERP'), ('wa', '', 'WhatsApp')]),
+ dict(seg="s2", kind="step", eyebrow="El costo", title=["Tiempo perdido.", "<em>Errores.</em>"], icon="clock", cls="c-erp", lead="Cada copia es una oportunidad de equivocarse.",
+      mods=[dict(type="rows", rows=[dict(icon="wa", text="Pedido #1042", sub="Llega por WhatsApp", t0="Original"),
+                                    dict(icon="file-spreadsheet", cls="c-xls", text="Pedido #1042", sub="Copiado a Excel", t0="Copia 1"),
+                                    dict(icon="users", cls="c-crm", text="Pedido #1024", sub="Copiado al CRM", t0="No coincide")]),
+            dict(type="rows", seg="s2b", title="Lo que cuesta un error", rows=[dict(icon="truck", cls="c-erp", text="El pedido sale tarde", t0="Riesgo"),
+                                    dict(icon="receipt", cls="c-crm", text="O con el precio equivocado", t0="Riesgo")])]),
+ dict(seg="s3", kind="step", eyebrow="Scaly AI", title=["Un solo", "<em>flujo.</em>"], icon="link", lead="Conectamos las herramientas que ya usas.",
+      mods=[dict(type="flow", tiles=[dict(icon="wa", label="WhatsApp"), dict(icon="users", cls="c-crm", label="CRM"), dict(icon="file-spreadsheet", cls="c-xls", label="Hojas"), dict(icon="boxes", cls="c-erp", label="ERP")], chip="#1042", span=(0.1, 0.95)),
+            dict(type="rows", seg="s3b", title="Sin cambiar de sistema", rows=[dict(icon="wa", text="WhatsApp y CRM", sub="Tus clientes y oportunidades", t1="Conectado"),
+                                    dict(icon="boxes", cls="c-erp", text="Hojas y ERP", sub="Tu stock y facturación", t1="Conectado")])]),
+ dict(seg="s4", kind="step", eyebrow="Paso a paso", title=["Llega el pedido.", "<em>Se registra solo.</em>"], icon="wa", lead="Sin que nadie lo copie.",
+      mods=[dict(type="chat", person=2, name="Cliente", time="ahora", msg="Hola, quiero el polo básico en talla M.", reply="¡Listo! Registré tu pedido #1042.", done="Registrado en tu CRM · #1042")]),
+ dict(seg="s5", kind="step", eyebrow="Sin copiar nada", title=["Todo se", "<em>actualiza.</em>"], icon="file-spreadsheet", cls="c-xls", lead="La hoja y el ERP, al mismo tiempo.",
+      mods=[dict(type="rows", title="Hoja de pedidos", rows=[dict(icon="file-spreadsheet", cls="c-xls", text="#1041 · Casaca L", sub="En camino", t0="Ayer"),
+                                    dict(icon="file-spreadsheet", cls="c-xls", text="#1042 · Polo básico M", sub="Recién llegado", t0="Nuevo", t1="Registrado")], span=(0.05, 0.6)),
+            dict(type="rows", title="ERP · Stock", rows=[dict(icon="boxes", cls="c-erp", text="Polo básico · M", sub="Datos ilustrativos", t0="9 unidades", t1="8 unidades")], span=(0.5, 0.98))]),
+ dict(seg="s6", kind="step", eyebrow="El resultado", title=["Menos copiar y pegar.", "<em>Más vender.</em>"], icon="trending-up", cls="c-crm", lead="Tu equipo se dedica a los clientes.", people=[0, 1, 3],
+      mods=[dict(type="rows", seg="s6b", title="La misma información, en todas partes", rows=[dict(icon="file-spreadsheet", cls="c-xls", text="Excel", sub="Pedido #1042", t1="Al día"),
+                                    dict(icon="users", cls="c-crm", text="CRM", sub="Pedido #1042", t1="Al día"),
+                                    dict(icon="boxes", cls="c-erp", text="ERP", sub="Pedido #1042", t1="Al día")], span=(0.0, 0.8))]),
+ dict(seg="s7", kind="cta", title=["Conecta lo que", "ya usas, en", "<em>un solo flujo.</em>"]),
+]

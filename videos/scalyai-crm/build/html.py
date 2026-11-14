@@ -132,7 +132,8 @@ def m_prompt(pid, m):
     h = (f'<div class="ptop"><span class="pchip">{icon("terminal", 26, CYAN, 2.4)}Tú → Claude</span><i></i><i></i><i></i></div>'
          f'<div class="pbody">{lines}<span class="pcur" id="{pid}cur"></span></div>'
          f'<div class="pans" id="{pid}k">{bars(30, pid + "lg", True)}<b>Claude</b><span>{m["done"]}</span>{icon("circle-check", 34, CYAN, 2.2)}</div>')
-    return h, 150 + len(m["lines"]) * 50 + 104
+    m["_need"] = max(len(re.sub(r"<[^>]+>", "", t)) for t in m["lines"]) * 18.8
+    return h, 150 + len(m["lines"]) * 54 + 104
 def a_prompt(pid, m, seg):
     n = len(m["lines"]); a, b = m.get("span", (0.04, 0.9))
     js(f'gsap.set(["#{pid} .pl", "#{pid}k"], {{ autoAlpha: 0 }});')
@@ -183,7 +184,7 @@ for k, sc in enumerate(spec.SCENES):
         ppl = f'<div class="abs" id="{sid}pp" style="{pos(M, 600)}">{avs(sc["people"], 88)}</div>' if sc.get("people") else ""
         h = f'''      <div class="sc" id="s{sid}" style="--acc:{a2};--emc:{tint}"><div class="cam">{BG(-200, 900, 1100)}{deco(380, 1500, 0.75)}
         <div class="abs band" id="{sid}band" style="background:linear-gradient(135deg, {a1}, {a2})"><div class="abs wmk" id="{sid}wm">{big_icon(sc["icon"], 460)}</div>
-          <div class="abs num">0{n}</div></div>
+          <div class="abs num">{sc.get("num", f"0{n}")}</div></div>
         <div class="abs eyebrow lt" id="{sid}ey" style="{pos(M, 200)}">{sc["eyebrow"]}</div>
         <div class="abs pdots lt" style="left:auto;right:{M}px;top:204px">{dots}</div>
         <div class="abs h1 st lt" id="{sid}t" style="{pos(M - 4, 244)}">{L(sc["title"])}</div>
@@ -197,8 +198,8 @@ for k, sc in enumerate(spec.SCENES):
         <div class="abs recap" style="{pos(0, 260, 1080)}">{recap}</div>
         <div class="abs navlogo dk" id="{sid}lg" style="{pos(0, 470, 1080)};justify-content:center">{bars(64, sid + "b", True)}<div>Scaly <span>AI</span></div></div>
         <div class="abs h1 ctr" id="{sid}t" style="{pos(0, 600, 1080)}">{L(sc["title"])}</div>
-        <div class="abs" id="{sid}cta" style="{pos(0, 1000, 1080)};display:flex;justify-content:center"><div class="btn" id="{sid}btn">Conversemos de tu próximo piloto {icon("arrow-right", 40, WHITE, 2.4)}</div></div>
-        <div class="abs micro" id="{sid}mic" style="{pos(0, 1150, 1080)}">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs" id="{sid}cta" style="{pos(0, 1000, 1080)};display:flex;justify-content:center"><div class="btn" id="{sid}btn">{sc.get("btn", "Conversemos de tu próximo piloto")} {icon("arrow-right", 40, WHITE, 2.4)}</div></div>
+        <div class="abs micro" id="{sid}mic" style="{pos(0, 1150, 1080)}">{sc.get("micro", "30 minutos · sin tarjeta · sin compromiso")}</div>
         <div class="abs url" id="{sid}url" style="{pos(0, 1240, 1080)}">SCALYAI.DEV</div>
       </div></div>'''
     html_scenes.append(h)
@@ -233,12 +234,12 @@ for k, sc in enumerate(spec.SCENES):
         for j, m in enumerate(sc["mods"]):
             pid = f"{sid}m{j}"; show(f"#{pid}", S[k] + 0.5 + j * 0.2, 0.6, 24)
             if m["type"] == "rows": js(f'gsap.set("#{pid} .rw", {{ autoAlpha: 0 }});')
-            MODS[m["type"]][1](pid, m, seg)
+            MODS[m["type"]][1](pid, m, m.get("seg", seg))
     else:
         grow(sid + "b", S[k] + 0.1, 0.12, 0.5); show(f"#{sid}lg", S[k] + 0.1, 0.5, 0)
         for j in range(len(steps)): show(f"#{sid}ri{j}", S[k] + 0.3 + j * 0.12, 0.5, 20)
         show(f"#{sid}t", F(seg, 0.0) - 0.2, 0.7, 30)
-        tc = W(seg, "conversemos", -0.2); show(f"#{sid}cta", tc, 0.6, 24); ev("chime", tc)
+        tc = W(seg, sc.get("word", "conversemos"), -0.2); show(f"#{sid}cta", tc, 0.6, 24); ev("chime", tc)
         show(f"#{sid}mic", tc + 0.6, 0.5, 16); show(f"#{sid}url", END(seg, 0.2), 0.5, 12)
         js(f'tl.to("#{sid}btn", {{ boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }}, {END(seg, 0.4):.3f});')
 js(f'tl.fromTo("#prog", {{ scaleX: 0 }}, {{ scaleX: 1, duration: {T:.2f}, ease: "none" }}, 0);')

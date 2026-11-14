@@ -1,0 +1,804 @@
+<!doctype html>
+    <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=1080, height=1920" />
+        <title>Scaly AI — Las primeras 2 semanas de un piloto</title>
+        <script src="assets/vendor/gsap.min.js"></script>
+        <style>
+          @font-face { font-family: "Manrope"; font-weight: 300; src: url("assets/fonts/Manrope-300-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 400; src: url("assets/fonts/Manrope-400-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 500; src: url("assets/fonts/Manrope-500-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 700; src: url("assets/fonts/Manrope-700-latin.woff2") format("woff2"); }
+      @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/Manrope-800-latin.woff2") format("woff2"); }
+      :root {
+        --navy-900: #041b3d; --navy-700: #0d2f5c; --teal-600: #007b83; --cyan-400: #47d4d4; --slate-700: #2f4560;
+        --cream-100: #f0f1e8; --cream-200: #e3e5d9; --cream-300: #d6d9cb; --white: #ffffff;
+        --gradient-brand: linear-gradient(90deg, #0d2f5c, #47d4d4);
+        --shadow-card: 0 12px 30px rgba(4,27,61,.15); --shadow-button: 0 12px 28px rgba(4,27,61,.22);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); font-family: "Manrope", system-ui, sans-serif; color: var(--navy-900); }
+      .abs { position: absolute; }
+      .sc { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--cream-100); }
+      .sc.dark { background: var(--navy-900); color: var(--cream-100); }
+      .cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 45%; }
+      #sB, #sC, #sD, #sE, #sF, #sG, #sH, .cap { visibility: hidden; opacity: 0; }
+
+      /* fondos: rejilla sutil + resplandor cian */
+      .grid { position: absolute; left: -64px; top: -64px; width: 1208px; height: 2048px;
+        background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px);
+        background-size: 64px 64px; opacity: .45; }
+      .dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity: 1; }
+      .glow { position: absolute; width: 1100px; height: 1100px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(71,212,212,.38), rgba(71,212,212,0)); }
+      .dark .glow { background: radial-gradient(closest-side, rgba(71,212,212,.16), rgba(71,212,212,0)); }
+
+      /* tipografía */
+      .eyebrow { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); white-space: nowrap; }
+      .dark .eyebrow { color: var(--cyan-400); }
+      .h1 { font-size: 92px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; white-space: nowrap; }
+      .h1 em { font-style: normal; color: var(--teal-600); }
+      .dark .h1 em { color: var(--cyan-400); }
+      .lead { font-size: 36px; font-weight: 300; line-height: 1.4; color: var(--slate-700); }
+      .dark .lead { color: var(--cream-200); }
+      .note { font-size: 18px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .dark .note { color: #b9c3cf; }
+      .tag { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 22px; border-radius: 999px; font-size: 18px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+      .tag.soft { background: var(--cream-200); color: var(--slate-700); }
+      .tag.teal { background: #d6eeee; color: #00646b; }
+      .tag.cyan { background: var(--cyan-400); color: var(--navy-900); }
+      .tag.navy { background: var(--navy-900); color: var(--cream-100); }
+
+      /* tarjetas */
+      .card { background: var(--white); border: 1px solid var(--cream-300); border-radius: 20px; box-shadow: var(--shadow-card); }
+      .dark .card { background: var(--navy-700); border-color: rgba(240,241,232,.12); box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+
+      /* A · noche */
+      .clock { font-size: 230px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--cream-100); white-space: nowrap; }
+      .clock small { font-size: 80px; font-weight: 500; letter-spacing: -0.02em; color: var(--cyan-400); margin-left: 18px; }
+      .line { font-size: 64px; font-weight: 800; letter-spacing: -0.035em; white-space: nowrap; }
+      .line.dim { color: #8fa0b5; font-weight: 700; }
+      .notif { width: 700px; padding: 30px 34px; display: flex; gap: 26px; align-items: flex-start; background: var(--cream-100); color: var(--navy-900); border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .notif .wa { flex: none; width: 76px; height: 76px; border-radius: 20px; background: #128c4a; display: flex; align-items: center; justify-content: center; }
+      .notif .who { font-size: 22px; font-weight: 700; color: var(--slate-700); display: flex; justify-content: space-between; width: 530px; }
+      .notif .msg { font-size: 34px; font-weight: 500; margin-top: 8px; white-space: nowrap; }
+      .wait { display: flex; align-items: center; gap: 18px; height: 84px; padding: 0 34px; border-radius: 999px; border: 1px solid rgba(240,241,232,.22); background: rgba(240,241,232,.06); font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .wait b { color: var(--cyan-400); font-weight: 800; min-width: 92px; text-align: right; }
+
+      /* filas de tareas */
+      .task { display: flex; align-items: center; gap: 24px; height: 104px; padding: 0 32px; border-bottom: 1px solid var(--cream-300); font-size: 30px; font-weight: 500; white-space: nowrap; }
+      .task:last-child { border-bottom: 0; }
+      .task .ti { flex: none; width: 56px; height: 56px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .task .tx { flex: 1; }
+      .task .st { position: relative; width: 220px; height: 46px; }
+      .task .st .tag { position: absolute; right: 0; top: 0; }
+      .bigstat b { display: block; font-size: 150px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: var(--teal-600); }
+      .bigstat span { display: block; font-size: 30px; font-weight: 700; margin-top: 14px; line-height: 1.3; }
+      .bigstat i { display: block; font-style: normal; font-size: 24px; font-weight: 300; color: var(--slate-700); margin-top: 8px; line-height: 1.4; }
+
+      /* C · marca */
+      .wm { display: flex; align-items: center; gap: 48px; white-space: nowrap; }
+      .wm .nm { font-size: 190px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+      .wm .nm span { font-weight: 500; color: var(--teal-600); letter-spacing: -0.03em; }
+      .dark .wm .nm span { color: var(--cyan-400); }
+      .bars { position: relative; }
+      .bars i { position: absolute; display: block; border-radius: 999px; }
+      .hero .h1 { font-size: 120px; line-height: 1.04; }
+      .hero .h1 .s { color: var(--slate-700); font-weight: 500; }
+      .vbar { width: 10px; border-radius: 5px; background: var(--teal-600); }
+      .navlogo { display: flex; align-items: center; gap: 16px; font-size: 40px; font-weight: 800; letter-spacing: -0.04em; white-space: nowrap; }
+      .navlogo span { font-weight: 500; color: var(--teal-600); }
+
+      /* D · chat */
+      .phone { width: 540px; height: 860px; border-radius: 60px; background: var(--navy-900); padding: 16px; box-shadow: 0 30px 70px rgba(4,27,61,.28); }
+      .screen { position: relative; width: 508px; height: 828px; border-radius: 46px; background: var(--cream-100); overflow: hidden; }
+      .chd { position: absolute; left: 0; top: 0; width: 508px; height: 128px; padding: 40px 28px 0; display: flex; gap: 18px; align-items: center; background: var(--white); border-bottom: 1px solid var(--cream-300); }
+      .chd .av { width: 64px; height: 64px; border-radius: 18px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; }
+      .chd b { display: block; font-size: 24px; font-weight: 700; }
+      .chd i { display: block; font-style: normal; font-size: 18px; font-weight: 500; color: var(--teal-600); }
+      .bub { position: absolute; max-width: 400px; padding: 18px 22px; border-radius: 22px; font-size: 25px; font-weight: 500; line-height: 1.3; }
+      .bub small { display: block; font-size: 16px; font-weight: 500; margin-top: 6px; opacity: .75; text-align: right; }
+      .bub.in { left: 24px; background: var(--white); border: 1px solid var(--cream-300); border-bottom-left-radius: 6px; }
+      .bub.out { right: 24px; background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius: 6px; }
+      .typing { position: absolute; right: 24px; display: flex; gap: 8px; padding: 22px 24px; border-radius: 22px; background: var(--navy-900); }
+      .typing i { width: 12px; height: 12px; border-radius: 6px; background: var(--cyan-400); display: block; }
+      .rcpt { position: absolute; left: 24px; width: 460px; display: flex; gap: 16px; align-items: center; padding: 18px 20px; border-radius: 18px; background: #d6eeee; color: #00545a; font-size: 23px; font-weight: 700; }
+      .crm { width: 640px; padding: 26px 30px; }
+      .crm .hd { display: flex; justify-content: space-between; align-items: center; }
+      .crm .row { display: flex; justify-content: space-between; font-size: 26px; font-weight: 500; padding: 14px 0; border-top: 1px solid var(--cream-300); white-space: nowrap; }
+      .crm .row b { font-weight: 700; }
+
+      /* E · conexiones */
+      .hub { width: 170px; height: 170px; border-radius: 40px; background: var(--navy-900); display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 50px rgba(4,27,61,.3); }
+      .node { display: flex; align-items: center; gap: 16px; height: 92px; padding: 0 30px 0 18px; border-radius: 999px; background: var(--white); border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .node .ni { width: 60px; height: 60px; border-radius: 30px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .pulse { width: 18px; height: 18px; border-radius: 9px; background: var(--cyan-400); box-shadow: 0 0 0 6px rgba(71,212,212,.25); }
+
+      /* F · datos */
+      .kpi { width: 520px; height: 200px; padding: 30px 34px; }
+      .kpi b em { font-style: normal; }
+      .kpi b { display: block; font-size: 84px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--cyan-400); white-space: nowrap; }
+      .kpi span { display: block; font-size: 26px; font-weight: 500; color: var(--cream-200); margin-top: 16px; white-space: nowrap; }
+      .chart { width: 1600px; height: 300px; }
+      .cbar { position: absolute; bottom: 64px; width: 54px; border-radius: 10px 10px 4px 4px; }
+      .cbar.m { background: #5d708a; }
+      .cbar.a { background: var(--cyan-400); }
+      .lg { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 500; color: var(--cream-200); white-space: nowrap; }
+      .lg i { width: 22px; height: 22px; border-radius: 6px; display: block; }
+      .wk { position: absolute; bottom: 22px; width: 140px; text-align: center; font-size: 18px; font-weight: 500; color: #b9c3cf; }
+
+      /* G · piloto */
+      .track { height: 12px; border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .track div { width: 100%; height: 100%; background: var(--gradient-brand); transform-origin: 0% 50%; }
+      .dot { width: 64px; height: 64px; border-radius: 32px; background: var(--white); border: 2px solid var(--cream-300); display: flex; align-items: center; justify-content: center; }
+      .dot.on { background: var(--teal-600); border-color: var(--teal-600); }
+      .step { width: 480px; height: 290px; padding: 32px 36px; }
+      .step .num { font-size: 22px; font-weight: 800; letter-spacing: .14em; color: var(--teal-600); }
+      .step h3 { font-size: 40px; font-weight: 700; letter-spacing: -0.03em; margin-top: 14px; white-space: nowrap; }
+      .step b { display: block; font-size: 64px; font-weight: 800; letter-spacing: -0.04em; color: var(--teal-600); margin-top: 26px; white-space: nowrap; }
+      .step i { font-style: normal; font-size: 26px; font-weight: 300; color: var(--slate-700); white-space: nowrap; }
+
+      /* H · cierre */
+      .btn { display: flex; align-items: center; justify-content: center; gap: 18px; height: 104px; padding: 0 56px; border-radius: 999px; background: var(--gradient-brand); color: var(--white); font-size: 40px; font-weight: 700; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+      .micro { font-size: 30px; font-weight: 500; color: var(--cream-200); white-space: nowrap; text-align: center; }
+      .url { font-size: 30px; font-weight: 800; letter-spacing: .14em; color: var(--cyan-400); text-align: center; }
+
+      /* transición con las tres barras del logo */
+      .tbar { position: absolute; left: 0; width: 1800px; height: 640px; border-radius: 320px; visibility: hidden; }
+      #prog { position: absolute; left: 0; bottom: 0; width: 1080px; height: 6px; background: var(--gradient-brand); transform-origin: 0% 50%; }
+
+      /* subtítulos */
+      .cap { position: absolute; left: 0; top: 1490px; width: 1080px; display: flex; justify-content: center; pointer-events: none; }
+      .cap span { padding: 12px 30px; border-radius: 999px; background: rgba(4,27,61,.92); color: var(--cream-100); font-size: 34px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(4,27,61,.25); }
+      .cap b { font-weight: 800; color: var(--cyan-400); }
+      #Ecard .task { font-size: 27px; height: 100px; } #Ecard .task .st { width: 210px; }
+
+      /* ---- tutorial WhatsApp + Meta + Claude ---- */
+      #sI { visibility: hidden; opacity: 0; }
+      .h1 .l { display: block; line-height: 1.14; }
+      .h1.big { font-size: 104px; line-height: 1.08; }
+      .h1.ctr, .lead.ctr { text-align: center; }
+      .navlogo.dk { color: var(--cream-100); }
+      .navlogo.dk span { color: var(--cyan-400); }
+      .pdots { position: absolute; right: 160px; top: 132px; display: flex; gap: 10px; }
+      .pdots i { display: block; width: 14px; height: 14px; border-radius: 7px; background: var(--cream-300); }
+      .pdots i.done { background: #7fc3c7; }
+      .pdots i.on { width: 44px; background: var(--teal-600); }
+      .dark .pdots i { background: rgba(240,241,232,.22); }
+      .dark .pdots i.done { background: rgba(71,212,212,.5); }
+      .dark .pdots i.on { background: var(--cyan-400); }
+      .flow { display: flex; align-items: center; gap: 20px; width: 400px; padding: 24px 28px; border-radius: 20px; background: var(--navy-700); border: 1px solid rgba(240,241,232,.12); }
+      .flow .ni { flex: none; width: 72px; height: 72px; border-radius: 20px; background: rgba(71,212,212,.12); display: flex; align-items: center; justify-content: center; }
+      .flow b { display: block; font-size: 30px; font-weight: 700; color: var(--cream-100); white-space: nowrap; }
+      .flow span { display: block; font-size: 22px; font-weight: 300; color: var(--cream-200); margin-top: 4px; white-space: nowrap; }
+      .need { width: 500px; height: 420px; padding: 40px 40px; }
+      .need .pi { width: 88px; height: 88px; border-radius: 24px; background: #d6eeee; display: flex; align-items: center; justify-content: center; }
+      .need h3 { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; margin-top: 30px; }
+      .need p { font-size: 26px; font-weight: 300; line-height: 1.4; color: var(--slate-700); margin-top: 12px; }
+      .win { overflow: hidden; }
+      .wbar { height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 22px; background: var(--cream-200); border-bottom: 1px solid var(--cream-300); }
+      .wbar i { width: 14px; height: 14px; border-radius: 7px; background: var(--cream-300); display: block; }
+      .wbar span { margin-left: 16px; flex: 1; height: 36px; border-radius: 999px; background: #fff; display: flex; align-items: center; padding: 0 18px; font-size: 19px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .wbar.dk { background: #0a2348; border-bottom-color: rgba(240,241,232,.1); }
+      .wbar.dk i { background: rgba(240,241,232,.2); }
+      .wbar.dk span { background: transparent; color: var(--cream-200); padding: 0; }
+      .wbody { padding: 34px 44px; }
+      .ftitle { font-size: 22px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 26px; white-space: nowrap; }
+      .ftitle.sm { margin-bottom: 14px; }
+      .fld { margin-bottom: 22px; }
+      .fld label { display: block; font-size: 20px; font-weight: 700; color: var(--slate-700); margin-bottom: 8px; }
+      .fld .val { position: relative; height: 62px; border-radius: 999px; border: 1px solid var(--cream-300); background: var(--cream-100); display: flex; align-items: center; padding: 0 26px; font-size: 26px; font-weight: 500; white-space: nowrap; }
+      .ok { position: absolute; right: 14px; top: 50%; margin-top: -19px; width: 38px; height: 38px; border-radius: 19px; background: var(--teal-600); display: flex; align-items: center; justify-content: center; }
+      .perm .ok { position: static; margin: 0; width: 34px; height: 34px; flex: none; }
+      .copy { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); padding: 6px 18px; border-radius: 999px; background: #d6eeee; color: #00646b; font-size: 18px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      .sbtn { display: inline-flex; align-items: center; height: 60px; padding: 0 32px; border-radius: 999px; background: var(--gradient-brand); color: #fff; font-size: 24px; font-weight: 700; box-shadow: var(--shadow-button); margin: 6px 0 26px; }
+      .sbtn.sm { height: 50px; padding: 0 24px; font-size: 21px; margin: 0; }
+      .prod { display: flex; align-items: center; gap: 20px; padding: 22px 24px; border-radius: 20px; border: 1px solid var(--cream-300); }
+      .prod .ni { flex: none; width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+      .prod > div:nth-child(2) { flex: 1; }
+      .prod b { display: block; font-size: 28px; font-weight: 700; }
+      .prod span { display: block; font-size: 21px; font-weight: 300; color: var(--slate-700); }
+      .code6 { position: relative; display: flex; gap: 12px; }
+      .code6 i { display: flex; width: 62px; height: 70px; border-radius: 14px; border: 1px solid var(--cream-300); background: var(--cream-100); align-items: center; justify-content: center; font-style: normal; font-size: 32px; font-weight: 700; }
+      .code6 .ok { right: auto; left: 470px; }
+      .wnote { font-size: 18px; font-weight: 500; color: var(--slate-700); }
+      .urow { display: flex; align-items: center; gap: 18px; padding: 20px 22px; border-radius: 20px; border: 1px solid var(--cream-300); margin-bottom: 22px; }
+      .urow .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: var(--cream-100); display: flex; align-items: center; justify-content: center; }
+      .urow b { display: block; font-size: 26px; font-weight: 700; }
+      .urow span { display: block; font-size: 20px; font-weight: 300; color: var(--slate-700); }
+      .perm { display: flex; align-items: center; gap: 14px; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; margin-bottom: 14px; }
+      .prompt { padding: 30px 34px; border-radius: 20px; background: var(--navy-700); border: 1px solid rgba(240,241,232,.12); font-size: 30px; font-weight: 500; line-height: 1.45; color: var(--cream-100); }
+      .prompt .who { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan-400); margin-bottom: 12px; }
+      .envc { padding: 26px 30px; border-radius: 20px; background: #020f24; border: 1px solid rgba(240,241,232,.12); }
+      .envc .eh { display: flex; justify-content: space-between; align-items: center; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; color: var(--cream-200); margin-bottom: 14px; }
+      .envc code { display: block; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; line-height: 1.7; color: var(--cyan-400); }
+      .tag.sm { height: 36px; padding: 0 14px; font-size: 14px; }
+      .editor { border-radius: 20px; background: #020f24; border: 1px solid rgba(240,241,232,.12); overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+      .lines { padding: 26px 28px 30px 10px; }
+      .ln { font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 22px; line-height: 1.95; color: var(--cream-100); white-space: pre; }
+      .ln em { display: inline-block; width: 46px; text-align: right; margin-right: 22px; font-style: normal; color: #9aaabd; }
+      .ln.k { color: var(--cyan-400); }
+      .okt { display: inline-flex; align-items: center; gap: 10px; margin-left: 20px; font-size: 24px; font-weight: 700; color: var(--teal-600); vertical-align: middle; }
+      .sub { display: flex; align-items: center; gap: 20px; padding: 18px 22px; border-radius: 18px; border: 1px solid var(--cream-300); }
+      .sub code { flex: 1; font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 26px; }
+      .tog { position: relative; width: 74px; height: 44px; border-radius: 22px; background: var(--cream-300); }
+      .tog i { position: absolute; left: 6px; top: 6px; width: 32px; height: 32px; border-radius: 16px; background: #fff; display: block; box-shadow: 0 2px 6px rgba(4,27,61,.2); }
+      .sub .okt { margin-left: 0; }
+      .h1.st { font-size: 80px; }
+      /* ---- versión "desde Claude" ---- */
+      .ask { padding: 26px 30px; border-radius: 20px; background: #fff; border: 1px solid var(--cream-300); box-shadow: var(--shadow-card); font-size: 30px; font-weight: 500; line-height: 1.4; }
+      .ask .who { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); margin-bottom: 10px; }
+      .cstat { display: flex; align-items: center; gap: 14px; height: 76px; padding: 0 26px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 24px; font-weight: 700; white-space: nowrap; }
+      .cstat i { font-style: normal; font-weight: 500; color: var(--cream-200); margin-right: 6px; }
+      .cstat svg:last-child { stroke: var(--cyan-400); }
+      .cbadge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 999px; background: var(--cyan-400); color: var(--navy-900); font-style: normal; font-size: 15px; font-weight: 800; letter-spacing: .06em; white-space: nowrap; }
+      .wbar span { flex: 1; min-width: 0; overflow: hidden; }
+
+      /* ---- piloto 2 semanas (gráfico) ---- */
+      .deco i { position: absolute; display: block; border-radius: 999px; }
+      .gt { flex: none; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0d2f5c, #47d4d4); box-shadow: 0 16px 36px rgba(4,27,61,.25); }
+      .day { display: flex; align-items: flex-start; justify-content: flex-start; padding: 12px 14px; border-radius: 16px; background: #fff; border: 1px solid var(--cream-300); color: var(--navy-900); }
+      .day b { font-size: 28px; font-weight: 800; }
+      .day.dk { background: var(--navy-700); border-color: rgba(240,241,232,.14); color: var(--cream-100); }
+      .bignum { font-size: 430px; font-weight: 800; letter-spacing: -0.06em; line-height: 1; color: rgba(71,212,212,.16); text-align: center; white-space: nowrap; }
+      .bignum small { display: block; font-size: 70px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-top: -20px; }
+      .ptrack { border-radius: 6px; background: var(--cream-300); overflow: hidden; }
+      .ptrack div { width: 100%; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #0d2f5c, #47d4d4); transform-origin: 0% 50%; }
+      .phase { display: flex; gap: 50px; align-items: center; padding: 40px 48px; overflow: hidden; }
+      .pt { flex: none; width: 780px; display: flex; gap: 36px; align-items: center; }
+      .phase h3 { font-size: 54px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.1; margin-top: 18px; }
+      .phase .pr { flex: 1; display: flex; flex-direction: column; gap: 22px; position: relative; z-index: 1; }
+      .bl { display: flex; gap: 18px; align-items: center; font-size: 30px; font-weight: 500; line-height: 1.3; }
+      .bl .ni { flex: none; width: 60px; height: 60px; border-radius: 16px; background: #d6eeee; display: flex; align-items: center; justify-content: center; }
+      .pnum { position: absolute; right: 30px; bottom: -40px; font-size: 220px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(0,123,131,.08); }
+      /* ---- color por herramienta/etapa y personas ---- */
+      .gt.c-xls { background: linear-gradient(135deg, #1D6F42, #3FAE6B); }
+      .gt.c-crm { background: linear-gradient(135deg, #1F4FBF, #5B8DEF); }
+      .gt.c-erp { background: linear-gradient(135deg, #C56A1A, #F0A64B); }
+      .pp { flex: none; border-radius: 50%; overflow: hidden; border: 4px solid #fff; box-shadow: 0 8px 20px rgba(4,27,61,.2); }
+      .pp svg { display: block; }
+      .avs { display: flex; align-items: center; }
+      .avs .pp + .pp { margin-left: -16px; }
+      .ptag { display: flex; align-items: center; gap: 16px; }
+
+      /* ---- módulos del motor vertical ---- */
+      .rel { position: relative; }
+      .pan { padding: 28px 34px; }
+      .flab { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-600); white-space: nowrap; margin-bottom: 8px; }
+      .ah { display: flex; align-items: center; gap: 18px; }
+      .ah b { font-size: 32px; font-weight: 700; white-space: nowrap; }
+      .ah i { margin-left: auto; font-style: normal; font-size: 22px; font-weight: 500; color: var(--slate-700); white-space: nowrap; }
+      .rw { display: flex; align-items: center; gap: 22px; height: 112px; border-top: 1px solid var(--cream-300); }
+      .pan > .rw:first-child, .flab + .rw { border-top: 0; }
+      .rt { flex: 1; min-width: 0; }
+      .rt b { display: block; font-size: 30px; font-weight: 700; white-space: nowrap; }
+      .rt span { display: block; font-size: 22px; font-weight: 500; color: var(--slate-700); white-space: nowrap; margin-top: 2px; }
+      .rs { position: relative; flex: none; width: 250px; height: 46px; }
+      .rs .tag { position: absolute; right: 0; top: 0; }
+      .ftrack { border-radius: 5px; background: linear-gradient(90deg, #0d2f5c, #47d4d4); }
+      .flabel { text-align: center; font-size: 26px; font-weight: 700; white-space: nowrap; }
+      .chipn { display: flex; align-items: center; justify-content: center; width: 170px; height: 56px; border-radius: 999px; background: var(--navy-900); color: var(--cream-100); font-size: 21px; font-weight: 800; white-space: nowrap; box-shadow: 0 10px 24px rgba(4,27,61,.3); }
+      .gg { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+      .gc { height: 84px; border-radius: 16px; border: 2px solid; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; }
+      .leg { display: flex; gap: 28px; margin-top: 18px; font-size: 22px; font-weight: 500; color: var(--slate-700); }
+      .leg i { display: inline-block; width: 20px; height: 20px; border-radius: 6px; border: 2px solid; margin-right: 8px; vertical-align: -3px; }
+      .cb { width: fit-content; max-width: 720px; padding: 22px 26px; border-radius: 24px; font-size: 30px; font-weight: 500; line-height: 1.3; margin-top: 22px; }
+      .cb.in { background: var(--cream-100); border: 1px solid var(--cream-300); border-bottom-left-radius: 6px; }
+      .cb.out { background: var(--navy-900); color: var(--cream-100); border-bottom-right-radius: 6px; margin-left: auto; }
+      .cb.out em { display: flex; align-items: center; gap: 10px; font-style: normal; font-size: 19px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan-400); margin-bottom: 8px; }
+      .rc { display: flex; gap: 14px; align-items: center; margin-top: 22px; padding: 18px 22px; border-radius: 18px; background: #d6eeee; color: #00545a; font-size: 26px; font-weight: 700; }
+      .pp-wrap { margin-top: 14px; }
+      .pcols { display: flex; gap: 14px; }
+      .pc { height: 300px; border-radius: 16px; background: var(--cream-100); border: 1px solid var(--cream-300); padding: 8px; }
+      .ph { height: 46px; border-radius: 10px; color: #fff; font-size: 19px; font-weight: 800; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+      .pslot { height: 88px; }
+      .pg { height: 58px; border-radius: 12px; background: var(--cream-200); margin-top: 10px; }
+      .pcard { display: flex; gap: 10px; align-items: center; height: 78px; padding: 0 10px; border-radius: 12px; background: var(--navy-900); color: var(--cream-100); box-shadow: 0 10px 24px rgba(4,27,61,.3); }
+      .pcard b { display: block; font-size: 22px; font-weight: 800; white-space: nowrap; }
+      .pcard span { display: block; font-size: 18px; font-weight: 500; white-space: nowrap; }
+      .pcard .pp { border-width: 2px; }
+      .kwrap { display: flex; gap: 44px; align-items: center; padding-top: 16px; }
+      .kring { flex: none; width: 300px; height: 300px; }
+      .kin { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .kin b { font-size: 84px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; white-space: nowrap; }
+      .kin em, .ks em { font-style: normal; }
+      .kin span { font-size: 24px; font-weight: 500; color: var(--slate-700); margin-top: 6px; }
+      .kstats { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+      .ks b { display: block; font-size: 66px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--teal-600); white-space: nowrap; }
+      .ks span { display: block; font-size: 24px; font-weight: 500; color: var(--slate-700); margin-top: 6px; }
+      .bch { display: flex; align-items: flex-end; gap: 18px; height: 196px; margin-top: 6px; }
+      .bcol { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+      .bcol i { display: block; width: 100%; border-radius: 12px 12px 4px 4px; }
+      .bcol span { font-size: 20px; font-weight: 500; color: var(--slate-700); margin-top: 8px; white-space: nowrap; }
+
+      /* ---- diseño v2: color por escena ---- */
+      .band { left: 0; top: 0; width: 1080px; height: 650px; border-radius: 0 0 64px 64px; overflow: hidden; box-shadow: 0 24px 60px rgba(4,27,61,.22); }
+      .wmk { right: -70px; top: 210px; opacity: .14; transform-origin: 50% 50%; }
+      .band .num { right: 60px; top: 60px; font-size: 120px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(255,255,255,.16); }
+      .eyebrow.lt { color: rgba(255,255,255,.88); }
+      .h1.lt { color: #fff; }
+      .h1.lt em { color: var(--emc); }
+      .lead.lt { color: rgba(255,255,255,.94); font-weight: 400; font-size: 34px; }
+      .pdots.lt i { background: rgba(255,255,255,.32); }
+      .pdots.lt i.done { background: rgba(255,255,255,.6); }
+      .pdots.lt i.on { background: #fff; }
+      .pan { border-top: 8px solid var(--acc); }
+      .flab { color: var(--acc); }
+      .ks b { color: var(--acc); }
+      .rw { padding: 0 12px; margin: 0 -12px; border-radius: 16px; }
+      .bch { height: 222px; }
+      .bcol b { font-size: 22px; font-weight: 800; color: var(--navy-900); margin-bottom: 6px; }
+      .blob { border-radius: 50%; }
+      .oi { display: flex; flex-direction: column; align-items: center; width: 130px; }
+      .olab { margin-top: 12px; padding: 6px 16px; border-radius: 999px; background: rgba(240,241,232,.12); border: 1px solid rgba(240,241,232,.22); color: var(--cream-100); font-size: 22px; font-weight: 700; white-space: nowrap; }
+      .recap { display: flex; justify-content: center; gap: 28px; }
+      .dark .gt { box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+
+      /* ---- módulo prompt (Tú → Claude) ---- */
+      .pan.dk, .pan:has(.pbody) { background: #06224a; border-top-color: var(--cyan-400); color: var(--cream-100); }
+      .ptop { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+      .pchip { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: rgba(71,212,212,.14); color: var(--cyan-400); font-size: 19px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-right: auto; white-space: nowrap; }
+      .ptop i { width: 14px; height: 14px; border-radius: 50%; background: rgba(240,241,232,.22); }
+      .pbody { font-family: ui-monospace, "DejaVu Sans Mono", monospace; font-size: 27px; line-height: 50px; color: #e9f4f4; }
+      .pl { height: 50px; white-space: nowrap; }
+      .pl em { font-style: normal; color: var(--cyan-400); }
+      .pcur { display: inline-block; width: 14px; height: 30px; background: var(--cyan-400); vertical-align: middle; }
+      .pans { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 16px 20px; border-radius: 18px; background: rgba(71,212,212,.13); border: 1px solid rgba(71,212,212,.35); font-size: 25px; }
+      .pans b { font-weight: 800; color: var(--cyan-400); }
+      .pans span { flex: 1; font-weight: 600; white-space: nowrap; }
+
+      .cap span { font-size: 38px; padding: 14px 32px; }
+
+      /* ---- 9:16 ---- */
+      .h1 { font-size: 92px; }
+      .h1.big { font-size: 92px; }
+      .h1.st { font-size: 84px; }
+      .h1 .l { display: block; line-height: 1.12; }
+      .phase { flex-direction: column; align-items: flex-start; gap: 34px; padding: 40px 44px; }
+      .pt { width: auto; gap: 30px; }
+      .phase h3 { font-size: 50px; }
+      .btn { font-size: 34px; height: 96px; padding: 0 40px; }
+      .day b { font-size: 32px; }
+      .bignum { font-size: 270px; }
+      .bignum small { font-size: 54px; margin-top: -10px; }
+
+        </style>
+      </head>
+      <body>
+        <div id="root" data-composition-id="main" data-start="0" data-duration="64.11" data-fps="30" data-width="1080" data-height="1920">
+          <div class="sc dark" id="sA"><div class="cam"><div class="grid"></div><div class="glow" style="left:100px;top:-200px;width:1200px;height:1200px"></div>
+        <div class="abs blob" style="left:-300px;top:1000px;width:1000px;height:1000px;background:radial-gradient(closest-side, #007B83AA, #007B8300)"></div><div class="abs deco" style="left:300px;top:1500px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+        <div class="abs eyebrow" id="Aey" style="left:70px;top:250px">Cómo trabajamos</div>
+        <div class="abs h1 big" id="At" style="left:66px;top:300px"><span class="l">¿Qué pasa en las</span><span class="l">primeras <em>2 semanas</em></span><span class="l">de un piloto?</span></div>
+        <svg class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><circle id="Ar0" cx="540" cy="1050" r="230" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.4"/><circle id="Ar1" cx="540" cy="1050" r="320" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.25"/><circle id="Ar2" cx="540" cy="1050" r="410" fill="none" stroke="#47D4D4" stroke-width="2" opacity="0.14"/><line id="Ak0" x1="540" y1="1050" x2="200" y2="840" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak1" x1="540" y1="1050" x2="880" y2="870" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak2" x1="540" y1="1050" x2="230" y2="1270" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/><line id="Ak3" x1="540" y1="1050" x2="860" y2="1250" stroke="#47D4D4" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14" opacity=".7"/></svg>
+        <div class="abs oi" id="Ao0" style="left:135px;top:775px"><div class="gt " style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div><span class="olab">Días 1–2</span></div><div class="abs oi" id="Ao1" style="left:815px;top:805px"><div class="gt c-crm" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div><span class="olab">Días 3–5</span></div><div class="abs oi" id="Ao2" style="left:165px;top:1205px"><div class="gt c-erp" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div><span class="olab">Semana 2</span></div><div class="abs oi" id="Ao3" style="left:795px;top:1185px"><div class="gt c-xls" style="width:130px;height:130px;border-radius:36px"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><span class="olab">Día 14</span></div>
+        <div class="abs" id="Ahero" style="left:390px;top:900px"><div class="gt " style="width:300px;height:300px;border-radius:84px"><svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="calendar-check">
+  <path d="M8 2v4" />
+  <path d="M16 2v4" />
+  <rect width="18" height="18" x="3" y="4" rx="2" />
+  <path d="M3 10h18" />
+  <path d="m9 16 2 2 4-4" />
+</svg></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+      </div></div>
+      <div class="sc" id="sB" style="--acc:#007B83;--emc:#7FE3E3"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Bband" style="background:linear-gradient(135deg, #0D2F5C, #007B83)"><div class="abs wmk" id="Bwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div>
+          <div class="abs num">01</div></div>
+        <div class="abs eyebrow lt" id="Bey" style="left:70px;top:200px">Días 1–2</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Bt" style="left:66px;top:244px"><span class="l">Elegimos</span><span class="l"><em>un proceso.</em></span></div>
+        <div class="abs lead lt" id="Bld" style="left:70px;top:468px;width:700px">El que más tiempo le cuesta a tu equipo.</div><div class="abs" id="Bpp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div>
+        <div class="abs card pan" id="Bm0" style="left:66.0px;top:682.9px;width:886.7px;height:352px;zoom:1.060"><div class="flab t">14 días</div><div class="gg"><div class="gc" id="Bm0c0" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">1</div><div class="gc" id="Bm0c1" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">2</div><div class="gc" id="Bm0c2" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">3</div><div class="gc" id="Bm0c3" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">4</div><div class="gc" id="Bm0c4" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">5</div><div class="gc" id="Bm0c5" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">6</div><div class="gc" id="Bm0c6" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">7</div><div class="gc" id="Bm0c7" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">8</div><div class="gc" id="Bm0c8" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">9</div><div class="gc" id="Bm0c9" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">10</div><div class="gc" id="Bm0c10" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">11</div><div class="gc" id="Bm0c11" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">12</div><div class="gc" id="Bm0c12" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">13</div><div class="gc" id="Bm0c13" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">14</div></div><div class="leg"><span><i style="background:#007B83;border-color:#007B83"></i>Hecho</span><span><i style="background:#1F4FBF;border-color:#1F4FBF"></i>En curso</span><span><i style="background:#FFFFFF;border-color:#D6D9CB"></i>Por venir</span></div></div><div class="abs card pan" id="Bm1" style="left:66.0px;top:1059.5px;width:886.7px;height:280px;zoom:1.060"><div class="rw" id="Bm1r0"><div class="gt " style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="message-circle">
+  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+</svg></div><div class="rt"><b>Conversamos 30 minutos</b><span>Sobre tu operación</span></div><div class="rs" style="width:175px"><span class="tag teal" id="Bm1b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Hecho</span></div></div><div class="rw" id="Bm1r1"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div><div class="rt"><b>Elegimos un solo proceso</b><span>El que más tiempo cuesta</span></div><div class="rs" style="width:175px"><span class="tag teal" id="Bm1b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Elegido</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+      </div></div>
+      <div class="sc" id="sC" style="--acc:#1F4FBF;--emc:#CFE0FF"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Cband" style="background:linear-gradient(135deg, #163A8C, #1F4FBF)"><div class="abs wmk" id="Cwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div>
+          <div class="abs num">02</div></div>
+        <div class="abs eyebrow lt" id="Cey" style="left:70px;top:200px">Días 3–5</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Ct" style="left:66px;top:244px"><span class="l">Mapeamos y</span><span class="l"><em>conectamos.</em></span></div>
+        <div class="abs lead lt" id="Cld" style="left:70px;top:468px;width:700px">Sobre las herramientas que ya usas.</div><div class="abs" id="Cpp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div>
+        <div class="abs card pan" id="Cm0" style="left:66.0px;top:682.9px;width:886.7px;height:352px;zoom:1.060"><div class="flab t">14 días</div><div class="gg"><div class="gc" id="Cm0c0" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">1</div><div class="gc" id="Cm0c1" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">2</div><div class="gc" id="Cm0c2" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">3</div><div class="gc" id="Cm0c3" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">4</div><div class="gc" id="Cm0c4" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">5</div><div class="gc" id="Cm0c5" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">6</div><div class="gc" id="Cm0c6" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">7</div><div class="gc" id="Cm0c7" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">8</div><div class="gc" id="Cm0c8" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">9</div><div class="gc" id="Cm0c9" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">10</div><div class="gc" id="Cm0c10" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">11</div><div class="gc" id="Cm0c11" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">12</div><div class="gc" id="Cm0c12" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">13</div><div class="gc" id="Cm0c13" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">14</div></div><div class="leg"><span><i style="background:#007B83;border-color:#007B83"></i>Hecho</span><span><i style="background:#1F4FBF;border-color:#1F4FBF"></i>En curso</span><span><i style="background:#FFFFFF;border-color:#D6D9CB"></i>Por venir</span></div></div><div class="abs card pan" id="Cm1" style="left:66.0px;top:1059.5px;width:886.7px;height:280px;zoom:1.060"><div class="rw" id="Cm1r0"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="layers">
+  <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+  <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+  <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+</svg></div><div class="rt"><b>Cómo funciona hoy</b><span>Paso a paso</span></div><div class="rs" style="width:219px"><span class="tag teal" id="Cm1b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Mapeado</span></div></div><div class="rw" id="Cm1r1"><div class="gt " style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div><div class="rt"><b>Tus herramientas</b><span>WhatsApp · CRM · hojas · ERP</span></div><div class="rs" style="width:219px"><span class="tag teal" id="Cm1b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Conectadas</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+      </div></div>
+      <div class="sc" id="sD" style="--acc:#B5651D;--emc:#FFE0BD"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Dband" style="background:linear-gradient(135deg, #8A4A12, #B5651D)"><div class="abs wmk" id="Dwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div>
+          <div class="abs num">03</div></div>
+        <div class="abs eyebrow lt" id="Dey" style="left:70px;top:200px">Semana 2</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Dt" style="left:66px;top:244px"><span class="l">Lo ponemos</span><span class="l"><em>a funcionar.</em></span></div>
+        <div class="abs lead lt" id="Dld" style="left:70px;top:468px;width:700px">Con casos reales de tu negocio.</div><div class="abs" id="Dpp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#47D4D4"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#8D5A3B"/><circle cx="50" cy="42" r="18" fill="#8D5A3B"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#111111"/></svg></div></div></div>
+        <div class="abs card pan" id="Dm0" style="left:66.0px;top:682.9px;width:886.7px;height:352px;zoom:1.060"><div class="flab t">14 días</div><div class="gg"><div class="gc" id="Dm0c0" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">1</div><div class="gc" id="Dm0c1" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">2</div><div class="gc" id="Dm0c2" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">3</div><div class="gc" id="Dm0c3" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">4</div><div class="gc" id="Dm0c4" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">5</div><div class="gc" id="Dm0c5" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">6</div><div class="gc" id="Dm0c6" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">7</div><div class="gc" id="Dm0c7" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">8</div><div class="gc" id="Dm0c8" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">9</div><div class="gc" id="Dm0c9" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">10</div><div class="gc" id="Dm0c10" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">11</div><div class="gc" id="Dm0c11" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">12</div><div class="gc" id="Dm0c12" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">13</div><div class="gc" id="Dm0c13" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">14</div></div><div class="leg"><span><i style="background:#007B83;border-color:#007B83"></i>Hecho</span><span><i style="background:#1F4FBF;border-color:#1F4FBF"></i>En curso</span><span><i style="background:#FFFFFF;border-color:#D6D9CB"></i>Por venir</span></div></div><div class="abs card pan" id="Dm1" style="left:66.0px;top:1059.5px;width:886.7px;height:280px;zoom:1.060"><div class="rw" id="Dm1r0"><div class="gt c-erp" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div><div class="rt"><b>Casos reales</b><span>De tu negocio</span></div><div class="rs" style="width:233px"><span class="tag teal" id="Dm1b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Funcionando</span></div></div><div class="rw" id="Dm1r1"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="users">
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <circle cx="9" cy="7" r="4" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+</svg></div><div class="rt"><b>Ajustes con tu equipo</b><span>Hasta que encaje</span></div><div class="rs" style="width:233px"><span class="tag teal" id="Dm1b1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Ajustado</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+      </div></div>
+      <div class="sc" id="sE" style="--acc:#1D6F42;--emc:#BDEFD0"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Eband" style="background:linear-gradient(135deg, #14532F, #1D6F42)"><div class="abs wmk" id="Ewm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div>
+          <div class="abs num">04</div></div>
+        <div class="abs eyebrow lt" id="Eey" style="left:70px;top:200px">Día 14</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i class=""></i></div>
+        <div class="abs h1 st lt" id="Et" style="left:66px;top:244px"><span class="l">El proceso</span><span class="l"><em>trabaja solo.</em></span></div>
+        <div class="abs lead lt" id="Eld" style="left:70px;top:468px;width:700px">Y empezamos a medir el retorno.</div><div class="abs" id="Epp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#E3E5D9"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#1A1A1A"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#0D2F5C"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#C68655"/><circle cx="50" cy="42" r="18" fill="#C68655"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#1A1A1A"/></svg></div></div></div>
+        <div class="abs card pan" id="Em0" style="left:66.0px;top:682.9px;width:886.7px;height:352px;zoom:1.060"><div class="flab t">14 días</div><div class="gg"><div class="gc" id="Em0c0" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">1</div><div class="gc" id="Em0c1" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">2</div><div class="gc" id="Em0c2" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">3</div><div class="gc" id="Em0c3" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">4</div><div class="gc" id="Em0c4" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">5</div><div class="gc" id="Em0c5" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">6</div><div class="gc" id="Em0c6" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">7</div><div class="gc" id="Em0c7" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">8</div><div class="gc" id="Em0c8" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">9</div><div class="gc" id="Em0c9" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">10</div><div class="gc" id="Em0c10" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">11</div><div class="gc" id="Em0c11" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">12</div><div class="gc" id="Em0c12" style="width:105px;background:#007B83;color:#FFFFFF;border-color:#007B83">13</div><div class="gc" id="Em0c13" style="width:105px;background:#FFFFFF;color:#041B3D;border-color:#D6D9CB">14</div></div><div class="leg"><span><i style="background:#007B83;border-color:#007B83"></i>Hecho</span><span><i style="background:#1F4FBF;border-color:#1F4FBF"></i>En curso</span><span><i style="background:#FFFFFF;border-color:#D6D9CB"></i>Por venir</span></div></div><div class="abs card pan" id="Em1" style="left:66.0px;top:1059.5px;width:886.7px;height:280px;zoom:1.060"><div class="rw" id="Em1r0"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="circle-check">
+  <circle cx="12" cy="12" r="10" />
+  <path d="m9 12 2 2 4-4" />
+</svg></div><div class="rt"><b>El proceso ya trabaja solo</b><span>Sin trabajo manual</span></div><div class="rs" style="width:190px"><span class="tag teal" id="Em1b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Listo</span></div></div><div class="rw" id="Em1r1"><div class="gt " style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div class="rt"><b>ROI medible</b><span>En 6 semanas</span></div><div class="rs" style="width:190px"><span class="tag soft" id="Em1a1">Midiendo</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+      </div></div>
+      <div class="sc" id="sF" style="--acc:#007B83;--emc:#7FE3E3"><div class="cam"><div class="grid"></div><div class="glow" style="left:-200px;top:900px;width:1100px;height:1100px"></div><div class="abs deco" style="left:380px;top:1500px;width:720px;height:672px;opacity:0.16" data-layout-allow-overlap="true"><i style="left:192px;top:0px;width:528px;height:168px;background:#47D4D4"></i><i style="left:0px;top:252px;width:720px;height:168px;background:#007B83"></i><i style="left:0px;top:504px;width:528px;height:168px;background:#041B3D"></i></div>
+        <div class="abs band" id="Fband" style="background:linear-gradient(135deg, #0D2F5C, #007B83)"><div class="abs wmk" id="Fwm"><svg width="460" height="460" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-label="handshake">
+  <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+  <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+  <path d="m21 3 1 11h-2" />
+  <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+  <path d="M3 4h8" />
+</svg></div>
+          <div class="abs num">05</div></div>
+        <div class="abs eyebrow lt" id="Fey" style="left:70px;top:200px">Después</div>
+        <div class="abs pdots lt" style="left:auto;right:70px;top:204px"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+        <div class="abs h1 st lt" id="Ft" style="left:66px;top:244px"><span class="l">Medimos y</span><span class="l"><em>tú decides.</em></span></div>
+        <div class="abs lead lt" id="Fld" style="left:70px;top:468px;width:700px">Sin compromisos a ciegas.</div><div class="abs" id="Fpp" style="left:70px;top:600px"><div class="avs"><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#007B83"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#E9B48A"/><circle cx="50" cy="42" r="18" fill="#E9B48A"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#2B1B12"/></svg></div><div class="pp" style="width:88px;height:88px"><svg width="88" height="88" viewBox="0 0 100 100" aria-label="persona"><rect width="100" height="100" fill="#D6EEEE"/><path d="M29 42 C26 62 31 70 36 72 L64 72 C69 70 74 62 71 42Z" fill="#7A4A21"/><path d="M16 100 C16 78 33 68 50 68 C67 68 84 78 84 100 Z" fill="#D9822B"/><rect x="44" y="54" width="12" height="16" rx="5" fill="#F2C9A5"/><circle cx="50" cy="42" r="18" fill="#F2C9A5"/><path d="M31 42 C29 24 42 18 51 19 C62 19 71 27 69 42 C64 34 56 30 50 31 C42 31 35 35 31 42Z" fill="#7A4A21"/></svg></div></div></div>
+        <div class="abs card pan" id="Fm0" style="left:67.3px;top:799.9px;width:904.0px;height:324px;zoom:1.040"><div class="flab t">Después del piloto</div><div class="rw" id="Fm0r0"><div class="gt c-xls" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div><div class="rt"><b>Medimos el resultado</b><span>Con datos reales</span></div><div class="rs" style="width:219px"><span class="tag teal" id="Fm0b0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00646B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="check">
+  <path d="M20 6 9 17l-5-5" />
+</svg>Medido</span></div></div><div class="rw" id="Fm0r1"><div class="gt c-crm" style="width:84px;height:84px;border-radius:23px"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="layers">
+  <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+  <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+  <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+</svg></div><div class="rt"><b>¿Lo llevamos a otros procesos?</b><span>La decisión es tuya</span></div><div class="rs" style="width:219px"><span class="tag soft" id="Fm0a1">Tú decides</span></div></div></div>
+        <div class="abs note" style="left:70px;top:1452px">Calendario de ejemplo: cada piloto se ajusta a tu proceso.</div>
+      </div></div>
+      <div class="sc dark" id="sG"><div class="cam"><div class="grid"></div><div class="glow" style="left:-10px;top:300px;width:1100px;height:1100px"></div><div class="abs deco" style="left:300px;top:1380px;width:816px;height:761px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:218px;top:0px;width:598px;height:190px;background:#47D4D4"></i><i style="left:0px;top:286px;width:816px;height:190px;background:#007B83"></i><i style="left:0px;top:571px;width:598px;height:190px;background:#F0F1E8"></i></div><div class="abs deco" style="left:-420px;top:-200px;width:768px;height:716px;opacity:0.1" data-layout-allow-overlap="true"><i style="left:205px;top:0px;width:563px;height:179px;background:#47D4D4"></i><i style="left:0px;top:269px;width:768px;height:179px;background:#007B83"></i><i style="left:0px;top:538px;width:563px;height:179px;background:#F0F1E8"></i></div>
+        <div class="abs recap" style="left:0px;top:260px;width:1080px"><div class="ri" id="Gri0"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="target">
+  <circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" />
+</svg></div></div><div class="ri" id="Gri1"><div class="gt c-crm" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+</svg></div></div><div class="ri" id="Gri2"><div class="gt c-erp" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="zap">
+  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+</svg></div></div><div class="ri" id="Gri3"><div class="gt c-xls" style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="chart-column">
+  <path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" />
+</svg></div></div><div class="ri" id="Gri4"><div class="gt " style="width:120px;height:120px;border-radius:33px"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="handshake">
+  <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+  <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
+  <path d="m21 3 1 11h-2" />
+  <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
+  <path d="M3 4h8" />
+</svg></div></div></div>
+        <div class="abs navlogo dk" id="Glg" style="left:0px;top:470px;width:1080px;justify-content:center"><div class="bars" style="width:60.0px;height:56.0px"><i id="Gb0" style="left:16.0px;top:0.0px;width:44.0px;height:14.0px;background:#47D4D4"></i><i id="Gb1" style="left:0.0px;top:21.0px;width:60.0px;height:14.0px;background:#007B83"></i><i id="Gb2" style="left:0.0px;top:42.0px;width:44.0px;height:14.0px;background:#F0F1E8"></i></div><div>Scaly <span>AI</span></div></div>
+        <div class="abs h1 ctr" id="Gt" style="left:0px;top:600px;width:1080px"><span class="l">Empezamos con</span><span class="l">un piloto, no con</span><span class="l"><em>una apuesta.</em></span></div>
+        <div class="abs" id="Gcta" style="left:0px;top:1000px;width:1080px;display:flex;justify-content:center"><div class="btn" id="Gbtn">Conversemos de tu próximo piloto <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow-right">
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg></div></div>
+        <div class="abs micro" id="Gmic" style="left:0px;top:1150px;width:1080px">30 minutos · sin tarjeta · sin compromiso</div>
+        <div class="abs url" id="Gurl" style="left:0px;top:1240px;width:1080px">SCALYAI.DEV</div>
+      </div></div>
+          <div class="abs" id="tbars" style="left:0;top:0;width:1080px;height:1920px" data-layout-allow-overlap="true"><div class="tbar" style="top:0px;background:#47D4D4"></div><div class="tbar" style="top:640px;background:#007B83"></div><div class="tbar" style="top:1280px;background:#041B3D"></div></div>
+          <div id="prog"></div>
+          <div class="cap" id="cap0" data-layout-allow-overlap="true"><span>¿Qué pasa en las</span></div>
+      <div class="cap" id="cap1" data-layout-allow-overlap="true"><span>primeras <b>dos</b> <b>semanas</b> de</span></div>
+      <div class="cap" id="cap2" data-layout-allow-overlap="true"><span>un <b>piloto</b> con <b>Scaly</b> AI?</span></div>
+      <div class="cap" id="cap3" data-layout-allow-overlap="true"><span>Son <b>catorce</b> días, enfocados</span></div>
+      <div class="cap" id="cap4" data-layout-allow-overlap="true"><span>en un solo <b>proceso,</b></span></div>
+      <div class="cap" id="cap5" data-layout-allow-overlap="true"><span>y sin detener tu operación.</span></div>
+      <div class="cap" id="cap6" data-layout-allow-overlap="true"><span>Días uno y <b>dos:</b></span></div>
+      <div class="cap" id="cap7" data-layout-allow-overlap="true"><span>conversamos y elegimos</span></div>
+      <div class="cap" id="cap8" data-layout-allow-overlap="true"><span>un solo <b>proceso,</b></span></div>
+      <div class="cap" id="cap9" data-layout-allow-overlap="true"><span>el que más tiempo le</span></div>
+      <div class="cap" id="cap10" data-layout-allow-overlap="true"><span>cuesta a tu equipo.</span></div>
+      <div class="cap" id="cap11" data-layout-allow-overlap="true"><span>Días tres a cinco:</span></div>
+      <div class="cap" id="cap12" data-layout-allow-overlap="true"><span>mapeamos cómo funciona hoy,</span></div>
+      <div class="cap" id="cap13" data-layout-allow-overlap="true"><span>y conectamos</span></div>
+      <div class="cap" id="cap14" data-layout-allow-overlap="true"><span>tus herramientas.</span></div>
+      <div class="cap" id="cap15" data-layout-allow-overlap="true"><span>Segunda semana: lo ponemos a</span></div>
+      <div class="cap" id="cap16" data-layout-allow-overlap="true"><span>funcionar con casos reales,</span></div>
+      <div class="cap" id="cap17" data-layout-allow-overlap="true"><span>y lo ajustamos con tu equipo.</span></div>
+      <div class="cap" id="cap18" data-layout-allow-overlap="true"><span>Al día <b>catorce,</b></span></div>
+      <div class="cap" id="cap19" data-layout-allow-overlap="true"><span>el <b>proceso</b> ya trabaja solo.</span></div>
+      <div class="cap" id="cap20" data-layout-allow-overlap="true"><span>Y empezamos a</span></div>
+      <div class="cap" id="cap21" data-layout-allow-overlap="true"><span>medir el retorno,</span></div>
+      <div class="cap" id="cap22" data-layout-allow-overlap="true"><span>para verlo en <b>seis</b> <b>semanas.</b></span></div>
+      <div class="cap" id="cap23" data-layout-allow-overlap="true"><span>Después del <b>piloto,</b></span></div>
+      <div class="cap" id="cap24" data-layout-allow-overlap="true"><span>medimos el resultado</span></div>
+      <div class="cap" id="cap25" data-layout-allow-overlap="true"><span>con datos reales,</span></div>
+      <div class="cap" id="cap26" data-layout-allow-overlap="true"><span>y tú decides si lo</span></div>
+      <div class="cap" id="cap27" data-layout-allow-overlap="true"><span>llevamos a otros procesos.</span></div>
+      <div class="cap" id="cap28" data-layout-allow-overlap="true"><span>Empezamos con un <b>piloto,</b></span></div>
+      <div class="cap" id="cap29" data-layout-allow-overlap="true"><span>no con una apuesta.</span></div>
+      <div class="cap" id="cap30" data-layout-allow-overlap="true"><span><b>Conversemos:</b> <b>treinta</b> <b>minutos,</b></span></div>
+      <div class="cap" id="cap31" data-layout-allow-overlap="true"><span>sin tarjeta, sin compromiso.</span></div>
+          <audio id="v_p1" src="audio/seg/p1.wav" data-start="0.6" data-duration="4.141" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p1b" src="audio/seg/p1b.wav" data-start="5.441" data-duration="5.175" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p2" src="audio/seg/p2.wav" data-start="12.216" data-duration="7.488" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p3" src="audio/seg/p3.wav" data-start="21.304" data-duration="5.368" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p4" src="audio/seg/p4.wav" data-start="28.272" data-duration="5.341" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p5" src="audio/seg/p5.wav" data-start="35.212" data-duration="7.42" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p5b" src="audio/seg/p5b.wav" data-start="44.232" data-duration="6.974" data-track-index="12" data-volume="1"></audio>
+      <audio id="v_p6" src="audio/seg/p6.wav" data-start="53.307" data-duration="7.452" data-track-index="12" data-volume="1"></audio>
+      <audio id="musica-fondo" src="audio/musica-duck.wav" data-start="0" data-duration="64.11" data-track-index="13" data-volume="0.8"></audio>
+          <audio id="efectos-sonido" src="audio/efectos.wav" data-start="0" data-duration="64.11" data-track-index="14" data-volume="0.5"></audio>
+        </div>
+        <script>
+          window.__timelines = window.__timelines || {};
+          const tl = gsap.timeline({ paused: true });
+          const fmt = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+          const capShow = (sel, a, b) => {
+            tl.fromTo(sel, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.18, ease: "power2.out" }, a - 0.04);
+            tl.set(sel, { autoAlpha: 0 }, b);
+          };
+          tl.fromTo("#sA > .cam", { scale: 1 }, { scale: 1.035, duration: 12.42, ease: "none" }, 0.000);
+      tl.fromTo("#sA .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 12.42, ease: "sine.inOut" }, 0.000);
+      tl.fromTo("#sB > .cam", { scale: 1 }, { scale: 1.035, duration: 10.29, ease: "none" }, 11.216);
+      tl.fromTo("#sB .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.29, ease: "sine.inOut" }, 11.216);
+      tl.fromTo("#sC > .cam", { scale: 1 }, { scale: 1.035, duration: 8.17, ease: "none" }, 20.304);
+      tl.fromTo("#sC .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.17, ease: "sine.inOut" }, 20.304);
+      tl.fromTo("#sD > .cam", { scale: 1 }, { scale: 1.035, duration: 8.14, ease: "none" }, 27.272);
+      tl.fromTo("#sD .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 8.14, ease: "sine.inOut" }, 27.272);
+      tl.fromTo("#sE > .cam", { scale: 1 }, { scale: 1.035, duration: 10.22, ease: "none" }, 34.212);
+      tl.fromTo("#sE .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 10.22, ease: "sine.inOut" }, 34.212);
+      tl.fromTo("#sF > .cam", { scale: 1 }, { scale: 1.035, duration: 9.78, ease: "none" }, 43.232);
+      tl.fromTo("#sF .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 9.78, ease: "sine.inOut" }, 43.232);
+      tl.fromTo("#sG > .cam", { scale: 1 }, { scale: 1.035, duration: 13.50, ease: "none" }, 51.807);
+      tl.fromTo("#sG .glow", { x: 0, y: 0 }, { x: -60, y: 40, duration: 13.50, ease: "sine.inOut" }, 51.807);
+      tl.fromTo(".deco", { x: 0 }, { x: -50, duration: 64.11, ease: "none" }, 0);
+      tl.fromTo("#Aey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 0.200);
+      tl.fromTo("#At", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.8, ease: "power3.out" }, 0.350);
+      tl.fromTo("#Ahero", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 1.635);
+      tl.fromTo("#Ar0", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.785);
+      tl.fromTo("#Ar1", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 1.905);
+      tl.fromTo("#Ar2", { scale: 0.6, autoAlpha: 0, svgOrigin: "540 1050" }, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "power3.out" }, 2.025);
+      tl.fromTo("#Ahero", { y: 0 }, { y: -16, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.435);
+      tl.fromTo("#Ak0", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 2.671);
+      tl.fromTo("#Ao0", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 2.671);
+      tl.fromTo("#Ao0", { y: 0 }, { y: 14, duration: 1.6, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.221);
+      tl.fromTo("#Ak1", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 2.851);
+      tl.fromTo("#Ao1", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 2.851);
+      tl.fromTo("#Ao1", { y: 0 }, { y: -14, duration: 1.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.401);
+      tl.fromTo("#Ak2", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.030);
+      tl.fromTo("#Ao2", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.030);
+      tl.fromTo("#Ao2", { y: 0 }, { y: 14, duration: 2.0, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.580);
+      tl.fromTo("#Ak3", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, 3.211);
+      tl.fromTo("#Ao3", { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 3.211);
+      tl.fromTo("#Ao3", { y: 0 }, { y: -14, duration: 2.2, yoyo: true, repeat: 3, ease: "sine.inOut" }, 3.761);
+      tl.set(".tbar", { visibility: "visible" }, 10.556);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 10.556);
+      tl.set("#sA", { autoAlpha: 0 }, 11.216);
+      tl.set("#sB", { autoAlpha: 1 }, 11.216);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 11.256);
+      tl.set(".tbar", { visibility: "hidden" }, 12.006);
+      tl.fromTo("#Bey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 11.366);
+      tl.fromTo("#Bt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.496);
+      tl.fromTo("#Bld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 11.666);
+      tl.fromTo("#Bwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 10.29, ease: "none" }, 10.616);
+      tl.fromTo("#Bpp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 11.816);
+      tl.fromTo("#Bm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.716);
+      tl.fromTo("#Bm0 .gc", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 12.366);
+      tl.to("#Bm0c0", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 12.815);
+      tl.to("#Bm0c1", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 13.264);
+      tl.fromTo("#Bm1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 11.916);
+      gsap.set("#Bm1 .rw", { autoAlpha: 0 });
+      gsap.set("#Bm1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Bm1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 14.462);
+      tl.fromTo("#Bm1b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 16.996);
+      tl.fromTo("#Bm1r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 16.896);
+      tl.fromTo("#Bm1r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 15.679);
+      tl.fromTo("#Bm1b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 18.213);
+      tl.fromTo("#Bm1r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 18.113);
+      tl.to("#sB", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 20.004);
+      tl.fromTo("#sC", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 20.254);
+      tl.fromTo("#Cey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 20.454);
+      tl.fromTo("#Ct", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 20.584);
+      tl.fromTo("#Cld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 20.754);
+      tl.fromTo("#Cwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 8.17, ease: "none" }, 19.704);
+      tl.fromTo("#Cpp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 20.904);
+      tl.fromTo("#Cm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 20.804);
+      tl.fromTo("#Cm0 .gc", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 21.411);
+      tl.to("#Cm0c2", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 21.733);
+      tl.to("#Cm0c3", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 21.948);
+      tl.to("#Cm0c4", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 22.163);
+      tl.fromTo("#Cm1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 21.004);
+      gsap.set("#Cm1 .rw", { autoAlpha: 0 });
+      gsap.set("#Cm1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Cm1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 22.914);
+      tl.fromTo("#Cm1b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 24.759);
+      tl.fromTo("#Cm1r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 24.659);
+      tl.fromTo("#Cm1r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 23.787);
+      tl.fromTo("#Cm1b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 25.631);
+      tl.fromTo("#Cm1r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 25.531);
+      tl.set(".tbar", { visibility: "visible" }, 26.612);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 26.612);
+      tl.set("#sC", { autoAlpha: 0 }, 27.272);
+      tl.set("#sD", { autoAlpha: 1 }, 27.272);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 27.312);
+      tl.set(".tbar", { visibility: "hidden" }, 28.062);
+      tl.fromTo("#Dey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.422);
+      tl.fromTo("#Dt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.552);
+      tl.fromTo("#Dld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.722);
+      tl.fromTo("#Dwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 8.14, ease: "none" }, 26.672);
+      tl.fromTo("#Dpp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 27.872);
+      tl.fromTo("#Dm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.772);
+      tl.fromTo("#Dm0 .gc", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 28.379);
+      tl.to("#Dm0c7", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 28.699);
+      tl.to("#Dm0c8", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 28.806);
+      tl.to("#Dm0c9", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 28.913);
+      tl.to("#Dm0c10", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 29.020);
+      tl.to("#Dm0c11", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 29.127);
+      tl.to("#Dm0c12", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 29.233);
+      tl.fromTo("#Dm1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 27.972);
+      gsap.set("#Dm1 .rw", { autoAlpha: 0 });
+      gsap.set("#Dm1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Dm1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 29.874);
+      tl.fromTo("#Dm1b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 31.710);
+      tl.fromTo("#Dm1r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 31.610);
+      tl.fromTo("#Dm1r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 30.742);
+      tl.fromTo("#Dm1b1", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 32.578);
+      tl.fromTo("#Dm1r1", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 32.478);
+      tl.set("#sE", { autoAlpha: 1 }, 33.812);
+      tl.fromTo("#sE", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power3.inOut" }, 33.812);
+      tl.set("#sD", { autoAlpha: 0 }, 34.532);
+      tl.fromTo("#Eey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 34.362);
+      tl.fromTo("#Et", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 34.492);
+      tl.fromTo("#Eld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 34.662);
+      tl.fromTo("#Ewm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 10.22, ease: "none" }, 33.612);
+      tl.fromTo("#Epp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 34.812);
+      tl.fromTo("#Em0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 34.712);
+      tl.fromTo("#Em0 .gc", { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.03, ease: "power3.out" }, 35.360);
+      tl.to("#Em0c13", { backgroundColor: "#1F4FBF", color: "#FFFFFF", borderColor: "#1F4FBF", duration: 0.35 }, 35.806);
+      tl.fromTo("#Em1", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 34.912);
+      gsap.set("#Em1 .rw", { autoAlpha: 0 });
+      gsap.set("#Em1 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Em1r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 36.696);
+      tl.fromTo("#Em1b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 39.393);
+      tl.fromTo("#Em1r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 39.293);
+      tl.fromTo("#Em1r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 37.995);
+      tl.to("#sE", { autoAlpha: 0, duration: 0.45, ease: "power2.in" }, 42.932);
+      tl.fromTo("#sF", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6, ease: "power3.out" }, 43.182);
+      tl.fromTo("#Fey", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.382);
+      tl.fromTo("#Ft", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 43.512);
+      tl.fromTo("#Fld", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.682);
+      tl.fromTo("#Fwm", { x: 60, rotation: -6 }, { x: -30, rotation: 4, duration: 9.78, ease: "none" }, 42.632);
+      tl.fromTo("#Fpp", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 43.832);
+      tl.fromTo("#Fm0", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 43.732);
+      gsap.set("#Fm0 .rw", { autoAlpha: 0 });
+      gsap.set("#Fm0 .tag.teal", { autoAlpha: 0 });
+      tl.fromTo("#Fm0r0", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 44.581);
+      tl.fromTo("#Fm0b0", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.35, ease: "power3.out" }, 47.819);
+      tl.fromTo("#Fm0r0", { backgroundColor: "rgba(71,212,212,.30)" }, { backgroundColor: "rgba(71,212,212,0)", duration: 0.8, ease: "power1.out" }, 47.719);
+      tl.fromTo("#Fm0r1", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.45, ease: "power3.out" }, 46.150);
+      tl.set(".tbar", { visibility: "visible" }, 51.147);
+      tl.fromTo(".tbar", { x: -1900 }, { x: -340, duration: 0.5, ease: "power3.inOut", stagger: 0.07 }, 51.147);
+      tl.set("#sF", { autoAlpha: 0 }, 51.807);
+      tl.set("#sG", { autoAlpha: 1 }, 51.807);
+      tl.to(".tbar", { x: 1100, duration: 0.55, ease: "power3.inOut", stagger: 0.07 }, 51.847);
+      tl.set(".tbar", { visibility: "hidden" }, 52.597);
+      tl.fromTo("#Gb0", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 51.907);
+      tl.fromTo("#Gb1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 52.027);
+      tl.fromTo("#Gb2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 52.147);
+      tl.fromTo("#Glg", { autoAlpha: 0, y: 0, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 51.907);
+      tl.fromTo("#Gri0", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.107);
+      tl.fromTo("#Gri1", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.227);
+      tl.fromTo("#Gri2", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.347);
+      tl.fromTo("#Gri3", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.467);
+      tl.fromTo("#Gri4", { autoAlpha: 0, y: 20, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 52.587);
+      tl.fromTo("#Gt", { autoAlpha: 0, y: 30, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out" }, 53.107);
+      tl.fromTo("#Gcta", { autoAlpha: 0, y: 24, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.6, ease: "power3.out" }, 56.626);
+      tl.fromTo("#Gmic", { autoAlpha: 0, y: 16, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 57.226);
+      tl.fromTo("#Gurl", { autoAlpha: 0, y: 12, x: 0 }, { autoAlpha: 1, y: 0, x: 0, duration: 0.5, ease: "power3.out" }, 60.959);
+      tl.to("#Gbtn", { boxShadow: "0 0 0 14px rgba(71,212,212,.18), 0 16px 40px rgba(0,0,0,.35)", duration: 1.1, yoyo: true, repeat: 1, ease: "sine.inOut" }, 61.159);
+      tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: 64.11, ease: "none" }, 0);
+          capShow("#cap0", 0.600, 1.683);
+      capShow("#cap1", 1.683, 3.212);
+      capShow("#cap2", 3.212, 5.091);
+      capShow("#cap3", 5.441, 7.376);
+      capShow("#cap4", 7.376, 9.015);
+      capShow("#cap5", 9.015, 10.966);
+      capShow("#cap6", 12.216, 14.215);
+      capShow("#cap7", 14.215, 15.803);
+      capShow("#cap8", 15.803, 17.476);
+      capShow("#cap9", 17.476, 18.617);
+      capShow("#cap10", 18.617, 20.054);
+      capShow("#cap11", 21.304, 23.097);
+      capShow("#cap12", 23.097, 25.072);
+      capShow("#cap13", 25.072, 25.743);
+      capShow("#cap14", 25.743, 27.022);
+      capShow("#cap15", 28.272, 28.759);
+      capShow("#cap16", 28.759, 29.673);
+      capShow("#cap17", 29.673, 33.963);
+      capShow("#cap18", 35.212, 36.561);
+      capShow("#cap19", 36.561, 38.771);
+      capShow("#cap20", 38.771, 39.605);
+      capShow("#cap21", 39.605, 40.985);
+      capShow("#cap22", 40.985, 42.982);
+      capShow("#cap23", 44.232, 45.697);
+      capShow("#cap24", 45.697, 47.038);
+      capShow("#cap25", 47.038, 48.603);
+      capShow("#cap26", 48.603, 49.678);
+      capShow("#cap27", 49.678, 51.556);
+      capShow("#cap28", 53.307, 55.061);
+      capShow("#cap29", 55.061, 56.380);
+      capShow("#cap30", 56.826, 57.867);
+      capShow("#cap31", 57.867, 61.159);
+          window.__timelines["main"] = tl;
+          tl.seek(0);
+        </script>
+      </body>
+    </html>
+    
