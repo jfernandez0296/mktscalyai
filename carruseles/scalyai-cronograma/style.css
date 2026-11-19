@@ -1,7 +1,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
-.body { position:absolute; left:0; top:45px; width:1080px; height:1350px; }
+.body { position:absolute; left:0; top:0; width:1080px; height:1350px; }
 body { background:#999; font-family: var(--font-sans); color: var(--navy-900); }
-.slide { position:relative; width:1080px; height:1440px; overflow:hidden; margin-bottom:20px; background: var(--cream-100); }
+.slide { position:relative; width:1080px; height:1350px; overflow:hidden; margin-bottom:20px; background: var(--cream-100); }
 .slide.dark { background: var(--navy-900); color: var(--cream-100); }
 .abs { position:absolute; }
 .grid { position:absolute; inset:0; background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px); background-size:64px 64px; opacity:.45; }

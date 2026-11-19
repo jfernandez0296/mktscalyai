@@ -34,7 +34,7 @@ Software e IA a la medida de tu negocio. Conversemos de tu próximo piloto: link
 
 ## Extra · `beneficios-automatizacion` (3 láminas)
 
-### Instagram
+### Instagram — publicado el 19/11/2026: https://www.instagram.com/p/Df7OIexIURl/
 3 beneficios de automatizar tu negocio: tu equipo recupera tiempo, hay menos errores y tus clientes reciben respuesta al instante.
 
 ¿Por dónde empezarías a automatizar? Cuéntanos en los comentarios.
@@ -42,7 +42,7 @@ Software e IA a la medida de tu negocio. Conversemos de tu próximo piloto: link
 Conversemos de tu próximo piloto: link en la bio.
 #automatizacion #pymes #productividad #inteligenciaartificial #whatsappbusiness
 
-### LinkedIn (subir `beneficios-automatizacion/scalyai-beneficios-automatizacion.pdf` como documento)
+### LinkedIn (subir `beneficios-automatizacion/scalyai-beneficios-automatizacion.pdf` como documento) — publicado el 19/11/2026
 Automatizar no es reemplazar a tu equipo. Es quitarle lo repetitivo. Tres beneficios concretos:
 
 ⏱️ Tu equipo recupera tiempo: lo repetitivo se hace solo y las personas se dedican a vender y atender.

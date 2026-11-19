@@ -1,4 +1,4 @@
-# Carrusel de Instagram (7 láminas, 1080×1440, 3:4) — Scaly AI con la identidad v1 (brand/scalyai).
+# Carrusel de Instagram (7 láminas, 1080×1350, 4:5) — Scaly AI con la identidad v1 (brand/scalyai).
 # Uso: python3 build.py && node render.js   → slide-1.png … slide-7.png
 import os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -119,9 +119,9 @@ S.append(frame(7, f'''
 F = "../../brand/scalyai/fonts"
 CSS = "".join(f'@font-face {{ font-family:"Manrope"; font-weight:{w}; src:url("{F}/Manrope-{w}-latin.woff2") format("woff2"); }}\n' for w in (300, 400, 500, 700, 800)) + '''
 * { margin:0; padding:0; box-sizing:border-box; }
-.body { position:absolute; left:0; top:45px; width:1080px; height:1350px; }
+.body { position:absolute; left:0; top:0; width:1080px; height:1350px; }
 body { background:#999; font-family: var(--font-sans); color: var(--navy-900); }
-.slide { position:relative; width:1080px; height:1440px; overflow:hidden; margin-bottom:20px; background: var(--cream-100); }
+.slide { position:relative; width:1080px; height:1350px; overflow:hidden; margin-bottom:20px; background: var(--cream-100); }
 .slide.dark { background: var(--navy-900); color: var(--cream-100); }
 .grid { position:absolute; inset:0; background-image: linear-gradient(var(--cream-300) 1px, transparent 1px), linear-gradient(90deg, var(--cream-300) 1px, transparent 1px); background-size:64px 64px; opacity:.45; }
 .dark .grid { background-image: linear-gradient(rgba(240,241,232,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(240,241,232,.07) 1px, transparent 1px); opacity:1; }

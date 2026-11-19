@@ -1,4 +1,4 @@
-# Carruseles de Instagram de Scaly AI (1080×1440, 3:4) para el cronograma: semanas 1 y 2.
+# Carruseles de Instagram de Scaly AI (1080×1350, 4:5) para el cronograma: semanas 1 y 2.
 # Uso: python3 build.py && node render.js   → <carrusel>/slide-N.png
 import os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
