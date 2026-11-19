@@ -54,4 +54,4 @@ Automatizar no es reemplazar a tu equipo. Es quitarle lo repetitivo. Tres benefi
 Conversemos de tu próximo piloto. 30 minutos · sin tarjeta · sin compromiso.
 scalyai.dev
 
-#Automatización #PyMEs #Productividad
+#automatizacion #pymes #productividad
