@@ -31,3 +31,27 @@ Conectamos lo que ya usas: WhatsApp, CRM, hojas de cálculo y ERP.
 
 Software e IA a la medida de tu negocio. Conversemos de tu próximo piloto: link en la bio.
 #software #automatizacion #pymes #inteligenciaartificial
+
+## Extra · `beneficios-automatizacion` (3 láminas)
+
+### Instagram
+3 beneficios de automatizar tu negocio: tu equipo recupera tiempo, hay menos errores y tus clientes reciben respuesta al instante.
+
+¿Por dónde empezarías a automatizar? Cuéntanos en los comentarios.
+
+Conversemos de tu próximo piloto: link en la bio.
+#automatizacion #pymes #productividad #inteligenciaartificial #whatsappbusiness
+
+### LinkedIn
+Automatizar no es reemplazar a tu equipo. Es quitarle lo repetitivo. Tres beneficios concretos:
+
+→ Tu equipo recupera tiempo: lo repetitivo se hace solo y las personas se dedican a vender y atender.
+→ Menos errores: los datos se registran una sola vez, sin copiar y pegar entre herramientas.
+→ Respuestas al instante: tus clientes reciben respuesta en segundos, a cualquier hora.
+
+¿Por dónde empezarías a automatizar?
+
+Conversemos de tu próximo piloto. 30 minutos · sin tarjeta · sin compromiso.
+scalyai.dev
+
+#Automatización #PyMEs #Productividad

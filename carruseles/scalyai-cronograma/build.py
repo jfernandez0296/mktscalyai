@@ -69,7 +69,10 @@ def s_hub(s):
 def s_cta(s):
     return (f'<div class="close"><div class="biglogo">{bars(150, True)}<span>Scaly <em>AI</em></span></div><h1 class="md ctr">{L(s["title"])}</h1>'
             f'<div class="btn">Conversemos de tu próximo piloto {icon("arrow-right", 36, WHITE, 2.4)}</div><div class="micro">30 minutos · sin tarjeta · sin compromiso</div><div class="url">SCALYAI.DEV</div></div>')
-KIND = {"cover": s_cover, "item": s_item, "compare": s_compare, "quote": s_quote, "hub": s_hub, "cta": s_cta}
+def s_list(s):
+    rows = "".join(f'<div class="card bn" style="top:{470 + i * 232}px">{gt(ic, 132, cls)}<div><b>{t}</b><p>{d}</p></div><span class="bnn">{i + 1:02d}</span></div>' for i, (ic, cls, t, d) in enumerate(s["items"]))
+    return f'<div class="blk" style="top:200px"><div class="eyebrow">{s["eyebrow"]}</div><h1 class="md">{L(s["title"])}</h1></div>{rows}'
+KIND = {"list": s_list, "cover": s_cover, "item": s_item, "compare": s_compare, "quote": s_quote, "hub": s_hub, "cta": s_cta}
 
 A2 = dict(t0="A mano", t1="Automático")
 CAR = {
@@ -95,6 +98,13 @@ CAR = {
   dict(k="item", num="02", icon="users", cls="c-crm", title=["Registra cada", "<em>pedido.</em>"], text="Lo que conversa con tu cliente queda guardado en tu CRM, sin copiar nada.", chip="Directo a tu CRM"),
   dict(k="item", num="03", icon="handshake", cls="c-xls", title=["Sabe cuándo", "<em>pasar la posta.</em>"], text="Si hay una duda o un caso especial, deriva la conversación a una persona.", chip="Con tu equipo", people=[1, 3]),
   dict(k="cta", title=["¿Quieres uno", "<em>para tu negocio?</em>"])],
+ "beneficios-automatizacion": [
+  dict(k="cover", eyebrow="Automatización", title=["3 beneficios", "de automatizar", "<em>tu negocio.</em>"], icon="zap", cls="c-erp", orbit=[("clock", "c-crm"), ("shield-check", "c-xls"), ("wa", "")]),
+  dict(k="list", eyebrow="Lo que cambia", title=["Menos tareas.", "<em>Más negocio.</em>"], items=[
+      ("clock", "c-crm", "Tu equipo recupera tiempo", "Lo repetitivo se hace solo y las personas se dedican a vender y atender."),
+      ("shield-check", "c-xls", "Menos errores", "Los datos se registran una sola vez, sin copiar y pegar entre herramientas."),
+      ("wa", "", "Respuestas al instante", "Tus clientes reciben respuesta en segundos, a cualquier hora.")]),
+  dict(k="cta", title=["¿Por dónde", "empezarías", "<em>a automatizar?</em>"])],
  "s2-tres-cosas": [
   dict(k="cover", eyebrow="Scaly AI", title=["Tres cosas,", "<em>bien hechas.</em>"], icon="layers", cls="c-crm", orbit=[("zap", "c-erp"), ("chart-column", "c-xls"), ("wa", "")]),
   dict(k="item", num="01", icon="zap", cls="c-erp", title=["Automatizamos", "<em>lo repetitivo.</em>"], text="Lo que hoy tu equipo hace a mano, empieza a hacerse solo.", **A2),
