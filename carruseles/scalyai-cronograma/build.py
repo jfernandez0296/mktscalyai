@@ -1,4 +1,4 @@
-# Carruseles de Instagram de Scaly AI (1080×1350, 4:5) para el cronograma: semanas 1 y 2.
+# Carruseles de Instagram de Scaly AI (1080×1440, 3:4) para el cronograma: semanas 1 y 2.
 # Uso: python3 build.py && node render.js   → <carrusel>/slide-N.png
 import os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -37,7 +37,7 @@ def frame(i, n, body, dark=False, last=False):
     dots = "".join(f'<i class="{"on" if j == i else ""}"></i>' for j in range(1, n + 1))
     sw = "" if last else f'<div class="swipe">Desliza {icon("arrow-right", 30, CYAN if dark else TEAL, 2.4)}</div>'
     return (f'<section class="slide{" dark" if dark else ""}" id="slide-{i}"><div class="grid"></div><div class="glow"></div>{deco(520, 1010, .7, dark)}'
-            f'<header><div class="logo">{bars(44, dark)}<span>Scaly <em>AI</em></span></div><span class="count">{i:02d} / {n:02d}</span></header>{body}'
+            f'<header><div class="logo">{bars(44, dark)}<span>Scaly <em>AI</em></span></div><span class="count">{i:02d} / {n:02d}</span></header><div class="body">{body}</div>'
             f'<footer><div class="dots">{dots}</div>{sw}</footer></section>')
 
 def s_cover(s):
